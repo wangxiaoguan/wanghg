@@ -1,0 +1,472 @@
+body {
+  overflow: hidden;
+}
+
+.modal {
+  .ant-modal-header {
+    background: #4d91ff;
+  }
+  .modal-option-btn {
+    text-align: center;
+    .modal-back-btn,
+    .modal-save-btn {
+      margin: 5px;
+    }
+  }
+}
+
+//控制查询条件和按钮之间的距离
+.ant-form-item {
+  margin-bottom: 15px;
+}
+
+.ant-form-inline {
+  .ant-form-item {
+    vertical-align: middle;
+  }
+}
+
+//统一设置input样式
+.input {
+  width: 200px;
+  height: 33px;
+  border-radius: 4px;
+  border: solid 1px #d7dae6;
+}
+
+.textarea {
+  width: 60% !important;
+}
+
+//统一设置select样式
+.select {
+  width: 200px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+//解决lable和输入框对不齐的问题
+.ant-form-item-control {
+  line-height: 34.9999px;
+}
+
+.ant-select-selection__clear {
+  right: 35px;
+}
+
+//下拉框右侧那个小图标
+.ant-select-arrow {
+  width: 30px;
+  height: 30px;
+  background-color: #79d3ff;
+  top: 0px;
+  right: 0;
+  margin: 0;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-select-arrow:before {
+  margin-top: 9px;
+}
+
+//多级级联的小图标
+.ant-cascader-picker-arrow {
+  width: 30px;
+  height: 31px;
+  background-color: #79d3ff;
+  top: 0px;
+  right: 0;
+  margin: 0;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-cascader-picker-arrow:before {
+  margin-top: 10px !important;
+}
+
+.ant-cascader-picker-arrow.ant-cascader-picker-arrow {
+  svg {
+    transition: all 0.3s;
+  }
+}
+
+.ant-cascader-picker-arrow.ant-cascader-picker-arrow-expand {
+  transform: none;
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+//查询按钮   新建和查询共用一个样式   保存重用   确定重用
+.queryBtn {
+  //width: 80px;
+  height: 29px;
+  background-color: #007aff;
+  border-radius: 100px;
+  padding-bottom: 3px;
+  margin-left: 13px;
+  color: #fff;
+}
+
+.queryBtn:active,
+.queryBtn:focus,
+.queryBtn:hover {
+  color: #fff;
+  background-color: #007aff;
+}
+
+//重置按钮    导入重用样式    刷新按钮重用   返回重用   添加按钮重置
+.resetBtn,
+.resetBtnCopy {
+  // width: 80px;
+  height: 27px;
+  border-radius: 100px;
+  border: solid 1px #9295a5;
+  background-color: #ffffff;
+  color: #9295a5;
+  padding-bottom: 3px;
+  margin-left: 13px;
+}
+
+.resetBtn:active,
+.resetBtn:focus,
+.resetBtn:hover {
+  color: #007aff;
+  background-color: #ffffff;
+  border: solid 1px #007aff;
+}
+
+.resetBtnCopy {
+  width: 120px;
+}
+
+//删除按钮
+.deleteBtn {
+  height: 29px;
+  border-radius: 100px;
+  border: solid 1px #9295a5;
+  background-color: #ef3737 !important;
+  color: #fff !important;
+  padding-bottom: 3px;
+  margin-left: 13px;
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+//从首页下线
+.offLineBtn {
+  width: 93px;
+}
+
+//设置表头公共样式
+.ant-table-thead tr th {
+  background-color: #eef1f8;
+  text-align: center;
+}
+
+//设置表格内容居中
+.ant-table-tbody>tr>td {
+  text-align: center;
+}
+
+//设置表格边框颜色
+.ant-table-bordered .ant-table-tbody>tr>td,
+.ant-table-bordered .ant-table-thead>tr>th {
+  border-color: #d7dae6;
+  padding: 6px;
+}
+
+.ant-table-thead>tr>th {
+  border-bottom: none;
+  height: 40px;
+}
+
+.ant-table-tbody>tr>td {
+  height: 36px;
+}
+
+//设置表单lable字体颜色
+.ant-form-item-label label {
+  color: #4e5565;
+}
+
+//导出按钮公共样式
+.exportBtn {
+  height: 29px;
+  border-radius: 100px;
+  border: solid 1px #007aff;
+  background-color: #ffffff;
+  color: #007aff;
+  padding-bottom: 3px;
+  margin-left: 13px;
+}
+
+//表格操作一栏
+.operation {
+  color: #007aff !important;
+  text-decoration: underline !important;
+}
+
+//排除下拉框右边图标受影响
+.ant-pagination-options .ant-select-arrow {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  // top: 6px;
+  right: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+//弹窗公共样式
+.ant-modal-header {
+  background: #007AFF;
+  color: #fff;
+}
+
+.ant-modal-content {
+  border-radius: 10px;
+}
+
+.ant-modal-header {
+  border-radius: 10px 10px 0 0;
+}
+
+.ant-modal-title {
+  color: #fff;
+}
+
+.ant-modal-close {
+  color: #fff;
+}
+
+.ant-modal-close-x {
+  font-size: 25px;
+}
+
+.ant-modal-close:focus,
+.ant-modal-close:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+//分页按钮样式
+.ant-pagination-item-active {
+  background: #9fa3b7 !important;
+  border-color: #9fa3b7 !important;
+}
+
+.ant-pagination-item-active a {
+  color: white !important;
+}
+
+.ant-pagination-item:focus,
+.ant-pagination-item:hover {
+  border-color: #9fa3b7;
+}
+
+.ant-pagination-item a:hover {
+  color: rgba(0, 0, 0, .65) !important;
+}
+
+.ant-pagination-item-active a:hover {
+  color: white !important;
+}
+
+//主体部分那根线
+.custom-table-search {
+  border-bottom: 4px solid #e5e5e5;
+  ;
+}
+
+//顶部查询条件
+.ant-form-item label {
+  margin-right: 7px;
+}
+
+.row {
+  margin-top: 17px;
+}
+
+.colBtn {
+  margin-top: 10px;
+  /* margin-left: 64px; */
+  margin-bottom: 15px;
+}
+
+.ant-spin-nested-loading {
+  padding: 0 15px;
+}
+
+.ant-col-8 {
+  /* margin-left: -15px; */
+  //margin-left: -28px;
+  margin-bottom: -10px;
+}
+
+/* @media screen and (min-width: 1680px) and (max-width: 1920px){
+  .ant-col-8{
+    margin-left: -50px;
+  }
+}
+@media screen and (min-width: 1240px) and (max-width: 1367px){
+  .ant-col-8{
+    margin-left: -25px;
+  }
+} */
+
+.custom-table-btn {
+  height: 50px;
+  padding-top: 10px;
+}
+
+.ant-input-number-input {
+  background-color: #fff;
+}
+
+//活动咨询新增统一样式设置
+.ant-steps {
+  width: 900px;
+  margin: 0 auto;
+  height: 50px;
+  line-height: 50px;
+  background-color: #e5e7ed;
+  display: flex;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.ant-steps-item-process {
+  background-image: linear-gradient(90deg, #007aff 0%, #2595ff 100%), linear-gradient( #007aff, #007aff);
+  background-blend-mode: normal, normal;
+}
+
+.ant-steps-item-title:after {
+  height: 0;
+}
+
+.ant-steps-item {
+  text-align: center;
+  margin-right: 0px !important;
+  white-space: nowrap;
+  padding-top: 6px;
+  flex: 1 !important;
+}
+
+.ant-steps-item-process .ant-steps-item-title {
+  color: #fff !important;
+}
+
+.ant-steps-item-icon {
+  border: solid 3px #ffffff !important;
+  line-height: 22px !important;
+  margin-top: 3px;
+}
+
+.ant-steps-item-content {
+  line-height: 50px;
+}
+
+.ant-steps-item-wait>.ant-steps-item-content>.ant-steps-item-title {
+  color: #999 !important;
+}
+
+.ant-steps-item-wait .ant-steps-item-icon {
+  border: solid 3px #bbbbbb !important;
+  background-color: #e5e7ed;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon>.ant-steps-icon {
+  color: #1890ff;
+  margin-top: 8px !important;
+}
+
+.ant-upload.ant-upload-drag {
+  width: 60%;
+  height: 50%;
+}
+
+// .input {
+//   width: 60% !important;
+//   border: none;
+// }
+.input1 {
+  width: 60%;
+}
+
+.w-e-toolbar .w-e-menu {
+  position: relative;
+  text-align: center;
+  padding: 5px 9px;
+  cursor: pointer;
+}
+
+.ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab {
+  background-color: #9295a6;
+  margin-right: 1px;
+}
+
+.ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab-active {
+  background: #fff;
+}
+
+.center {
+  margin-left: 30%;
+  margin-bottom: 40px
+}
+
+.ant-tree li .ant-tree-node-content-wrapper {
+  min-width: 50px;
+}
+
+@media screen and (min-width: 1680px) and (max-width: 1920px) {
+  .center {
+    margin-left: 36%;
+    margin-bottom: 40px
+  }
+}
+
+.location-span {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 1680px) and (max-width: 1920px) {
+  .location-span {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+.warnning {
+  margin-left: 39px;
+  color: red
+}
+
+@media screen and (min-width: 1680px) and (max-width: 1920px) {
+  .warnning {
+    margin-left: 116px;
+    color: red
+  }
+}
+
+/*.ant-form-item-label{
+  text-align: center;
+}*/
+
+.tabCommon td a {
+  color: #1890ff !important;
+}
+
+.ant-modal-mask {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  filter: alpha(opacity=10)
+}
