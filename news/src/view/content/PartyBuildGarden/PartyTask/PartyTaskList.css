@@ -1,0 +1,5 @@
+#operation_list{
+    text-decoration: none !important;
+    color: #666 !important;
+    pointer-events:none
+}

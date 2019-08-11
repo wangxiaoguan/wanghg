@@ -1,0 +1,21 @@
+.question-main .question-title {
+  height: 17px;
+  font-family: MicrosoftYaHei;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 34px;
+  letter-spacing: 0px;
+  color: #4e5565;
+}
+.question-main .question-top,
+.question-main .question-middle {
+  padding: 2.96296296vh 26px 3.7037037vh 26px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.question-main .question-bottom {
+  padding: 2.96296296vh 26px 3.7037037vh 26px;
+}
+.question-main .question-bank-modal {
+  width: 800px;
+}
