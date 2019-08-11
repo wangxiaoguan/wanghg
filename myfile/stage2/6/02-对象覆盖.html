@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var person1={usernane:"lulu",userage:21};
+    var person2={username:"lili",userage:25,say: function () {
+        alert(this.username+"今年"+this.userage);
+    }};
+    for(var i in person2){
+        person1[i]=person2[i];
+    }
+    person1.say()
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+    *{padding: 0;margin: 0;}
+    #bigbox{overflow:hidden;width: 360px;margin: 100px auto;}
+	#box{width: 200px;height: 20px;border: 1px solid transparent;float: left;}
+	#percent{width: 80px;height: 20px;float:left;ruby-align: center;line-height:20px;}
+	#long{width:0;height: 20px;background: red;padding: 0;}
+    </style>
+</head>
+<body>
+<div id="bigbox">
+<div id="box"><p id="long"></p></div>
+<span id="percent"></span>
+</div>
+</body>
+<script>
+	var box=document.getElementById("box");
+	var percent=document.getElementById("percent");
+	var long=document.getElementById("long");
+    var i=0;
+    var time=null;
+	time=setInterval(function () {
+        percent.innerHTML=i+"%";
+        long.style.width=i*2+"px";
+        i++;
+        if (i>100){
+            clearInterval(time);
+        }
+    },50)
+
+
+
+</script>
+</html>

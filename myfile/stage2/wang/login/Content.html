@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据</title>
+    <style>
+        table{text-align: center;border-collapse: collapse;background: rgb(2, 17, 37);color: #fff;}
+        table th{width:70px;text-align:center;}
+    </style>
+</head>
+<body>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="content">
+
+        </tbody>
+        <tfoot><tr><td colspan="7"><a href="addData.html">添加数据</a></td></tr></tfoot>
+    </table>
+</body>
+<script>
+    
+    var content=document.getElementById("content");
+    var req=new XMLHttpRequest();
+    req.open("get","http://localhost/1803/00-Login/Content.php",true);
+    req.send();
+    
+    req.onreadystatechange=function(){
+        if(req.readyState==4&&req.status==200){
+        var result=req.responseText;
+        var list=JSON.parse(result);
+        var html="";
+        list.map(function(item){
+            var id=item["id"];
+            var username=item["username"];
+            var userpwd=item["userpwd"];
+            var userage=item["userage"];
+            var usersex=item["usersex"];
+            var usertell=item["usertell"];
+             if(usersex==0){usersex="女";}else{usersex="男";}
+            html+=`<tr id="${id}">
+                    <td>${id}</td>
+                    <td>${username}</td>
+                    <td>${userpwd}</td>
+                    <td>${userage}</td>
+                    <td>${usersex}</td>
+                    <td>${usertell}</td>
+                    <td><a href="revise.html?id=${id}">编辑</a><span onclick=deleteid('${id}')>删除</span></td></tr>`;
+       });
+       content.innerHTML=html;
+        }
+    };
+    function deleteid(key){
+        if (confirm("你确定要删除?")) {
+            var req=new XMLHttpRequest();
+            req.open("get","http://localhost/1803/00-Login/Detele.php?id="+key,true);
+            req.send();
+            window.location.reload();
+        }
+    }
+
+</script>
+</html>

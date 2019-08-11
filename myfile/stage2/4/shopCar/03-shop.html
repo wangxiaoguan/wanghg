@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding: 0;margin:0;list-style:none;}
+        #shop{width:240px;overflow: hidden;;border:1px solid black;margin:20px}
+        #shop li{float: left; width: 220px;height: 220px;margin:10px;font-size:12px;}
+        #shop li span{font-size:12px;}
+        .big{width: 220px;height:200px;}
+
+    </style>
+</head>
+<body>
+<input id="searchhigh" placeholder="高价" style="width:50px">
+<input id="searchlow" placeholder="低价" style="width:50px">
+<button id="searchbtn">搜索</button><br/>
+
+<ul id="shop">
+    <!--<li>-->
+        <!--<img class="big" src="images/p1.jpg"><img class="small" src="images/p1.jpg">-->
+        <!--id:<span class="index">A001 </span>name:<span class="name">商品1 </span>price:<span class="price">100</span>-->
+    <!--</li>-->
+</ul>
+</body>
+<script>
+    var goodslist=[{id:"A001",name:"商品1",price:100,bigimg:"images/A001-1.jpg"},
+                   {id:"A002",name:"商品2",price:200,bigimg:"images/A002-1.jpg"},
+                   {id:"A003",name:"商品3",price:300,bigimg:"images/A003-1.jpg"},
+                   {id:"A004",name:"商品4",price:400,bigimg:"images/A004-1.jpg"},
+                   {id:"A005",name:"商品5",price:500,bigimg:"images/A005-1.jpg"},
+                   {id:"A006",name:"商品6",price:600,bigimg:"images/A006-1.jpg"} ];
+
+    var ul=document.getElementById("shop");
+
+    for (var i=0;i<goodslist.length;i++){
+        var li=document.createElement("li");
+        var goods=goodslist[i];
+        var id=goods.id;
+        var name=goods.name;
+        var price=goods.price;
+        var bigimg=goods.bigimg;
+        li.innerHTML="<a href='03-shop商品1.html?id="+id+"'><img class='big' src="+bigimg+">id:<span class='index'>"+id+ "</span>　name:<span class='name'>"+name+"</span>　price:<span class='price'>"+price+"</span></a>";
+        ul.appendChild(li);
+    }
+    var searchhigh=document.getElementById("searchhigh");
+    var searchlow=document.getElementById("searchlow");
+    var searchbtn=document.getElementById("searchbtn");
+    searchbtn.onclick=function (){
+        ul.innerHTML="";
+        // ul.style.display="none";
+        var highprice=searchhigh.value;
+        var lowprice=searchlow.value;
+        for (var i = 0; i < goodslist.length; i++) {
+            var goods = goodslist[i];
+            var price = goods.price;
+            var itemlist=goodslist.filter(function (item){
+                return lowprice<=item.price&&item.price<=highprice;});
+        }
+        for (var i=0;i<itemlist.length;i++){
+            var li=document.createElement("li");
+            var goodsitem=itemlist[i];
+            var id=goodsitem.id;
+            var name=goodsitem.name;
+            var price=goodsitem.price;
+            var bigimg=goodsitem.bigimg;
+            li.innerHTML="<a href='03-shop商品1.html?id="+id+"'><img class='big' src="+bigimg+">id:<span class='index'>"+id+ "</span>　name:<span class='name'>"+name+"</span>　price:<span class='price'>"+price+"</span></a>";
+            ul.appendChild(li);
+        }
+    }
+</script>
+</html>

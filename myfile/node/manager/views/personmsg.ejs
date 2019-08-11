@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>超市账单管理系统</title>
+    <link rel="stylesheet" href="/stylesheets/index.css"/>
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+</head>
+<body>
+    <%- include('header')   %>
+    <section class="publicMian w1200">
+        <div class="left">
+            <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+            <nav>
+                <ul class="list">
+                        <li id="active" onclick="window.location.href='/personmsg'">我的信息</li>
+                        <li onclick="window.location.href='/persontime'">打卡时间</li>
+                        <li onclick="window.location.href='/personpay'">我的工资</li>
+                        <li onclick="window.location.href='/personact'" >公司活动</li> 
+                        <li onclick="window.location.href='/personadv'" >我的建议</li>  
+                        <li onclick="window.location.href='/personpwd'">密码修改</li>                 
+                </ul>
+            </nav>
+        </div>
+        <div class="right">
+            <div class="location">
+                <strong>你现在所在的位置是:</strong>
+                <span>我的信息页面</span>　　　　　　　　        
+                <span style="color: blue">(!!!若有个人信息更改请向人事部王经理联系:13512345678)</span>
+            </div>
+            <div class="providerView">
+                <p class="providerView_r"><img src="images/a1.jpg" alt=""></p>
+                <div class="providerView_l">
+                <p><strong>员工工号：</strong><span>022</span></p>
+                <p><strong>员工姓名：</strong><span>王夏</span></p>
+                <p><strong>员工性别：</strong><span>男</span></p>
+                <p><strong>员工年龄：</strong><span>25</span></p>
+                <p><strong>员工电话：</strong><span>15312345666</span></p>
+                <p><strong>员工部门：</strong><span>营业部</span></p>
+                <p><strong>入职时间：</strong><span>2017-01-21</span></p>
+            </div>
+              
+            </div>
+        </div>
+    
+    </section>
+
+    <footer class="footer w1200"></footer>
+
+
+<script src="/bootstrap/js/jquery-1.10.1.js"></script>
+<script src="/javascripts/js.js"></script>
+<script src="/javascripts/time.js"></script>
+<script>
+    $("#queryBtn").click(function(){
+        var goodsname=$("#time").val();
+       window.location.href="/billquery?time="+time;
+    })
+</script>
+</body>
+</html>

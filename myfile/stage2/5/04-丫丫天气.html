@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;list-style: none;}
+        #box{width:1000px;overflow: hidden;margin:20px }
+        #province,#city,#area{height:40px;}
+        #province span{display:inline-block;padding:0 5px;color:green;}
+        #province span:hover{background: fuchsia;}
+        #city span{display:inline-block;padding:0 5px;color:red;}
+        #city span:hover{background:orange;}
+        #area span{display:inline-block;padding:0 5px;color:sienna;}
+        #area span:hover{background:blue;}
+        #weather span{display:inline-block;padding:5px;}
+        span:hover{cursor:pointer}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="province"></div>
+    <div id="city"></div>
+    <div id="area"></div>
+</div>
+<div id="weather">
+
+</div>
+</body>
+<script>
+
+    var province=document.getElementById("province");
+    var city=document.getElementById("city");
+    var area=document.getElementById("area");
+    var weather=document.getElementById("weather");
+
+    var req=new XMLHttpRequest();
+    req.open("get","http://api.yytianqi.com/citylist/id/2",true);
+    req.send();
+    var previncelist;
+    var spancitylist;
+    req.onreadystatechange=function() {
+        if (req.readyState == 4 && req.status == 200) {
+            var result = req.responseText;
+            var object = JSON.parse(result);
+            previncelist =object.list;
+            var html = "";
+            previncelist.map(function (item) {
+                html+=`<span>${item.name}</span>`;
+
+            });
+            province.innerHTML= html;//省份城市
+            var spanlist = province.getElementsByTagName("span");
+            for (var i = 0; i < spanlist.length; i++) {
+                (function(i){
+                    spanlist[i].onclick = function() {
+                        var spancity = previncelist.filter(function (item) {
+                            return spanlist[i].innerHTML == item.name
+                        });
+                        var html = "";
+                        spancitylist = spancity[0].list;
+                        spancitylist.map(function (item) {
+                            html+=`<span onmouseover="show('${item.city_id}')" onclick="getData('${item.city_id}')">${item.name}</span>`;
+                        });
+                        city.innerHTML= html;//市级城市
+                    }
+                })(i);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+    };
+    function show(city_id) {
+        var arealist=spancitylist.filter(function (item) {
+            return  city_id==item.city_id
+        })[0];
+        var html="";
+        if(arealist.list){
+            arealist.list.map(function (item) {
+                html+=`<span onmouseover="show('${item.city_id}')" onclick="getData('${item.city_id}')">${item.name}</span>`;
+            });
+        }
+        area.innerHTML= html;//区级城市/县级
+    }
+
+
+    function getData(keyID) {
+        var req2 = new XMLHttpRequest();
+        req2.open("get", `http://api.yytianqi.com/observe?city=${keyID}&key=9b7uc0d64832as25`,true);
+        req2.send();
+        req2.onreadystatechange = function () {
+            if (req2.readyState == 4 && req2.status == 200) {
+                var result = req2.responseText;
+                var list = JSON.parse(result);
+                var allData = list.data;
+                var cityName = allData.cityName;
+                var lastUpdate = allData.lastUpdate;
+                var tq = allData.tq;
+                var qw = allData.qw;
+                var fl = allData.fl;
+                var fx = allData.fx;
+                var html = "";
+                if (allData) {
+                    html = `<p><span>城市</span><span>${cityName}</span></p>
+                    <p><span>更新</span><span>${lastUpdate}</span></p>
+                    <p><span>天气</span><span>${tq}</span></p>
+                    <p><span>温度</span><span>${qw}</span></p>
+                    <p><span>风速</span><span>${fl}</span></p>
+                    <p><span>风向</span><span>${fx}</span></p>`;
+                }
+            }else {weather.innerHTML="";}
+            weather.innerHTML=html;
+        }
+    }
+    getPekingData();
+    function getPekingData() {
+        var req = new XMLHttpRequest();
+        req.open("get", `http://api.yytianqi.com/observe?city=CH010100&key=9b7uc0d64832as25`,true);
+        req.send();
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                var result = req.responseText;
+                var list = JSON.parse(result);
+                var allData = list.data;
+                var cityName = allData.cityName;
+                var lastUpdate = allData.lastUpdate;
+                var tq = allData.tq;
+                var qw = allData.qw;
+                var fl = allData.fl;
+                var fx = allData.fx;
+                var html = "";
+                html = `<p><span>城市</span><span>${cityName}</span></p>
+                    <p><span>更新</span><span>${lastUpdate}</span></p>
+                    <p><span>天气</span><span>${tq}</span></p>
+                    <p><span>温度</span><span>${qw}</span></p>
+                    <p><span>风速</span><span>${fl}</span></p>
+                    <p><span>风向</span><span>${fx}</span></p>`;
+            }
+            weather.innerHTML=html;
+        }
+    }
+    //    document.querySelectorAll()
+</script>
+</html>

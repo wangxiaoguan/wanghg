@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        table{border: 1px solid red;border-collapse: collapse;margin: 100px auto}
+        table tr td{border: 1px solid red;padding:0 20px;height: 30px;text-align: center}
+    </style>
+</head>
+<body>
+   <div id="app">
+        <table>
+            <tr>
+                <td>序号</td>
+                <td>选中</td>
+                <td>名称</td>
+                <td>价格</td>
+                <td>数量</td>
+                <td>小计</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="(good,index) in goods">
+                <td>{{index+1}}</td>
+                <td><input type="checkbox" v-model="good.check"></td>
+                <td>{{good.title}}</td>
+                <td>{{good.price}}</td>
+                <td><button @click="good.count>1?good.count--:good.count=1">-</button>{{good.count}}<button @click="good.count++">+</button></td>
+                <td>{{good.price*good.count}}</td>
+                <td><button @click="goods.splice(index,1)">删除</button></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    <input type="checkbox" id="all" v-model="checkall">
+                    <label for="all">全选</label>
+                </td>
+                <td colspan="5" style="text-align: left">
+                    <b>总计:￥{{total}}------------{{total1}}</b>
+                </td>
+            </tr>
+            
+        </table>
+   </div> 
+   <script>
+       var vm=new Vue({
+           data:{
+                goods:[
+                    {check:false,title:"上衣",price:200,count:10},
+                    {check:true,title:"裤子",price:100,count:10},
+                    {check:false,title:"鞋子",price:500,count:10},
+                    {check:false,title:"风衣",price:1000,count:10},
+                    {check:true,title:"帽子",price:300,count:10},
+                    {check:true,title:"西服",price:2000,count:10},
+                ],
+                total1:0
+           },
+           computed:{
+                    checkall:{
+                        get(){
+                            var flag=true;
+                            this.goods.forEach((good)=>{
+                                if(!good.check){flag=false;}
+                            })
+                            return flag;
+                        },
+                        set(val){
+                            var arr=this.goods.map((good)=>{
+                                good.check=val;
+                                return good;
+                            })
+                            this.goods=arr;
+                        }
+                    },
+                    total:{
+                        get(){
+                            var total=0;
+                            this.goods.forEach((good)=>{
+                                if(good.check){
+                                    total+=good.price*good.count
+                                }
+                                
+                            })
+                            return total;
+                        }
+                    }
+                },
+            watch:{
+                goods:{
+                    handler(val){
+                        this.total1=0;
+                        val.forEach((good)=>{
+                            if(good.check){
+                                this.total1+=good.price*good.count
+                            }
+                        })
+                    },
+                    deep:true   // 深度监听 
+                }
+
+            },
+            mounted(){
+                this.goods.forEach((good)=>{
+                    if(good.check){
+                        this.total1+=good.price*good.count;
+                    }
+                })
+            }
+       }).$mount("#app")
+   </script>
+</body>
+</html>
+<!-- 深度监听 
+
+可变对象  object 数组  vue视图系统无法监测到 可变对象的变化 
+
+不可变对象   string   vue视图系统 可以 监测到 不可变对象的变化  -->

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas{margin:50px auto;border: 1px solid #000}
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width=600 height=500></canvas>
+    <script>
+        var canvas=document.getElementById("mycanvas");
+        var ctx=canvas.getContext("2d");
+        
+        // ctx.beginPath();
+        // ctx.moveTo(200,100);
+        // ctx.lineTo(400,100);
+        // ctx.lineTo(400,300);
+        // ctx.lineTo(200,300);
+        // ctx.lineTo(200,100);
+        // ctx.strokeStyle="red";
+        // ctx.lineWidth=5;
+        // ctx.fillStyle="green";
+        // ctx.fill();
+        // ctx.stroke();
+        // ctx.closePath()
+
+        // with(ctx){ //ES6不支持with函数
+        //     beginPath();
+        //     rect(100,100,300,200);
+        //     strokeStyle="red";
+        //     lineWidth=10;
+        //     fillStyle="blue";
+        //     fill();
+        //     stroke();
+        //     closePath();
+        // }
+
+        // with(ctx){
+        //     beginPath();
+        //     moveTo(300,200)
+        //     arc(300,200,100,0,Math.PI/2,false);
+        //     lineTo(300,200);
+        //     strokeStyle="red";
+        //     lineWidth=5;
+        //     fillStyle="yellow";
+        //     fill();
+        //     stroke();
+        //     closePath();
+        // }
+
+        
+    </script>
+</body>
+</html>

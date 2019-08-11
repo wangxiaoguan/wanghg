@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <style>
+        label{
+            display: block;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>登录</h2>
+    
+    <div class="{{userInfo}}">
+        <h2>登录成功</h2>
+        <h3>用户名: {{username}}</h3>
+        <h3>密码: {{password}}</h3>
+    </div>
+
+    <form class="{{formInfo}}" action="http://localhost:3000/login" method="post"  >
+        <label for="usernameControl" >
+            <input id="usernameControl" name="username" placeholder="请输入用户名" type="text">
+        </label>
+        <label for="passwordControl" >
+            <input id="passwordControl" name="password" placeholder="请输入密码" type="password">
+        </label>
+        <label for="">
+            <button type="submit">登录</button>
+        </label>
+    </form>
+</body>
+</html>

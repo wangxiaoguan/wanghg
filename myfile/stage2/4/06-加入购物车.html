@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        #car{width: 100px;height: 30px;background:red;position:absolute;left:1000px;top:0;
+            text-align: center;line-height:30px;color:#fff;}
+        #btn{width: 100px;height: 30px;background:green;position:absolute;left: 0;top:300px;
+            color:#fff;text-align: center;line-height:30px;}
+        #cir{width: 20px;height: 20px;border-radius:50%;background:red;position: absolute;
+                left:110px;top:-10px;display:none;}
+    </style>
+</head>
+<body>
+<div id="car">购物车</div>
+<div id="btn">
+    <span>购买</span>
+    <span id="cir"></span>
+</div>
+</body>
+<script>
+    var car=document.getElementById("car");
+    var btn=document.getElementById("btn");
+    var cir=document.getElementById("cir");
+
+    var carleft=car.offsetLeft;//1000
+    var carheight=car.offsetHeight;//30
+
+    var btntop=btn.offsetTop;//300
+    var btnwidth=btn.offsetWidth;//100
+
+    var cirX=carleft-btnwidth;//900
+    var cirY=btntop;//300
+
+
+    var speedX=3;
+    var speedY=1;
+    var timer=null;
+
+    btn.onclick=function () {
+        cir.style.display="block";
+        timer=setInterval(function () {
+
+            cir.style.left=cir.offsetLeft+speedX+"px";
+            cir.style.top=cir.offsetTop-speedY+"px";
+            if (cir.offsetLeft>=carleft){cir.style.left=carleft+"px";}
+            if (cir.offsetTop<=-cirY) {
+                cir.style.display = "none";
+                clearInterval(timer);
+            }
+        },5)
+
+    }
+
+</script>
+</html>

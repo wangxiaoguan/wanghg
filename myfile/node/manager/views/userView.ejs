@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>超市账单管理系统</title>
+    <link rel="stylesheet" href="/stylesheets/index.css"/>
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+</head>
+<body>
+    <%- include('header')   %>
+<section class="publicMian w1200">
+    <%- include('contentLeft')   %>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>用户管理页面 >> 用户信息查看页面</span>
+        </div>
+        <div class="providerView">
+            <p><strong>员工工号：</strong><span><%- result.no1 %></span></p>
+            <p><strong>员工姓名：</strong><span><%- result.no2 %></span></p>
+            <p><strong>员工性别：</strong><span><%- result.no3 %></span></p>
+            <p><strong>员工年龄：</strong><span><%- result.no4 %></span></p>
+            <p><strong>员工电话：</strong><span><%- result.no5 %></span></p>
+            <p><strong>员工部门：</strong><span><%- result.no6 %></span></p>
+            <p><strong>入职时间：</strong><span><%- result.no7 %></span></p>
+            <a onclick="window.location.href='/userList'">返回</a>
+        </div>
+    </div>
+</section>
+<footer class="footer w1200">
+</footer>
+<script src="/javascripts/time.js"></script>
+<script src="/bootstrap/js/jquery-1.10.1.js"></script>
+<script>
+$(".list li").eq(3).attr("id","active");
+</script>
+</body>
+</html>

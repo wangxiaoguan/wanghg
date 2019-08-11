@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react css</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <style>
+        .box{
+            box-shadow: 0px 1px 10px darkblue;
+        }
+        .h2{
+            color:yellow;
+        }
+        .font{
+            background:darkgoldenrod;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- 
+        react 如何引入样式
+
+        1. 基于class 
+        必须使用 className  代替 class
+        2. 基于 内联样式  style  facebook style="width:200px" style={{width:'200px'}}
+        属性名称  遵循驼峰命名  可以不带单位  {fontSize:100,lineHeight:'20px'}}
+        line-height:20px 必须带单位 
+        3. 全局变量  外部样式    基于原型链的挂载 
+     -->
+     <div id="app">
+
+     </div>
+    <script src="./stylesheet.js"></script>
+    <script type="text/babel">
+
+        const ft = "font";
+        let myCss = {
+            spanOne:{color:"red",backgroundColor:"#000"},
+            spanTwo:{color:"#fff",backgroundColor:"pink"}
+        }
+        class Content extends React.Component{
+            render(){
+                return (
+                    <div className="box" style={  {borderRadius:10,border:'1px solid red'}   } >
+                        <h2 className={"h2 " + ft}  style={ {fontSize:70} }> react - css </h2>
+                        <h1 style={myCss.spanOne}>天道酬勤 </h1>
+                        <h1 style={myCss.spanTwo}>爱哭才会赢</h1>
+                        <p style= {commonCss.op}>努力的人最幸运</p>
+                        <div style={this.css.oDiv}>早上8点,晚上10点半,坚持最后一个月收获很大</div>
+                    </div> 
+                )
+            }
+        }   
+
+        Content.prototype.css = {
+            oDiv:{
+                color:'blue',
+                fontSize:"100"
+            }
+        }
+
+        ReactDOM.render(
+            <Content/>,
+            document.getElementById("app")
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="javascript:window.location.reload()">刷新</a>
+<a href="javascript:window.history.forward()">前进</a>
+<a href="javascript:window.history.go(2)">前进两次</a><br/>
+    <input id="username" placeholder="用户名"><br/>
+    <input id="userpass" placeholder="密码"><br/>
+    <button id="btn">点击跳转</button>
+</body>
+<script>
+    var username=document.getElementById("username");
+    var userpass=document.getElementById("userpass");
+    var btn=document.getElementById("btn");
+    btn.onclick=function(){
+        var namevalue=username.value;
+        var passvalue=userpass.value;
+        window.location.href="03-BOM-2.html?username="+namevalue+"&usersge="+passvalue;
+    }
+
+</script>
+</html>

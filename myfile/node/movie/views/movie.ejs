@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>电影列表</title>
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+      /* .box{width:100%;height:500px;background: -webkit-linear-gradient(top, red 20%, yellow 50%, green 100%);} */
+      .box{width:100%;overflow: hidden;;background: -webkit-radial-gradient(bottom left,red 10% ,green 60%, blue);}
+      .img{width: 100%;height: 500px !important;}
+    </style>
+  </head>
+  <body>
+    <%- include("header",{title:"电影列表"}) %>
+    <div class="container box">
+            <p>
+              <button onclick="window.location.href='/'" class="btn btn-primary">首页</button>
+              <button onclick="window.location.href='/movie?filed=year&sort=1'" class="btn btn-info">年份升序</button>
+              <button onclick="window.location.href='/movie?filed=year&sort=-1'" class="btn btn-info">年份降序</button>
+              <button onclick="window.location.href='/movie?filed=rating.average&sort=1'" class="btn btn-success">评分升序</button>
+              <button onclick="window.location.href='/movie?filed=rating.average&sort=-1'" class="btn btn-success">评分降序</button>
+            </p>
+            <%    result.forEach((item,index)=>{ %>
+         <div class="col-md-3 col-lg-3 col-sm-3">
+                  <div class="thumbnail">
+                      <img class="img" src="<%-item.images.large %>" alt="">
+                      <div class="caption">
+                          <h4 class="pull-right"><%- item.year%> 年</h4>
+                          <h4><a href="/comments/index?mid=<%- item.id %>"><%- item.title%></a></h4>
+                          <p class="text-success">导演: <%- item.directors[0].name%></p>
+                          <p class="text-danger">评分:  <%- item.rating.average%></p>
+                      </div>
+                  </div>
+              </div>
+     <%  })  %>
+
+      
+    </div>
+
+  
+      <%- include("footer") %>
+  
+  </body>
+</html>

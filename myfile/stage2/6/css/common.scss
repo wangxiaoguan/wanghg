@@ -1,0 +1,13 @@
+$defatulColor:#ffffff;
+
+$width:400px;
+$height:400px;
+ul{color: $defatulColor;
+    width:400px;
+    height:400px;
+  li{
+    float: left;
+    width: $width/4;
+  }
+
+};

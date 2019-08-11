@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="webSocketClient.js"></script>
+    <style>
+    #chatroom{width:600px;height: 300px;border:1px solid red;font-size:20px;overflow: auto;}
+    </style>
+</head>
+<body>
+    <h1>聊天信息</h1>
+    <div id="chatroom"></div>
+    <input type="text" placeholder="请输入聊天内容" id="sayInput">
+    <input type="button" value="发送" id="btn" onclick="send()">
+</body>
+<script>
+        function send(){
+            ws.send(sayInput.value);
+            sayInput.value = "";
+        }
+
+        document.onkeyup = function(e){
+            if(e.keyCode==13){
+                send()
+            }
+        }      
+</script>
+</html>

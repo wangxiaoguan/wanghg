@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/axios.js"></script>
+    <script src="../js/jquery.js"></script>
+    <!-- <script src="../js/vue-resource.js"></script> -->
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h2>msg===={{msg}}</h2>
+        <button @click="getmsg()">获取数据</button>
+        <p v-for="li in list">
+            <b>{{li.title}}</b>
+        </p>
+    </div>
+    <script src="../js/vue-resource.js"></script>
+    <script>
+    var vm=new Vue({
+        data:{title:"学习vue-resource",
+                msg:"",
+                list:[]
+        },
+        methods:{
+            getmsg(){
+
+                this.$http.get("http://localhost:5000/vue/login",{
+                        params:{id:1803}
+                    }).then(
+                    res=>{
+                        console.log(res);
+                        this.msg = res.body;
+                    },
+                    err=>{  })
+
+                    this.$http.get("http://www.phonegap100.com/appapi.php",
+                                {params:{
+                                    a:"getPortalList",
+                                    catid:15,
+                                    page:1,
+                                    id:8888}
+                                }).then(res=>{
+                                    console.log(res);
+                                    this.list=res.body.result},
+                                    err=>{})
+
+
+                    this.$http({
+                        url:"http://localhost:5000/vue/login",
+                        params:{id:1803},
+                        headers:{}
+                    }).then(res=>{
+                        console.log(res);
+                        this.list=res.body;
+                    })
+                }
+        },
+        created(){
+                this.$http.post("http://localhost:5000/vue/register",
+                {username:"aaa",password:"bbb",nickname:"wanghg"},
+                {params:{ id:1803}}
+
+                ).then(res=>{console.log(res.body)})
+
+
+                this.$http({
+                    url:"http://localhost:5000/vue/register",
+                    method:"post",
+                    body:{username:"aaaa",password:"bbbbb",nickname:"wanghg"},
+                    params:{id:123456}
+                }).then(res=>{console.log(res.body)})
+        },
+        mounted(){
+            document.querySelector("title").innerHTML=this.title;
+        }
+            
+
+
+
+
+    }).$mount("#app")
+    </script>
+</body>
+</html>

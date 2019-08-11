@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+    	.box{text-align: center;width:640px;height: 400px;margin: 60px auto;}
+		.video{width:636px;height:300px;position:relative;overflow: hidden;}
+        .word{position: absolute;width:100%;height:20px;font-size:16px;line-height:20px;color: red;text-align:right;}
+    </style>
+</head>
+<body>
+<div class="box">
+	<div class="video">
+		<video width="636" height="264" src="video/movie.mp4" controls autoplay  loop></video>
+	</div>
+	<input type="text" id="barrage" placeholder="请输入弹幕"><button id="btn">OK</button>
+</div>
+</body>
+<script>
+    var video=document.getElementsByClassName("video")[0];
+    var barrage=document.getElementById("barrage");
+    var btn=document.getElementById("btn");
+    btn.onclick=function () {
+        var timer=null;
+        var length=0;
+        var text=barrage.value;
+        var span=document.createElement("span");
+        span.className="word";
+        video.appendChild(span);
+        span.innerHTML=text;
+        span.style.top=Math.round(Math.random()*244)+"px";
+        timer=setInterval(function () {
+            length++;
+            span.style.right=length+"px";
+            if (length>=640){
+                span.innerHTML="";
+                clearInterval(timer);
+            }
+        },1);
+        // barrage.value="";
+
+    }
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #randomcode{width:100px;height:50px;background:rgba(120,0,120,.3);margin: 50px auto;font-size: 30px; line-height: 50px; padding: 20px;}
+        .code{display:inline-block;width: 30px;height:30px;background:rgba(120,120,120,.9);font-size: 30px;position:absolute;}
+        .codes{width:200px;height: 200px;position: relative;border:1px solid black;background:green;margin: 10px auto;}
+        .code:hover{cursor: pointer}
+        .button{width:100px;height:30px;margin: 10px auto;}
+    </style>
+</head>
+<body>
+<div id="randomcode"></div>
+<div class="codes">
+    <sapn class="code"></sapn>
+    <sapn class="code"></sapn>
+    <sapn class="code"></sapn>
+    <sapn class="code"></sapn>
+</div>
+<div class="button">
+    <button id="btn">验证</button>
+    <button id="refresh">刷新</button>
+</div>
+</body>
+<script>
+
+        var list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"];
+        function getcode(arr, n) {//判断元素n在数组是否存在
+            index = -1;
+            for (i = 0; i < arr.length; i++) {
+                if (n == arr[i]) {
+                    index = 1;//元素n在数组已经存在,所以index=1;
+                    break;
+                }
+            }
+            return index;//元素n在数组不存在,所以index=-1;
+        }
+        var newlist = [];
+        for (var i = 0; i < 4; i++) {
+            j = Math.round(Math.random() * (list.length - 1));
+            if (getcode(newlist, list[j]) == -1) {
+                newlist[newlist.length] = list[j];
+            } else {
+                i--
+            }
+        }//获取四个不重复数字
+        var randomcode=document.getElementById("randomcode");
+        for (var i = 0; i < 4; i++) {
+            var newone=newlist[i];
+            randomcode.innerHTML+=newone;
+        }
+var  content=randomcode.innerHTML;//需要验证的验证码
+var codelist=document.getElementsByClassName("code");
+
+var codes=document.getElementsByClassName("codes")[0];
+        randomcode.onclick=function () {
+           for (var i=0;i<codelist.length;i++){
+               var code=codelist[i];
+               code.innerHTML=content[i];
+           code.style.top=Math.round(Math.random()*170)+"px";
+           code.style.left=Math.round(Math.random()*170)+"px";
+       }
+   };
+   var newlist1="";
+   var count=0;
+   for (var i = 0; i <codelist.length; i++) {
+          var  code=codelist[i];
+          code.onclick=function () {
+                newlist1+=this.innerHTML;
+              this.style.background = "rgba(120,120,0,.8)";
+              this.style.color = "#fff";
+                count++;
+          }
+   }
+ var btn=document.getElementById("btn");
+   btn.onclick=function () {
+       if (newlist1==content) {
+           alert("验证成功")
+       }else {alert("验证失败")}
+   }
+
+
+</script>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding:0;margin:0;}
+        input{width:210px;}
+        .box{width:210px;border:1px solid #000;}
+        .box > .header{display:flex;}
+        .box > .mon{text-align:center;}
+        .box >.header > span{padding: 0 10px;}
+        .prev,.next{cursor: pointer;}
+        .year{flex: 1;text-align: center;}
+        .week{width:210px;height:20px;background: #ccc;}
+        .week span{float:left;width:30px;height:20px;line-height:20px;text-align:center;}
+        .calendar{overflow: hidden;list-style: none;}
+        .calendar li{float:left;width:30px;height:20px;line-height:20px;text-align: center;cursor: pointer;}
+        .calendar li:hover{background:#9A0000;color:#fff;}
+
+    </style>
+</head>
+<script src="js/data.js"></script>
+<body>
+<input id="startdate"><input id="enddate"><input id="parsedate">
+</body>
+<script>
+    function dateMake(ele,json){
+        this.ele=document.querySelector(ele);
+        this.option={
+            date: new Date(),// data:"2017-12-10"
+            dataformat: "yyyy-mm-dd",
+            width: this.ele.offsetWidth,
+            height: this.ele.offsetHeight
+        };
+        this.create();
+        this.extend();
+        this.initevent();
+        this.binddate();
+    }
+    dateMake.prototype.create= function () {
+        this.box=document.createElement("div");
+        this.box.className="box";
+        this.box.style.position="absolute";
+
+
+        this.header=document.createElement("div");
+        this.header.className="header";
+        this.box.appendChild(this.header);
+
+        this.prev=document.createElement("span");
+        this.prev.className="prev";
+        this.prev.innerHTML="上";
+        this.header.appendChild(this.prev);
+
+        this.year=document.createElement("span");
+        this.year.className="year";
+        this.year.innerHTML=this.option.date.dateformat("yyyy-mm")
+        this.header.appendChild(this.year);
+
+        this.next=document.createElement("span");
+        this.next.className="next";
+        this.next.innerHTML="下";
+        this.header.appendChild(this.next);
+
+        this.week=document.createElement("div");
+        this.week.className="week";
+        this.week.innerHTML=` <span>日</span>
+                                <span>一</span>
+                                <span>二</span>
+                                <span>三</span>
+                                <span>四</span>
+                                <span>五</span>
+                                <span>六</span>`;
+        this.box.appendChild(this.week);
+        this.calendar=document.createElement("ul");
+        this.calendar.className="calendar";
+        this.box.appendChild(this.calendar);
+
+    }
+    dateMake.prototype.binddate= function () {
+        var date = new Date();
+        date.setFullYear(this.option.date.getFullYear());
+        date.setMonth(this.option.date.getMonth());
+        date.setDate(this.option.date.getDate());
+        var prevdays = date.prevdays();
+        var currentdays = date.currentdays();
+        var firstweek = date.weekfirstday();
+        firstweek = firstweek == 0 ? 6 : firstweek;
+        this.calendar.innerHTML = "";
+        for (var i = 0; i <firstweek; i++) {
+            var li = document.createElement("li");
+            li.style.color = "red";
+            li.innerHTML = prevdays - firstweek +1 +i;
+            this.calendar.appendChild(li);
+        };
+        for(var i=1;i<=currentdays;i++){
+            var li = document.createElement("li");
+            li.style.color = "green";
+            li.innerHTML =i;
+            this.calendar.appendChild(li);
+        };
+        for(var i=1;i<=42-firstweek-currentdays;i++){
+            var li = document.createElement("li");
+            li.style.color = "blue";
+            li.innerHTML =i;
+            this.calendar.appendChild(li);
+        }
+    }
+    dateMake.prototype.extend= function (json) {
+        for(var i in json){
+            this.option[i]=json[i];
+        }
+
+    };
+    dateMake.prototype.initevent= function (){
+        var that=this;
+        this.ele.addEventListener("click", function (e) {
+            var evt=window.event||e;
+            evt.stopPropagation();
+            that.create();
+            that.binddate();
+            if(!this.parent) {
+                this.parent = document.createElement("div");
+                this.parent.style.width = that.option.width + "px";
+                this.parent.style.height = that.option.height + "px";
+                this.parent.style.display = "inline-block";
+                this.parent.style.position = "relative";
+                this.parentNode.insertBefore(this.parent, this);
+                this.parent.appendChild(this);
+                that.box.style.position = "absolute";
+                that.box.style.top = that.option.height + 10 + "px";
+                that.box.style.left = 0;
+                this.parent.appendChild(that.box);
+            }
+        })
+
+
+    }
+    new dateMake("#startdate",{
+        date: new Date(),// data:"2017-12-10"
+        dataformat: "yyyy-mm-dd",
+//        width: this.ele.offsetWidth,
+//        height: this.ele.offsetHeight
+    });
+    new dateMake("#enddate",{
+        date: new Date(),// data:"2017-12-10"
+        dataformat: "yyyy-mm-dd",
+//        width: this.ele.offsetWidth,
+//        height: this.ele.offsetHeight
+    });
+    new dateMake("#parsedate",{
+        date: new Date(),// data:"2017-12-10"
+        dataformat: "yyyy-mm-dd"
+//        width: this.ele.offsetWidth,
+//        height: this.ele.offsetHeight
+    })
+</script>
+</html>

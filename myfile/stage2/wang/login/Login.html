@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+</head>
+<body>
+    <input id="username" placeholder="请输入用户名"><br>
+    <input id="userpwd" placeholder="请输入密码"><br>
+    <button id="btn">登录</button>
+</body>
+<script>
+    var usernameinput=document.getElementById("username");
+    var userpwdinput=document.getElementById("userpwd");
+    var btn=document.getElementById('btn');
+    btn.onclick=function(){
+        username=usernameinput.value;
+        userpwd=userpwdinput.value;
+
+        var req=new XMLHttpRequest();
+        //req.open("get",`list.php?username=${username}&pwd=${userpwd}`,true);
+        req.open("get","http://localhost/1803/00-Login/Login.php?username="+username+"&pwd="+userpwd,true);
+        req.send();
+        req.onreadystatechange=function(){
+            if(req.readyState==4&&req.status==200){
+                var result=req.responseText;
+                var list=JSON.parse(result);
+                if(list["code"]==1){
+                    window.location.href="Content.html";
+                }else{
+                    alert(list["msg"]);
+                }
+            }
+        }
+    }
+</script>
+</html>

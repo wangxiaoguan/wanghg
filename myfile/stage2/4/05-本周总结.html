@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+第四周总结
+    1:学习正则表达式  两种声明方式:1:new RegExp() 2:/ /
+    正则属性:全局匹配 g 大小写匹配 i
+    正则方法:test()检索返回true/false  查找search  替换replace  获取match 拆分split
+    正则匹配字符:开头^ 结尾$  匹配n-m次{n,m}  不匹配a[^a]  匹配a或b(a|b)
+    正则转义字符:\d,\D,\r
+    常见正则:[a-z][0-9][A-Z]或[0-9a-zA-Z]
+    正则运用:注册验证(只能输入规定字符)  手机号验证   中文验证
+            密码加密方式:base64(可逆向解密)    {sha1  md5}(不可逆向解密)
+
+    2:学习DOM事件操作
+    鼠标事件:鼠标点击onclick  鼠标经过onmouseover  鼠标离开onmouseout 鼠标滑动onmousemove
+    触发事件对象状态 window.event(W3C)||e
+    点击事件发生的点:可视点击距离clientX/clientY  实际距离pageX/pageY
+    可视页面宽高度:document.documentElement.clientHeight||document.body.clientHeight;
+                   document.documentElement.clientWidth||document.body.clientWidth;
+    滚动条距离: document.documentElement.scrollLeft || document.body.scrollLeft;
+                document.documentElement.scrollTop || document.body.scrollTop;
+    事件运用:区块跟随鼠标(点击)移动而移动   滑动解锁
+
+    3:学习DOM事件操作
+    建立对象:new Object()/{}
+    赋给对象属性与方法:object.id/object["id"]
+    鼠标事件:鼠标键按下onmousedown   鼠标键松开onmouseup   鼠标经过onmouseover
+    事件运用:图片翻转 图片放大镜  商品购买
+
+    4:学习事件冒泡(传递) /offset
+    offset:获取盒模型的相对距离(无position相对body,有position相对有定位的元素)
+    类型(返回值为number无单位):
+         div.offsetLeft左边距
+         div.offsetTop上边距
+         div.offsetWidth盒子宽度(包含边框宽度)
+         div.offsetHeight盒子高度(包含边框宽度)
+         div.clientLeft 盒子边框宽度
+    div.offsetParent返回最近的祖先定位元素
+    优点:代码简洁易懂
+    鼠标button键区分 左键0 中键1  右键2
+    阻止默认弹出窗口方法:
+    if (evt.preventDefault){ evt.preventDefault();}
+    else { evt.returnValue = false;}→IE8兼容写法
+    阻止事件传递兼容性方法
+    if (evt.stopPropagation) {  evt.stopPropagation();}
+    else {evt.cancelBubble = true; }→IE8兼容写法
+    事件附加其他事件obj.addEventListener("click",function(), false);
+                    false默认存在,false状态:冒泡传递 true状态:捕获传递
+                    obj.attachEvent("onclick",function);IE8兼容写法
+    移除附加的事件obj.removeEventListener("onclick", function);
+                  obj.detachEvent("onclick" ,function);IE8兼容写法
+    键盘事件:document.onkeydown 按下键 document.onkeyup松开键
+    获取按键的ASCII码  evt.which || evt.keyCode;
+    运用:无缝移动
+
+    5:for in循环  回调函数
+    var object={width:200,height:100,left:300,top:400};
+    for (var attr in object){//attr是对象object中的属性,可以任意名
+    alert(object[attr])}//遍历object对象中所有属性与方法
+    function(a,b,function(){}){}
+    运用:多个函数同时调用
+
+
+</div>
+</body>
+<script>
+
+</script>
+</html>

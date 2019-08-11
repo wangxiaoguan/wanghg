@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .reg{width: 350px;margin: 30px auto;overflow: hidden;}
+        .reg a{text-decoration: none;font-size: 12px;margin-left: 30px;}
+    </style>
+</head>
+<body>
+<div class="reg">
+    <input id="username" placeholder="用户名"><span id="spanname"></span><br/>
+    <input id="oldcode" placeholder="旧密码"><span id="spanold"></span><br/>
+    <input id="newcode" placeholder="新密码"><span id="spannew"></span><br/>
+    <input id="newcode1" placeholder="请再输一次新密码"><span id="spannew1"></span><br/>
+    <button id="btn">修改密码</button><a href="05-shop登录.html">返回</a>
+</div>
+</body>
+<script src="00-Cookie.js"></script>
+<script>
+    var usernameinput=document.getElementById("username");
+    var oldcodeinput=document.getElementById("oldcode");
+    var newcodeinput=document.getElementById("newcode");
+    var newcode1input=document.getElementById("newcode1");
+
+    var spanname=document.getElementById("spanname");
+    var spanold=document.getElementById("spanold");
+    var spannew=document.getElementById("spannew");
+    var spannew1=document.getElementById("spannew1");
+
+    btn.onclick=function () {
+        var username=usernameinput.value;
+        var oldcode=oldcodeinput.value;
+        var newcode=newcodeinput.value;
+        var newcode1=newcode1input.value;
+
+        if (getCookie("username_"+username)) {
+            spanname.innerHTML="";
+            if (getCookie("password_"+username)==oldcode) {
+                if (newcode.length>=6) {
+                    if (newcode1==newcode){
+                        setCookie("password_" + username, newcode, 7);
+                        window.location.href = "05-shop登录.html";
+                    }else {spannew1.innerHTML="密码错误,请重新输入";
+                            spannew1.style.color="red";
+                            spannew.innerHTML="";
+                            spanold.innerHTML="";
+                    }
+                }else {spannew.innerHTML="密码不得少于六位";
+                        spannew.style.color="red";
+                        spannew1.innerHTML="";
+                        spanold.innerHTML="";
+                }
+            }else {spanold.innerHTML="旧密码错误";
+                    spanold.style.color="red";
+                    spanname.innerHTML="";
+                    spannew.innerHTML="";
+              }
+        }else {spanname.innerHTML="该用户名不存在";
+                spanname.style.color="red";
+        }
+    }
+
+</script>
+</html>

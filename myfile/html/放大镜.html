@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            position: relative;
+            height: 600px;
+            width: 400px;
+            margin-left: 200px;
+        }
+
+        #wrap #bigContent {
+            position: absolute;
+            height: 400px;
+            width: 400px;
+            left: 500px;
+            top: 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        #wrap #bigContent img {
+            height: 1000px;
+            width: 1000px;
+            display: block;
+            position: absolute;
+            left: -400px;
+        }
+
+        #wrap #content {
+            position: relative;
+            height: 400px;
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        #content #shadow {
+            height: 160px;
+            width: 160px;
+            position: absolute;
+            background-color: rgba(66, 166, 166, 0.4);
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        #wrap #content img {
+            height: 400px;
+            width: 400px;
+        }
+
+        #footer {
+            height: 100px;
+            width: 400px;
+            list-style: none;
+        }
+
+        #footer li {
+            float: left;
+            width: 98px;
+            height: 98px;
+            border: 1px solid #cdcdcd;
+            line-height: 98px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #footer li img {
+            width: 90px;
+            height: 90px;
+        }
+
+        #footer li:hover {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="content">
+        <img src="image/small1.jpg" id="smallImg"/>
+        <div id="shadow"></div>
+    </div>
+
+    <div id="bigContent">
+        <img src="image/big1.jpg" id="bigImg"/>
+    </div>
+    <ul id="footer">
+        <li><img src="image/small1.jpg" alt="" data-src="image/big1.jpg"></li>
+        <li><img src="image/small2.jpg" alt="" data-src="image/big2.jpg"></li>
+        <li><img src="image/small3.jpg" alt="" data-src="image/big3.jpg"></li>
+        <li><img src="image/small4.jpg" alt="" data-src="image/big4.jpg"></li>
+    </ul>
+</div>
+</body>
+<script>
+    var liList = document.querySelector("#footer").querySelectorAll("li");
+    var smallImg = document.querySelector("#smallImg");
+    var content = document.querySelector("#content");
+    var shadow = document.querySelector("#shadow");
+    var bigImg = document.querySelector("#bigImg");
+    var wrap = document.querySelector("#wrap");
+    var bigContent = document.querySelector("#bigContent");
+    for (var i = 0; i < liList.length; i++) {
+        liList[i].onmouseover = function () {
+            var img = this.querySelector("img")
+            var src = img.src;
+            smallImg.src = src;
+            bigImg.src = img.getAttribute("data-src");
+
+        }
+    }
+
+    content.onmousemove = function (e) {
+        var evt = window.event || e;
+        var x = evt.pageX - getStyle(shadow, "width") / 2 - getStyle(wrap, "margin-left");
+
+        var y = evt.pageY - getStyle(shadow, "height") / 2 - getStyle(wrap, "margin-top");
+        if (x <= 0) {
+            x = 0;
+        }
+        if (y <= 0) {
+            y = 0;
+        }
+        var maxX = getStyle(content, "width") - getStyle(shadow, "width");
+        if (x >= maxX) {
+            x = maxX;
+        }
+
+        var maxY = getStyle(content, "height") - getStyle(shadow, "height");
+        if (y >= maxY) {
+            y = maxY;
+        }
+
+        var bigX = -(getStyle(bigImg, "width") * x / getStyle(content, "width"));
+        var bigY = -(getStyle(bigImg, "height") * y / getStyle(content, "height"));
+
+        shadow.style.left = x + "px";
+        shadow.style.top = y + "px";
+
+        bigImg.style.left = bigX + "px";
+        bigImg.style.top = bigY + "px";
+
+        shadow.style.display = "block";
+        bigContent.style.display = "block";
+    }
+
+    content.onmouseout = function () {
+        shadow.style.display = "none";
+        bigContent.style.display = "none";
+    }
+
+    function getStyle(obj, attr) {
+        if (obj.currentStyle) {
+            return parseInt(obj.currentStyle[attr]);
+        } else {
+            return parseInt(window.getComputedStyle(obj)[attr]);
+        }
+    }
+
+</script>
+</html>

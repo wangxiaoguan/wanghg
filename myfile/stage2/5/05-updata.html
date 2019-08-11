@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table tr{text-align: center;}
+        table tr th{width:100px;}
+    </style>
+</head>
+<body>
+    <table border="1" align="center" style=";border-collapse: collapse;">
+        <tr align="center">
+            <th>编号</th>
+            <th>姓名</th>
+            <th>密码</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+        <tbody id="content">
+        </tbody>
+    </table>
+</body>
+<script>
+    var content=document.getElementById("content");
+    var req=new XMLHttpRequest();
+    req.open("get","http://localhost/1803/00-Login/Content.php",true);
+    req.send();
+    req.onreadystatechange=function(){
+        var result=req.responseText;
+        var list=JSON.parse(result);
+        var html="";
+        list.map(function(item){
+            var id=item["id"];
+            var username=item["username"];
+            var userpwd=item["userpwd"];
+            var userage=item["userage"];
+            var usersex=item["usersex"];
+             if(usersex==0){usersex="女";}else{usersex="男";}
+            html+=`<tr>
+                    <td>${id}</td>
+                    <td>${username}</td>
+                    <td>${userpwd}</td>
+                    <td>${userage}</td>
+                    <td>${usersex}</td>
+                   </tr>`;
+//            html+=`<p>编号:${id},姓名:${username},密码:${userpwd},年龄:${userage},性别:${usersex}</p>`
+       });
+       content.innerHTML=html;
+    }
+</script>
+</html>

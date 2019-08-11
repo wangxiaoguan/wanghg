@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #page{width:600px;height: 30px;text-align: center;}
+        #page span{float:left; padding:0 10px;margin:0 5px;background:red;font-size:20px;line-height:30px;}
+        #page span#pagemiddle{background: yellow;}
+        #page .pageone{width:30px;}
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <span id="prevpage">上一页</span>
+    <span class="pageone">1</span>
+    <span class="pageone">2</span>
+    <span class="pageone">3</span>
+    <span id="pagemiddle" class="pageone">4</span>
+    <span class="pageone">5</span>
+    <span class="pageone">6</span>
+    <span class="pageone">7</span>
+    <span id="nextpage">下一页</span>
+</div>
+</body>
+<script>
+    var pervpage=document.getElementById("prevpage");
+    var nextpage=document.getElementById("nextpage");
+    var pageonelist=document.getElementsByClassName("pageone");
+    var pagemiddle=document.getElementById("pagemiddle");
+
+    pervpage.onclick= function () { pagetion.reduce();  };
+    nextpage.onclick= function () {  pagetion.add();  };
+   for(var i=0;i<pageonelist.length;i++){
+       pageonelist[i].onclick= function () {
+           var num=pagemiddle.innerHTML*1;
+           var result=this.innerHTML-num;
+           if(this.innerHTML<5){
+               pagetion.each(function (item) {
+                   item.innerHTML=item.innerHTML*1-num+4;})
+           }else {
+            pagetion.each(function (item) {item.innerHTML=item.innerHTML*1+result; })
+           }
+
+
+
+       }
+   }
+
+    var pagetion={
+        each: function (fn) {
+            for(var i=0;i<pageonelist.length;i++){
+                fn(pageonelist[i])
+            }
+        },
+        add: function () {
+            this.each(function (item) {
+                item.innerHTML=item.innerHTML*1+3;
+            })
+        },
+        reduce: function () {
+            this.each(function (item) {
+                item.innerHTML=item.innerHTML*1-3;
+            })
+        }
+
+    }
+</script>
+</html>

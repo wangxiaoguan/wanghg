@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div {width: 400px;margin: 50px auto;font-size: 12px; }
+        div span {display: inline-block;vertical-align: middle;}
+        div input {margin: 5px;}
+    </style>
+</head>
+<body>
+<div>
+    <input id="username" placeholder="用户名以a-z/A-Z/0-9/$/_组成"><span id="user_span"></span><br>
+    <input id="mima" placeholder="请输入6位以上密码"><span id="mima_span"></span><br>
+    <input id="mima2" placeholder="请再次输入密码"><span id="mima2_span"></span><br>
+    <input id="code" placeholder="请输入验证码"><span id="code_img"></span><span id="code_span"></span><br>
+    <button id="btn" >注册</button>
+</div>
+</body>
+<script src="00-array1.js"></script>
+<script>
+    var btn = document.getElementById("btn");
+    var nameIuput = document.getElementById("username");
+    var mimaIuput = document.getElementById("mima");
+    var mima2Iuput = document.getElementById("mima2");
+    var codeIuput = document.getElementById("code");
+    var user_span = document.getElementById("user_span");
+    var mima_span = document.getElementById("mima_span");
+    var mima2_span = document.getElementById("mima2_span");
+    var code_img = document.getElementById("code_img");
+    var code_span = document.getElementById("code_span");
+    var iscode=getcode(4);
+    code_img.innerHTML=iscode;
+    btn.onclick = function () {
+        var strname = nameIuput.value;//获取用户名
+        var strmima = mimaIuput.value;//获取密码
+        var strmima2 = mima2Iuput.value;//获取密码2
+        var strcode = codeIuput.value;
+        if (checkname(strname) && checkmima(strmima, strmima2)&&checkcode(strcode)) {
+            alert("注册成功")
+        } else {
+            alert("注册失败")
+        }
+
+        function checkname(strname) {
+            if (4 <= strname.length && strname.length <= 10) {
+                var flag = true;
+                for (i = 0; i < strname.length; i++) {
+                    var char = strname[i];
+                    if (lists.indexOf(char) == -1) {
+                        flag = false;
+                        alert("内容不合法");
+                        break;
+                    }
+                }
+                if (flag) {
+                    var char = strname[0];
+                    if (number.indexOf(char) == -1) {
+                        user_span.innerHTML = "✔";//表示输入用户名合法
+                        user_span.style.color = "green";
+                        return true;
+                    } else {
+                        user_span.innerHTML = "数字开头错误";//表示输入用户名以数字开头不合法
+                        user_span.style.color = "red";
+                        return false
+                    }
+                }
+            } else {
+                user_span.innerHTML = "请输入用户名";//表示没有输入用户名
+                user_span.style.color = "red";
+                return false;
+            }
+        }
+        function checkmima(strmima, strmima2) {
+            if (strmima == strmima2) {
+                if (6 <= strmima.length && strmima.length <= 16) {
+                    var flag = true;
+                    for (i = 0; i < strmima.length; i++) {
+                        var char = strmima[i];
+                        if (lists.indexOf(char) == -1) {
+                            mima_span.innerHTML = "密码不合法";//表示输入密码不合法
+                            mima_span.style.color = "red";
+                            return false;
+                        } else {
+                            mima_span.innerHTML = "✔";
+                            mima_span.style.color = "green";
+                            if (flag) {
+                                var countN = 0, countA = 0, counta = 0, sum = 0;
+                                for (i = 0; i < strmima.length; i++) {
+                                    var char = strmima[i];
+                                    if (number.indexOf(char) != -1) {
+                                        countN = 1;
+                                    }
+                                    if (lowperLetter.indexOf(char) != -1) {
+                                        countA = 1;
+                                    }
+                                    if (upperLetter.indexOf(char) != -1) {
+                                        counta = 1;
+                                    }
+                                }
+                                sum = countA + countN + counta;
+                                switch (sum) {
+                                    case 1:
+                                        mima_span.innerHTML = "<span style='display: inline-block;width: 50px;height: 15px;background-color: red'></span>弱";
+                                        break;
+                                    case 2:
+                                        mima_span.innerHTML = "<span style='display: inline-block;width: 100px;height: 15px;background-color: yellow'></span>中";
+                                        break;
+                                    case 3:
+                                        mima_span.innerHTML = "<span style='display: inline-block;width: 150px;height: 15px;background-color: green'></span>强";
+                                        break;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+
+                } else {
+                    mima_span.innerHTML = "请输入密码";//表示没有输入密码
+                    mima_span.style.color = "red";
+                    return false;
+                }return true;
+            } else {
+                mima_span.innerHTML = "密码不相同,请重新输入";
+                mima_span.style.color = "red";
+
+            }
+        }
+
+
+        function checkcode(strcode) {
+            code_img.onclick = function () {
+                iscode = getcode();
+                code_img.innerHTML = iscode;
+                code_span.innerHTML = "";
+            };
+            if (tolowper(strcode) == tolowper(iscode)) {
+                code_span.innerHTML = "验证码正确";
+                code_span.style.color = "green";
+                code_img.onclick = function () {
+                    iscode = getcode(4);
+                    code_img.innerHTML = iscode;
+                    code_span.innerHTML = "";
+                };return true;
+            } else {
+                code_span.innerHTML = "验证码不正确";
+                code_span.style.color = "red";
+                code_img.onclick = function () {
+                    iscode = getcode(4);
+                    code_img.innerHTML = iscode;
+                    code_span.innerHTML = "";
+                };
+                return false;
+            }
+        }
+    }
+</script>
+</html>

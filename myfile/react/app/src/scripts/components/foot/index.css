@@ -1,0 +1,49 @@
+@charset "UTF-8";
+footer {
+  position: fixed;
+  width: 100%;
+  height: 90px;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex !important;
+  z-index: 100;
+  border-top: 1px solid #aaa;
+}
+
+footer div {
+  flex: 1;
+  height: 90px;
+}
+
+footer div a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 6px 0;
+  text-align: center;
+  font-family: "微软雅黑";
+  color: #999;
+}
+
+footer div a i {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 42px !important;
+}
+
+footer div a span {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  font-size: 26px;
+}
+
+footer div .active-nav {
+  color: #ff0d0d;
+  border-color: #0dc441;
+}

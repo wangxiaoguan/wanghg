@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 ref="h2">{{title}}</h2>
+        <my-parent></my-parent>
+    </div>
+    <template id="parent">
+        <div>
+            <h2>{{word}}</h2>
+            <button @click="getChild">hello</button>
+            <button @click="changeChild">通过ref去修改组件</button>
+            <my-child ref="child"></my-child>
+        </div>
+    </template>
+
+
+    <template id="child">
+        <div>
+            <h2>{{msg}}</h2>
+            <button @click="changeParent">通过parent去访问父组件</button>
+        </div>
+    </template>
+
+
+    <script>
+        Vue.component("my-parent",{
+            template:"#parent",
+            data(){return {word:"时间是一切财富中最宝贵的财富。"}},
+            methods:{
+                changeChild(){ this.$refs.child.msg="天道酬勤!!!"},
+                getChild(){ this.$refs.child.trigger();},
+                get(){alert("千锋教育")}
+            },
+            mounted(){   },
+        })
+
+        Vue.component("my-child",{
+            template:"#child",
+            data(){return { msg:"有所作为是生活的最高境界。"}},
+            methods:{
+                changeParent(){ this.$parent.word="再苦再累也要学习",this.$parent.get();},
+                trigger(){alert("hello world")}
+            },
+            mounted(){},
+        })
+
+
+
+
+
+
+        var vm=new Vue({
+            data:{ title:"学习$ref && $parent", msg:"1803 daydayup" },
+            methods:{       },
+            components:{        },
+            mounted(){  this.$refs.h2.style.color="red"     },
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+#head{
+	background: #eaeaea;
+    // .head_mid{
+    //     display:flex !important; margin:20px 0;height: 180px;
+    //     background:#fff;
+        
+	// 	a{
+	// 		display: block;
+	// 		width:100%;
+	// 		height:100%;
+	// 		display:flex !important; 
+	// 		flex-direction:column;
+	// 		box-sizing:border-box;
+	// 		padding:12px;
+	// 		text-align:center;
+			
+			
+	// 		img{
+	// 		width:120px;
+	// 		height:120px;
+			
+	// 		}
+	// 		span{
+	// 			width:100%;
+	// 			height:35px;
+	// 			line-height:35px;
+	// 			font-size:26px;
+	// 			font-family:"宋体";
+	// 			color:#000;
+	// 		}
+	// 	}
+	// }
+	// #m-tabs-0-0{height: 160px;background-image:url(./hm1.png);background-size:160px 160px;}
+	h1{padding: 10px;font-size:30px;background:#fff;text-align: center}
+	.head_new{
+		width: 100%;overflow: hidden;margin-bottom: 100px;
+		li{width: 100%;overflow: hidden;background:#fff;margin:10px 0;
+			h2{width: 100%;height:300px;overflow: hidden;
+				img{width: 100%;margin-top:-100px;height:500px;}
+				}
+			h3{padding:10px;margin:10px 0;overflow: hidden;
+				p{font-family:'Arial Narrow';margin:10px 0;color:#000;}
+				b{float: left;margin-left: 20px;
+					color:red;font-size: 23px;}
+				.normal_price{text-decoration: line-through;color:#000}
+				em{float:left;margin-left: 20px;font-size:26px;color: red;}	
+				span{float: right;margin-right:100px;color:#999}
+			}	
+		}
+		
+	}
+}

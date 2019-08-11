@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .outside {
+            width: 400px;
+            height: 500px;
+            border: 1px solid black;
+            margin: 20px auto;
+        }
+
+        .outside h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        .outside .inside {
+            width: 100%;
+        }
+
+        .inside h3 {
+            text-align: center;
+        }
+
+        .inside h3 input {
+            width: 380px;
+            height: 50px;
+            font-size: 40px;
+            text-align: right;
+        }
+
+        .num {
+            text-align: center;
+        }
+
+        .num input {
+            width: 90px;
+            height: 80px;
+            margin-bottom: 5px;
+            font-size: 40px
+        }
+
+        .num input:hover {
+            background: blue;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="outside">
+    <h2>计算器</h2>
+    <div class="inside">
+        <h3><input id="outputs" type="text" value="0"/></h3>
+        <div class="num">
+            <input type="button" value="1" onclick="clic('1')"/>
+            <input type="button" value="2" onclick="clic('2')"/>
+            <input type="button" value="3" onclick="clic('3')"/>
+            <input type="button" value="+" onclick="clic('+')"/>
+            <input type="button" value="4" onclick="clic('4')"/>
+            <input type="button" value="5" onclick="clic('5')"/>
+            <input type="button" value="6" onclick="clic('6')"/>
+            <input type="button" value="-" onclick="clic('-')"/>
+            <input type="button" value="7" onclick="clic('7')"/>
+            <input type="button" value="8" onclick="clic('8')"/>
+            <input type="button" value="9" onclick="clic('9')"/>
+            <input type="button" value="*" onclick="clic('*')"/>
+            <input type="button" value="0" onclick="clic('0')"/>
+            <input type="button" value="=" onclick="clic('=')"/>
+            <input type="button" value="c" onclick="clic('c')"/>
+            <input type="button" value="/" onclick="clic('/')"/>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var display = document.getElementById("outputs");
+    var opt = "";
+    var num0 = 0;
+    var isopt = false;
+
+    function clic(value) {
+        if (value == "c") {
+            opt = "";
+            display.value = 0;
+            isopt = false;
+        }
+        else if (value == "+" || value == "-" || value == "*" || value == "/") {
+            opt = value;
+            num0 = display.value;
+            isopt = true;
+        }
+        else if (value == "=") {
+            display.value = count(num0, display.value, opt);
+        }
+        else {
+            if (isopt == true) {
+                display.value = 0;
+            }
+            display.value = display.value == 0 ? value : display.value + value;
+            isopt = false;
+        }
+    }
+
+
+    function count(num1, num2, opt) {
+        var result = 0;
+        switch (opt) {
+            case"+":
+                result = num1 * 1 + num2 * 1;
+                break;
+            case"-":
+                result = num1 - num2;
+                break;
+            case"*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+        }
+        return result;
+
+    }
+
+</script>
+</html>

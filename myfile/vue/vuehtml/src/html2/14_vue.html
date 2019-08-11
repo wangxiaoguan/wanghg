@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app">
+        <my-head></my-head>
+        <my-content></my-content>
+        <my-content></my-content>
+        <my-content></my-content>
+      
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var head={
+            template:"<h3 @click='changeColor' :style='{color:color}'>好好学习,努力赚钱---{{color}}</h3>",
+            data(){     return {color:"red"}        },
+            methods:{changeColor(){this.color="green"}},
+            watch:{},
+            filters:{},
+            created(){},
+            components:{},
+        };
+
+        Vue.component("my-head",head);
+
+
+
+
+
+
+
+
+
+        var vm=new Vue({
+            data:{title:"组件注册"},
+            //局部注册
+            components:{
+                'my-content':{
+                    template:"<button @click='add'>{{count}}</button>",
+                    data(){return {count:2018}},
+                    methods:{add(){this.count+=1}}
+                }
+            }
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

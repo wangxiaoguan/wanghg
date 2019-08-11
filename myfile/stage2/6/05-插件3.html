@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{width: 200px;height: 200px;background:darkred;}
+    </style>
+</head>
+<body>
+<input id="msg">
+<button id="btn">点击</button>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    $.fn.extend({
+        makeDate: function (data) {
+//            alert(data)
+            var that=this;
+            that.ele=$("<div class='box'></div>");
+            $(".box").html(data);
+            that.ele.insertAfter(that);
+        }
+    })
+    $("#btn").on("click", function () {
+        $(this).makeDate($("#msg").val());
+    })
+</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+</head>
+<body>
+    <input id="username" placeholder="请输入用户名"><br>
+    <input id="userpwd" placeholder="请输入密码"><br>
+    <button id="btn">注册</button><a href="index.html">登录</a>
+</body>
+<script src="js/config.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/userinfo.js"></script>
+<script>
+    var usernameinput=document.getElementById("username");
+    var userpwdinput=document.getElementById("userpwd");
+    var btn=document.getElementById("btn");
+    btn.onclick=function(){
+        username=usernameinput.value;
+        userpwd=userpwdinput.value;
+
+        userinfo.userregister(urlphp.userregister,{username:username,userpwd:userpwd})
+        .then(function(list){
+                if(list["code"]==2){
+                    window.location.href="index.html";
+                }else{
+                    alert(list["msg"]);
+                }
+        })
+        // var req=new XMLHttpRequest();
+        // req.open("get","php/userregister.php?username="+username+"&userpwd="+userpwd,true);
+        // req.send();
+        // req.onreadystatechange=function(){
+        //     if(req.readyState==4&&req.status==200){
+        //         var result=req.responseText;
+        //         var list=JSON.parse(result);
+        //         if(list["code"]==2){
+        //             window.location.href="index.html";
+        //         }else{
+        //             alert(list["msg"]);
+        //         }
+        //     }
+        // }
+    }
+</script>
+</html>

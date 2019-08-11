@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react demo</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+    
+    <!-- 
+         组件   component  
+         将一段或几段完成各自功能的代码段封装为一个或几个独立的部分
+
+         每个组件 能完成独立的功能的，都是独立的部分  (小巧  独立  复用 )
+
+         创建组件    react 组件的首字母必须大写 
+         React.createClass   react.min.js   
+         ES6  React.component   构造函数
+         无状态状态  
+
+         react 组件的生命周期钩子函数   
+         mount(组件载入)  update(组件更新)  unmount(组件移除 )
+         render 渲染虚拟DOM  把组件 虚拟DOM 渲染成真实DOM 
+         
+         data  数据传递载体  props  属性   state 状态 
+
+         自定义函数   handleclick  onClick = {this.handleclick }
+
+         class 类  ES 语法    constructor 构造器  prototype 原型对象  继承 extends 
+         子类 Component   
+         class A {}
+         class B extends A {}
+     -->
+
+     <div id="app"></div>
+     <div id="one"></div>
+     <div id="two"></div>
+     <div id="three"></div>
+     <div id="four"></div>
+
+     <script type="text/babel">
+
+
+        const Home = React.createClass({
+            render(){return (<h2>1111111111111</h2>)}
+        })
+        ReactDOM.render(
+            <Home></Home>,
+            document.getElementById("app")
+        )
+
+
+
+        const One = React.createClass({
+            render(){return (<h2>2222222222222</h2>)}
+        })
+        ReactDOM.render(
+            <One/>,
+            document.getElementById("one")
+        )
+
+
+
+
+        var brand = "33333333333333"
+        const Foot  = React.createClass({
+            render(){return (<footer>{brand}</footer>)}
+        })
+
+
+
+        const Layout = React.createClass({
+            render(){
+                return (
+                    <div>
+                        <header>2018</header>
+                        <Home/>
+                        <Foot/>
+                    </div>
+                )
+            }
+        })
+
+        ReactDOM.render(
+            <Layout/>,
+            document.getElementById("two")
+        )
+        
+        let jsFreams = ["node","vue","react","anguar4.0","微信小程序"]
+        class List  extends React.Component{
+            render(){
+                return (
+                    <div>
+                        <h2>学习使人快乐!</h2>    
+                        {
+                            jsFreams.map((item,index)=>{
+                                return (<h4 key={index} > {item}---{index}</h4>)
+                            })
+                        }
+                        <Nav/>
+                    </div>
+                )
+            }
+        }
+        class Nav extends React.Component{
+            render(){
+                return (
+                    <nav>
+                        react 项目导航  nav-nav-nav
+                    </nav>
+                )
+            }
+        }
+
+        const Menu = ()=>{
+            return (
+                <div>
+                    <h3>我是无状态组件 </h3>
+                </div>
+            )
+        }
+        const Swipe = ({props})=>{
+            return (
+                <div>
+                    <h3>这是我要封装的 swiper 组件 </h3>
+                    <h3>{props} </h3>
+                </div>
+            )
+        }
+
+        ReactDOM.render(
+            <div>
+                <List/>
+                {Menu()}
+                {Swipe({props:"天道酬勤"})}
+            </div>,
+            document.getElementById("three")
+        )
+     </script>
+</body>
+</html>

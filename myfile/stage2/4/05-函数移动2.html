@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding:0;margin: 0;}
+        #red{width: 200px;height: 200px;background:red;position: absolute;top:0;left:0;}
+        #green{width:50px;height:50px;background:green;position:absolute;left:200px;top:75px;
+            text-align: center;line-height:50px;}
+    </style>
+</head>
+<body>
+<div id="red">
+    <div id="green">分享</div>
+</div>
+</body>
+<script type="text/javascript">
+    var red=document.getElementById("red");
+    var green=document.getElementById("green");
+
+    //red.onmouseover = function(){change(red,"width",400,1);};
+
+    red.onmouseover=function(){change(red,{left:200,width:400,height:600},1);};
+    red.onmouseout=function(){change(red,{left:0,width:200,height:200},1);};
+    green.onmouseover=function(){change(green,{width:100,height:100},1);};
+    green.onmouseout=function(){change(green,{width:50,height:50},1);};
+
+    function change(obj,objList,speed,show){
+        clearInterval(obj.timer);
+        var countAll=0;
+        for (var i in objList){countAll++;}
+        obj.timer=setInterval(function () {
+            var count=0;
+            for (var i in objList) {
+                var attr = i;
+                var endValue = objList[i];
+                var startValue = parseInt(getStyleAttr(obj, attr));//获取起始位置
+                speed = endValue > startValue ? Math.abs(speed) : -Math.abs(speed);
+                obj.style[attr] = parseInt(getStyleAttr(obj, attr)) + speed + "px";
+                if (speed > 0) {
+                    if (parseInt(getStyleAttr(obj, attr)) >= endValue) {
+                        obj.style[attr] = endValue + "px";
+                        count++;
+                    }
+                } else if (speed < 0) {
+                    if (parseInt(getStyleAttr(obj, attr)) <= endValue) {
+                        obj.style[attr] = endValue + "px";
+                        count++;
+                    }
+                }
+                if (count==countAll){clearInterval(obj.timer);if (show){show()} }
+            }
+        },5)
+    }
+    function getStyleAttr(obj,attr) {
+        if (window.getComputedStyle){
+            return window.getComputedStyle(obj)[attr];
+        }else{return  obj.currentStyle[attr];}
+    }
+
+</script>
+</html>

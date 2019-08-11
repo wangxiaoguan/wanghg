@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li class="first" id="first">1</li>
+    <li class="amoiddle_1">2</li>
+    <li>3</li>
+    <li>4</li>
+    <li class="middle_1">5</li>
+    <li class="last">6</li>
+</ul>
+<input type="text" value="我是input标签">
+<input type="radio" name="msg" value="1">语文
+<input type="radio" name="msg" value="2">数学
+<input type="radio" name="msg" value="3">英语
+<button id="btn">点击</button>
+
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    $("ul li").html("hello world");
+    $("ul li:eq(2)").html("three");
+    $("ul li[class=app]").html();
+    $("ul li").eq(2).html("中华");
+    $("#first").html("大家好");
+    $("input").val();
+    $("input").val("abc");
+    $("ul li:eq(2)").hide();
+    $("ul li:eq(2)").show()
+    $("ul li:eq(2)").css("color","red").css({"fontSize":"12px"})
+    $("ul li:eq(2)").height(200).width(100);
+    $("#btn").on("click",function(){
+        console.log('hello')
+    })
+
+</script>
+
+
+</html>

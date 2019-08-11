@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;list-style: none;}
+        #box{width:1000px;overflow: hidden;margin:20px }
+        #province,#city,#area{overflow: hidden;}
+        #province span,#city span,#area span{display:inline-block;padding:5px;margin:5px; color:#fff;background:#2a2;border-radius:5px;}
+        div span:hover{cursor:pointer;background-color: #000CCC !important;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="province"></div>
+    <div id="city"></div>
+    <div id="area"></div>
+</div>
+<div id="observe"></div>
+<div id="forecast7d"></div>
+</body>
+<script>
+    var provinceDIV=document.getElementById("province");
+    var cityDIV=document.getElementById("city");
+    var areaDIV=document.getElementById("area");
+    var observe=document.getElementById("observe");
+    var forecast7d=document.getElementById("forecast7d");
+
+    var req=new XMLHttpRequest();
+    req.open("get","http://api.yytianqi.com/citylist/id/2",true);
+    req.send();
+    var previncelist;
+    var spancitylist;
+    req.onreadystatechange=function() {
+        if (req.readyState == 4 && req.status == 200) {
+            var result = req.responseText;
+            var object = JSON.parse(result);
+            previncelist = object.list;
+            var html = "";
+            previncelist.map(function (item) {
+                var previnceID = item["city_id"];
+                var previnceName = item["name"];
+                html += `<span onclick="getCity('${previnceID}')">${previnceName}</span>`
+            });
+            provinceDIV.innerHTML = html;//省份城市
+            getCss("province")
+        }
+    };
+    function getCity(previnceID){
+        var citylist=previncelist.filter(function (item) {
+            return item["city_id"]==previnceID;
+        })[0]["list"];//点击该省份下面的所有城市信息
+        cityDIV.innerHTML="";
+        citylist.map(function (item) {
+            var cityid=item["city_id"];
+            var cityname=item["name"];
+            var cityspan=document.createElement("span");
+            cityspan.innerHTML=cityname;
+            cityspan.cityID=cityid;
+            cityDIV.appendChild(cityspan);
+            
+            cityspan.onclick= function (item) {
+                let cityid=this.cityID;
+                let arealist=citylist.filter(function (item) {
+                    return item["city_id"]==cityid;
+                })[0]["list"];
+                if(arealist){
+                   var html="";
+                    areaDIV.style.display="block";
+                    arealist.map(function (item) {
+                        var areaid=item["city_id"];
+                        var areaname=item["name"];
+                        html+=`<span class="${areaid}">${areaname}</span>`;
+                    });
+                    areaDIV.innerHTML=html;
+                    getCss("area");
+                    //给区或县绑定事件
+                    var areaspanlist=areaDIV.getElementsByTagName("span");
+//                    var areaspanlist = document.querySelectorAll("#area span");
+                    for(var i=0;i<areaspanlist.length;i++){
+                        areaspanlist[i].onclick= function () {
+                            getObserveData(this.getAttribute("class"));
+                            getForecast7dData(this.getAttribute("class"))
+                        }
+                    }
+
+                }else {
+                    getObserveData(cityid);
+                    getForecast7dData(cityid);
+                    areaDIV.style.display="none";
+                }
+            }
+
+        });
+        getCss("city");
+    }
+
+    function getObserveData(cityID) {
+        var req = new XMLHttpRequest();
+        req.open("get", `http://api.yytianqi.com/observe?city=${cityID}&key=9b7uc0d64832as25`,true);
+        req.send();
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                var result = req.responseText;
+                var list = JSON.parse(result);
+                var allData = list.data;
+                var cityName = allData.cityName;
+                var lastUpdate = allData.lastUpdate;
+                var tq = allData.tq;
+                var qw = allData.qw;
+                var fl = allData.fl;
+                var fx = allData.fx;
+                var html = "";
+                    html = `<p>城市:${cityName}更新:${lastUpdate}天气:${tq}温度:${qw}风速:${fl}风向:${fx}</p>`;
+                observe.innerHTML=html;
+
+            }
+        }
+    }
+    function getForecast7dData(cityID) {
+        var req = new XMLHttpRequest();
+        req.open("get", `http://api.yytianqi.com/forecast7d?city=${cityID}&key=9b7uc0d64832as25`, true);
+        req.send();
+        req.onreadystatechange = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                var result = req.responseText;
+                var object = JSON.parse(result);
+                var Data = object.data;
+                var cityName = Data.cityName;//城市名称
+                var time = Data.sj; //数据更新时间
+                var list = Data.list;
+                var html = "";
+                for (var i = 0; i < list.length; i++) {
+                    var item = list[i];
+                    var tq1 = item.tq1;//白天天气
+                    var qw1 = item.qw1;//白天气温
+                    var fl1 = item.fl1;//白天风力
+                    var fx1 = item.fx1;//白天风向
+                    var date = item.date;//预报日期
+                    html += `<p>预报日期${date}白天天气${tq1}白天气温${qw1}白天风力${fl1}白天风向${fx1}</p>`;
+                }
+                forecast7d.innerHTML = html;
+            }
+        }
+    }
+    function getCss(idname){
+        var div=document.getElementById(idname);
+        var spanlist=div.getElementsByTagName("span");
+        for(var i=0;i<spanlist.length;i++){
+            spanlist[i].addEventListener("click", function () {
+                for(var j=0;j<spanlist.length;j++){
+                    spanlist[j].style.backgroundColor="#333";
+                }
+                this.style.backgroundColor="#000CCC";
+            })
+        }
+    }
+
+
+</script>
+</html>

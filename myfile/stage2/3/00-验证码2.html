@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+    #randomcode{width:200px;height: 120px;background:rgba(120,0,120,.3);margin: 50px auto;font-size: 90px; line-height: 100px; padding: 20px;}
+	.code{display: inline-block;width: 100px;height:100px;background:rgba(120,120,120,.3);padding: 20px;font-size: 90px; }
+	.codes{text-align: center;overflow: hidden;}
+        .code:hover{cursor: pointer}
+    </style>
+</head>
+<body>
+<div id="randomcode"></div>
+<div class="codes">
+    <sapn class="code"></sapn>
+    <sapn class="code"></sapn>
+    <sapn class="code"></sapn>
+    <sapn class="code"></sapn>
+    <button id="btn">验证</button>
+    <button id="refresh">刷新</button>
+</div>
+
+</body>
+<script>
+var refresh=document.getElementById("refresh");
+refresh.onclick=function(){return nowcode();};
+    nowcode();
+    function nowcode() {
+        var list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"];
+        function getcode(arr, n) {//判断元素n在数组是否存在
+            index = -1;
+            for (i = 0; i < arr.length; i++) {
+                if (n == arr[i]) {
+                    index = 1;//元素n在数组已经存在,所以index=1;
+                    break;
+                }
+            }
+            return index;//元素n在数组不存在,所以index=-1;
+        }
+        var newlist = [];
+        for (var i = 0; i < 4; i++) {
+            j = Math.round(Math.random() * (list.length - 1));
+            if (getcode(newlist, list[j]) == -1) {
+                newlist[newlist.length] = list[j];
+            } else {
+                i--
+            }
+        }
+
+            var randomcode = document.getElementById("randomcode");
+            randomcode.innerHTML="";
+        for (i = 0; i < newlist.length; i++) {
+                var char = newlist[i];
+                randomcode.innerHTML += char;
+            }
+        var fnlength=fn(newlist).length;
+
+        var choose=1+Math.floor(Math.random()*fnlength);
+        var newlist2 = fn(newlist)[choose];
+
+//把随机码打乱组合
+        function fn(arr) {
+            if (arr.length == 2) {
+                return [arr[0] + arr[1], arr[1] + arr[0]];
+            } else {
+                var temp = [];//存放最后的结果
+                for (var i = 0; i < arr.length; i++) {
+                    var code = arr.splice(i, 1)[0];//a
+                    var balanceList = fn(arr);// fn(["b","c"])  ["bc","cb"]
+                    for (var j = 0; j < balanceList.length; j++) {
+                        var item = balanceList[j];
+                        temp.push(code + item);
+                    }
+                    arr.splice(i, 0, code);
+                }
+                return temp;
+            }
+
+        }
+
+        var codelist = document.getElementsByClassName("code");
+        var codestring = "";
+        for (var i = 0; i < codelist.length; i++) {
+            var code = codelist[i];
+            code.style.background="rgba(120,120,120,.3)";
+            code.style.color="#000";
+            code.innerHTML = newlist2[i];
+            code.onclick = function () {
+                codestring += this.innerHTML;
+                this.style.background = "rgba(120,0,120,.3)";
+                this.style.color = "green";
+            }
+        }
+        //点击依次拼接成字符串
+        var btn = document.getElementById("btn");
+        btn.onclick = function () {
+            if (codestring == randomcode.innerHTML) {
+                alert("验证码正确!")
+            } else {
+                alert("验证码错误!")
+            }
+
+        }
+    }
+</script>
+</html>

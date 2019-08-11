@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM对象操作</title>
+</head>
+<body>
+
+</body>
+<script>
+    //元素节点获取
+    str.previousElementSibling;
+    document.getElementById("ID属性值");//单个唯一元素节点
+
+    document.getElementsByClassName("class属性值");//伪数组,IE8及以下不支持
+
+
+    document.getElementsByTagName("标签名");//伪数组
+    document.getElementsByName("name属性值");//伪数组,有兼容性问题
+
+
+    list  instanceof Array//检验真伪数组
+    //元素节点操作
+    document.parentNode;//获取父节点
+    document.previousElementSibling;//获取上一个元素节点
+    document.nextElementSibling;//获取下一个元素节点
+    document.createElement("标签名");//新建一个元素节点
+    document(父标签名).appendChild("子标签名");//把字标签添加父标签内
+    document(父标签名).replaceChild("新子标签名","旧子标签名");//用新标签替代旧标签
+    document(父标签名).insertBefore("新子标签名","某子标签名");//在某标签前插入新标签
+    document(父标签名).removeChild("某子标签名");//删除某子标签
+    //属性节点获取
+    var mybox=document.getElementById("mybox");//获取元素节点
+    var attlist= mybox.attributes;//获取元素节点的整个属性的集合
+    var attClass = mybox.getAttribute("class");//获取class的属性值
+    var attId = mybox.getAttribute("id");//获取id的属性值
+    var attStyle = mybox.getAttribute("style");//获取style的属性值
+    var removeClass=mybox.removeAttribute("class");//移除class属性
+
+    mybox.attributes[0].nodeValue;//获取第一个属性的属性值
+
+    nodeName:       获取元素的标签名称
+    nodeValue：      获取文字节点的内容
+    nodeType:        返回节点类型，1为标签（元素），2为属性，3为文字节点
+    childNodes       子节点对象集合(只包括文本和元素节点)
+    childNodes       在低版本IE中，会自动忽略掉空白的文本节点，其他浏览器不会忽略
+
+    firstChild:      childNodes (孩子节点数组)列表中第一个节点。
+    lastChild:       childNodes (孩子节点数组)列表中的最后一个节点。
+
+
+
+    //BOM浏览器对象模型
+    window的子对象
+
+    document     文档对象
+    iframe        外部框架对象
+    history      历史对象
+    location     地址对象
+    navigator    代理信息对象
+    screen       屏幕对象
+
+    window.location.reload()    会重新加载当前页面
+    window.location.search      返回问号后的字段
+    window.location.href        当前页面打开URL页面
+
+    window.history.forward();   前进
+    window.history.back();      后退
+    window.history.go(2);       前进两次
+
+
+    window.navigator.userAgent  用户代理信息
+    window.screen.height  表示整个电脑屏幕的高度  跟浏览器 没有任何关系
+    window.onscroll(时刻监控滚动条)
+
+    屏幕内容可视区域高度
+    document.documentElement.clientHeight ||
+    document.body.clientHeight
+
+    页面滚动条滚动的距离
+    document.documentElement.scrollTop ||document.body.scrollTop;
+    document.documentElement.scrollLeft||document.body.scrollLeft;
+
+    document.documentElement.scrollHeight||document.body.scrollHeight;
+    document.documentElement.scrollWidth||document.body.scrollWidth;
+
+    window.location.href = "06index.html?username=" + username + "&userage=" + userage;
+    window.open("06index.html?username="+username+"&userage="+userage);
+    scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+
+    var str = "千锋";
+    var str1 = escape(str);
+    alert(str1 +"转"+unescape(str1));
+
+     var str = "千锋";
+     var str1 = encodeURI(str);
+     alert(str1+"解码"+decodeURI(str1));
+
+    var str = "千锋";
+    var str1 = encodeURIComponent(str);
+    alert(str1+"解码为:"+decodeURIComponent(str1));
+
+    <iframe src="https://www.360.com" height="50%" width="50%"></iframe>
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+    <style>
+        p{width:1000px;height: 150px;border:1px solid red}
+        span{color:brown;font-size:30px}
+    
+    </style>
+</head>
+<body>
+    <div>
+        <p id="click">click<span id="cp"></span>ms</p>
+        <p id="touch">touch<span id="tp"></span>ms</p>
+    </div>
+    <script>
+        var start=0;
+        var end=0;
+        $("#click").on("touchstart",()=>{
+            start=new Date();
+        })
+
+         $("#click").on("click",()=>{
+            end=new Date();
+            $("#cp").html(end-start)
+        })
+
+        $("#touch").on("touchstart",function(){
+            start=new Date();
+        })
+
+        $("#touch").on("touchend",function(){
+            end=new Date();
+            $("#tp").html(end-start);
+        })
+    </script>
+</body>
+</html>

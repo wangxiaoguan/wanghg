@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;}
+        #mark{width:600px;height:600px;margin:20px;
+            border-radius:50%;position: relative;}
+        #cir{width:600px;height:600px;border:1px solid red;
+            border-radius:50%;position: relative;}
+        #ball{width:10px;height:20px;background:red;border-radius:50%;position:absolute;
+            top:-25px;left:295px;z-index:10;}
+        .hour{position:absolute;width: 20px;height: 20px;background:green;border-radius:50%;
+         text-align: center;line-height:20px;color:#fff;top:-10px;left:110px;z-index:9;}
+        .minutes{position:absolute;width:8px;height:8px;background:green;border-radius:50%;
+            color: aqua;}
+    </style>
+</head>
+<body>
+<div id="mark">
+    <div id="cir">
+        <div id="ball"></div>
+    </div>
+</div>
+</body>
+<script>
+    var mark=document.getElementById("mark");
+    var cir=document.getElementById("cir");
+    var ball=document.getElementById("ball");
+
+
+    var ballwidth=ball.offsetWidth;
+    var ballheight=ball.offsetHeight;
+
+    var cirwidth=cir.offsetWidth-2;
+    var markwidth=mark.offsetWidth;
+    var R=cirwidth/2;//球的半径200
+    var R2=markwidth/2;//球的半径200
+
+    var PI=Math.PI;
+    Clock();
+    function Clock() {
+
+    var timer=null;
+    var i=0;
+    timer=setInterval(function () {
+
+        var sin=Math.sin(PI/180*(i*6-90));
+        var cos=Math.cos(PI/180*(i*6-90));
+        var x=R*cos;
+        var y=R*sin;
+        ball.style.left=x+R-ballwidth/2+"px";
+        ball.style.top=y+R-ballheight/2+"px";
+        ball.style.transform="rotate("+90+i*6+"deg)";
+        i++;
+    },1000);
+    for (var i=1;i<13;i++){
+        var hour=document.createElement("span");
+        hour.className="hour";
+        mark.appendChild(hour);
+        var j=i*30;
+        var sin=Math.sin(2*PI/360*(j-90));
+        var cos=Math.cos(2*PI/360*(j-90));
+        var x=R2*cos;
+        var y=R2*sin;
+        hour.style.left=x+R2-10+"px";
+        hour.style.top=y+R2-10+"px";
+        hour.innerHTML=i;
+    }
+    for (var i=0;i<60;i++){
+        var minutes=document.createElement("span");
+        minutes.className="minutes";
+        mark.appendChild(minutes);
+        var k=i*6;
+        var sin=Math.sin(2*PI/360*k);
+        var cos=Math.cos(2*PI/360*k);
+        var x=R2*cos;
+        var y=R2*sin;
+        minutes.style.left=x+R2-4+"px";
+        minutes.style.top=y+R2-4+"px";
+    }
+}
+</script>
+</html>

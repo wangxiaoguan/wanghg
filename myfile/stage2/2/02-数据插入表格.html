@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .table tr{text-align: center}
+    </style>
+</head>
+<body>
+<div class="table">
+    <table id="table" border="1" width="300" height="200" align="center">
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+    </table>
+</div>
+</body>
+<script>
+    var arr=[["姓名","语文","数学","英语"],["张三","75","72","80"],["李四","64","86","71"],["王二","92","61","52"]];
+    var table=document.getElementById("table");//获取表格
+    for (i=0;i<4;i++){
+            for (j=0;j<4;j++){
+                table.rows[i].cells[j].innerHTML=arr[i][j];
+            }
+    }
+
+</script>
+</html>

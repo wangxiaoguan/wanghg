@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手机号注册</title>
+    <style>
+        #content{width:400px;overflow: hidden;margin:60px auto;}
+        #content .btn{width: 60%;overflow: hidden; text-align: center;margin:10px 0;}
+    </style>
+</head>
+<body>
+    <div id="content">
+        <span>手机号　</span><input id="phone">　<button id="sendbtn">获取验证码</button><br/>
+        <span>验证码　</span><input id="code"><br/>
+        <span>密　码　</span><input id="userpwd"><br/>
+      <div class="btn"><button id="registerbtn">注册</button></div>
+    </div>
+</body>
+<script src="js/config.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/userinfo.js"></script>
+<script>
+    var phoneinput=document.getElementById("phone");
+    var sendbtn=document.getElementById("sendbtn");
+    var codeinput=document.getElementById("code");
+    var userpwdinput=document.getElementById("userpwd");
+    var registerbtn=document.getElementById("registerbtn");
+
+
+    sendbtn.onclick = function() {
+        var phone=phoneinput.value;
+        userinfo.sendcode(urlphp.sendcode,{phone:phone})
+        .then(function(result){
+                    if(result["code"]==1){
+                        alert(result["msg"])
+                    }else{
+                        alert(result["msg"])  
+                    }
+        })
+        // $.ajax({
+        //     type:"get",
+        //     url:"sendcode/sendcode.php",
+        //     data:{phone:phone},
+        //     dataType:"json",
+        //     fn:function(result){
+        //             if(result["code"]==1){
+        //                 alert(result["msg"])
+        //             }else{
+        //                 alert(result["msg"])  
+        //             }
+        //     }
+        // })
+        registerbtn.onclick=function(){
+            var phone=phoneinput.value;
+            var code=codeinput.value;
+            var userpwd=userpwdinput.value;
+
+            userinfo.telregister(urlphp.telregister,{phone:phone,code:code,userpwd:userpwd})
+            .then(function(result){
+                    if(result["code"]==1){                    
+                       window.location.href=`usercenter.html?phone=${phone}`;
+                    }else{
+                        alert(result["msg"]); 
+                    }
+            })
+            // $.ajax({
+            //     type:"get",
+            //     url:"php/telregister.php",
+            //     data:{phone:phone,code:code,userpwd:userpwd},
+            //     dataType:"json",
+            //     fn:function(result){
+            //         if(result["code"]==1){                    
+            //            window.location.href=`usercenter.html?phone=${phone}`;
+            //         }else{
+            //             alert(result["msg"]); 
+            //         }
+            //     } 
+            // })
+        }  
+        sendbtn.disabled = true;   //当点击后倒计时时候不能点击此按钮  
+        var time =60;   //倒计时5秒  
+        var timer = setInterval(fn, 1000);    //设置定时器  
+        function fn() {  
+            time--;  
+            if(time>=0) {  
+                sendbtn.innerHTML = time + "s后重新发送";  
+            }else{  
+                sendbtn.innerHTML = "重新发送验证码";  
+                sendbtn.disabled = false;    //倒计时结束能够重新点击发送的按钮  
+                clearTimeout(timer);    //清除定时器  
+                time =60;   //设置循环重新开始条件  
+            }  
+        }  
+        
+
+    }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+</script>
+</html>

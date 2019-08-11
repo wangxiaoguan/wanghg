@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+		*{padding: 0;margin: 0;list-style: none;}
+		#box{width: 320px;overflow: hidden;margin:20px auto;}
+		ul{margin-top:10px;}
+		ul li{float:left;width:80px;height:80px;position: relative;overflow:hidden;}
+		ul li img{width:80px;height:80px;}
+        ul li span{display:inline-block;width:80px;height: 80px;position:absolute;left: 0;top: 80px;transition:1s;color:#fff;background: rgba(120,0,120,0.2)}
+        ul li:hover span{top: 0;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <input id="text"><button id="btn">查询</button><br/>
+    <ul  id="content">
+    </ul>
+</div>
+</body>
+<script>
+    var text=document.getElementById("text");
+    var btn=document.getElementById("btn");
+    var content=document.getElementById("content");
+//第一种方法
+btn.onclick=function(){
+    var word=text.value;
+    getData(word);
+};
+    getData("");
+    function getData(key) {
+    var req=new XMLHttpRequest();
+    req.open("get","data/lol.json",true);
+    req.send();
+    req.onreadystatechange=function() {
+        if (req.readyState == 4 && req.status == 200) {
+            var result = req.responseText;
+            var list = JSON.parse(result);
+            var html = "";
+            list.map(function (item) {
+                var itemname=item["name"];
+                var itemlocation=item["location"];
+                var itemhurt=item["hurt"];
+                var itemsrc=item["src"];
+                if (itemname.indexOf(key)!=-1||itemlocation.indexOf(key)!=-1||itemhurt.indexOf(key)!=-1) {
+                    html += ` <li>
+                            <img src="${itemsrc}">
+                            <span>
+                                <p>${itemname}</p>
+                                <p>${itemlocation}</p>
+                                <p>${itemhurt}</p>
+                            </span>
+                        </li>`
+                }
+            });
+            content.innerHTML = html;
+        }
+        }
+    }
+
+
+    //第二种方法
+    // var req=new XMLHttpRequest();
+    // req.open("get","data/lol.json",true);
+    // req.send();
+    // req.onreadystatechange=function() {
+    //     if (req.readyState == 4 && req.status == 200) {
+    //         var result = req.responseText;
+    //         var list = JSON.parse(result);
+    //         var html = "";
+    //         list.map(function (item) {
+    //             html += "<li><img src='" + item.src + "'></li>";
+    //         });
+    //         content.innerHTML = html;
+    //         btn.onclick = function () {
+    //            content.innerHTML="";
+    //            var textinput=text.value;
+    //            var newlist=list.filter(function (item) {
+    //                 return textinput==item.name||textinput==item.loaction||textinput==item.hurt;
+    //             })
+    //             var html="";
+    //             newlist.map(function (item) {
+    //                 html += "<li><img src='" + item.src + "'></li>";
+    //             })
+    //             content.innerHTML = html;
+    //         }
+    //     }
+    // }
+
+</script>
+</html>

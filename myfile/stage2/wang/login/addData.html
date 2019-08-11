@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div><span>编　号:</span><input></div >
+<div><span>用户名:</span><input></div >
+<div><span>密　码:</span><input></div >
+<div><span>年　龄:</span><input></div >
+<div><span>性　别:</span><input></div >
+<div><span>电　话:</span><input></div >
+<button id="btn">提交</button>
+</body>
+<script>
+    var btn=document.getElementById("btn");
+    btn.onclick= function () {
+        var a=document.getElementsByTagName("input")[0].value;
+        var b=document.getElementsByTagName("input")[1].value;
+        var c=document.getElementsByTagName("input")[2].value;
+        var d=document.getElementsByTagName("input")[3].value;
+        var e=document.getElementsByTagName("input")[4].value;
+        var f=document.getElementsByTagName("input")[5].value;
+
+        var req=new XMLHttpRequest();
+        req.open("get","http://localhost/1803/00-Login/addData.php?id="+a+"&username="+b+"&userpwd="+c+"&userage="+d+"&usersex="+e+"&usertell="+f,true);
+        req.send();
+        window.location.href="Content.html";
+    }
+
+
+
+
+
+
+
+
+
+</script>
+</html>

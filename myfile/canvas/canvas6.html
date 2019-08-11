@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮乐</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        body{width:100%;height: 100%;}
+        #box{position:relative;width:300px;height: 200px;color: red;margin:100px auto;
+        font-size:50px;text-align: center;line-height:200px;background:yellow}
+        #mycanvas{display:block;position:absolute;top: 0;left: 0;}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <span id="txt"></span>
+        <canvas id="mycanvas" width=300 height=200></canvas>
+    </div>
+   <script>
+       var mycanvas=document.getElementById("mycanvas");
+       var c=mycanvas.getContext("2d");
+        var text=["谢谢惠顾","一等奖","二等奖","三等奖"];
+        function getNum(num){
+            return Math.floor(num*Math.random())
+        }
+        document.getElementById("txt").innerHTML=text[getNum(text.length)];
+
+        c.beginPath();
+        c.fillStyle="#ccc";
+        c.fillRect(0,0,300,200);
+        c.stroke();
+        c.closePath();
+
+        function scrape(x,y){
+            this.beginPath();
+            this.arc(x,y,20,0,Math.PI*2,true);
+            this.fillStyle="#fff";
+            this.globalCompositeOperation="destination-out"
+            this.fill();
+            this.stroke();
+            this.closePath();
+        }
+
+        var offsetX=document.getElementById("box").offsetLeft;
+        var offsetY=document.getElementById("box").offsetTop;
+        var x=0;
+        var y=0;
+        var flag=false;
+
+        document.addEventListener("touchstart",(e)=>{
+            e =e||window.event;
+            x=e.touches[0].clientX-offsetX;
+            y=e.touches[0].clientY-offsetY;
+            scrape.call(c,x,y);
+            flag=true;
+        })
+
+        document.addEventListener("touchmove",(e)=>{
+            e=e||window.evnet;
+            x=e.touches[0].clientX-offsetX;
+            y=e.touches[0].clientY-offsetY;
+            scrape.call(c,x,y);
+
+       
+        })
+
+         document.addEventListener("touchend",()=>{
+             flag=false
+         })
+   </script>
+
+</body>
+</html>
