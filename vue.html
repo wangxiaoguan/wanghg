@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id='app'>
+        <h1>{{message}}</h1>
+        <input type="text" v-model="message"/>
+        <h2 v-if="yes">YES</h2>
+        <h2 v-if="no">NO</h2>
+        <h2 v-if="age>=25">{{age}}</h2>
+        <h2 v-if="name.indexOf('jack')>-1">{{name}}</h2>
+        <hr/>
+        <h1 v-show="yes">Yes!</h1>
+        <h1 v-show="no">No!</h1>
+        <h1 v-show="age >= 25">Age: {{ age }}</h1>
+        <h1 v-show="name.indexOf('jack') >= 0">Name: {{ name }}</h1>
+    </div>
+</body>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+<script>
+    var msg = {
+        message:'中国梦世界梦',
+        yes:true,
+        no:false,
+        age:26,
+        name:'jackFool'
+    }
+    new Vue({
+        el:'#app',
+        data:msg
+    })
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 描点跳转 -->
+    <a href="#node">节点</a>
+    <div id="node" >内容</div>
+
+–save(-S)：将保存配置信息到pacjage.json的dependencies节点中。
+–save-dev(-D)：将保存配置信息到pacjage.json的devDependencies节点中。
+dependencies：运行时的依赖，发布后，即生产环境下还需要用的模块
+devDependencies：开发时的依赖。里面的模块是开发时用的，发布时用不到它。
+@connect(
+    state=>({
+        pageData:state.table.pageData,
+    }),
+    dispatch=>({
+        getPageData:n=>dispatch(getPageData(n)), 
+    })
+)
+装饰器，需要安装模块 cnpm i babel-plugin-transform-decorators-legacy -D，然后在babel中配置：
+{
+    "plugins": [
+      "transform-decorators-legacy", 
+    ]
+}
+css样式表：
+    column-count:3;/*分开几列*/
+    column-gap:30px;/*每列之间间隔*/
+
+
+    !DOCTYPE html——定义文档类型
+    html——文档根标签，双标签
+    head文档头标签，双标签
+
+    li:nth-child(2){color: red; }
+    ::selection{background:pink;color:red;}
+    label::before{content:"你好";}
+    label::after{content:"大家好";}
+    before与after只能在双标签上使用，并且使用单冒号和双冒号都一样，IE8不支持
+    h1+p{background:red;}/*p后面紧跟第一个h3*/
+    h1~p{background: red;}/*p后面所有的h3*/
+    div>ul>li>span{color: red;}
+
+    @media screen and (min-width:100px) and (max-width:1000px){
+        html{
+            background:#000;
+        }
+    }
+    @media screen and (min-width:1001px) and (max-width:1920px){
+        html{
+            background:#0f0;
+        }
+    }
+    @media screen and (min-width:1921px){
+        html{
+            background:#00f;
+        }
+    }
+
+</body>
+</html>
