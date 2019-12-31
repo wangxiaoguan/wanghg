@@ -1,0 +1,51 @@
+自己贡献积分页面
+http://10.110.200.62:443/services/app/static/html5/point/partyPoint.html?userId=10&token=kxd17kXtEfVLhkRkSzNKvX7Cu7HsjmVJ5x9paPqetEc%3D
+
+专项积分页面
+http://10.110.200.62:443/services/app/static/html5/point/specialPointDetail.html?userId=10&token=kxd17kXtEfVLhkRkSzNKvX7Cu7HsjmVJ5x9paPqetEc%3D
+
+功能介绍页面
+http://10.110.200.62:443/services/app/static/html5/updateLog.html?versionName=V2.2.6&token=kxd17kXtEfVLhkRkSzNKvX7Cu7HsjmVJ5x9paPqetEc%3D
+
+积分页面
+http://10.128.151.139:443/services/app/static/html5/point/point.html?userId=10&token=oy%2F%2FuHofx0r60l6gxOXQWbGnYgfcx18zB%2BUe5KkVQi28l097%2BehsqyRi2shiA6K%2B
+
+经验值页面
+http://10.128.151.139:443/services/app/static/html5/point/exp.html?userId=10&token=oy%2F%2FuHofx0r60l6gxOXQWbGnYgfcx18zB%2BUe5KkVQi28l097%2BehsqyRi2shiA6K%2B
+
+下载页面
+http://10.128.151.139:443/services/app/static/html5/download/download.html?tenantId=02000000
+
+使用帮助页面
+http://10.128.151.139:443/services/app/static/html5/help/help.html
+
+
+1.app端进入商品列表页面【未参加】 
+http://10.110.200.62:443/app/static/html5/order/index.html?userId=${登录人id}&activityId=${活动id}&YQToken=${YQ-TOKEN}#/pages/index/shopCar
+
+
+2.app端进入商品列表页面【已参加】
+http://10.110.200.62:443/app/static/html5/order/index.html?userId=${登录人id}&activityId=${活动id}&YQToken=${YQ-TOKEN}#/pages/index/shopList
+
+
+3.app端进入订单列表页面】
+http://10.110.200.62:443/app/static/html5/order/index.html?userId=${登录人id}&YQToken=${YQ-TOKEN}#/pages/index/orderList
+
+
+4.app端进入商家页面  
+http://10.110.200.62:443/app/static/html5/order/index.html#/pages/seller/SellerList?merchantId=${登录人id}&token=${YQ-TOKEN}
+
+
+
+APP登录参数
+{
+	"account":"17371301830",
+	"password":"e10adc3949ba59abbe56e057f20f883e",
+	"registrationId": "",
+	"version": "",
+	"device": "",
+	"system": "",
+	"systemType": 1
+}
+
+

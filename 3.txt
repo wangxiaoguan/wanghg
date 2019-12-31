@@ -1,0 +1,107 @@
+省标院项目
+
+git地址      	http://58.49.132.133:30000/           wangjun104@fiberhome.com     wangjun104
+
+wto后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=wto
+缺陷后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=expert
+检测后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=cer
+党建后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=admin
+
+首页前台		http://58.49.132.133:31019/officialWebFront#/index
+wto前台		http://58.49.132.133:31019/officialWebFront#/wto
+缺陷前台		http://58.49.132.133:31019/officialWebFront#/dpac
+检测前台		http://58.49.132.133:31019/officialWebFront#/Verify
+
+开发环境  		http://58.49.132.133:31019
+测试环境  		http://58.49.132.133:31091
+正式环境  		http://58.49.132.133:31081
+
+湖北通报		http://www.hubeiwto.org.cn
+湖北缺陷		http://www.hubeidpac.org.cn 
+
+后台管理
+培训管理列表接口    	http://localhost:8000/services/wto/traininfo/list/1/10
+查看培训活动详情	http://localhost:8000/services/wto/traininfo/traininfo/参数ID
+查看培训人员接口	http://localhost:8000/services/wto/wtotrainenrolment/getTrainEnrollList/参数ID/1/10
+检测用户部门接口	http://localhost:8000/services/wto/wtotrainenrolment/checkEnroll/用户ID/培训ID
+培训附件上传	SBY2\src\components\DefaultEditView.tsx   				
+左侧菜单栏	SBY2\src\locales\zh-CN\menu.js					
+
+
+普通评议列表接口	http://58.49.132.133:31019/services/wto/wtobulletin/list/1/20?checkStatus_LK=0
+专家评议列表接口	http://58.49.132.133:31019/services/wto/wtocommentactivity/list/1/20
+官方评议列表接口	http://58.49.132.133:31019/services/wto/wtoofficialcomment/getOfficialEvaluateList/1/5
+
+普通评议详情接口	http://58.49.132.133:31019/services/wto/wtobulletin/get/参数ID
+专家评议详情接口	http://58.49.132.133:31019/services/wto/wtoofficialcomment/getCommentActivity/参数ID
+官方评议详情接口	http://58.49.132.133:31019/services/wto/wtoofficialcomment/getCommentActivity/参数ID
+
+
+普通评议列表
+1，审核 		http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/1                        请求方式：post
+2，取消审核	http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/2                        请求方式：post  
+3，删除		http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/3                        请求方式：post  
+4，批量删除	http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/3                        请求方式：post  
+post传参		["0261ea9723734dbabf5c517369d6e9e3"]
+
+
+专家评议列表
+1，审核 		http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/1                        请求方式：post  
+2，取消审核	http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/2                        请求方式：post  
+3，删除		http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/3                        请求方式：post  
+4，批量删除	http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/3                        请求方式：post  
+post传参		["0261ea9723734dbabf5c517369d6e9e3"]
+
+
+普通评议集合接口	http://localhost:8000/services/wto/wtoofficialcomment/getOrdinaryCommentList/1/10
+		?Q=bulletinCode_LK=G/TBT/N/CRI/5
+		&Q=checkStatus_EQ=0
+		&Q=createDate_D_GE=2019-06-09 00:00:00
+		&Q=createDate_D_LE=2019-07-18 23:59:59
+
+查询参数说明:	bulletinCode	通报号
+		checkStatus	审核状态
+		createDate	评议时间
+
+专家评议集合接口	http://localhost:8000/services/wto/wtoofficialcomment/getBulletinListCommentByOfficial/1/10
+		?Q=relatedBulletin_LK=1111
+		&Q=checkStatus_EQ=0
+		&Q=appriaseDate_D_GE=2019-07-09 00:00:00
+		&Q=appriaseDate_D_LE=2019-07-15 23:59:59
+
+查询参数说明:	relatedBulletin	通报号
+		checkStatus	审核状态
+		appriaseDate	评议时间
+
+
+专家评议查询
+参数说明:
+	checkStatus    	审核状态(0未审核,1审核通过,2审核拒绝)
+ 	appriaseDate   	评议时间
+
+http://localhost:8000/services/wto/wtoofficialcomment/getOfficialCommentList/3/1/20
+?Q=checkStatus_EQ=0
+&&Q=appriaseDate_D_GE=2019-05-09 00:00:00
+&&Q=appriaseDate_D_LE=2019-07-15 23:59:59
+
+
+
+
+普通评议查询
+参数说明:
+	bulletinCode  	通报号
+	checkStatus  	审核状态(0未审核,1审核通过,2审核拒绝)
+	createDate  	评议时间
+
+http://localhost:8000/services/wto/wtoofficialcomment/getBulletinCommentList/33024/1/20
+?Q=bulletinCode_LK=0
+&&Q=checkStatus_EQ=0
+&&Q=createDate_D_GE=2019-05-09 00:00:00
+&&Q=createDate_D_LE=2019-07-15 23:59:59
+
+问题
+专家库管理后台    	（新需求）新增审核通过与审核拒绝功能（前端功能已写，需要后端写接口）	
+专家库新增页面  	（新需求）新增专业技术行业字段（前端功能已写，需要后端添加上去）	
+缺陷召回公告	（新需求）对召回公告数据进行区分国内与国外（前台页面功能已写）	
+缺陷友情链接	（功能缺失）后端新增链接图片字段（目前缺馅前台友情链接图片是写死的）（前端功能已写，需要后端添加上去）	
+汽车三包后台	（新需求）列表标题栏新新增字段与新增查询参数（前端功能已写，需要后端添加上去）
