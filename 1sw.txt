@@ -1,0 +1,116 @@
+部署地址
+url： 	10.110.200.62  	root 	skyinno@62 
+url：	10.110.200.185 	root	skyinno@185
+url： 	10.128.27.22	root	skyinno@22
+
+https://gitfh.com/cictV2/front.git          		Youqu/PC/Web
+https://gitfh.com/PC/mac.git			Mac
+https://gitfh.com/fhskyinno/big_front_end.git    	Week
+http://10.110.200.14:8080/secure/Dashboard.jspa   	JIRA   		hgwang109    		123456
+https://www.seasame.com.cn/login  		Week   		hgwang109    		123456
+https://gitfh.com				Git		wanghongguan  		111111
+https://mail.fiberhome.com/coremail		邮箱          	hgwang109@fiberhome.com
+
+灰度悠趣：http://msp.iyouqu.com.cn:18443/youquweb#/login
+65悠趣：	http://119.36.213.65:30000/youquweb#/login
+185悠趣： http://223.75.53.181:30000/youquweb/#/login
+地铁云： 	http://10.128.151.136:443/youquweb#/login
+
+灰度圈聊：http://msp.iyouqu.com.cn:48081/youquChat
+65圈聊：	https://test.cictsj.com:4488/youquChat
+185圈聊：	http://10.110.200.185:8080/youquChat
+
+圈聊接口
+
+01，联系人      	本地
+02，联系人信息   	本地
+03，圈子信息    	本地
+04，企业通讯录  	本地
+05，搜索本地	本地
+06，圈子信息          	环信
+07，创建圈子  	环信
+08，添加圈成员 	环信
+09，修改群名 	环信
+10，修改群简介 	环信
+
+youqu-ms-im/im/org/GetUserInfo/02000000/02A67600/1/10		获取企业下的好友
+youqu-ms-im/im/org/GetLeader/02000000			获取烽火企业
+youqu-ms-im/im/org/GetAllTenantId 				获取所有企业
+youqu-ms-im/im/chatgroup/chatgroups/	123456			获取圈子信息
+youqu-ms-im/im/UserInfo/LikeName/02000000/value/1/20		搜索人员
+yq-common-prod.img-cn-hangzhou.aliyuncs.com/    		灰度图像地址 
+yq-fiberhome-prod.oss-cn-hangzhou.aliyuncs.com/   		灰度文件地址
+yq-fiberhome-prod.img-cn-hangzhou.aliyuncs.com/   		灰度图片地址
+services/system/file/upload/AttachmentUpload/   			灰度文件上传地址
+youqu-ms-im/im/Video/getVideo     				灰度环境视频转码接口地址
+youqu-ms-im/im/feedback/addfeedback				意见反馈
+
+服务启动 
+ps -ef|grep 'tomcat'   					找到tomcat目录
+cd /home/tomcat8/bin					进入tomcat目录
+./shutdown.sh						关闭tomcat服务
+./startup.sh						启动tomcat服务   
+
+01，企业通讯录
+	包含：部门（同步），部门领导（异步），部门员工（异步）
+	展示：头像，名称
+02，我的圈子
+	展示：头像，群名
+03，联系人
+	根据姓名首字拼音字母A-Z分类
+	展示：头像，姓名
+04，选中人员或圈子列表跳转步骤
+	1，企业通讯录	——>详情页——>会话聊天页面 
+	2，我的圈子	——>详情页——>会话聊天页面
+	3，联系人		——>详情页——>会话聊天页面
+05，搜索联系人
+	1，企业通讯录	包含：头像，名称，部门
+	2，我的圈子	包含：头像，群名
+	3，联系人		包含：头像，名称，部门,
+06，选中搜索列表跳转步骤
+	1，企业通讯录	——>详情页——>会话聊天页面 
+	2，我的圈子	——>会话聊天页面
+	3，联系人		——>会话聊天页面
+
+07，撤回消息功能
+	撤回消息类型：文本，图片，文件，视频，语音，位置
+	单聊/圈聊	
+	1：web同步撤回消息<————>app同步撤回消息
+	2：web同步撤回消息<————>web同步撤回消息
+08，同步更新数据
+	添加好友与删除好友
+	App-A<——————>Web-A
+	App-A<——————>Web-B
+09，群组增删改建
+	App<——————>Web
+	创建群，解散群组，修改群名，添加成员，删除成员
+10，会话列表消息置顶
+	Web<———发消息———>App
+	Web<———发消息———>Web
+11，会话时间节点提醒
+	消息间隔2分钟显示，否则隐藏
+12，@功能
+	点击圈聊@成员光标置后
+	@成员列表坐标
+	截屏图片光标之后
+13，圈子展示
+	圈名称，圈简介，退出并删除圈子，解散圈子，添加成员
+14，图片查看
+	图片左右翻动，缩放，移动
+15，创建圈子
+	选择成员，搜索成员，删除成员，编辑圈名，编辑圈简介
+16，历史消息
+	消息储存本地，消息路径更改，消息删除
+17，草稿消息
+	输入框消息在会话列表展示
+18，意见反馈
+	意见类型，意见图片，意见消息
+
+悠趣管理平台
+1，党建园地
+2，文章管理
+3，视频管理
+4，杂志管理
+5，专题管理
+6，个人工作
+7，咨询管理
