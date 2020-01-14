@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>笔记</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .title>li{
+            height: 2.4rem;
+            padding: 0 0.6rem;
+            line-height: 2.4rem;
+            font-size: 1.2rem;
+            font-family: '楷体';
+        }
+        li:nth-child(2n){
+            background: #f0f0f0;
+        }
+        .right{
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+        }
+        header{
+            height: 3rem;
+            padding: 0 0.8rem;
+            background: #fff;
+            line-height: 3rem;
+            clear: both;
+            position: relative;
+            border-bottom: 1px solid #ccc;
+        }
+        .back{
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            border: 1px solid;
+            border-color:transparent transparent  #666 #666 ;
+            transform: rotate(45deg);
+            vertical-align: middle;
+        }
+        #title{
+            width: 60%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin:0 auto;
+            float:right;
+            text-align: center;
+            font-family: '仿宋';
+            overflow:hidden;/*超出部分隐藏*/
+            text-overflow:ellipsis;/*超出部分显示省略号*/
+            white-space:nowrap;/*规定段落中的文本不进行换行 */
+        }
+        .delete{
+            float: right;
+            color: red;
+        }
+        #content{
+            width: 94%;
+            padding: 0 3%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .content{
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        img{
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <ul class="title"></ul>
+        <div class="right">
+            <header id='header'></header>
+            <div id='content'></div>
+        </div>
+    </div>
+</body>
+<script src="http://wanghg.top/js/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        getNews()
+    });
+    function addbtn(){
+        let txt = {
+        id:String(new Date().getTime()),
+        title:'标题',
+        content:'内容'
+        }
+        $.ajax({
+            type : "POST",  //提交方式
+            url : "http://wanghg.top/php/add.php",
+            data : JSON.stringify(txt),
+            success : function(result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function getNews(){
+        $('.title').eq(0).html(``)
+        fetch('http://wanghg.top/php/getNews.php').then((res) => res.json()).then(data => {
+            data.map(item=>{
+                let em = `<li onclick="getDetail(${item.id})">${item.title}</li>`
+                $('.title').eq(0).append(em)
+            })
+        })
+    }
+    function getDetail(id){
+        fetch(`http://wanghg.top/php/search.php?id=${id}`).then((res) => res.json()).then(data => {
+            $('#header').html(`<span onclick="goback()"><i class="back"></i>返回</span><h3 id='title'>${data.title}</h3><span class="delete" onclick="deleteid(${data.id})">删除</span>`)
+            $('#content').html(unescape(data.content))
+            $('.right').eq(0).animate({left:0},500);
+            setTimeout(()=>{
+                getNews()
+            },500)
+            
+        })
+    }
+    function goback(){
+        $('.right').eq(0).animate({left:'100%'},500);
+    }
+    function deleteid(id){
+        fetch(`http://wanghg.top/php/delete.php?id=${id}`).then((res) => {
+            getNews()
+            $('.right').eq(0).animate({left:'100%'},500);
+            
+        })
+    }
+    function edit(){
+        let txt = {
+                    // id:String(new Date().getTime()),
+                    id:'1578624341902',
+                    title:'标题',
+                    content:escape('<p>修改内容</p>')
+                }
+                console.log(txt)
+            $.ajax({
+                type : "POST",  //提交方式
+                // url : "http://wanghg.top/php/add.php",//路径,www根目录下
+                url : "http://wanghg.top/php/edit.php",//路径,www根目录下
+                data : JSON.stringify(txt),//数据，这里使用的是Json格式进行传输
+                // data : txt,//数据，这里使用的是Json格式进行传输
+                success : function(result) {//返回数据根据结果进行相应的处理
+                    console.log(result);
+                }
+            });
+    }
+    
+</script>
+</html>

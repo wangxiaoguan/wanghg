@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>学习React</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+    // 创建是秃头
+    class MessageBox extends React.Component {
+        alertMe() {
+            console.log('点击')
+        }
+        render() {
+            return (
+            <div>
+                <h2 onClick={this.alertMe}>hello</h2>
+            </div>
+            )
+            
+        }
+    }
+    // 渲染
+    ReactDOM.render(
+        <MessageBox/>,
+        document.getElementById('app')
+    );
+</script>
+</body>
+</html>
