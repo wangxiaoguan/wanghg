@@ -46,7 +46,7 @@ class Demo extends Component{
                 id:String(new Date().getTime()),
                 title:fieldsValue.title,
                 type:fieldsValue.type,
-                content:fieldsValue.content,
+                content:escape(fieldsValue.content),
             }
             fetch(`http://wanghg.top/php/html/add.php`, {
                 method: 'POST',

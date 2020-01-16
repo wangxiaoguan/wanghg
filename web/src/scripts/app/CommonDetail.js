@@ -38,7 +38,7 @@ export default class Detail extends Component{
         return(
             <div id='Detail'>
                 <Spin spinning={loading}>
-                    <h1>{detailData.title}</h1>
+                    <h1 className='title_h1'>{detailData.title}</h1>
                     {
                         detailData.title?<div dangerouslySetInnerHTML={{__html:unescape(detailData.content)}}></div>:null
                     }
