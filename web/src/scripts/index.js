@@ -17,8 +17,8 @@ import CommonList from './app/CommonList'
 import CommonAdd from './app/CommonAdd'
 import CommonEdit from './app/CommonEdit'
 import CommonDetail from './app/CommonDetail'
-
-
+let height = document.documentElement.clientHeight || document.body.clientHeight;
+console.log(height)
 class Home extends Component{
     constructor(props){
         super(props);
@@ -72,7 +72,7 @@ class Home extends Component{
         })
         return(
             <div id='top'>
-                <div id='leftMenu'>
+                <div id='leftMenu' style={{minHeight:height}}>
                     <Calendar fullscreen={false}/>
                     <Menu mode="inline" theme="light">
                         <SubMenu key="sub1" title={<span><Icon type="html5" /><span>HTML</span></span>}>
@@ -113,7 +113,7 @@ class Home extends Component{
                         </SubMenu>
                     </Menu>
                 </div>
-                <div id='rightContent'>
+                <div id='rightContent' style={{minHeight:height}}>
                     <Switch>
                         <Route exact path="/" component={CommonList}/>
                         {/* <Route exact path="/login" component={Login}/> */}
