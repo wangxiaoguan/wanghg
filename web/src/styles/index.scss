@@ -24,6 +24,23 @@
       margin-left: 0 !important;
       text-align: left;
     }
+    .ant-menu-sub{
+        max-height: 300px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            width: 10px;
+        }
+        &::-webkit-scrollbar-track{
+            box-shadow:inset 0 0 6px rgba(43, 43, 43, 0.3) ;
+            border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+    }
 }
 #rightContent{
   float: left;
@@ -46,6 +63,13 @@ pre{
 }
 .ant-menu-item{
   padding-left: 24px !important;
+  a{
+    p{
+      overflow:hidden;/*超出部分隐藏*/
+      text-overflow:ellipsis;/*超出部分显示省略号*/
+      white-space:nowrap;/*规定段落中的文本不进行换行 */
+    }
+  }
 }
 #Login{
   width: 100%;
@@ -65,5 +89,13 @@ pre{
       right: 0;
       margin:0 auto;
       z-index: 2;
+  }
+}
+.ant-menu-root{
+  max-height: 600px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  &::-webkit-scrollbar{
+      width: 0px;
   }
 }
