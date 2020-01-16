@@ -26,7 +26,6 @@ class Demo extends Component{
         this.state.setTimePushData(true)
     }
     getContent = html => {
-        console.log(html)
         if(html === '<p></p>'){
             this.props.form.setFieldsValue({content:''})
         }else{

@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import ReactDOM,{render} from "react-dom";
-import {connect} from 'react-redux'
+import {connect,Provider} from 'react-redux'
 import moment from 'moment';
 import $ from 'jquery'
 import { Router,Link,HashRouter,Route,Switch} from "react-router-dom";
@@ -18,24 +18,25 @@ import CommonAdd from './app/CommonAdd'
 import CommonEdit from './app/CommonEdit'
 import CommonDetail from './app/CommonDetail'
 let height = document.documentElement.clientHeight || document.body.clientHeight;
-console.log(height)
 class Home extends Component{
     constructor(props){
         super(props);
         this.state={
             totalList:[],
             isLogin:true,
+            openKey: [],
+            keyList:['sub1','sub2','sub3','sub4','sub5',],
             setPowers:n =>store.dispatch(setPowers(n)),
             setTimePushData:n =>store.dispatch(setTimePushData(n)),
         }
     }
     componentDidMount(){
         this.getList();
+        this.state.setPowers({wang:'123456'})
     }
     componentDidUpdate() {
-        
+        this.state.setPowers({wang:'123456'})
         let Store = store.getState();
-        console.log('==============>',Store)
         if(Store.timePushData){
             this.getList();
             this.state.setTimePushData(false)
@@ -53,9 +54,13 @@ class Home extends Component{
             this.setState({loading:false})
         })
     }
-
+    openKey = key => {
+        this.setState({
+            openKey: [key.pop()],
+          });
+      };
     render(){
-        const {totalList} = this.state
+        const {totalList,openKey} = this.state
         let htmlList = [],cssList = [],jsList = [],nodeList = [],reactList = [];
         totalList.map(item=>{
             if(item.type === 'html'){
@@ -74,7 +79,7 @@ class Home extends Component{
             <div id='top'>
                 <div id='leftMenu' style={{minHeight:height}}>
                     <Calendar fullscreen={false}/>
-                    <Menu mode="inline" theme="light">
+                    <Menu mode="inline" theme="light" openKeys={openKey} onOpenChange={this.openKey}>
                         <Menu.Item key="101"><Link to="/common/list/0"><p><Icon type="unordered-list" />前端数据列表<Icon　className='total_right' type="right" /></p></Link></Menu.Item>
                         <SubMenu key="sub1" title={<span><Icon type="html5" /><span>HTML</span></span>}>
                             {
@@ -90,21 +95,21 @@ class Home extends Component{
                                 })
                             }
                         </SubMenu>
-                        <SubMenu key="sub5" title={<span><Icon type="desktop" /><span>JavaScript</span></span>}>
+                        <SubMenu key="sub3" title={<span><Icon type="desktop" /><span>JavaScript</span></span>}>
                             {
                                 jsList.map(item=>{
                                     return <Menu.Item key={item.id}><Link to={`/common/detail/${item.id}`}><p>{item.title}</p></Link></Menu.Item>
                                 })
                             }
                         </SubMenu>
-                        <SubMenu key="sub6" title={<span><Icon type="book" /><span>Node</span></span>}>
+                        <SubMenu key="sub4" title={<span><Icon type="book" /><span>Node</span></span>}>
                             {
                                 nodeList.map(item=>{
                                     return <Menu.Item key={item.id}><Link to={`/common/detail/${item.id}`}><p>{item.title}</p></Link></Menu.Item>
                                 })
                             }
                         </SubMenu>
-                        <SubMenu key="sub7" title={<span><Icon type="codepen" /><span>React</span></span>}>
+                        <SubMenu key="sub5" title={<span><Icon type="codepen" /><span>React</span></span>}>
                             {
                                 reactList.map(item=>{
                                     return <Menu.Item key={item.id}><Link to={`/common/detail/${item.id}`}><p>{item.title}</p></Link></Menu.Item>
@@ -131,7 +136,9 @@ class Home extends Component{
 render(
     <HashRouter basename="/" component={Login}>
         <ConfigProvider locale={zh_CN}>
-            <Home/> 
+            <Provider store={store}>
+                <Home/> 
+            </Provider>
         </ConfigProvider>
         
     </HashRouter>,

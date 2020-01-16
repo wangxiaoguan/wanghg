@@ -8,17 +8,18 @@
 </head>
 <body>
     <div id='edit_div' contenteditable="true"></div>
+    <a href="mailto:627840236@qq.com?subject=test&cc=571527040@qq.com&subject=主题&body=内容">send mail</a>
 </body>
 <script src="http://wanghg.top/js/jquery.js"></script>
 <script>
-    function getDetail(id){
-        fetch(`http://wanghg.top/php/html/detail.php?id=${id}`).then((res) => res.json()).then(data => {
-            $('#edit_div').html(unescape(data.content))
-            console.log(unescape(data.content))
+    // function getDetail(id){
+    //     fetch(`http://wanghg.top/php/html/detail.php?id=${id}`).then((res) => res.json()).then(data => {
+    //         $('#edit_div').html(unescape(data.content))
+    //         console.log(unescape(data.content))
             
-        })
-    }
-    getDetail(1579074923721)
+    //     })
+    // }
+    // getDetail(1579074923721)
 </script>
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script type="text/javascript">

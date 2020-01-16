@@ -33,8 +33,8 @@ class CommonHtml extends Component{
     }
     componentDidMount(){
 		this.getList();
+		console.log(store.getState())
 		this.state.setTimePushData(true)
-		console.log(this.props)
 	}
 	
 	//数据列表
@@ -145,9 +145,6 @@ class CommonHtml extends Component{
         return(
             <div id='CommonList'> 
 				<Spin spinning={loading}>
-					{/* <Row>
-						<SearchTable/>
-					</Row> */}
 					<Row>
 						<Col offset={0} span={8}>标题：<Input style={{width:200}} value={searchValue} onChange={this.getInput}/></Col>
 						<Col offset={0} span={5}>类型：<Select value={type} onChange={value =>this.handleChange(value)} style={{width:120}}>{typeList.map(e=><Option value={e.type} key={e.type} >{e.name}</Option>)}</Select></Col>
