@@ -102,11 +102,12 @@
         let txt = {
         id:String(new Date().getTime()),
         title:'标题',
+        type:'html',
         content:'内容'
         }
         $.ajax({
             type : "POST",  //提交方式
-            url : "http://wanghg.top/php/add.php",
+            url : "http://wanghg.top/php/html/add.php",
             data : JSON.stringify(txt),
             success : function(result) {
                 console.log(result);
@@ -116,7 +117,7 @@
 
     function getNews(){
         $('.title').eq(0).html(``)
-        fetch('http://wanghg.top/php/getNews.php').then((res) => res.json()).then(data => {
+        fetch('http://wanghg.top/php/html/list.php').then((res) => res.json()).then(data => {
             data.map(item=>{
                 let em = `<li onclick="getDetail(${item.id})">${item.title}</li>`
                 $('.title').eq(0).append(em)
@@ -124,7 +125,7 @@
         })
     }
     function getDetail(id){
-        fetch(`http://wanghg.top/php/search.php?id=${id}`).then((res) => res.json()).then(data => {
+        fetch(`http://wanghg.top/php/html/detail.php?id=${id}`).then((res) => res.json()).then(data => {
             $('#header').html(`<span onclick="goback()"><i class="back"></i>返回</span><h3 id='title'>${data.title}</h3><span class="delete" onclick="deleteid(${data.id})">删除</span>`)
             $('#content').html(unescape(data.content))
             $('.right').eq(0).animate({left:0},500);
@@ -138,7 +139,7 @@
         $('.right').eq(0).animate({left:'100%'},500);
     }
     function deleteid(id){
-        fetch(`http://wanghg.top/php/delete.php?id=${id}`).then((res) => {
+        fetch(`http://wanghg.top/php/html/delete.php?id=${id}`).then((res) => {
             getNews()
             $('.right').eq(0).animate({left:'100%'},500);
             
@@ -155,7 +156,7 @@
             $.ajax({
                 type : "POST",  //提交方式
                 // url : "http://wanghg.top/php/add.php",//路径,www根目录下
-                url : "http://wanghg.top/php/edit.php",//路径,www根目录下
+                url : "http://wanghg.top/php/html/edit.php",//路径,www根目录下
                 data : JSON.stringify(txt),//数据，这里使用的是Json格式进行传输
                 // data : txt,//数据，这里使用的是Json格式进行传输
                 success : function(result) {//返回数据根据结果进行相应的处理

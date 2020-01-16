@@ -7,10 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-
+    <div id='edit_div' contenteditable="true"></div>
 </body>
 <script src="http://wanghg.top/js/jquery.js"></script>
 <script>
-
+    function getDetail(id){
+        fetch(`http://wanghg.top/php/html/detail.php?id=${id}`).then((res) => res.json()).then(data => {
+            $('#edit_div').html(unescape(data.content))
+            console.log(unescape(data.content))
+            
+        })
+    }
+    getDetail(1579074923721)
 </script>
 </html>
