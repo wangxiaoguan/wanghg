@@ -41,6 +41,12 @@
             box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
         }
     }
+    .total_right{
+      position: relative;
+      right: -78px;
+      z-index: 6;
+      font-size: 12px !important;
+    }
 }
 #rightContent{
   float: left;

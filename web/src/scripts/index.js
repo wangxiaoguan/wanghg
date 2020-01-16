@@ -75,8 +75,8 @@ class Home extends Component{
                 <div id='leftMenu' style={{minHeight:height}}>
                     <Calendar fullscreen={false}/>
                     <Menu mode="inline" theme="light">
+                        <Menu.Item key="101"><Link to="/common/list/0"><p><Icon type="unordered-list" />前端数据列表<Icon　className='total_right' type="right" /></p></Link></Menu.Item>
                         <SubMenu key="sub1" title={<span><Icon type="html5" /><span>HTML</span></span>}>
-                            <Menu.Item key="101"><Link to="/common/list/0"><p>前端数据列表</p></Link></Menu.Item>
                             {
                                 htmlList.map(item=>{
                                     return <Menu.Item key={item.id}><Link to={`/common/detail/${item.id}`}><p>{item.title}</p></Link></Menu.Item>
