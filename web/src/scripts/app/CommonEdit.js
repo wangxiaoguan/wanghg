@@ -63,7 +63,7 @@ class Demo extends Component{
                 id:id,
                 title:fieldsValue.title,
                 type:fieldsValue.type,
-                content:fieldsValue.content,
+                content:escape(fieldsValue.content),
             }
             fetch(`http://wanghg.top/php/html/edit.php`, {
                 method: 'POST',
