@@ -1,0 +1,81 @@
+Window打包
+一、 D:\job\newJOB\QuanLiao\ql4
+1.修改环境
+(1)base.js
+
+(2)webim.config.js
+
+
+2.修改需要升级的版本号  在head.js中修改
+
+
+
+3.打安装包
+(1)在D:\job\newJOB\QuanLiao\ql4\demo运行npm run prod命令打包.
+(2)将上述打包后的demo包放入C:\Users\wgs\Desktop\65 - 副本   目录中
+①修改C:\Users\wgs\Desktop\65 - 副本目录中的main.js  以及Update.exe.config
+
+
+Main.js以及Update.exe.config中将升级包的地址改为测试环境的地址
+
+
+
+
+
+
+   ②用npm run package命令打包为xksj-win32-ia32
+
+(3).将xksj-win32-ia32文件放入C:\Users\wgs\Desktop\cs中，将CaptureInstall.exe以及netFramework4.5.2.exe拖入到xksj-win32-ia3中
+
+
+（4）使用若是打65测试环境包，则使用cs.iss文件，若是灰度环境则使用huidu.iss文件
+
+
+打开cs.iss文件修改里面的升级的版本号，点击运行按钮则可以打包为exe文件了
+
+
+
+
+上述已经将安装包打包完成,打包完成之后即可安装   注：C:\Users\wgs\Desktop\cs\Output路径下可以看到
+
+
+
+4.打升级包
+（1）右击，打开文件所在位置
+
+
+（2）将下述几个文件删除，然后在打成zip包即可
+
+
+
+
+
+
+5.上线
+（1）将安装包发给侯建玲，升级包找到https://test.cictsj.com:30000/youquweb#/SystemSettings/VersionInformation/VersionInformation地址发布，新建
+
+
+
+版本号，版本名称要与head.js里修改的版本号对应上即可
+
+
+  Mac打包
+1.D:\job\newJOB\MacQianLiao\mac4   在此目录下修改
+2.同window，修改head.js以及base.js，webim.config.js ，注:修改之后将该demo复制到C:\Users\wgs\Desktop\MacDB目录中，cd demo去使用npm run prod
+3.将npm run prod打包后的demo文件，复制到mac电脑里
+
+
+
+
+4.（1）替换65-1016文件里的demo包
+
+
+（2）删除webapp包
+（3）找到控制器
+
+
+
+cd desktop      cd 65-1016
+
+(4)使用打包命令     npm  run  package
+                    appdmg appdmg.json ~/desktop/65_xksj1017.dmg 即可在桌面生成一个安装包   注：65_xksj1017.dmg是自定义命名的
