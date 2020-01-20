@@ -1,0 +1,178 @@
+@import '~@/utils/utils.less';
+
+
+
+html,
+body,
+#root {
+  height: 100%;
+  min-width: 1200px;
+
+  .ant-layout {
+    min-height: 100vh;
+    background: white;
+  }
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+
+
+canvas {
+  display: block;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.globalSpin {
+  width: 100%;
+  margin: 40px 0 !important;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+.mySlick {
+
+  .slick-prev,
+  .slick-next {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: 1px solid #cccccc;
+
+    &:before {
+      content: "";
+      border: 1px solid #cccccc;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-right: none;
+      border-bottom: none;
+      transform: translateX(25%) rotateZ(-45deg);
+    }
+  }
+
+  .slick-prev {
+    left: -35px;
+  }
+
+  .slick-next {
+    right: -35px;
+
+    &:before {
+      transform: translateX(-25%) rotateZ(135deg);
+    }
+  }
+}
+
+.HSeparate {
+  width: 1px;
+  background-color: #ccc;
+  align-self: stretch;
+}
+
+.divAreaContainer {
+  padding: 20px 0;
+  clear: both;
+}
+
+.controlsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  >*:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+textarea,
+.form textarea.ant-input {
+  resize: none;
+  height: 100px;
+}
+
+.ant-form {
+  overflow: hidden;
+
+  .ant-form-item-children {
+    .controlsContainer;
+    display: block;
+    #car-buyTime{
+      width: 100%
+    }
+  }
+}
+
+.InfoTable {
+  margin-bottom: 10px;
+  width: 100%;
+
+  thead {
+    th {
+      background-color: rgb(94, 193, 250);
+      color: white;
+
+      a {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .tableLabel {
+    text-align: right;
+  }
+
+  .examine-td {
+    text-align: left;
+  }
+
+  .contentLabel {
+    text-align: left;
+    max-width: 230px;
+  }
+
+  tbody {
+    th {
+      color: rgb(94, 193, 250);
+    }
+  }
+
+  td,
+  th {
+    padding: 10px 10px;
+    border: 1px solid rgb(176, 176, 176);
+  }
+
+  .tdLabel {
+    text-align: right;
+  }
+}
+
+.ant-dropdown-menu-item{
+  color:#ff7a64 !important;
+  font-size: 14px !important;
+}
+.ant-dropdown-menu-submenu-title{
+  color:#ff7a64 !important;
+  font-size: 14px !important;
+  .ant-dropdown-menu-submenu-arrow-icon{
+    color:#ff7a64 !important;
+    font-size: 14px !important;
+  }
+}

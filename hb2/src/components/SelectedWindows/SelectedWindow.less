@@ -1,0 +1,32 @@
+.SelectedWindow {
+  .Controls {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    .InputContainer {
+      position: relative;
+      flex: 1;
+      margin-right: 10px;
+      input {
+        min-width: 70px;
+        background: rgb(244, 244, 244);
+        border: none;
+      }
+      i {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all 0.3s;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.25);
+      }
+      &:hover {
+        i {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

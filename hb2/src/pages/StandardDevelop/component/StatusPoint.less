@@ -1,0 +1,70 @@
+.StatusPoint {
+  width: 100px;
+  height: 100px;
+
+  position: absolute;
+  cursor: pointer;
+
+  * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+  }
+
+  img {
+    animation: img 0.6s 1;
+
+    @keyframes img {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1, 1);
+      }
+    }
+  }
+
+  .Bg {
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+    border-radius: 100%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0, 0);
+  }
+
+  .Content {
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    opacity: 0;
+    transition: all 0.8s;
+  }
+
+  &:hover {
+
+    .Bg {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1, 1);
+    }
+
+    .Content {
+      opacity: 1;
+    }
+
+
+    img {
+      opacity: 0;
+    }
+  }
+}
