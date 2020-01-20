@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
 } 
 
-$sql = "SELECT id, title, type, content, time FROM list"; //从数据库中选取数据语句
+$sql = "SELECT id, title, type, content, time, state FROM list"; //从数据库中选取数据语句
 $conn->query("set names utf-8");
 $result = $conn->query($sql);
 
@@ -27,6 +27,7 @@ if ($result->num_rows > 0) {
         $temp["content"]= $item["content"];
         $temp["type"]= $item["type"];
         $temp["time"]= $item["time"];
+        $temp["state"]= $item["state"];
         $list[] = $temp;
     }
         echo json_encode($list);  
