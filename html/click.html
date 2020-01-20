@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #app{
+            width:100px;
+            height: 100px;
+            background: #999;
+        }
+    </style>
+</head>
+<body>
+    <div id='app' data-time="2020-01-20" data-res="的fig还是第哦发货给的佛噗好地方比较好" onclick="add(this)"></div>
+</body>
+<script>
+    function add(e){
+        console.log(e,e.getAttribute("data-time"),e.getAttribute("data-res"))
+    }
+</script>
+
+</html>

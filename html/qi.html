@@ -1,0 +1,96 @@
+<!Doctype html>
+<html>
+ 
+  <head>
+ 
+    <!-- 百度爬虫优化 -->
+    <meta http-equiv="author" content="成兮，缘分五月" />
+    <meta http-equiv="Keywords" cotent="五子棋，人机大战，单人游戏，双人游戏，小游戏" />
+    <meta Charset="utf-8" />
+ 
+    <title>爱淘宝-五子棋</title>
+ 
+    <style>
+      #chess {
+        display: block;
+        margin: 50px auto;
+        box-shadow: -2px -2px 2px #efefef , 5px 5px 5px #b9b9b9;
+      }
+      #chess:hover{
+        cursor: pointer;
+      }
+    </style>
+ 
+    <script>
+      window.onload = function() {
+             //获取棋盘canvas
+            var chess = document.getElementById("chess");
+            //获取2d画布
+            var context = chess.getContext('2d');
+            //指定当前是否黑色下，只在UI中使用
+            var me = true;
+            //指定当前位置是否下了其，1代表黑，2代表白，0代表空
+            var curIndex = [];
+            for(var i =0; i <15; i++) {
+                curIndex[i] = [];
+                for(var j =0; j <15; j++)
+                curIndex[i][j] = 0;
+            }
+            function drawtable() {
+                //我们设置棋盘总共15根横线15根总线，左右上下都有15px的边距，其中每个棋子相距30px,因此绘制棋盘从15px开始
+            
+                for(var i =0; i <15; i++)
+                for(var j =0; j <15; j++)
+                    {
+                    //绘制横线
+                    context.moveTo(15, 15 +j *30);
+                    context.lineTo(435, 15 +j *30);
+                    //绘制竖线
+                    context.moveTo(15 +j *30, 15);
+                    context.lineTo(15 +j *30, 435); 
+            
+                    //使用灰色描边
+                    context.strokeStyle = "#bfbfbf";
+                    context.stroke();
+                    }
+            };
+            drawtable();
+
+            chess.onclick = function(event) {
+                //获取要下的棋子的位置
+                var x = Math.floor(event.offsetX /30);
+                var y = Math.floor(event.offsetY /30);
+                //判断该点是否已被下了
+                if(curIndex[x][y] != 0)
+                return;
+                //开始绘制
+                context.beginPath();
+                //绘制指定圆
+                context.arc(15 +x *30, 15 +y *30, 15, 0, 2 *Math.PI);
+                //进行填充
+                if(me) {
+                context.fillStyle = "#636766";
+                curIndex[x][y] = 1;
+                me = false;
+                }
+                else {
+                context.fillStyle = "#b9b9b9";
+                curIndex[x][y] = 2;
+                me = true;
+                }
+                context.fill();
+                //结束绘制
+                context.closePath();
+            };
+      } ;
+    </script>
+ 
+  </head>
+ 
+  <body>
+    <!-- 棋盘 -->
+    <canvas id="chess" width="450px" height="450px"></canvas>
+ 
+  </body>
+ 
+</html>
