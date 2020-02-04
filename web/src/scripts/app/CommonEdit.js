@@ -3,7 +3,7 @@ import React,{Component} from "react";
 import {Input,Button,Row,Col,Table,Spin,message,Divider,Form,Select} from 'antd'
 import Editor from '../antd/richTexteditor/braftEditor'
 import store from '../redux/store'
-import {setTimePushData} from '../redux/action'
+import {setUser} from '../redux/action'
 import './app.scss'
 import $ from 'jquery'
 const FormItem=Form.Item;
@@ -13,7 +13,7 @@ class Demo extends Component{
         super(props);
         this.state={
             detailData:{},
-            setTimePushData:n =>store.dispatch(setTimePushData(n)),
+            setUser:n =>store.dispatch(setUser(n)),
             id:'',
             typeList:[
                 {type:'html',name:'html'},
@@ -29,7 +29,6 @@ class Demo extends Component{
         let params = this.props.match.params
         this.getDetail(params.id)
         this.setState({id:params.id})
-        this.state.setTimePushData(true)
     }
     getDetail = id => {
         this.setState({loading:true})

@@ -2,7 +2,7 @@
 import React,{Component} from "react";
 import {Input,Button,Row,Col,Table,Spin,message,Divider,Form,Select} from 'antd'
 import store from '../redux/store'
-import {setTimePushData} from '../redux/action'
+import {setUser} from '../redux/action'
 import Editor from '../antd/richTexteditor/braftEditor'
 import './app.scss'
 import $ from 'jquery'
@@ -12,7 +12,7 @@ class Demo extends Component{
     constructor(props){
         super(props);
         this.state={
-            setTimePushData:n =>store.dispatch(setTimePushData(n)),
+            setUser:n =>store.dispatch(setUser(n)),
             typeList:[
                 {type:'html',name:'html'},
                 {type:'css',name:'css'},
@@ -23,7 +23,6 @@ class Demo extends Component{
         }
     }
     componentDidMount(){
-        this.state.setTimePushData(true)
     }
     getContent = html => {
         if(html === '<p></p>'){

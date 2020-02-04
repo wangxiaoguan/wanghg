@@ -4,7 +4,7 @@ import {Input,Button,Row,Col,Table,Spin,Divider,message,Select,Form,DatePicker} 
 import {connect} from 'react-redux'
 import store from '../redux/store'
 import moment from 'moment';
-import {setTimePushData} from '../redux/action'
+import {setUser} from '../redux/action'
 import './app.scss'
 const Option = Select.Option;
 const FormItem=Form.Item;
@@ -13,13 +13,14 @@ class CommonHtml extends Component{
     constructor(props){
         super(props);
         this.state={
-			setTimePushData:n =>store.dispatch(setTimePushData(n)),
-			getPowers:n =>store.dispatch(getPowers(n)),
+			setUser:n =>store.dispatch(setUser(n)),
 			loading:false,
 			ids:[],
 			type:'',
 			searchValue:'',
 			totalList:[],
+			islogin:true,
+			power:false,
 			typeList:[
 				{type:'',name:'全部'},
 				{type:'html',name:'html'},
@@ -33,8 +34,19 @@ class CommonHtml extends Component{
     }
     componentDidMount(){
 		this.getList();
-		console.log(store.getState())
-		this.state.setTimePushData(true)
+	}
+	componentDidUpdate(){
+		let Store = store.getState();
+		let { islogin,power} = this.state;
+        let user = Store.user || window.sessionStorage.getItem('user');
+        if(user&&islogin){
+            if(user === '17371301830'){
+                this.setState({power:true,islogin:false})
+            }else{
+				this.setState({islogin:false})
+			}
+            
+        }
 	}
 	
 	//数据列表
@@ -106,9 +118,12 @@ class CommonHtml extends Component{
 	}
 
     render(){
-		const {loading,searchValue,type,typeList,totalList} = this.state;
-		let Store = store.getState()
-        let powers = Store.powers;
+		let {loading,searchValue,type,typeList,totalList,power} = this.state;
+		let Store = store.getState();
+		let user = Store.user || window.sessionStorage.getItem('user');
+		if(!user){
+			power = false
+		}
 		const columns = [
 			{
 				title: '标题',
@@ -135,9 +150,14 @@ class CommonHtml extends Component{
 					return <div>
 						<a onClick={()=>this.DataDetail(data.id)}>详情</a>
 						<Divider type='vertical'/>
-						<a onClick={()=>this.DataEdit(data.id)}>编辑</a>
+						{
+							power?<a onClick={()=>this.DataEdit(data.id)}>编辑</a>:<span>编辑</span>
+						}
+						
 						<Divider type='vertical'/>
-						<a onClick={()=>this.DataDelete(data.id)}>删除</a>
+						{
+							power?<a onClick={()=>this.DataDelete(data.id)}>删除</a>:<span>删除</span>
+						}
 					</div>
 				}
 			},

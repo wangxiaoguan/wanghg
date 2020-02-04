@@ -2,19 +2,18 @@
 import React,{Component} from "react";
 import { Icon,Button,Menu,DatePicker,TimePicker,LocaleProvider,Calendar,ConfigProvider,Form ,Spin,Input,Row,Col,message } from 'antd';
 import store from '../redux/store'
-import {setTimePushData,setPowers} from '../redux/action'
+import {setUser} from '../redux/action'
 const FormItem=Form.Item
 class Demo extends Component{
     constructor(props){
         super(props);
         this.state={
-          setTimePushData:n =>store.dispatch(setTimePushData(n)),
-		  setPowers:n =>store.dispatch(setPowers(n)), 
+		  setUser:n =>store.dispatch(setUser(n)), 
 		  loading:false
         }
     }
     componentDidMount(){
-      this.state.setPowers({isLogin:false})
+      this.state.setUser({isLogin:false})
     }
 
 
@@ -34,12 +33,16 @@ class Demo extends Component{
                 res.json().then(data=>{
                     if(data.code === 1){
                         message.success(data.msg)
-                        that.state.setPowers({isLogin:true})
-                        location.hash = '/common/list'
+                        that.state.setUser(fieldsValue.user)
+                        window.sessionStorage.setItem('user',fieldsValue.user)
+                        that.props.closeModal()
+                        that.props.loginSuccess()
                     }else if(data.code === 2){
                         message.error(data.msg)
+                        that.props.closeModal()
                     }else if(data.code === 3){
                         message.error(data.msg)
+                        that.props.closeModal()
                     }
                     that.setState({loading:false})
                 })
@@ -95,11 +98,9 @@ class Demo extends Component{
                     </FormItem>
                 </Form>
                 <Row>
-                    <Col offset={7} span={4}><Button type='queryBtn' onClick={this.handleSubmit}>登录</Button></Col>
-					<Col offset={2} span={4}><Button onClick={()=>location.hash = '/common/List'}>游客</Button></Col>
+					<Col offset={7} span={4}><Button onClick={()=>location.hash = '/common/List'}>取消</Button></Col>
+                    <Col offset={2} span={4}><Button type='queryBtn' onClick={this.handleSubmit}>登录</Button></Col>
                 </Row>
-					
-					
 				</Spin>
 				</div>
   	        </div>

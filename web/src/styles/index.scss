@@ -47,6 +47,17 @@
       z-index: 6;
       font-size: 12px !important;
     }
+    .login{
+      width: 100%;
+      height: 30px;
+      .setLogin{
+        color: #999;
+        &:hover{
+          color: #6732fa;
+          cursor: pointer;
+        }
+      }
+    }
 }
 #rightContent{
   float: left;
@@ -78,24 +89,24 @@ pre{
   }
 }
 #Login{
-  width: 100%;
-  height: 100%;
-  position:fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  background: linear-gradient(to left top,#ffffff,#fdfff0);
-  .middle{
-      width: 300px;
-      height: 300px;
-      position: absolute;
-      top: 40%;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin:0 auto;
-      z-index: 2;
-  }
+  // width: 100%;
+  // height: 100%;
+  // position:fixed;
+  // top: 0;
+  // left: 0;
+  // z-index: 2;
+  // background: linear-gradient(to left top,#ffffff,#fdfff0);
+  // .middle{
+  //     width: 300px;
+  //     height: 300px;
+  //     position: absolute;
+  //     top: 40%;
+  //     left: 0;
+  //     bottom: 0;
+  //     right: 0;
+  //     margin:0 auto;
+  //     z-index: 2;
+  // }
 }
 .ant-menu-root{
   max-height: 600px !important;

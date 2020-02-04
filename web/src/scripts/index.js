@@ -4,13 +4,13 @@ import {connect,Provider} from 'react-redux'
 import moment from 'moment';
 import $ from 'jquery'
 import { Router,Link,HashRouter,Route,Switch} from "react-router-dom";
-import { Icon,Button,Menu,DatePicker,TimePicker,LocaleProvider,Calendar,ConfigProvider  } from 'antd';
+import { Icon,Button,Menu,DatePicker,TimePicker,LocaleProvider,Calendar,ConfigProvider,Row,Col,Modal,  } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
 const SubMenu = Menu.SubMenu;
 const dateFormat = 'YYYY-MM-DD';
 import store from './redux/store'
-import {setTimePushData,setPowers} from './redux/action'
+import {setUser} from './redux/action'
 
 import Login from './app/Login'
 import CommonList from './app/CommonList'
@@ -23,24 +23,37 @@ class Home extends Component{
         super(props);
         this.state={
             totalList:[],
-            isLogin:true,
+            user:'',
+            visible:false,
+            power:false,
+            islogin:true,
             openKey: [],
             keyList:['sub1','sub2','sub3','sub4','sub5',],
-            setPowers:n =>store.dispatch(setPowers(n)),
-            setTimePushData:n =>store.dispatch(setTimePushData(n)),
+            setUser:n =>store.dispatch(setUser(n)),
         }
     }
     componentDidMount(){
         this.getList();
-        this.state.setPowers({wang:'123456'})
+        let Store = store.getState();
+        console.log('------------------------>',Store)
+        // this.state.setUser({user:'123456'})
     }
     componentDidUpdate() {
-        this.state.setPowers({wang:'123456'})
+        // this.state.setUser({user:'123456'})
         let Store = store.getState();
-        if(Store.timePushData){
-            this.getList();
-            this.state.setTimePushData(false)
+        console.log('========================>',Store)
+        let user = Store.user || window.sessionStorage.getItem('user');
+        let { islogin} = this.state;
+        if(user&&islogin){
+            if(user === '17371301830'){
+                this.setState({power:true,user,islogin:false})
+            }else{
+                this.setState({user,islogin:false})
+            }
+            
         }
+        
+       
     }
     //数据列表
     getList = () => {
@@ -59,8 +72,24 @@ class Home extends Component{
             openKey: [key.pop()],
           });
       };
+    goLogin = () => {
+        const {user} = this.state;
+        if(user){
+            this.state.setUser('')
+            this.setState({user:''})
+            sessionStorage .removeItem('user')
+        }else{
+            this.setState({visible:true})
+        }
+    }
+    closeModal = () => {
+        this.setState({visible:false})
+    }
+    loginSuccess = () => {
+        this.setState({islogin:true})
+    }
     render(){
-        const {totalList,openKey} = this.state
+        const {totalList,openKey,user,power} = this.state
         let htmlList = [],cssList = [],jsList = [],nodeList = [],reactList = [];
         totalList.map(item=>{
             if(item.type === 'html'){
@@ -78,6 +107,12 @@ class Home extends Component{
         return(
             <div id='top'>
                 <div id='leftMenu' style={{minHeight:height}}>
+                    <div className='login'>
+                        <Row>
+                            <Col offset={1} span={10}>{user?user:'游客'}</Col>
+                            <Col offset={1} span={10}><span className='setLogin' onClick={this.goLogin}>{user?'退出':'登录'}</span></Col>
+                        </Row>
+                    </div>
                     <Calendar fullscreen={false}/>
                     <Menu mode="inline" theme="light" openKeys={openKey} onOpenChange={this.openKey}>
                         <Menu.Item key="101"><Link to="/common/list/0"><p><Icon type="unordered-list" />前端数据列表<Icon　className='total_right' type="right" /></p></Link></Menu.Item>
@@ -128,6 +163,16 @@ class Home extends Component{
                         <Route exact path="/common/detail/:id" component={CommonDetail}/>
                     </Switch>
                 </div>
+                <Modal
+                    title="登录"
+                    width={400}
+                    visible={this.state.visible}
+                    onCancel={()=>this.setState({visible:false})}
+                    footer={null}
+                    afterClose={()=>this.setState({visible:false})}
+                    >
+                    <Login closeModal={this.closeModal} loginSuccess={this.loginSuccess}/>
+                    </Modal>
             </div>
         )
     }
