@@ -1,0 +1,71 @@
+<html>
+<head>
+
+</head>
+<body>
+<button onclick='file()'>创建一个文本文件</button>
+<div>
+    <pre>
+<!-- ...获取file... -->
+f1.write("这是您创建的一个文本文档"); 
+<!-- 全部写入，不包括回车符 -->
+f1.writeLine("这是您创建的一个文本文档"); 
+<!-- 写入一行 -->
+
+
+<!-- ...获取fso... -->
+var openf1 = fso.OpenTextFile("1.txt");
+<!-- 读取一行内容 -->
+var str1 = openf1.ReadLine();
+<!-- 读取全部内容 -->
+var str2 = openf1.ReadAll();
+    </pre>
+
+
+</div>
+</body>
+<script type="text/javascript">
+    function file(){
+
+        var fso;
+        try { 
+            fso=new ActiveXObject("Scripting.FileSystemObject"); 
+        }catch (e) { 
+            console.log("当前浏览器不支持");
+            return;
+        } 
+
+        console.log("方法已执行2");
+        var f1 = fso.createtextfile("F:\\1.txt",true);
+        f1.write("这是一个文本文档");  
+        var openf1 = fso.OpenTextFile("1.txt");
+        str = openf1.ReadLine();
+        console.log("里面的内容为'" + str + "'");
+
+
+    }
+    var fso2 = new ActiveXObject("Scripting.FileSystemObject"); 
+    console.log(fso2)
+    function fileUpload_onselect(){
+        console.log("onselect");
+        var path = $("#upload").val();//文件路径
+        console.log(path);	//C:\fakepath\testfile.txt	
+        var selectedFile = document.getElementById("upload").files[0];
+		console.log(selectedFile); //File(20) {name: "testfile.txt", lastModified: 1531300104720, lastModifiedDate: Wed Jul 11 2018 17:08:24 GMT+0800 (中国标准时间), webkitRelativePath: "", size: 20, …}
+		console.log(selectedFile.src);// undefined
+		console.log(selectedFile.type);// text/plain
+		var name = selectedFile.name;//读取选中文件的文件名
+        var size = selectedFile.size;//读取选中文件的大小
+        console.log("wenjianming:"+name+"daxiao:"+size);//wenjianming:testfile.txtdaxiao:20
+        var reader = new FileReader();//这是核心！！读取操作都是由它完成的
+        reader.readAsText(selectedFile);
+//readAsText(file,[encoding]):将文件读取为文本，encoding缺省为UTF-8   readAsText(selectedFile,'UTF-8')
+        reader.onload = function(oFREvent){//读取完毕从中取值
+            var pointsTxt = oFREvent.target.result;
+            alert(pointsTxt)
+            // your code。。。。
+        }
+
+    }
+</script>
+<html>

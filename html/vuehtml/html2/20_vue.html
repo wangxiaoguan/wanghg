@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+            <h2>{{title}}</h2>
+            <h2 ref="h2">{{msg}}</h2>
+
+            <select v-model="select">
+                <option :value="'my-table'">表格</option>
+                <option :value="'my-list'">列表</option>
+            </select>
+            <keep-alive>
+                <component :cars="cars" :is="select"></component>
+            </keep-alive>
+    </div>
+
+    <template id="table">
+        <div>
+            <h2>表格</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>品牌</td>
+                        <td>型号</td>
+                        <td>颜色</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(car,index) in cars" :key="index">
+                        <td>{{index+1}}</td>
+                        <td>{{car.brand}}</td>
+                        <td>{{car.model}}</td>
+                        <td>{{car.color}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+
+    <template id="list">
+        <div>
+            <h2>列表</h2>
+            <ul>
+                <li v-for="(car,index) in cars">
+                    <p>序号:{{index+1}}</p>
+                    <p>品牌:{{car.brand}}</p>
+                    <p>型号:{{car.model}}</p>
+                    <p>颜色:{{car.color}}</p>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+
+
+    <script>
+        var cars = {
+                car01 : {brand : "Ford", model : "Mustang", color : "red"},
+                car02 : {brand : "Fiat", model : "500", color : "white"},
+                car03 : {brand : "Volvo", model : "XC90", color : "black"}
+            };
+        Vue.component("my-table",{
+            template:"#table",
+            props:["cars"]
+        })	
+
+
+        Vue.component("my-list",{
+            template:"#list",
+            props:["cars"]
+        })
+
+        let vm=new Vue({
+            data:{
+                title:"动态切换组件",
+                msg:"理想的人，生活总是火热的。",
+                cars:cars,
+                select:"my-table",
+            },
+            methods:{},
+            components:{},
+            mounted(){this.$refs.h2.style.color="#a0a"},
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

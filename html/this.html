@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+            关于this的指向，是一个令人很头疼的问题。但是，你运气好，碰到了我。老夫这儿有本祖传秘籍，看懂这个，妈妈再也不用担心你的this指向不对啦！
+
+            　　归根结底，this指向就一句话：谁最终调用函数，this指向谁！！！
+            
+             
+            
+            　关于这点，老夫有三言相赠：
+            
+             
+            
+                   ① this指向的，永远只可能是对象！
+                   ② this指向谁，永远不取决于this写在哪！而是取决于函数在哪调用。
+                   ③ this指向的对象，我们称之为函数的上下文context，也叫函数的调用者。
+            
+            
+            　　下面，请看具体情况。
+            
+            　　① 通过函数名()直接调用：this指向window
+            
+             
+            
+            复制代码
+            function func(){
+                        console.log(this);
+                    }
+                    
+            
+                    //① 通过函数名()直接调用：this指向window
+                    func(); // this--->window
+                    
+            复制代码
+             
+            
+            ② 通过对象.函数名()调用的：this指向这个对象
+            
+             
+            
+            复制代码
+            function func(){
+                        console.log(this);
+                    }
+            
+            //② 通过对象.函数名()调用的：this指向这个对象
+                        // 狭义对象
+                        var obj = {
+                            name:"obj",
+                            func1 :func
+                        };
+                        obj.func1(); // this--->obj
+                        
+                        // 广义对象
+                        document.getElementById("div").onclick = function(){
+                            this.style.backgroundColor = "red";
+                        }; // this--->div
+            复制代码
+             
+            
+            ③ 函数作为数组的一个元素，通过数组下标调用的：this指向这个数组
+            
+             
+            
+            复制代码
+            function func(){
+                        console.log(this);
+                    }
+                    
+            //③ 函数作为数组的一个元素，通过数组下标调用的：this指向这个数组
+                    var arr = [func,1,2,3];
+                    arr[0]();  // this--->arr
+            复制代码
+             
+            
+            ④ 函数作为window内置函数的回调函数调用：this指向window（ setInterval setTimeout 等）
+            
+            
+             
+            
+            复制代码
+            function func(){
+                        console.log(this);
+                    }
+                    
+            
+            //④ 函数作为window内置函数的回调函数调用：this指向window
+                    setTimeout(func,1000);// this--->window
+                    //setInterval(func,1000);
+            复制代码
+             
+            
+            ⑤ 函数作为构造函数，用new关键字调用时：this指向新new出的对象
+            
+             
+            
+            复制代码
+            function func(){
+                        console.log(this);
+                    }
+            
+            //⑤ 函数作为构造函数，用new关键字调用时：this指向新new出的对象
+                    var obj = new func(); //this--->new出的新obj
+
+    4、事件对象
+    在 DOM 事件中使用 this，this 指向了触发事件的 DOM 元素本身
+
+
+
+    3、构造函数环境
+构造函数中的this 会指向创建出来的实例对象，使用new 调用构造函数时，会先创建出一个空对象，然后用call函数把构造函数中的this指针修改为指向这个空对象。执行完环境后，空对象也就有了相关的属性，然后将对象返回出去，所以说就不用我们自己手动返回啦~
+function Person() {
+    this.name = 'zhar';
+}
+var p = new Person();
+console.log(p.name);
+
+综合以上，构造函数不需要返回值，如果我们指定一个返回值时，this的指向将发生变化
+function Person() {
+  this.name = 'zhar';
+  return {};
+}
+var p = new Person();
+console.log(p.name);//undefined
+//--------------------------------------
+function Person() {
+  this.name = 'zhar';
+  return {name:'tom'};
+}
+var p = new Person();
+console.log(p.name);//tom      如果构造函数返回对象(Object,Array,Function)，那 this 将指向这个对象，其它基础类型则不受影响
+//--------------------------------------
+function Person() {
+  this.name = 'zhar';
+  return 1;//number string boolean 等
+}
+var p = new Person();
+console.log(p.name);//zhar
+
+
+所以，如无必要我们通常不要设置构造函数的返回值
+
+    </pre>
+</body>
+<script>
+//     function func111111111111(){
+//             console.log(this);
+//             this.name = '111111111111'
+//         }
+//         // func111111111111()
+
+//     var fnc = function(){
+//         console.log(this);
+//             this.name = '2222222222222'
+//     }
+//     fnc()
+//         //call 的传参
+// function say(arg1,arg2){
+//   console.log(this.name,arg1,arg2);
+// };
+// var obj = {
+//   name : 'tom',
+//   say : function(){
+//     console.log(this.name);
+//   }
+// }
+// say.call(obj,'one','two');//tom one two
+
+
+// var name = "zhar";
+// var obj = {
+//   name : "zhar",
+//   say : function(){
+//     var _this = this;//使用一个变量指向 this
+//     console.log(_this)
+//     setTimeout(function(){
+//       console.log(_this.name);
+//     },0);
+//   }
+// }
+// obj.say();
+
+
+/*1、字面量方式*/
+var a = {};
+console.log(a.__proto__);   //Object {}
+console.log(a.constructor)  //ƒ Object() { [native code] }
+console.log(a.constructor.prototype)
+console.log(a.__proto__ === a.constructor.prototype); //true
+//原型链的顶层就是Object.prototype，而这个对象的是没有原型对象的。
+console.log(Object.prototype)   //===========>{constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+
+
+
+console.log(Object.__proto__)   //===========>匿名函数ƒ () { [native code] }
+console.log(Function.prototype) //===========>匿名函数ƒ () { [native code] }
+console.log(Function.__proto__) //===========>匿名函数ƒ () { [native code] }
+
+// // Function instanceof Object;//true
+// // Object instanceof Function;//true
+// console.log(Array.__proto__.__proto__)
+
+console.log(a.__proto__)
+
+function Person(){  }
+var fn = new Person()
+console.log(fn.__proto__)               //{constructor: ƒ}
+console.log(Person.prototype)           //{constructor: ƒ}
+console.log(Person.__proto__)           //ƒ () { [native code] }
+console.log(Person.__proto__.__proto__) //{constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+console.log(Math.random()*10000000000000000)
+
+//原型对象有一个constructor属性，指向该原型对象对应的构造函数
+function Foo(){};
+console.log(Foo.prototype.constructor === Foo);//true
+
+//由于实例对象可以继承原型对象的属性，所以实例对象也拥有constructor属性，同样指向原型对象对应的构造函数
+function Foo(){};
+var f1 = new Foo;
+console.log(f1.constructor === Foo);//true
+
+//实例对象有一个proto属性，指向该实例对象对应的原型对象
+function Foo(){};
+var f1 = new Foo;
+console.log(f1.__proto__ === Foo.prototype);//true
+
+//构造函数有一个prototype属性，指向实例对象的原型对象。通过同一个构造函数实例化的多个对象具有相同的原型对象。经常使用原型对象来实现继承
+function Foo(){};
+Foo.prototype.a = 1;
+var f1 = new Foo;
+var f2 = new Foo;
+
+console.log(Foo.prototype.a);//1
+console.log(f1.a);//1
+console.log(f2.a);//1
+
+
+
+
+//方法(Function)方法这个特殊的对象，除了和其他对象一样有上述proto属性之外，还有自己特有的属性——原型属性（prototype），这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。
+
+
+//js里所有的对象都有proto属性(对象，函数)，指向构造该对象的构造函数的原型。
+//只有函数function才具有prototype属性。这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）。原型对象也有一个属性，叫做constructor，这个属性包含了一个指针，指回原构造函数。
+
+
+console.log(Function) //ƒ Function() { [native code] }
+
+
+
+//函数也是对象，只不过是具有特殊功能的对象而已。任何函数都可以看做是通过Function()构造函数的new操作实例化的结果
+
+//如果把函数Foo当成实例对象的话，其构造函数是Function()，其原型对象是Function.prototype；类似地，函数Object的构造函数也是Function()，其原型对象是Function.prototype
+
+//原型对象Function.prototype的constructor属性指向构造函数Function()；实例对象Object和Foo本身没有constructor属性，需要继承原型对象Function.prototype的constructor属性
+
+//所有的函数都可以看成是构造函数Function()的new操作的实例化对象。那么，Function可以看成是调用其自身的new操作的实例化的结果。所以，如果Function作为实例对象，其构造函数是Function，其原型对象是Function.prototype
+var wrap= function(fn){
+        return function(){
+            return fn.apply(null,arguments);
+        };
+    };
+    console.log(wrap())
+    // ƒ (){
+    //     return fn.apply(null,arguments);
+    // }
+    var greeting = function(world){
+        return "hello " + world +"!";
+    };
+    console.log(greeting.apply(null,['111111']))
+    console.log(wrap(greeting))
+    console.log(greeting("world"));
+    console.log(wrap(greeting)("world"))
+
+    var app = function(world){
+        return "hello " + world +"!";
+    };
+    var result = function a(){
+        console.log(arguments)
+        return app.apply(null,arguments);
+    }('world')
+    console.log(result)
+
+    function b(){
+        console.log(arguments)
+    }
+    b([1,2,3,4])
+    b(1,2,3,4)
+
+
+//<img src={Demo.commonImg+item.txPic} alt="" style={{width:24,height:24,borderRadius:'50%',float:'left'}} onError={(e) => {e.target.onerror = null;e.target.src=this.state.errorPic}}/>
+
+    console.log(Math.min(1,4,8,2,0))
+    //apply:方法能劫持另外一个对象的方法，继承另外一个对象的属性.
+    //Function.apply(obj,args)//方法能接收两个参数
+    //obj：这个对象将代替Function类里this对象
+    //args：这个是数组，它将作为参数传给Function（args-->arguments）
+
+
+    //call:和apply的意思一样,只不过是参数列表不一样.
+    //Function.call(obj,param1,param2,...paramN)
+    //obj：这个对象将代替Function类里this对象
+    //params：这个是一个参数列表
+
+    function Person(name,age)  
+    {  
+        this.name=name;  
+        this.age=age;  
+        this.say = function(){
+            console.log('hello')
+        }
+    }  
+    /*定义一个学生类*/  
+    function Student(name,age,grade)  
+    {  
+        Person.apply(this,arguments);  
+        this.grade=grade;  
+    } 
+    console.log(Person)
+    var e = {}
+    Person.apply(e,['wang',18]); 
+    console.log(e)
+    console.log([1,2,3,4])
+    console.log(...[1,2,3,4])
+    var max = Math.max.apply(Math,[1,12,3,4,5,6,'71'])
+    var min = Math.min.call(null,1,2,3,4,5,'-7',8) //Math.min.call({},1,2,3,4,5,'-7',8)  ,Math.min.call(Math,1,2,3,4,5,'-7',8)
+    console.log(max,min)
+    console.log(Math)
+    console.log(null)
+
+</script>
+</html>

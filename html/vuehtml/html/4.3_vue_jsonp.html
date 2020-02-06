@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="http://47.94.208.182/base/js/jquery-1.10.1.min.js"></script>
+    <script src="../js/axios.js"></script>
+    
+    <style>
+        .static{
+            width:200px;
+            height:200px;
+            margin:10px;
+            background: orange;
+        }
+        .box{
+            width:100px;
+            height:100px;
+          
+            background: red;
+        }
+        label{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <button @click="getMsg()">获取百度接口数据</button>
+        <p><input type="text" placeholder="请输入" v-model="inp"></p>
+        <p><input type="text" placeholder="请输入 t" v-model="txt" ></p>
+        <p><input type="text" placeholder="请输入 t" @input.lazy= "input($event)" ></p>
+        <p v-for="(li,index) in list" :key="index">
+         
+            <span>{{li}}</span>
+        </p>
+    </div>
+    <!-- 
+        ajax
+        原生ajax    xhr  XMLHttpRequest
+        jquery  $.get  $.post  $.ajax
+        
+        $.ajax
+        axios
+        vue-resource
+        fetch
+
+        引入vue-resource后，可以基于全局的Vue对象使用http，也可以基于某个Vue实例使用http。
+
+        // 基于全局Vue对象使用http
+        Vue.http.get('/someUrl', [options]).then(successCallback, errorCallback);
+        Vue.http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
+
+        // 在一个Vue实例内使用$http
+        this.$http.get('/someUrl', [options]).then(successCallback, errorCallback);
+        this.$http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
+
+     -->
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <script>
+
+    let vm = new Vue({
+        data:{
+            title:"百度跨域接口   ",
+            msg:"",
+            list:[],
+            url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+            txt:""
+        },
+        methods:{
+            getMsg(){
+                this.$http.jsonp(this.url,{
+                    jsonp:"cb",
+                    params:{
+                        wd:"html"
+                    }
+                }).then(res=>{
+                    console.log(res.body);
+                    this.list = res.body.s 
+                })
+            },
+            input(e){
+                this.$http({
+                    url:this.url,
+                    method:"jsonp",
+                    params:{
+                        wd:e.target.value
+                    },
+                    jsonp:"cb"
+                }).then(res=>{
+                    this.list = res.body.s;
+                })
+            }
+        },
+        computed:{
+            inp:{
+                get(){
+                    return "xxx";
+                },
+                set(val){
+                    console.log(val)
+                    this.$http({
+                        url:this.url,
+                        method:"jsonp",
+                        params:{
+                            wd:val,
+                        },
+                        jsonp:'cb'
+                    }).then(res=>{
+                        this.list = res.body.s;
+                    })
+                }
+            }
+        },
+        watch:{
+            txt(newVal){
+                this.$http.jsonp(this.url,{
+                    jsonp:"cb",
+                    params:{
+                        wd:newVal,
+                    }
+                }).then(res=>{
+                    this.list =res.body.s 
+                })
+            }
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+
+        }
+    }).$mount("#app")
+
+    </script>
+</body>
+</html>
+

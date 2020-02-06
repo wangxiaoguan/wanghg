@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+       <h2>
+           {{a}}---{{b}}----{{msg}}----{{word}}
+       </h2>
+    </div>
+    <!-- 
+        mvvm 
+        m model 
+        v 视图
+        vm 实例对象 
+
+        实例生命周期钩子  hooks
+        每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，
+        需要设置数据监听、编译模板、
+        将实例挂载到 DOM 并在数据变化时更新 DOM 等。
+        同时在这个过程中也会运行一些叫做生命周期钩子的函数，
+        这给了用户在不同阶段添加自己的代码的机会
+
+        生命周期钩子 
+        created 组件实例创建
+        mounted 组件实例载入
+        updated 组件实例更新
+        destroyed 组件实例销毁 
+
+
+
+     -->
+    <script src="../js/vue.js"></script>
+    <script>
+    var data = {
+        a:1803,
+        b:2018,
+        msg:"数据&方法&实例的生命周期",
+        word:"响应式视图系统"
+    }
+    let count = 0;
+
+    var app = new Vue({
+        // el:"#app",
+        data,
+        beforeCreate(){
+            console.log("beforeCreate 组件实例创建之前 ## "+ (++count))
+            console.log(this);
+            console.log(this.a)
+        },
+        created(){
+            console.log("created 组件实例创建完毕 ## "+ (++count))
+        },
+        beforeMount(){
+            console.log("beforeMount 组件实例载入之前 ##  "+ (++count))
+        },
+        mounted(){
+            console.log("mounted 组件实例载入完毕 ## "+ (++count))
+            console.log(this.a)
+            console.log(this)
+        },
+        beforeUpdate(){
+            console.log("beforeUpdate 组件实例data 数据更新 之前 ## "+ (++count))
+        },
+        updated(){
+            console.log("updated 组件实例 data 数据更新 完毕 ## "+ (++count))
+        },
+        beforeDestroy(){
+            console.log("beforeDestroy 组件实例销毁之前 ##  "+ (++count))
+        },
+        destroyed(){
+            console.log("destroyed 组件实例销毁 完毕 ## "+ (++count))
+        }
+    }).$mount("#app")
+
+    // app.a = data.a
+    data.a = "181818" 
+    app.b = "daydaup"
+    console.log(app.$data);
+    console.log(app.$el);
+    </script>
+</body>
+</html>

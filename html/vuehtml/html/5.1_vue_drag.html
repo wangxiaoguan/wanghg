@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="http://47.94.208.182/base/js/jquery-1.10.1.min.js"></script>
+    <script src="../js/axios.js"></script>
+    
+    <style>
+        .static{
+            width:200px;
+            height:200px;
+            margin:10px;
+            background: orange;
+        }
+        .box{
+            width:100px;
+            height:100px;
+            position: absolute;
+            top:100px;
+            left: 100px;
+            background: orange;
+        }
+        label{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+
+        <div id="drag" class="box"></div>
+        <div class="box" v-drag></div>
+    </div>
+    <!-- 
+        代码复用和抽象的主要形式是组件  小巧  独立  高度复用
+
+        自定义指令的目的是对 普通 DOM 元素进行底层操作 
+
+        v-focus 
+        指令名称 focus  
+
+        myLike 
+        指令名称 v-my-like 
+
+        v-my-like:like.show="'yellow'"
+        name   my-like
+        value   'yellow'
+        expression   "'yellow'"
+        arg  like
+        modifiers  修饰符  show
+     -->
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <script>
+
+    let vm = new Vue({
+        data:{
+            title:"拖拽 "
+        },
+        methods:{
+
+        },
+        directives:{
+            drag:{
+                inserted(el,binding){
+                    var drag = el;
+                    var startX = 0;
+                    var startY = 0;
+                    drag.onmousedown = function(e){
+                        var e = e || window.event;
+                        startX = e.clientX - this.offsetLeft;
+                        startY = e.clientY - this.offsetTop;
+                        document.onmousemove = function(e){
+                            var e = e || window.event;
+                            drag.style.left = e.clientX - startX  + 'px';
+                            drag.style.top = e.clientY - startY  + 'px';
+                        }
+                        document.onmouseup = function(){
+                            document.onmousemove = null;
+                            document.onmouseup = null;
+                        }
+
+                    }
+                }
+            }
+        },
+
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+
+        }
+    }).$mount("#app")
+
+
+    var drag = document.getElementById("drag");
+
+    // console.log(left,top1);
+    var startX = 0;
+    var startY = 0;
+
+    drag.onmousedown = function(e){
+        var e = e || window.event;
+        startX = e.clientX - this.offsetLeft;
+        startY = e.clientY - this.offsetTop;
+        console.log(startY);
+        document.onmousemove = function(e){
+            var e = e || window.event;
+            drag.style.left = e.clientX - startX  + 'px';
+            drag.style.top = e.clientY - startY  + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+
+        }
+
+    }
+
+    </script>
+</body>
+</html>
+

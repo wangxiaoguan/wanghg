@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        #box{width:700px;height:500px;border:5px solid black;
+            margin:50px 300px;position: relative}
+        #ball{width: 50px;height: 50px;border:5px solid red;border-radius:50%;
+            position: absolute;top:0;left:0;}
+        #slider{width:200px;height:50px;background:green;position:absolute;left:0;bottom:0;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="ball"></div>
+    <div id="slider"></div>
+</div>
+</body>
+<script>
+    var box=document.getElementById("box");
+    var ball=document.getElementById("ball");
+    var slider=document.getElementById("slider");
+
+    var sliderleft=slider.offsetLeft;//滑块的左边距
+    var sliderwidth=slider.offsetWidth;//滑块的宽度
+
+    var ballLeft=ball.offsetLeft;//ball左边距305
+    var balltop=ball.offsetTop;//ball上边距55
+
+
+    var ballwidth=ball.offsetWidth;//ball宽度60
+    var ballheight=ball.offsetHeight;//ball高度60
+
+    var boxwidth=box.offsetWidth;//box宽度710
+    var boxheight=box.offsetHeight;//box高度510
+
+    var ballX=boxwidth-ballwidth-10;//ball可水平X方向移动的位移650
+    var ballY=boxheight-ballheight-10;//ball可垂直Y方向移动的位移450
+
+
+    box.onclick=function (e) {
+        var evt=window.event||e;
+        var clientX=evt.clientX;
+        var clientY=evt.clientY;
+        var speedX=5;
+        var speedY=10;
+        setInterval(function () {
+            ball.style.top=ball.offsetTop+speedY+"px";
+            ball.style.left=ball.offsetLeft+speedX+"px";
+            if (parseInt(ball.style.top)>=ballY){speedY=-10;}
+            if (parseInt(ball.style.top)<=0){speedY=10;}
+            if (parseInt(ball.style.left)>=ballX){speedX=-5;}
+            if (parseInt(ball.style.left)<=0){speedX=5;}
+        },1);
+
+
+        var moveX=30;
+        var moveMax=boxwidth-sliderwidth-10;
+        document.onkeydown=document.onkeyup=function (e) {
+            var evt=window.event||e;
+            var key=evt.which||evt.keyCode;
+            if (key==37){slider.style.left=slider.offsetLeft-moveX+"px";}
+            if (key==39){slider.style.left=slider.offsetLeft+moveX+"px";}
+            if (parseInt(slider.style.left)<=0){slider.style.left=0;}
+            if (parseInt(slider.style.left)>=moveMax){slider.style.left=moveMax+"px";}
+        };
+        if (slider.offsetLeft<=ballwidth/2+ball.offsetLeft&&ballwidth/2+ball.offsetLeft<=slider.offsetLeft+slider.offsetWidth){
+
+        } else {}
+    }
+
+</script>
+</html>

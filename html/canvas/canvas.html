@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="mycanvas"  width="500" height="500"></canvas>
+    </div>
+</body>
+<script>
+    var canvas=document.getElementById("mycanvas");
+    var context = canvas.getContext("2d");
+    context.beginPath();	
+// context.moveTo(100,0);
+
+// 画矩形
+// context.rect(0,0,100,100);
+//画圆  
+//context.arc(x,y,r,m,n,flag);	
+//  x 圆心x坐标  0-1000
+//  y 圆心Y坐标  0-1000
+//  r 圆的半径  0-1000
+//  m 起始角度  0-Math.PI
+//  n 结束角度  0-Math.PI
+//  flag   true逆时针画圆，false则顺时针画圆
+
+
+context.arc(250,250,100,0,Math.PI*1,false);	
+
+context.font='50px 微软雅黑';
+context.strokeText('hello world',0,100);
+context.fillStyle='red';	
+context.fill();	
+context.closePath();
+// context.fillRect(0,0,100,200);
+context.beginPath();  	
+context.rect(0,0,400,400); 
+
+
+var lg = context.createLinearGradient(0,0,400,400);
+lg.addColorStop(0,'rgb(0,0,0)');	
+lg.addColorStop(0.1,'rgb(255,0,0)');	
+lg.addColorStop(0.3,'rgb(255,255,0)');	
+lg.addColorStop(0.6,'rgb(255,0,255)');	
+lg.addColorStop(1,'rgb(0,0,255)');
+context.fillStyle=lg;	
+context.fill();
+
+
+context.beginPath();  	
+context.rect(0,0,400,400);  	
+var lg = context.createRadialGradient(200,200,0,200,200,300);
+lg.addColorStop(0,'rgb(0,0,0)');	
+lg.addColorStop(0.1,'rgb(255,0,0)');	
+lg.addColorStop(0.3,'rgb(255,255,0)');	
+lg.addColorStop(0.6,'rgb(255,0,255)');	
+lg.addColorStop(1,'rgb(0,0,255)');	
+context.fillStyle=lg;	
+context.fill();
+
+</script>
+</html>

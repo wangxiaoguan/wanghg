@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-higher word="中华民族" v-bind:msg="msg"></my-higher>
+    </div>
+    <template id="higher">
+        <div>
+            <h3>{{title}}{{word}}</h3>
+            <h2>{{year}}</h2>
+            <h3>{{message}}</h3>
+            <h3>{{address}}</h3>
+            <h3>{{name}}</h3>
+            <h3>{{year}}</h3>
+            <my-lower :address="address" :name="name" :my-title="title" :my-year="year" :my-message="message"></my-lower>
+        </div>
+    </template>
+
+    <template id="lower">
+        <div>
+            <h2>{{date}}</h2>
+            <h3>{{address}}==={{name}}</h3>
+            <h3>{{myTitle}}==={{myYear}}=={{year}}==={{myMessage}}</h3>
+        </div>
+    </template>
+
+    <script>
+        var vm=new Vue({
+            // date:{title:"学习组件",message:"千锋教育,好好学习,努力赚钱" },
+            //局部组件注册
+            components:{
+                myHigher:{
+                    template:"#higher",
+                    data(){return {
+                        title:"教育",
+                        message:"HTML5",
+                        address:'世界梦中国梦',
+                        name:"王宏观",
+                        year:2018
+                    }},
+                    props:["word","msg"],
+                    components:{
+                        myLower:{
+                            template:"#lower",
+                            data(){  return {date:"2018-07-28",year:this.myYear+1}   },
+                            props:{
+                                name:String,
+                                address:String,
+                                myTitle:String,
+                                myMessage:String,
+                                myYear:Number
+                            }
+                        }
+                    },
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                }
+
+            }
+
+
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <script src="../js/jquery.js"></script>
+    <script src="../js/axios.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <p><input type="text" v-focus></p>
+        <p v-hide="flag">中国梦世界梦</p>
+        <h3 v-my-like:like.show="'yellow'">天道酬勤</h3>
+        <h2 v-demo:click.enter.36="get">中华民族</h2>
+        <h3 v-my-dir="color">湖北武汉</h3>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-resource.js"></script>
+
+    <script>
+    //自定义指令
+    Vue.directive("focus",{inserted(el){  el.focus()  }});
+
+    Vue.directive("hide",{inserted(el,binding){el.style.display=binding.value?"black":"none"}})
+
+//   Vue.directive("hide",{
+//         update(el,binding){
+//             console.log(binding)
+//             el.style.display = binding.value ? "none" :' block'
+//         }
+//     })
+    var vm=new Vue({
+       
+        
+        data:{
+            title:"学习组件",
+            flag:true,
+            color:"red"
+        },
+        methods:{
+            get(){alert("我们努力学习")}
+        },
+        directives:{
+            "myLike":{
+                bind(el){},
+                inserted(el,binding){el.style.color=binding.value}
+            },
+            demo:{
+                bind(el,binding){el.addEventListener(binding.arg,binding.value)},
+
+                inserted(el,binding){
+                    var s = JSON.stringify;
+                    el.innerHTML =
+                    'name: '       + s(binding.name) + '<br>' +
+                    'value: '      + s(binding.value) + '<br>' +
+                    'expression: ' + s(binding.expression) + '<br>' +
+                    'argument: '   + s(binding.arg) + '<br>' +
+                    'modifiers: '  + s(binding.modifiers) + '<br>' 
+                },
+                update(el){2},
+                unbind(el){}
+            },
+            "myDir":{
+                bind(el,binging){el.style.color=binding.value},
+                inserted(el,binding){el.style.color=binding.value}
+            }
+           
+        }
+
+
+    }).$mount("#app")
+    </script>
+</body>
+</html>

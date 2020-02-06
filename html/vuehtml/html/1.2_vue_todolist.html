@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{msg}}</h2>
+
+        <div>
+            <h2>展示苹果 </h2>
+            <p v-for="(todo,idx) in todos">{{todo}}  <button @click="del(idx)" >X</button></p>
+        </div>
+
+        <div>
+            <h2>写出你喜欢的水果:</h2>
+            <input type="text" v-model="fruit"   >
+            <button @click="addFruit">提交</button>
+        </div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+    let app = new Vue({
+        el:"#app",
+        data:{
+            msg:"vue-留言板",
+            todos:["苹果","西瓜","榴莲"],
+            fruit:""
+        },
+        methods:{
+            addFruit(){
+                this.todos.push(this.fruit);
+                this.fruit = "";
+            },
+            del(index){
+                // splice(id,n,item)  从下标 id 开始  删除 n 项 添加 item 
+                this.todos.splice(index,1);
+            }
+        }
+    })
+    </script>
+</body>
+</html>

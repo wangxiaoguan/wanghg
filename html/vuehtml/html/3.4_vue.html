@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        .static{
+            width:200px;
+            height:200px;
+            margin:10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <p v-for="todo in todos">{{todo}}</p>
+        <p v-for="(todo,index,list) in todos">{{todo}} --- {{index}}</p>
+        <ul>
+            <template v-for="(pro,index) in provinces">
+                <li>
+                    {{pro.name}} -- Index == {{index}}
+                    <ol>
+                        <li v-for="(city,id) in pro.cities">
+                            {{city.name}} -- parentIndex == {{index}}  ---index =={{id}}
+                        </li>
+                    </ol>
+                </li>
+            </template>
+        </ul>
+        <p v-for="(value,key,index) in object">
+            {{key}}---{{value}}---{{index}}
+        </p>
+
+        <div>
+                <b v-for="li in list">{{li  }} </b>
+        </div>
+        
+
+        <div
+            v-for="(value,key,index) in cars"
+        >
+        <p>品牌 :: {{value.brand}}</p>
+        <p>型号 :: {{value.model}}</p>
+        <p>颜色 :: {{value.color}}</p>
+    </div>
+
+    <div v-for="(car,index) in cars" v-bind:key="index">
+        <b>品牌 :: {{car.brand}}</b>
+        <b>型号 :: {{car.model}}</b>
+        <b>颜色 :: {{car.color}}</b>
+    </div>
+
+   
+    </div>
+
+    <!-- 
+        v-for 遍历数据
+        v-for = []
+        v-for = {}
+
+        v-for = "(item,index) in items "
+        v-for="(value,key,index) in object" 
+
+        为了给 Vue 一个提示，以便它能跟踪每个节点的身份，
+        从而重用和重新排序现有元素，你需要为每项提供一个唯一 key 属性
+
+
+        数组  引用数值类型  
+        栈   
+        堆 
+
+
+
+        数组方法   map forEach reduce filter find  
+
+        数组变异方法 修改原数组的值    Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新
+        push()   末尾添加
+        pop()   末尾删除
+        shift()  删除第一个
+        unshift() 在头部插入 
+        splice()  删除替换 
+        sort()  排序
+        reverse()  翻转 
+ 
+        数组非变异方法  不会修改原数组的值   总是返回一个新数组 不会改变vue视图系统 
+        fliter  过滤
+        find    查找
+        slice   截取
+        concat  合并 
+
+        设置数组值
+        vm.$set
+        vm.$delete
+
+        Vue.set 
+
+     -->
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var provinces = [{
+                name: "浙江",
+                cities: [{
+                    name: '金华'
+                }, {
+                    name: '杭州'
+                }, {
+                    name: '温州'
+                }, ]
+            }, {
+                name: "湖北",
+                cities: [{
+                    name: '武汉'
+                }, {
+                    name: '襄樊'
+                }, {
+                    name: '黄冈'
+                }, ]
+            }, {
+                name: "江苏",
+                cities: [{
+                    name: '南京'
+                }, {
+                    name: '徐州'
+                }, {
+                    name: '连云港'
+                }, ]
+            }];
+
+        var cars = {
+            car01 : {brand : "Ford", model : "Mustang", color : "red"},
+            car02 : {brand : "Fiat", model : "500", color : "white"},
+            car03 : {brand : "Volvo", model : "XC90", color : "black"}
+        }	
+    let vm = new Vue({
+        data:{
+            title:"列表渲染 v-for ",
+            todos:["node","vue","react","angular","微信小程序"],
+            object: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            },
+            provinces,
+            cars,
+            list:["a","b","c","d","e","f","g"]
+            
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+        }
+    }).$mount("#app")
+
+    var a = [1,2,3];
+    var b = a;   // b 的 内存指针指向  a  指向同一个内存地址  没有重新新建内存地址 
+    b.push(100);
+    console.log(a);
+    b[2]= 1000;
+    console.log(a);
+    
+    // vm.list[2] = 'ccccccccccccccccccc';
+    // vm.list.length = 0;  // 数组已经改变  vue 视图系统无法检测 
+
+    vm.list.splice(2,1,"ccccccccccccccc"); // 删除或者替换 
+    vm.$set(vm.list,2,"33333333333333");
+    Vue.set(vm.list,3,"4444444444444444");
+    vm.list.splice(3);  // 只穿一个参数  表示当前数组的长度
+    vm.$delete(vm.list,0)  // 删除第几项 下标 
+    </script>
+</body>
+</html>

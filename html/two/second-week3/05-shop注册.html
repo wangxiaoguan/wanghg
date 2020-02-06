@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style type="text/css">
+        .reg{width: 350px;margin: 30px auto;overflow: hidden;}
+        .reg a{text-decoration: none;font-size: 12px;margin-left:30px;}
+    </style>
+</head>
+<body>
+<div class="reg">
+<input id="username" placeholder="请设置用户名"><span id="spanname"></span><br/>
+<input id="password" placeholder="请设置密码"><span id="spancode"></span><br/>
+<input id="password1" placeholder="请再输一次密码"><span id="spancode1"></span><br/>
+<button id="btn">注册</button><a href="05-shop登录.html">登录</a>
+</div>
+</body>
+<script src="00-Cookie.js"></script>
+<script>
+    var usernameinput=document.getElementById("username");
+    var passwordinput=document.getElementById("password");
+    var password1input=document.getElementById("password1");
+
+    var spanname=document.getElementById("spanname");
+    var spancode=document.getElementById("spancode");
+    var spancode1=document.getElementById("spancode1");
+
+    var btn=document.getElementById("btn");
+
+    btn.onclick=function () {
+        var username = usernameinput.value;
+        var password = passwordinput.value;
+        var password1 = password1input.value;
+        if (username.length >= 4) {
+            if (getCookie("username_" + username) != username) {
+                spanname.innerHTML = "✔";
+                spanname.style.color = "green";
+                if (password.length >= 6) {
+                    spancode.innerHTML = "";
+                    if (password == password1) {
+                        setCookie("username_" + username, username, 7);
+                        setCookie("password_" + username, password, 7);
+                        spanname.innerHTML = "";
+                        window.location.href = "05-shop登录.html";
+                    } else {
+                        spancode1.innerHTML = "密码错误,请重新输入";
+                        spancode1.style.color = "red";
+                    }
+
+                } else {
+                    spancode.innerHTML = "密码不得少于6位";
+                    spancode.style.color = "red";
+                    spancode1.innerHTML = "";
+                }
+            } else {
+                spanname.innerHTML = "用户名重复";
+                spanname.style.color = "red";
+            }
+
+        }else{spanname.innerHTML="账号长度请设置4位以上";
+            spanname.style.color="red";
+        }
+    }
+
+</script>
+</html>

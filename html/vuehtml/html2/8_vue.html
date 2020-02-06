@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h3>msg=={{msg}}</h3>
+        <button @click="getmsg()">获取数据</button>
+        <p v-for="li in list">
+            <h3>{{li.title}}</h3>
+        </p>
+    </div>
+    <script>
+        var vm=new Vue({
+            data:{
+                title:"学习axios",
+                msg:"",
+                list:[]
+            },
+            methods:{
+                getmsg(){
+                    // axios.get("http://www.phonegap100.com/appapi.php",{
+                    // params:{
+                    //     a:"getPortalList",
+                    //     catid:20,
+                    //     page:1,
+                    //     id:8888
+                    // }
+                    // }).then(res=>{
+                    //     console.log(res)
+                    //     this.list = res.data.result;
+                    // })
+            axios({
+                    url:"http://localhost:5000/movie",  // pathname 
+                    method:"get",
+                    params:{id:123},
+                    headers:{     }
+                }).then(res=>{
+                    console.log(res);
+                    this.msg = res.data;
+                }).catch(err=>{
+                    console.log(err)
+                })
+                }
+            },
+            created(){
+                axios.get("/vue/login",
+                {username:'aa',password:'bb',nickmane:'cc'},
+                { params:{id:1803} }
+            ).then( res=>{console.log(res.data)} ),
+
+            axios({
+                url:"/vue/register",
+                method:"post",
+                data:{username:"aaa",password:"bbb",nickname:"ddd"},
+                params:{id:1803}
+            }).then(err=>{console.log(res.data)})
+            },
+            mounted(){
+                document.querySelector("title").innerHTML=this.title;
+            }
+       
+       
+       
+       
+       
+        }).$mount("#app")
+    </script>
+</body>
+</html>

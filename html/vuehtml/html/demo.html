@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>货币转换</p>
+        <p>{{leftcount}}{{cur1}}={{rightcount | fixed(4)}}{{cur2}}</p>
+        <input type="text" v-model="leftcount" @input="change()">
+        <select id="selectleft" v-model="cur1" @change="change()">
+            <option v-for="item in option" :value=item.name  :index=item.value>{{item.name}}</option>
+        </select>
+        <button @click="change2()">交换</button>
+        <select id="selectright" v-model="cur2" @change="change()">
+            <option v-for="item in option" :value=item.name :index=item.value>{{item.name}}</option>
+        </select>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script src="../js/jquery-1.10.1.js"></script>
+<script>
+    var vm = new Vue({
+        data:{
+            leftcount:1,
+            rightcount:6.7538,
+            cur1:"美元",
+            cur2:"人民币",
+            option:[{
+                value:6.7538,
+                name:"美元"
+            },
+            {
+                value:8.929,
+                name:"英镑"
+            },
+            {
+                value:7.9408,
+                name:"欧元"
+            },
+            {
+                value:0.0611489895,
+                name:"日元"
+            },
+            {
+                value:0.8626,
+                name:"港币"
+            },
+            {
+                value:1,
+                name:"人民币"
+            }]
+        },
+        filters:{
+            fixed(value,n){
+                if(value){
+                    return value.toFixed(n)
+                }else{
+                    return ""
+                }
+            }
+        },
+        methods:{
+            change(){
+                var indexleft = $("#selectleft option:selected").attr("index");
+                var indexright = $("#selectright option:selected").attr("index");
+                this.rightcount=this.leftcount*indexleft/indexright
+            },
+            change2(){
+                var num = this.cur1;
+                this.cur1 = this.cur2;
+                this.cur2 = num;
+                this.change();
+            }
+        }
+    }).$mount("#app")
+</script>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .table{border-collapse:collapse;margin:60px auto;}
+        #tbody tr{width: 600px;height: 100px;text-align:center;}
+        #tbody tr td,th{border:1px solid black;padding: 10px 30px}
+        #tbody tr td:nth-child(4){padding: 0 50px}
+        #tbody tr td img{width:80px;height:80px;vertical-align:middle;}
+        #tbody tr .num span{display:inline-block;width:40px;height:30px;background:#aaa;font-size:18px;}
+        #tbody tr .num span{vertical-align:middle;line-height:30px;}
+        #tbody tr .num .count{width:38px;height:28px;border:1px solid black;background:#fff;}
+        #tbody tr .countall{width: 100px;}
+        #tbody tr:hover{background-color:rgba(120,0,120,0.3);}
+        #tfoot tr td{border:1px solid black;text-align:center;padding:10px 0 ;}
+    </style>
+</head>
+<body>
+<table class="table">
+    <thead id="tdead">
+    <tr>
+        <th style="width:32px">选择</th>
+        <th style="width:162px">商品</th>
+        <th style="width:51px">单价</th>
+        <th style="width:160px">数量</th>
+        <th style="width:100px">小计</th>
+        <th style="width:32px">操作</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+    <tfoot id="tfoot">
+    <tr>
+        <td><label><input class="checkall check" type="checkbox">&nbsp;全选</label></td>
+        <td id="deleteall">全部删除</td>
+        <td colspan="3">
+            <span>已选购商品<i id="total">0</i>件</span>
+            <span> 合计&nbsp;￥<i id="totalprice">0</i></span>
+        </td>
+        <td>结算</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<!--<script src="00-Cookie.js"></script>-->
+<script type="text/javascript">
+    var tbody=document.getElementById("tbody");//获取表格tbody节点
+    var goodIdList=[];
+    var cookies=document.cookie;
+    if (cookies) {
+        var cookielist=cookies.split("; ");
+
+        for (var i=0;i<cookielist.length;i++){
+            var cookie=cookielist[i].split("=");//获取名称与内容
+            var keyname=cookie[0];//获取名称
+
+            var keycontent=cookie[1];//获取与名称相关联的内容
+
+            if (keyname.indexOf("goodsid_")==0){//判断name字符串下标0的字符串是否"goodsid_"
+                goodIdList.push(keycontent);//获取所有商品编号
+            }
+        }
+     }    //alert(goodIdList)
+    // alert(getCookie("goodsname_"+goodsid))
+    //根据商品编号去获取编号相关的所有信息
+    for (var j=0;j<goodIdList.length;j++){
+        var goodsid=goodIdList[j];
+        var goodsname=getCookie("goodsname_"+goodsid);//获取与商品编码相关联的商品名称
+        var goodsprice=getCookie("goodsprice_"+goodsid);//获取与商品编码相关联的商品价格
+        var goodsnum=getCookie("goodsnum_"+goodsid);//获取与商品编码相关联的商品数量
+        var goodsimg=getCookie("goodsimg_"+goodsid);//获取与商品编码相关联的商品图片
+
+        var tr=document.createElement("tr");
+        tbody.appendChild(tr);
+
+        //建立第一列表格:单选
+        var checkbox=document.createElement("td");
+        checkbox.className="checkbox";
+        tr.appendChild(checkbox);
+        var input=document.createElement("input");
+        input.className="checkone check";
+        input.type="checkbox";
+        checkbox.appendChild(input);
+
+        //建立第二列表格:商品图片和商品名称
+        var goods=document.createElement("td");
+        goods.className="goods";
+        tr.appendChild(goods);
+        var img=document.createElement("img");
+        img.src=goodsimg;
+        goods.appendChild(img);
+        var imgname=document.createElement("span");
+        imgname.className="imgname";
+        imgname.innerHTML=goodsname;
+        goods.appendChild(imgname);
+
+        //建立第三列表格:商品价格price
+        var price=document.createElement("td");
+        price.className="price";
+        price.innerHTML=Number(goodsprice).toFixed(2);
+        tr.appendChild(price);
+
+        //建立第四列表格:商品数量增减
+        var num=document.createElement("td");
+        num.className="num";
+        tr.appendChild(num);
+        var reduce=document.createElement("span");
+        reduce.className="reduce";
+        reduce.innerHTML="&nbsp;";
+        if (goodsnum >=2) {reduce.innerHTML = "-";}
+        num.appendChild(reduce);
+        reduce.setAttribute("goodsid", goodsid);//设置reduce的属性goodsid=""
+
+
+        var count=document.createElement("span");
+        count.className="count";
+        count.innerHTML=goodsnum;
+        num.appendChild(count);
+
+        var add=document.createElement("span");
+        add.className="add";
+        add.innerHTML="+";
+        num.appendChild(add);
+        add.setAttribute("goodsid", goodsid);//设置add的属性goodsid=""
+
+        //建立第四列表格:商品结算额
+        var countall=document.createElement("td");
+        countall.className="countall";
+        countall.innerHTML=(goodsprice*goodsnum).toFixed(2);
+        tr.appendChild(countall);
+
+        //建立第五列表格:商品操作
+        var deleteone=document.createElement("td");
+        deleteone.className="deleteone";
+        deleteone.innerHTML="删除";
+        tr.appendChild(deleteone);
+        deleteone.setAttribute("goodsid",goodsid);//设置add的属性goodsid=""
+        deleteone.onclick = function () {
+            var tr = this.parentNode;
+            tr.parentNode.removeChild(tr);
+            var goodsid = this.getAttribute("goodsid");
+            setCookie("goodsid_" + goodsid, "", -7);
+            setCookie("goodsname_" + goodsid, "", -7);
+            setCookie("goodsprice_" + goodsid, "", -7);
+            setCookie("goodsnum_" + goodsid, "", -7);
+            setCookie("goodsimg_" + goodsid, "", -7);
+        }
+    }
+
+
+
+
+
+
+
+
+    var total=document.getElementById("total");//获取总商品数量节点
+    var totalprice=document.getElementById("totalprice");//获取总额节点
+
+    var addlist=document.getElementsByClassName("add");//获取add加号节点集合
+    for (var i=0;i<addlist.length;i++){
+        var add=addlist[i];//获取每一个add加号节点
+        add.onclick=function () {//每一个add加号绑定事件
+            var count=this.previousElementSibling;//获取add加号前一个节点
+            count.innerHTML=count.innerHTML*1+1;//数量叠加
+            var counts=count.innerHTML;//每个商品的总数量
+            var reduce=count.previousElementSibling;//获取数量前一个节点
+            reduce.innerHTML="-";
+            var price=this.parentNode.previousElementSibling;//获取加号父节点的前一个节点
+            var countall=this.parentNode.nextElementSibling;//获取加号父节点的下一个节点
+            countall.innerHTML=(price.innerHTML*counts).toFixed(2);
+            getAll();
+
+            var goodsid = this.getAttribute("goodsid");
+            //更新该编号所对应的数量
+            setCookie("goodsnum_"+goodsid,count.innerHTML,7);
+
+        }
+    }
+    var reducelist=document.getElementsByClassName("reduce");//获取reduce减号节点集合
+    for (var i=0;i<reducelist.length;i++){
+        var reduce=reducelist[i];//获取每一个reduce减号节点
+        reduce.onclick=function () {//每一个reduce减号绑定事件
+            var count=this.nextElementSibling;//获取reduce减号下一个节点
+            count.innerHTML=count.innerHTML*1-1;//数量叠减
+            if (count.innerHTML<=1) {//当数量为1时,
+                count.innerHTML=1;//数量不叠减,数量保持为1
+                reduce.innerHTML="";//减号消失
+                return false; //数量为1的时候 不做任何操作  函数直接返回
+            }
+            var counts=count.innerHTML;//每个商品的总数量
+            var price=this.parentNode.previousElementSibling;//获取减号父节点的前一个节点
+            var countall=this.parentNode.nextElementSibling;//获取减号父节点的下一个节点
+            countall.innerHTML=(price.innerHTML*counts).toFixed(2);//每一个编号商品的总额
+            getAll();
+
+             var goodsid = this.getAttribute("goodsid");
+            //更新该编号所对应的数量
+            setCookie("goodsnum_"+goodsid,count.innerHTML,7);
+        }
+    }
+    //根据每一个check状态去统计数量和总额
+    function getAll() {
+        var count_total=0;
+        var price_tatol=0;
+        var checkonelist=document.getElementsByClassName("checkone");
+        for(var i=0;i<checkonelist.length;i++){
+            if (checkonelist[i].checked==true) {
+                var tr=checkonelist[i].parentNode.parentNode;//获取每一个tr节点
+                var count=tr.getElementsByClassName("count")[0];//获取每一个编号商品数量节点
+                count_total+=count.innerHTML*1;//获取总商品数量
+                var countall=tr.getElementsByClassName("countall")[0];//获取商品的总额节点
+                price_tatol+=countall.innerHTML*1;//获取总商品总额
+            }
+        }
+        total.innerHTML=count_total;
+        totalprice.innerHTML=price_tatol;
+    }
+
+
+    //每一个单选绑定事件
+    var checkonelist=document.getElementsByClassName("checkone");//获取所有单选节点
+    var checkall=document.getElementsByClassName("checkall")[0];
+    var num=0;
+    for (var i=0;i<checkonelist.length;i++) {
+        var checkone=checkonelist[i]; //获取每一个单选节点
+
+        checkone.onclick=function () {//每一个单选节点绑定事件
+            if (this.checked==true){
+                num++;
+            }else {num--;}
+            if (num==checkonelist.length){
+                checkall.checked=true;
+            }else {checkall.checked=false;}
+            getAll();
+        }
+    }
+    //全选绑定事件
+    checkall.onclick=function () {
+        for (var i=0;i<checkonelist.length;i++){
+            checkonelist[i].checked=this.checked;//全选选中是单选也全部选中;
+        }
+        getAll();
+    };
+    //商品单个删除操作与全部一起删除操作
+
+
+    var deleteall=document.getElementById("deleteall");
+    deleteall.onclick=function () {
+        var deleteonelist=document.getElementsByClassName("deleteone");
+        for (var i=deleteonelist.length-1;i>=0;i--) {
+            var deleteone = deleteonelist[i];
+            var tr=deleteone.parentNode;
+            var goodsid = deleteone.getAttribute("goodsid");
+            setCookie("goodsid_" + goodsid, "", -7);
+            setCookie("goodsname_" + goodsid, "", -7);
+            setCookie("goodsprice_" + goodsid, "", -7);
+            setCookie("goodsnum_" + goodsid, "", -7);
+            setCookie("goodsimg_" + goodsid, "", -7);
+            tr.parentNode.removeChild(tr);
+        }
+    }
+
+
+    function getCookie(key) {
+        var cookies = document.cookie;
+        if (cookies) {
+            var cookieList = cookies.split("; ");//取出所有的cookie
+            var value = "";
+            cookieList.forEach(function (cookie) {
+                var item = cookie.split("=");
+                var itemKey = item[0];
+                var itemValue = item[1];
+                if (itemKey == key) {
+                    value = itemValue;
+                    return false;//终止里面函数的执行
+                }
+            });
+            return value;
+        } else {
+            return "";
+        }
+    }
+    function setCookie(key, value, days) {
+        var date = new Date();
+        date.setDate(date.getDate() + days);
+        document.cookie = key + "=" + value + ";expires=" + date;
+    }
+</script>
+</html>

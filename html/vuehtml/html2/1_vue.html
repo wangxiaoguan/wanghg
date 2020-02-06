@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        img{width: 400px;height: 300px;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>{{title}}</p>
+        <p>{{msg}}</p>
+        <p v-text="msg"></p>
+        <div v-html="tag"></div>
+        <img  :src="url" alt="">
+        <p>{{flag&&flag.item.rating}}</p>
+        <p>{{Math.random()>0.5?"大于0.5":"小于0.5"}}</p>
+        <!-- <p v-if="Math.random()>0.5" style="height:20px;">大于0.5显示,小于0.5不显示</p> -->
+
+        <button v-on:click="add">{{count}}</button>
+        <input type="text" @input.prevent="add" value="点击">
+        <input type="text" @keyup.enter.space="add" value="停止">
+        <input type="text" @keyuo.13="add" value="点击">
+        <button :disabled="toggle" @click="toggle=!toggle">{{toggle?"不可点击":"可以点击"}}</button>
+        <button :disabled="!toggle" @click="toggle=!toggle">{{toggle?"可以点击":"不可点击"}}</button>
+
+    </div>
+    <script>
+        var vm=new Vue({
+            // el:"#app",
+            data:{
+                title:"hello world",
+                msg:"中华民族",
+                txt:"中华民族伟大复兴",
+                tag:"<h2>中国梦世界梦</h2>",
+                url:"http://pic72.nipic.com/file/20150710/7461479_110639275758_2.jpg",
+                flag:null,
+                count:2018,
+                toggle:true
+            },
+            methods:{      add(){this.count+=1;}      }
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

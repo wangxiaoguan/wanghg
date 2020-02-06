@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="http://47.94.208.182/base/js/jquery-1.10.1.min.js"></script>
+    <script src="../js/axios.js"></script>
+    
+    <style>
+        .static{
+            width:200px;
+            height:200px;
+            margin:10px;
+            background: orange;
+        }
+        .box{
+            width:100px;
+            height:100px;
+          
+            background: red;
+        }
+        label{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h2>msg == {{msg }}</h2>
+        <button @click="getMsg()">获取数据</button>
+        <p v-for="(li,index) in list" :key="index">
+            <img width="100" height="100" :src="'http://www.phonegap100.com/'+li.pic" alt="">
+            <span>{{li.title}}</span>
+        </p>
+    </div>
+    <!-- 
+        ajax
+        原生ajax    xhr  XMLHttpRequest
+        jquery  $.get  $.post  $.ajax
+        
+        $.ajax
+        axios
+        vue-resource
+        fetch
+
+        引入vue-resource后，可以基于全局的Vue对象使用http，也可以基于某个Vue实例使用http。
+
+        // 基于全局Vue对象使用http
+        Vue.http.get('/someUrl', [options]).then(successCallback, errorCallback);
+        Vue.http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
+
+        // 在一个Vue实例内使用$http
+        this.$http.get('/someUrl', [options]).then(successCallback, errorCallback);
+        this.$http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
+
+     -->
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <script>
+
+    let vm = new Vue({
+        data:{
+            title:"vue-resource  ",
+            msg:"",
+            list:[]
+        },
+        methods:{
+            getMsg(){
+                // console.log(this.$http);
+                // console.log(Vue.http);
+                // this.$http.get("http://localhost:4400/vue",{
+                //     params:{
+                //         id:1803
+                //     }
+                // }).then(
+                // res=>{
+                //     console.log(res);
+                //     this.msg = res.body;
+                // },
+                // err=>{
+
+                // })
+
+                // this.$http({
+                //     url:"http://localhost:4400/vue",
+                //     method:"get",
+                //     params:{
+                //         id:181818
+                //     },
+                //     headers:{
+
+                //     }
+                // }).then(res=>{
+                //     console.log(res);
+                //     this.msg = res.body;
+                // })
+
+                this.$http.get("http://www.phonegap100.com/appapi.php",{
+                    params:{
+                        a:"getPortalList",
+                        catid:15,
+                        page:1,
+                        id:8888
+                    }
+                }).then(
+                res=>{
+                    console.log(res);
+                    this.list = res.body.result
+                },err=>{
+
+                })
+            }
+        },
+
+        created(){  
+            // this.$http.post("http://localhost:4400/vue/register",{
+            //     username:"ssssss",
+            //     password:"xx",
+            //     dbpwd:"ddd",
+            //     nickname:"xxxx"
+            // },{
+            //     params:{
+            //         id:1234
+            //     }
+            // }).then(res=>{
+            //     console.log(res.body);
+            // })
+
+            this.$http({
+                url:"http://localhost:4400/vue/register",
+                method:"POST",
+                body:{
+                    username:"ssssss",
+                    password:"xx",
+                    dbpwd:"ddd",
+                    nickname:"xxxx"
+                },
+                params:{
+                    id:123456
+                },
+            }).then(res=>{
+                console.log(res.body);
+            })
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+
+        }
+    }).$mount("#app")
+
+    </script>
+</body>
+</html>
+

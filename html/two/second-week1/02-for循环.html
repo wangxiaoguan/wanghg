@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+//9*9的乘法表for
+for(var i=1;i<=9;i++){
+    for (var j=1;j<=i;j++) {
+        document.write(j+"*"+i+"="+j*i+"　");
+    }document.write("<br/>")
+}
+//9*9的乘法表do while
+var i=1;
+do {var j=1;
+    do {document.write(j+"*"+i+"="+j*i+"　");
+        j++;
+    }while (j<=i);
+    document.write("<br/>");
+    i++;
+}while (i<=9)
+</script>
+</html>

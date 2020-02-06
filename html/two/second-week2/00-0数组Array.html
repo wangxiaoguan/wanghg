@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //数组的声明有两种 一种是关键字new Array()   一种是特殊符号[]
+    var arr = new Array(4); //如果是使用关键字声明  如果只有一个参数为数字 那么就表示长度
+    var arr = new Array(1, 2, 3, 4);
+    var arr = [1, 2, 3, 4, 5];
+    //数组拼接
+    var arr1 = ["a", "b", "c"];
+    var arr2 = ["e", "f", "g"];
+    var arr3=arr1.concat(arr2);
+    alert(arr3);
+
+    //对数组进行反转
+    var arr = [1, 2, 3];
+    arr.reverse();
+    alert(arr);//[3,2,1]
+
+
+
+    arr.join("-") ; //对数组里面每一个数进行拼接处理
+    arr.indexOf(6); //判断一个数在数组中是否存在 如果存在就返回下标 不存在就返回-1
+    arr.lastIndexOf(0); //倒着找
+
+    //判断是否数组,数组有真数组和伪数组  区别在于真的可以使用数组的扩展方法
+    var arr=[1,2,3,4,5,6,7,8];
+    alert( Array.isArray(arr) );//true
+    alert(arr instanceof Array);//true
+
+    alert(arr.sort(function (a, b) {return b - a;}));   //数组的排序
+
+    alert(arr.filter(function (item) {return item >= 10}));
+
+    alert( arr.every(function (item) {return item >= 1}));  //判断所有的数是否都满足某个条件
+
+    alert(arr.some(function (item) {return item > 20}));  //判断是否有一个满足条件
+
+    alert(arr.reduce(function (a, b) { return a - b})); //数组的迭代操作
+
+    arr.map(function (item) {alert(item);}); //循环数组的值  替换for循环
+    list.map(function (item) {list2.push(item);});//将数组的元素导入另一个数组中
+
+    arr.forEach(function (item, index) {alert(index + "index所对应的值为:" + item);}) //对数组进行循环操作
+
+    //数组开头添加元素
+    arr=[1,2,3,4,5,6,7,8,9];
+    arr.unshift(6);
+    alert(arr);//6,1,2,3,4,5,6,7,8,9
+
+    //数组结尾添加元素
+    arr=[1,2,3,4,5,6,7,8,9];
+    arr.push(6);
+    alert(arr);//1,2,3,4,5,6,7,8,9,6
+
+    //删除数组开头元素
+    arr=[1,2,3,4,5,6,7,8,9];
+    arr.shift();
+    alert(arr);//2,3,4,5,6,7,8,9
+
+    //删除数组结尾元素
+    arr=[1,2,3,4,5,6,7,8,9];
+    arr.pop();
+    alert(arr);//1,2,3,4,5,6,7,8
+
+   //splice删除,增加,修改元素
+
+    //splice删除元素
+    arr=[1,2,3,4,5,6,7,8,9];//删除下标1起的1个元素
+    arr.splice(1,1);
+    alert(arr);//1,3,4,5,6,7,8,9
+
+    //splice修改元素
+    arr=[1,2,3,4,5,6,7,8,9];//删除下标1元素并且添加一个元素
+    arr.splice(1,1,"a");
+    alert(arr);//1,a,3,4,5,6,7,8,9
+
+    //splice添加元素
+    arr=[1,2,3,4,5,6,7,8,9];//在下标1之前添加元素
+    arr.splice(1,0,"a");
+    alert(arr);//1,a,2,3,4,5,6,7,8,9
+
+    //splice截取数组
+    var list = [1, 3, 4, 2, 6, 5];
+    alert(typeof list.splice(0, 2));//[1,3]
+
+
+   //把数组里面的每个数用指定的符号链接起来
+   list.join("—");
+
+   //把两个数组或多个合并成一个数组
+    list1.concat(list2);
+    list1.concat(list2,list3,list4);
+
+
+
+
+
+    //写出斐波那契数列
+    function count(i) {
+        if (i<=2){
+            return 1;
+        }
+        result= count(i-1)+count(i-2);
+        return result;
+    }
+    for (j=1;j<=10;j++){
+        document.write(count(j)+"　");
+    }
+
+    //把数组中元素加上特定符合
+    var list=[12,34,45,43,23,12,12,154,234];
+    for (i=0;i<list.length;i++) {
+        if (i==list.length-1) {
+            list[i]=list[list.length-1];
+        }else { list[i]=list[i]+"-";}
+        document.write(list[i]);
+    }
+    //将数组中元素反转
+    var list=[12,63,45,71,23,12,85,54,92];
+    for (var i=0;i<Math.floor(list.length/2);i++){//区分奇数偶数个元素
+        var shu=list[i];
+        list[i]=list[list.length-i-1];
+        list[list.length-i-1]=shu;
+    }
+    //将数组中元素大小或小大排序
+    //方法一:
+    var list=[12,63,45,71,23,15,85,54,92];
+    list.sort(function (a, b) { return b - a; });//大到小排序
+    list.sort(function (a, b) { return a - b; });//小到大排序
+    //方法二:冒泡排序
+    function sort(list) {
+        for (j = 0; j < list.length - 1; j++) {
+            for (var i = 0; i < list.length - 1 - j; i++) {
+                var max = list[i];//把下标i元素付给设定最大数
+                if (max > list[i + 1]) {//比较下标i元素与下标i+1元素大小
+                    list[i] = list[i + 1];//把小数向前移动一位
+                    list[i + 1] = max;//把大数向后移动一位,大数和小数互换位置,小在前大在后
+                }
+            }
+        }return list;
+    }
+    //求数组元素的总和
+    list.reduce(function (a, b) { return a + b });
+    //求数组最小数
+    function minnumber(list) {
+        var min=list[0];
+        for (var i=1;i<list.length;i++){
+            if (list[i]<min) {
+                min=list[i];
+            }
+        }
+        return min;
+    }
+    //求数组最大数
+    function maxnumber(list) {
+        var maxnum=list[0];
+        for (var i=1;i<list.length;i++){
+            if (list[i]>maxnum) {
+                maxnum=list[i];
+            }
+        }
+        return maxnum;//返回最大数
+    }
+</script>
+</html>

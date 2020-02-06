@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        .box{width: 200px;height: 200px;background: red;float: left;margin-right:10px;margin-top:10px;
+        text-align: center;line-height: 200px;font-style:60px;color:#fff;}
+    </style>
+</head>
+<body>
+        
+    
+
+    <div class="box" onclick="get(event)">box01</div>
+    <div class="box" ontouchstart="touch(event,this)">box02</div>
+    <div class="box">box03</div>
+    <div class="box">box04</div>
+    <div class="box">box05</div>
+    <div class="box">box06</div>
+</body>
+<script>
+    function get(e){console.log(e)};
+
+    function touch(e,that){console.log(e);console.log(that);console.log(e.touches[0])};
+
+    var boxs=document.querySelectorAll(".box");
+
+    // for(let i=0;i<boxs.length;i++){
+    //     boxs[i].addEventListener("click",function(){
+    //         console.log(i)
+    //     })
+    // }
+
+    for(var i=0;i<boxs.length;i++){
+        (function(n){
+        boxs[n].addEventListener("click",function(){console.log(n)})
+            })(i)
+    }
+
+</script>
+</html>

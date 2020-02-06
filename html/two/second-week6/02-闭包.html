@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //闭包
+//    function fn(){
+//        var num=10;
+//        function abc(){
+//            num=num+1;
+//            alert(num);
+//        }
+//        abc();
+//        abc();
+//    }
+//    fn();
+//    var fun=fn();
+//    fun();
+//    fun();
+
+
+//    function createFunctions(){
+//        var result = new Array();
+//        for (var i=0; i < 10; i++){
+//            result[i] = function(){
+//                return i;
+//            };
+//        }
+//        return result;
+//    }
+//    var funcs = createFunctions();
+//    for (var i=0; i < funcs.length; i++){
+//        console.log(funcs[i]());
+//    }
+
+
+    var a=0;
+    function add(){
+        a++;
+        return alert(a)
+    }
+    add();
+    add();
+    add();
+</script>
+</html>

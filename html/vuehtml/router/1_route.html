@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+</head>
+<body>
+    <!-- 路由 是用来实现单页面应用的  
+     -->
+     <div id="app">
+         <h2>{{title}}</h2>
+        <router-link to="/home">首页</router-link>
+        <router-link to="/news">新闻</router-link>
+        <router-link to="/content">底部</router-link>
+        <button @click="gohome()">进入首页</button>
+        <button @click="gonews()">进入新闻</button>
+         <div>
+             <router-view></router-view>
+         </div>
+     </div>
+
+     <script>
+
+         // 1. 定义路由组件 
+         const home={template:"<h1>欢迎来到home</h1>"}
+         const news={template:"<h1>欢迎来到news</h1>"}
+         const content={template:"<h1>欢迎来到content</h1>"}
+
+
+        //2.定义路由routes
+        const routes=[
+            {path:"/home",component:home},
+            {path:"/news",component:news},
+            {path:"/content",component:content},
+            {path:"*",component:home},
+
+        ]
+        //3 创建实例
+        const router= new VueRouter({routes })
+        //4 挂载到根实例
+         const vm=new Vue({
+             el:"#app",
+             router:router,
+             data:{title:"view-router"},
+             methods:{
+                 gohome(){ 
+                    console.log(this.$route); // 路由对象 获取路由参数
+                    console.log(this.$router); // 路由跳转对象 
+                    this.$router.push("/home")},
+                 gonews(){ router.push("/news")},
+             },
+         })
+     
+     </script>
+</body>
+</html>

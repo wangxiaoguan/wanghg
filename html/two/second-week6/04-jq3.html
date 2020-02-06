@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+		*{padding: 0;margin: 0;list-style: none;}
+		#red{width: 300px;height: 300px;margin: 20px auto;background:red;}
+    </style>
+</head>
+<body>
+<button id="btn">点击</button>
+<div id="red"></div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+//    $("#red").hide(2000, function () {
+//        $(this).show(2000)
+////        alert("我消失了")
+//    })
+
+//    $("#btn").click(function () {
+//        $("#red").hide(2000,function (){
+//            $(this).show(2000)
+//        })
+//    })
+//    $("#red").slideUp(2000, function () {
+//        $(this).slideDown(2000)
+//    })
+
+    $("#red").slideToggle(2000,"linear")
+//    $("#red").fadeOut(2000, function () {
+//        $(this).fadeIn(2000)
+//    })
+
+//    $("#red").fadeToggle(2000)
+//    $("#red").fadeTo(2000,0.2)
+
+
+
+</script>
+</html>

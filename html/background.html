@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background</title>
+	<style>
+		pre{
+			font-size: 1.6rem;
+			font-family: '楷体';
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+<pre>
+	background-size:100% 100%
+	background-size:50%
+	background-size:50% auto
+	background-size:auto 50%
+	background-size:cover
+	background-size:contain
+
+	background-attachment: fixed;
+	background-attachment: scroll;
+	background-attachment: local;
+
+	background-origin:border-box;
+	background-origin:padding-box;
+	background-origin:contant-box;
+	
+	background-clip:border-box;
+	background-clip:padding-box;
+	background-clip:contant-box;
+</pre>
+<pre>
+	cover盒子会铺满，宽高比不变最大化的拉伸图片直到触到内容框的左边和下边为止并且超出图片会被裁切
+	contain在保证图片的完整性的前提下，宽高比不变最大化的拉伸图片直到触到内容框的左边或下边为止
+</pre>
+</div>
+</body>
+</html>

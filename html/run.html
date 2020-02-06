@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #warp {
+            height: 200px;
+            width: 800px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        #warp #inner {
+            height: 200px;
+            width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #inner ul {
+            list-style: none;
+            width: 1600px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #inner ul li {
+            float: left;
+            width: 200px;
+            height: 200px;
+        }
+
+        #inner ul li img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        #warp #left {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            background-color: #0b333f;
+            left: -50px;
+            top: 75px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+
+        #warp #right {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            background-color: #0b333f;
+            left: 800px;
+            top: 75px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<body>
+
+<div id="warp">
+    <span id="left">左</span>
+    <span id="right">右</span>
+    <div id="inner">
+        <ul>
+            <li><img src="http://wanghg.top/img/img1.jpg"></li>
+            <li><img src="http://wanghg.top/img/img2.jpg"></li>
+            <li><img src="http://wanghg.top/img/img3.jpg"></li>
+            <li><img src="http://wanghg.top/img/img4.jpg"></li>
+            <li><img src="http://wanghg.top/img/img1.jpg"></li>
+            <li><img src="http://wanghg.top/img/img2.jpg"></li>
+            <li><img src="http://wanghg.top/img/img3.jpg"></li>
+            <li><img src="http://wanghg.top/img/img4.jpg"></li>
+        </ul>
+    </div>
+</div>
+</body>
+<script>
+    var inner = document.getElementById("inner");
+    var ul = inner.getElementsByTagName("ul")[0];
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+
+
+    var speed = 1;
+    var timer = null;
+    timer = setInterval(function () {
+        if (ul.offsetLeft > 0) {//往右边的临界条件
+            ul.style.left = -ul.offsetWidth / 2 + "px";
+        }
+        if (ul.offsetLeft < -ul.offsetWidth / 2) {//解决向左的临界条件
+            ul.style.left = 0;
+        }
+        ul.style.left = ul.offsetLeft + speed + "px";
+    }, 5);
+
+    left.onclick = function () {
+        speed = -Math.abs(speed);
+    }
+    right.onclick = function () {
+        speed = Math.abs(speed);
+    }
+
+</script>
+</html>

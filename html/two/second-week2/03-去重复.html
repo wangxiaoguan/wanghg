@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var str = "aaaabbbbcccaaa";
+    var newstr = "";
+    for (var i = 0; i < str.length; i++) {
+        var char = str.charAt(i);
+            if (newstr.indexOf(char) == -1) {
+                newstr+= char;
+        }
+    }
+    for (j=0;j<newstr.length;j++){
+        var sum=0;
+        var char = newstr.charAt(j);
+        for (var i = 0;i < str.length; i++) {
+            var char1 = str.charAt(i);
+            if (char==char1) {
+                sum++;
+            }
+       }
+       document.write(char+sum);//统计字母重复出现几次
+    }
+    document.write("<br/>");
+    //顺序统计字母重复出现几次
+      var newstr1="";
+      var count=1;
+    for (var i = 0; i < str.length; i++) {
+        var char = str.charAt(i);
+         if (char==str.charAt(i+1)){
+                count++
+         } else {
+             // newstr1+=char;
+             newstr1+=char+count;//顺序排列字母，并且去掉重复字母,且统计字母重复次数
+                count=1;
+         }
+    }
+alert(newstr1);
+</script>
+</html>

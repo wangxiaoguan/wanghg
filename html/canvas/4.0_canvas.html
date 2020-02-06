@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+    <style>
+            canvas{
+                display: block;
+                margin:50px auto;
+                border:1px solid darkgoldenrod;
+            }
+        </style>
+</head>
+<body>
+    <canvas id="mycanvas" width=800 height=400 >浏览器不支持该浏览器</canvas>
+
+    <script>
+        
+        var mycanvas = document.getElementById("mycanvas");
+        var ctx = mycanvas.getContext("2d");
+        
+        // quadraticCurveTo(x1,y1,x,y)
+        ctx.beginPath();
+        ctx.moveTo(0,200);
+        // ctx.lineTo(400,200);
+        ctx.quadraticCurveTo(200,0,400,200)
+        ctx.strokeStyle = "orange"
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        ctx.closePath();
+
+
+        // bezierCurveTo(x1,y1,x2,y2,x,y);
+
+        ctx.beginPath();
+        ctx.moveTo(400,200);
+        // ctx.lineTo(800,200);
+        ctx.bezierCurveTo(500,100,700,300,800,200);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+
+
+        // ctx.beginPath();
+        // ctx.moveTo(150,250);
+        // ctx.quadraticCurveTo(200,500,600,60);
+        // ctx.quadraticCurveTo(150,400,150,250);
+        // ctx.strokeStyle = "blue"
+        // ctx.stroke();
+        // ctx.closePath();
+
+
+        ctx.beginPath();
+        ctx.moveTo(0,200);
+        ctx.lineTo(800,200)
+        ctx.strokeStyle = "#000";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.closePath();
+
+
+
+        ctx.beginPath();
+        ctx.font = "50px 微软雅黑";
+        ctx.textAlign = "start";
+        ctx.textBaseline = "bottom"  // top middle hanging alphabetic ideographic bottom
+        ctx.fillStyle = "#123456"
+        ctx.strokeStyle = "yellow";
+        ctx.fillText("努力",0,200)
+        ctx.strokeText("天道酬勤",0,200)
+        ctx.closePath();
+
+        
+    </script>   
+</body>
+</html>

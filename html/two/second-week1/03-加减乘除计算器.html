@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="num1"><select id="sel">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select><input id="num2">
+    <button id="btn">计算</button>
+    <input id="result">
+</body>
+<script>
+    //写出一个能加减乘除的计算器
+    var  btn=document.getElementById("btn");
+    btn.onclick=function () {
+        var num1= document.getElementById("num1");
+        var value1 = num1.value*1;
+        var num2= document.getElementById("num2");
+        var value2 = num2.value*1;
+        var selInput= document.getElementById("sel");
+        var sel= selInput.value;
+        var resultInput=document.getElementById("result");
+        if (sel=="+") {
+            resultInput.value = value1+value2;
+        }else if (sel=="-") {
+            resultInput.value = value1-value2;
+        }else if (sel=="*") {
+            resultInput.value = value1*value2;
+        }else if (sel=="/") {
+            resultInput.value = value1/value2;
+        }
+    }
+
+
+
+
+
+</script>
+</html>

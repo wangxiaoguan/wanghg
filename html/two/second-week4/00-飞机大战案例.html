@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合</title>
+    <style>
+        * {margin: 0;padding: 0;list-style: none;}
+        #content {width: 400px;height: 600px;margin: 10px auto;position: relative;
+            border: 1px solid red;overflow: hidden;}
+        #plan {width: 98px;height: 122px; position: absolute;background: url("images/fj.png");
+            background-size: 98px 122px;left: 151px;bottom: 0;}
+        .bullet {width: 8px;height: 18px;background: url("images/zd.png");
+            background-size: 8px 18px;position: absolute;left: 0;top: 0;}
+        .plain1 {width: 60px;height: 36px;background: url("images/dj.png");
+            background-size: 60px 36px;position: absolute;left: 0;top: 0;}
+        .plain2 {width: 70px;height: 92px;background: url("images/fj.jpg");
+            background-size: 70px 92px;position: absolute;left: 0;top: 0;}
+        #life {height: 150px;width: 30px;position: absolute;left: 0;bottom: 0;
+            background-color: red;border-radius: 10px;}
+    </style>
+</head>
+<body>
+<div id="content">
+    <div id="plan"></div>
+    <div id="life"></div>
+    <div id="score">0</div>
+</div>
+</body>
+<script>
+    var content = document.getElementById("content");
+    var plan = document.getElementById("plan");
+    plan.life = 3;
+    var lifeDiv = document.getElementById("life");
+    var scoreDiv = document.getElementById("score");
+    var score = 0;
+    contentHeight = getStyleAttr(content, "height");
+    var contentWidth = getStyleAttr(content, "width");
+    var planHeight = getStyleAttr(plan, "height");
+    var planWidth = getStyleAttr(plan, "width"); //分别获取容器和飞机的高宽
+    var planSpeed = 10;
+    var maxLeft = contentWidth - planWidth;
+    var maxTop = contentHeight - planHeight;
+
+    var bulletTimer = null;
+    var bulletSpeed = 20;
+    createBullet();
+
+
+    var plainTimer = null;
+    var plainSpeed = 20;
+    createPlain();
+    function createPlain() { //敌机的产生
+        var div = document.createElement("div");
+        if (score >= 40) {
+            div.className = "plain2";
+            div.life = 3;
+            div.score = 10;
+            bulletSpeed = 5;
+        } else {
+            div.className = "plain1";
+            div.life = 1;
+            div.score = 5;
+        }
+        content.appendChild(div);
+        var width = getStyleAttr(div, "width");
+        div.style.left = Math.round(Math.random() * (contentWidth - width)) + "px";
+        div.timer = setInterval(function () {
+            div.style.top = getStyleAttr(div, "top") + plainSpeed + "px";//表示敌机在降落
+
+            var bulletList = document.getElementsByClassName("bullet");
+            var x = getStyleAttr(div, "left");
+            var y = getStyleAttr(div, "top");
+            var divWidth = getStyleAttr(div, "width");
+            var divHeight = getStyleAttr(div, "height");
+
+            for (var i = 0; i < bulletList.length; i++) { //检查敌机与子弹碰撞
+                var bullet = bulletList[i];
+                var minX = getStyleAttr(bullet, "left") - divWidth;
+                var maxX = getStyleAttr(bullet, "left") + getStyleAttr(bullet, "width");
+                var minY = getStyleAttr(bullet, "top") - divHeight;
+                var maxY = getStyleAttr(bullet, "top") + getStyleAttr(bullet, "height");
+
+                if (x >= minX && x <= maxX && y >= minY && y <= maxY) { //碰撞的条件  表示敌机被撞了
+                    content.removeChild(bullet);
+
+                    div.life = div.life - 1;
+                    if (div.life <= 0) {
+                        score += div.score;
+                        scoreDiv.innerHTML = score;
+                        content.removeChild(div);
+                    }
+
+                }
+            }
+            //敌机与我方飞机的碰撞
+
+
+            var planminX = getStyleAttr(plan, "left") - divWidth;
+            var planmaxX = getStyleAttr(plan, "left") + getStyleAttr(plan, "width");
+            var planminY = getStyleAttr(plan, "top") - divHeight;
+            var planmaxY = getStyleAttr(plan, "top") + getStyleAttr(plan, "height");
+
+            if (x >= planminX && x <= planmaxX && y >= planminY && y <= planmaxY) { //我方灰机坠毁
+                // content.removeChild(plan); 整个游戏已经结束
+                score += div.score;
+                content.removeChild(div);
+                plan.life--;
+                lifeDiv.style.height = 50 * plan.life + "px";
+                if (plan.life == 0) {
+                    content.removeChild(plan);
+                    if (confirm("继续还是退出")) {
+                        window.location.reload();
+                    } else {
+                        window.close();
+                    }
+                }
+
+            }
+
+
+            if (getStyleAttr(div, "top") >= contentHeight) {
+                clearInterval(div.timer);
+                content.removeChild(div);
+            }
+
+        }, 100);
+
+        setTimeout(createPlain, 1000);
+    }
+
+
+    function createBullet() {
+        var bullet = document.createElement("div");
+        bullet.className = "bullet";
+        content.appendChild(bullet);//获取宽高的时候 dom元素要在页面里面才有效
+        bullet.style.left = getStyleAttr(plan, "left") + planWidth / 2 - getStyleAttr(bullet, "width") / 2 + "px";
+        bullet.style.top = getStyleAttr(plan, "top") - getStyleAttr(bullet, "height") + "px";
+
+        bullet.timer = setInterval(function () {
+            bullet.style.top = getStyleAttr(bullet, "top") - bulletSpeed + "px";
+            if (getStyleAttr(bullet, "top") <= 0) {
+                clearInterval(bullet.timer);
+                content.removeChild(bullet);
+            }
+
+        }, 30);
+        setTimeout(createBullet, 100);//实现定时器的功能
+    }
+
+
+    document.onkeyup = document.onkeydown = function (e) {
+        var evt = window.event || e;
+        var keycode = evt.which || evt.keyCode;
+        switch (keycode) {
+            case 37://left
+                plan.style.left = getStyleAttr(plan, "left") - planSpeed + "px";
+                if (getStyleAttr(plan, "left") <= 0) {
+                    plan.style.left = 0;
+                }
+                break;
+            case 38://top
+                plan.style.top = getStyleAttr(plan, "top") - planSpeed + "px";
+                if (getStyleAttr(plan, "top") <= 0) {
+                    plan.style.top = 0;
+                }
+                break
+            case 39://right
+                plan.style.left = getStyleAttr(plan, "left") + planSpeed + "px";
+                if (getStyleAttr(plan, "left") >= maxLeft) {
+                    plan.style.left = maxLeft + "px";
+                }
+                break;
+            case 40://bottom
+                plan.style.top = getStyleAttr(plan, "top") + planSpeed + "px";
+                if (getStyleAttr(plan, "top") >= maxTop) {
+                    plan.style.top = maxTop + "px";
+                }
+                break;
+        }
+
+    }
+
+
+    function getStyleAttr(obj, attr) {
+        if (window.getComputedStyle) {
+            return parseInt(window.getComputedStyle(obj)[attr]);
+        } else {
+            return parseInt(obj.currentStyle[attr]);
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h2 v-text="txt"></h2>
+        <div v-html="tag"></div>
+        <h2 v-once>{{txt}}</h2>
+        <a v-bind:href="href" :data-id="id" >千锋HTML5学院欢迎你~</a>
+        <img :src="src" alt="" width=300 height=200  /> 
+        <h2>{{count + 100 }}</h2>
+        <h2>{{Math.random() > 0.5 ? '随机大于0.5' : '随机小于0.5'}}</h2>
+        <h2>{{ flag&&flag.item.rating}}</h2>
+        <h2 v-if="Math.random() > 0.5 ">
+            随机显示隐藏 -- 渲染不渲染
+        </h2>
+
+        <button v-on:click ="add"  >{{count}}</button>
+
+        <input type="text" @input.prevent="add" value="点击我count++" >
+        <input type="text" @keyup.enter.space = "add" value='键盘事件' >
+        <input type="text" @keyup.13 = "add" value='键盘事件' >
+        <button v-bind:disabled="toggle" @click="toggle=!toggle">{{toggle?'不可点击':'可以点击'}}</button>
+        <button v-bind:disabled="!toggle" @click="toggle=!toggle">{{!toggle?'不可点击':'可以点击'}}</button>
+    </div>
+    <!-- 
+        {{}} 模板语法  双大括号语法  插值表达式   Mustache  
+        v-html  绑定标签
+        v-text  
+        v-once 初始值不会改变 
+        v-bind  绑定属性   缩写 : 
+
+        v-if 组件渲染 
+        v-show
+        v-on 
+        v-on:click.prevent click 参数 prevent 修饰符 
+
+        指令 (Directives) 是带有 v- 前缀的特殊特性。指令特性的值预期是单个 JavaScript 表达式
+        指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM 
+        真正目的 操作 DOM 
+     -->
+    <script src="../js/vue.js"></script>
+    <script>
+    let vm = new Vue({
+        data:{
+            title:"模板语法-{{}}",
+            txt:"daydayup",
+            tag:"<h2>work hard for future </h2>",
+            href:"http://www.mobiletrain.org/",
+            id:1803,
+            count:1001,
+            src:"http://upload.mobiletrain.org/2018/0702/1530517619788.jpg",
+            flag:null,  // 异步ajax 获取数据
+            toggle:true
+
+        },
+        methods:{
+            add(){
+                this.count += 88;
+            }
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+        }
+    }).$mount("#app")
+    </script>
+</body>
+</html>

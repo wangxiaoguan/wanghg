@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var str="abcDefg";
+    var str1="";
+    for (var i=0;i<str.length;i++){
+        if (str.charCodeAt(i)>=97) {//通过编码判断字母是否在小写字母串(97-122)中还是在大写字母串中(65-90)
+            var code=str.charCodeAt(i)-32;//把小写字母的编码减去32变成小写字母对应大写字母的编码
+             str1=str1+String.fromCharCode(code);//通过大写字母的编码获取某个大大写字母
+            }else {
+            str1=str1+str.charAt(i);
+        }
+    }
+    alert(str1);
+    function pand(str,i) {
+        var num=str.charCodeAt(i);
+        if (65<=num&&num<=90 ){
+            alert("该字符为大写");
+        }else if(97<=num&&num<=122){
+            alert("该字符为小写");
+        }else if(48<=num&&num<=57){
+            alert("该字符为数字");
+        }
+    }
+
+        function tolowper() {
+            var str1 = "";
+            for (var i = 0; i < str.length; i++) {
+                if (57<str.charCodeAt(i)&&str.charCodeAt(i) < 97) {//通过编码判断字母是否在小写字母串(97-122)中还是在大写字母串中(65-90)
+                    var code = str.charCodeAt(i) + 32;//把小写字母的编码减去32变成小写字母对应大写字母的编码
+                    str1 = str1 + String.fromCharCode(code);//通过大写字母的编码获取某个大大写字母
+                } else {
+                    str1 = str1 + str.charAt(i);
+                }
+            }
+            return str1;
+        }
+
+
+    var str="abcDefg";
+    var newStr="";
+    for (i=0;i<str.length;i++){
+        var char=str.charAt(i);//获取字符串下标为i的字符char
+        if (lowperLetter.indexOf(char)==-1){//判断字符char是否在在小写字母串
+            newStr=newStr+char;
+        }else {
+            var index=lowperLetter.indexOf(char);//小写字母在字母串中对应的位置
+            var upletter=upperLetter[index];
+            newStr+=upletter;
+        }
+    }
+    //alert(newStr);
+
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>while循环</title>
+</head>
+<body>
+
+</body>
+<script>
+
+
+//求1+2+3+4+...+99+100的和
+    var i=1,s=0;
+    while (i<=100) {
+        s=s+i;
+        i++;
+    }
+    document.write(s);//5050
+    document.write("<br/>");
+    
+//求100内7的倍数
+    var s = 1;
+         while(s*7<=100){
+        document.write(s*7+",");
+             s++;
+         }
+    document.write("<br/>");
+
+//求100内的奇数
+    var i = 0;
+         while (i<50) {
+             document.write(i*2+1+",");
+                i++;
+         }
+    document.write("<br/>");
+
+//求100内所有偶数的和
+ var n=0,s=0;
+         while (n<=50) {
+             s=s+n*2;
+             n++;
+         }
+         document.write(s);
+    document.write("<br/>");
+//打印图形
+    var i = 1;
+        while (i<=4) {
+            document.write("**********" + "<br/>");
+            i++;
+        }
+//用循环打印一个年份的下拉框
+    var year =1900;
+        document.write("<select>");
+        while (year<=2100){
+            document.write("<option>"+year+"</option>");
+                year++;
+        }
+    document.write("</select>");
+
+
+</script>
+</html>

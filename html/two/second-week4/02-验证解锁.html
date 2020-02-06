@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{width: 260px;height:120px;background-color:darkseagreen;margin: 10px auto;padding-top:270px;border-radius:10px;}
+        #range{height:30px;margin-bottom:20px;background:fuchsia;}
+        #cir{width:30px;height:30px;background:#fff;border-radius:50%;}
+        #mod{float:left;width:30px;height:30px;background:blue;border-radius:50%;
+            position: relative;}
+        #mod1{position:absolute;width:30px;height:30px;background:rgba(120,120,120,0.3);
+            border-radius:50%;top:-50px;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="range">
+        <div id="cir"></div>
+    </div>
+    <div id="mod">
+        <div id="mod1"></div>
+    </div>
+</div>
+</body>
+<script>
+    var mod=document.getElementById("mod");
+    var box=document.getElementById("box");
+    var range=document.getElementById("range");
+    var cir=document.getElementById("cir");
+    cir.style.marginLeft=Math.round(Math.random()*230)+"px";
+    var cirleft=parseInt(cir.style.marginLeft);
+    var modwidth=parseInt(getStyleAttr(mod,"width"));//60
+    var boxwidth=parseInt(getStyleAttr(box,"width"));//260
+    var boxmarginleft=parseInt(getStyleAttr(box,"margin-left"));
+    var Max= boxwidth-modwidth;
+
+
+    mod.onmousedown=function(e){
+        var evt=window.event||e;
+        var clientX=evt.clientX;
+        var clientY=evt.clientY;
+
+        var marginleft=parseInt(getStyleAttr(mod,"margin-left"));
+        var margintop=parseInt(getStyleAttr(mod,"margin-top"));
+
+        var divX=clientX-marginleft;
+        var divY=clientY-margintop;
+
+        document.onmousemove=function (e) {
+            let evt=window.event||e;
+            var clientX=evt.clientX;
+            var clientY=evt.clientY;
+
+            mod.style.marginLeft=clientX-divX+"px";
+            mod.style.marginTop=0;
+            if (parseInt(mod.style.marginLeft)<=0) {
+                mod.style.marginLeft=0;
+            }else if(parseInt(mod.style.marginLeft)>=230){
+                mod.style.marginLeft=230+"px";
+            }
+
+
+
+
+        };
+        document.onmouseup=function () {
+            document.onmousemove = null;
+            if (Math.abs(parseInt(mod.style.marginLeft)-cirleft)<=3){
+                box.style.backgroundColor="red";
+                range.style.display="none";
+                mod.style.display="none";
+            }
+        }
+    };
+
+
+    function getStyleAttr(obj,attr) {
+        if (window.getComputedStyle){
+            return getComputedStyle(obj)[attr];
+        }else {
+            return obj.currentStyle[attr];
+        }
+    }
+</script>
+</html>
