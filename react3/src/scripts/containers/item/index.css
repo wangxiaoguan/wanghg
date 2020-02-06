@@ -1,0 +1,79 @@
+.common h1 {
+  text-align: center;
+  font-size: 36px;
+  color: red;
+}
+
+#after1 {
+  width: 100%;
+  overflow: hidden;
+}
+
+#after1 h1 {
+  text-align: center;
+  font-size: 36px;
+}
+
+#my1 {
+  float: left;
+}
+
+#my1 .my-list {
+  padding: 10px;
+}
+
+#my1 .my-list li {
+  overflow: hidden;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+#my1 .my-list li img {
+  float: left;
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+}
+
+#my1 .my-list li .title {
+  float: left;
+  width: 430px;
+}
+
+#my1 .my-list li .title p {
+  padding: 16px;
+}
+
+#my1 .my-list li .title .title_h {
+  float: right;
+  text-align: right;
+  margin-top: 20px;
+}
+
+#my1 .my-list li .title .title_h b {
+  float: left;
+  margin-right: 60px;
+  color: red;
+}
+
+#my2 {
+  float: left;
+  position: relative;
+}
+
+#my2 .am-button-small {
+  position: fixed;
+  top: 10px;
+  right: 0;
+  z-index: 999;
+  font-size: 25px;
+  background: red;
+  color: #fff;
+  border-color: transparent;
+}
+
+#my2 h1 {
+  text-align: center;
+  font-size: 30px;
+}
