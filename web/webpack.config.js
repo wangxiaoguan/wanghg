@@ -36,18 +36,18 @@ module.exports = {
             },
             {
                 test:/\.(css|scss)$/,
-                use:["style-loader","css-loader","sass-loader" ]
-                // use:[
-                //     {
-                //         loader: "style-loader" // 将 JS 字符串生成为 style 节点
-                //     },
-                //     {
-                //         loader:"css-loader" // 将 CSS 转化成 CommonJS 模块
-                //     },  
-                //     {
-                //         loader: "sass-loader"   // 将 Sass 编译成 CSS
-                //     }
-                // ]
+                // use:["style-loader","css-loader","sass-loader" ]
+                use:[
+                    {
+                        loader: "style-loader" // 将 JS 字符串生成为 style 节点
+                    },
+                    {
+                        loader:"css-loader" // 将 CSS 转化成 CommonJS 模块
+                    },  
+                    {
+                        loader: "sass-loader"   // 将 Sass 编译成 CSS
+                    }
+                ]
             },
             {
                 test:/\.(mp4|png|gif|jpg|svg|woff|woff2|eot|ttf)\??.*$/,
@@ -56,6 +56,15 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'less-loader']
+            },
+            {
+                test:/\.html$/,
+                use:[
+                    {
+                        // loader:'html-loader'
+                        loader:require.resolve('html-loader')
+                    }
+                ]
             }
                 
         ]
