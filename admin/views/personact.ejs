@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>超市账单管理系统</title>
+    <link rel="stylesheet" href="/stylesheets/index.css"/>
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+</head>
+<body>
+    <%- include('header')   %>
+    <section class="publicMian w1200">
+        <div class="left">
+            <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+            <nav>
+                <ul class="list">
+                        <li onclick="window.location.href='/personmsg'">我的信息</li>
+                        <li onclick="window.location.href='/persontime'">打卡时间</li>
+                        <li onclick="window.location.href='/personpay'">我的工资</li>
+                        <li id="active" onclick="window.location.href='/personact'" >公司活动</li> 
+                        <li onclick="window.location.href='/personadv'" >我的建议</li>  
+                        <li onclick="window.location.href='/personpwd'">密码修改</li>                 
+                </ul>
+            </nav>
+        </div>
+        <div class="right">
+            <div class="location">
+                <strong>你现在所在的位置是:</strong>
+                <span>公司活动页面</span>　　　　　　　　        
+                <span style="color: blue">(!!!若有好的建议和想法请向管理部王经理联系:13512345678)</span>
+            </div>
+            <div class="providerView">
+                <p><strong>活动主题：</strong><span>缤纷4周年庆，连环抽大奖</span></p>
+                <p><strong>活动地点：</strong><span>南京西路1号万家福酒店</span></p>
+                <p><strong>活动对象：</strong><span>全体员工(员工可携带两名亲属)</span></p>
+                <p><strong>活动内容：</strong><span>节目表演,抽奖活动,员工演讲</span></p>
+                <p><strong>活动时间：</strong><span>2018年10月8日上午9:30举行</span></p>          
+              
+            </div>
+        </div>
+    
+    </section>
+
+    <footer class="footer w1200"></footer>
+
+
+<script src="/bootstrap/js/jquery-1.10.1.js"></script>
+<script src="/javascripts/js.js"></script>
+<script src="/javascripts/time.js"></script>
+</body>
+</html>

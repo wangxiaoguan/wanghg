@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>超市账单管理系统</title>
+      <link rel="stylesheet" href="/stylesheets/index.css"/>
+      <link rel="stylesheet" href="/stylesheets/common.css"/>
+      <!-- <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+      <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+  
+    <style>
+      /* .box{width:100%;height:500px;background: -webkit-linear-gradient(top, red 20%, yellow 50%, green 100%);} */
+      .box{width:100%;height:600px;background: -webkit-radial-gradient(bottom left,red 10% ,green 60%, blue);}
+    </style>
+  </head>
+
+  <body>
+    <%- include('header')   %>
+      <section class="publicMian w1200">
+          <div class="left">
+              <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+              <nav>
+                  <ul class="list">
+                    <li onclick="window.location.href='/personmsg'">我的信息</li>
+                    <li onclick="window.location.href='/persontime'">打卡时间</li>
+                    <li onclick="window.location.href='/personpay'">我的工资</li>
+                    <li onclick="window.location.href='/personact'" >公司活动</li>  
+                    <li onclick="window.location.href='/personadv'" >我的建议</li> 
+                    <li id="active" onclick="window.location.href='/personpwd'">密码修改</li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="right">
+              <div class="location">
+                  <strong>你现在所在的位置是:</strong>
+                  <span>密码修改页面</span>
+              </div>
+              <div class="providerAdd">
+                  <form id="form" action="" method="">
+                      <!--div的class 为error是验证错误，ok是验证成功-->
+                      <div class="">
+                          <label for="oldPassword">旧密码：</label>
+                          <input type="password" name="oldpassword" id="oldPassword" required/>
+                          <span>*请输入原密码</span>
+                      </div>
+                      <div>
+                          <label for="newPassword">新密码：</label>
+                          <input type="password" name="newpassword" id="newPassword" required/>
+                          <span id="passMsg">*请输入新密码6~12位数字,字母</span>
+                      </div>
+                      <div>
+                          <label for="reNewPassword">确认新密码：</label>
+                          <input type="password" name="password2" id="reNewPassword" required/>
+                          <span >*请输入新确认密码，保证和新密码一致</span>
+                      </div>
+                      <div class="providerAddBtn">
+                          <!--<a href="#">保存</a>-->
+                          <input type="submit" value="保存" id="pwdBtn" />
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </section>
+      <footer class="footer w1200">
+      </footer>
+<script src="/javascripts/time.js"></script>
+<script src="/bootstrap/js/jquery-1.10.1.js"></script>
+<script src="/javascripts/js.js"></script>
+<script>
+ var passReg=/^[a-zA-Z0-9$_]{6,10}$/;
+  $("#pwdBtn").click(function(){
+      var old=$("#oldPassword").val();
+      var pass1=$("#newPassword").val();
+      var pass2=$("#reNewPassword").val();
+      if(passReg.test(pass1)){
+                if(pass1==pass2){
+                    $("#form").attr({"action":"/regpass2","method":"post"})
+                }else{$("#form").attr({"method":"get"}); window.location.href='/personpwd'; }
+       }else{$("#form").attr({"method":"get"}); window.location.href='/personpwd';}
+   })
+
+// $(document).ready(function(){
+//   $("#newPassword").blur(function(){
+//     var pass=$(this).val();
+//       if(passReg.test(pass)){
+//         $("#passMsg").html("密码合法").css({"color":"#fff"})
+//       }else{$("#passMsg").html("密码不合法").css({"color":"red"})}
+    
+//   });
+// });
+</script>
+  
+  
+  </body>
+</html>

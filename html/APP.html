@@ -126,7 +126,7 @@
     }
     function getDetail(id){
         fetch(`http://wanghg.top/php/html/detail.php?id=${id}`).then((res) => res.json()).then(data => {
-            $('#header').html(`<span onclick="goback()"><i class="back"></i>返回</span><h3 id='title'>${data.title}</h3><span class="delete" onclick="deleteid(${data.id})">删除</span>`)
+            $('#header').html(`<span onclick="goback()"><i class="back"></i>返回</span><h3 id='title'>${data.title}</h3>`)
             $('#content').html(unescape(data.content))
             $('.right').eq(0).animate({left:0},500);
             setTimeout(()=>{

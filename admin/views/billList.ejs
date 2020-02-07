@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>超市账单管理系统</title>
+    <link rel="stylesheet" href="/stylesheets/index.css"/>
+    <link rel="stylesheet" href="/stylesheets/common.css"/>
+
+</head>
+<body>
+    <%- include('header')   %>
+    <section class="publicMian w1200">
+        <%- include('contentLeft')   %>
+        <div class="right">
+            <div class="location">
+                <strong>你现在所在的位置是:</strong>
+                <span>账单管理页面</span>
+            </div>
+            <div class="search">
+                <span>商品名称：</span>
+                <input type="text" id="goodsname" placeholder="请输入商品的名称"/>
+                <span>是否付款：</span>
+                <select name="fukuan" id="payment">  
+                    <option value="">无</option>                  
+                    <option value="是">是</option>
+                    <option value="否">否</option>
+                </select>
+                <!-- <button>查询</button> -->
+                <input type="button" value="查询" id="queryBtn"/>
+                <b  onclick="window.location.href='/billsort?order=1'">金额升序</b>
+                <b  onclick="window.location.href='/billsort?order=-1'">金额升序</b>
+                <a  onclick="window.location.href='/billAdd'">添加订单</a>
+               
+
+            </div>
+            <!--账单表格 样式和供应商公用-->
+            <table class="providerTable" cellpadding="0" cellspacing="0">
+                <tr class="firstTr">
+                    <th width="10%">账单编码</th>
+                    <th width="10%">商品名称</th>
+                    <th width="20%">供应商</th>
+                    <th width="10%">账单金额</th>
+                    <th width="10%">是否付款</th>
+                    <th width="10%">创建时间</th>
+                    <th width="30%">操作</th>
+                </tr>
+                
+            <%    result.forEach((item,index)=>{   %>
+                <tr class="trmiddle">
+                    <td><%- item.no1  %></td>
+                    <td><%- item.no2  %></td>
+                    <td><%- item.no3  %></td>
+                    <td><%- item.no4  %></td>
+                    <td><%- item.no5  %></td>
+                    <td><%- item.no6  %></td>
+                    <td>
+                        <a href="javascript:;" class="tr_a1" onclick="window.location.href='/billView?_id=<%- item._id %>'">详情</a>
+                        <a href="javascript:;" class="tr_a2" onclick="window.location.href='/billUpdate?_id=<%- item._id %>'">修改</a>
+                        <a href="javascript:;"  class="removeBill tr_a3" onclick="getId('<%- item._id %>')" >删除</a>
+                    </td>
+                </tr>
+            <%    })   %>
+            <tr id="trfoot">
+                <td colspan="7" class="h4 text-center text-primary">
+                  <a href="/billList?pageNo=1">首页</a>
+                  <a href="/billList?pageNo=<%- pageNo<=1?1:pageNo-1 %>">上一页</a>
+                  <a href="/billList?pageNo=<%- pageNo>=totalpage?totalpage:pageNo+1 %>">下一页</a>
+                  <a href="/billList?pageNo=<%- totalpage %>">尾页</a>
+                  <p>
+                    <%- pageNo %>/<%- totalpage %> 共<%- count %>条
+                  </p>
+                </td>
+              </tr>
+            </table>
+        </div>
+    </section>
+
+<!--点击删除按钮后弹出的页面-->
+<div class="zhezhao"></div>
+<div class="remove" id="removeBi">
+    <div class="removerChid">
+        <h2>提示</h2>
+        <div class="removeMain">
+            <p>你确定要删除吗？</p>
+            <a   onclick="del(arg)" id="yes">确定</a>
+            <a href="#" id="no">取消</a>
+        </div>
+    </div>
+</div>
+
+    <footer class="footer w1200">
+    </footer>
+
+
+<script src="/bootstrap/js/jquery-1.10.1.js"></script>
+<script src="/javascripts/js.js"></script>
+<script src="/javascripts/time.js"></script>
+<script>
+    $("#queryBtn").click(function(){
+        var goodsname=$("#goodsname").val();
+        var payment=$("#payment").val();
+       window.location.href="/billquery?goodsname="+goodsname+"&payment="+payment;
+    })
+
+    var arg = null;  
+    function getId(_id){
+        arg = _id;
+        console.log(arg);
+    }
+
+    function del(arg){
+        window.location.href="/billDelete?_id="+arg;
+    }
+
+    $(".list li").eq(0).attr("id","active");
+     
+</script>
+</body>
+</html>

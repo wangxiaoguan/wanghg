@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据</title>
+    <style>
+        *{padding: 0;margin: 0;list-style: none;}
+        .search{text-align: center;margin:10px 0;}
+        .table{border-collapse:collapse;margin:10px auto;font-size:12px;}
+        #tbody tr{width: 600px;height:70px;text-align:center;}
+        #tbody tr td,th{border:1px solid black;padding:5px}
+        #tbody tr td:nth-child(4){padding:5px}
+        #tbody tr td img{width:60px;height:60px;vertical-align:middle;}
+        #tbody tr .num span{display:inline-block;width:20px;height:20px;background:#aaa;font-size:16px;}
+        #tbody tr .num span{vertical-align:middle;line-height:20px;}
+        #tbody tr .num .count{width:20px;height:18px;border:1px solid black;background:#fff;font-size:12px;}
+        #tbody tr .countall{width: 100px;}
+        #tbody tr:hover{background-color:rgba(120,0,120,0.3);}
+        #tfoot tr td{border:1px solid black;text-align:center;padding:10px 0 ;}
+        .page{width:100px;height: 20px;margin:5px auto;color:red;}
+
+    </style>
+</head>
+<body>
+<span id="loginurl">未登录</span>　　　　
+<span id="carcontent" style="color: rgb(255, 0, 34)"></span>
+<div class="search">
+    <input id="text" placeholder="搜索"><button id="search">查找</button>
+    <input type="radio" value="goodsprice" name="radio" checked>价格
+    <input type="radio" value="goodsname" name="radio">商品名
+    <button id="ascend">升序</button>
+    <button id="descend">降序</button><br/><br/>
+    <button id="prev">上一页</button>
+    <select id="selectnum">
+        <option value="3">每页显示3行数据</option>
+        <option value="5">每页显示5行数据</option>
+        <option value="7">每页显示7行数据</option>
+    </select>
+    <button id="next">下一页</button>
+</div>
+<table class="table">
+    <thead id="tdead">
+    <tr>
+        <th style="width:40px">选择</th>
+        <th style="width:60px">名称</th>
+        <th style="width:70px">图片</th>       
+        <th style="width:51px">单价</th>
+        <th style="width:70px">数量</th>
+        <th style="width:50px">小计</th>
+        <th style="width:32px">操作</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+        <!-- <tr>
+            <td class="checkbox"><input type="checkbox" class="checkone check"></td>
+            <td><img src="images/1.jpg"><span class="imgname">商品名:1</span></td>
+            <td class="price">100.00</td>
+            <td class="num"><span class="reduce">-</span><span class="count">1</span><span class="add">+</span></td>
+            <td class="countall">100.00</td>
+            <td class="deleteone">删除</td>
+        </tr> -->
+    </tbody>
+
+    <tfoot id="tfoot">
+    <tr>
+        <td><label><input class="checkall check" type="checkbox">&nbsp;全选</label></td>
+        <td id="deleteall">全部删除</td>
+        <td colspan="4">
+            <span>已选购商品<i id="total">0</i>件</span>
+            <span> 合计&nbsp;￥<i id="totalprice">0</i></span>
+        </td>
+        <td>结算</td>
+    </tr>
+    </tfoot>
+</table>
+<div class="page">◇第<span id="page" style="color:purple"></span>页◇</div>
+</body>
+<script src="js/config.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/userinfo.js"></script>
+<script>
+    var page=document.getElementById("page");//显示第几页
+    var content=document.getElementById("content");
+    var textinput=document.getElementById("text");
+    var search=document.getElementById("search");
+    var radiolist=document.getElementsByName("radio");
+    var ascend=document.getElementById("ascend");
+    var descend=document.getElementById("descend");
+    var prev=document.getElementById("prev");
+    var next=document.getElementById("next");
+    var selectnum=document.getElementById("selectnum");
+
+    //公共样式
+    var key="";
+    var order="goodsprice";
+    var desc="asc";
+    var pagenum=0;
+    var datanum=8;
+
+    page.innerHTML=pagenum+1;
+    var loginurl=document.getElementById("loginurl"); 
+    loginurl.innerHTML=getCookie("loginUserName")||`<a href="index.html">未登录</a>`;
+    var carcontent=document.getElementById("carcontent");
+    var tbody=document.getElementById("tbody");
+    var userid=getCookie("loginUserId");
+  
+
+    function add(id,obj){//增加数量
+        let numinput=obj.previousElementSibling;
+        let reduce=numinput.previousElementSibling;
+        num=numinput.innerHTML*1+1;
+        numinput.innerHTML=num;
+        if(num>1){
+            reduce.innerHTML="-";
+        }
+        let price=obj.parentNode.previousElementSibling;
+       
+        let total=obj.parentNode.nextElementSibling;
+        total.innerHTML=(price.innerHTML*num).toFixed(2);
+        userinfo.goodscarupdate(urlphp.goodscarupdate,{id:id,num:num})
+        .then(function(result){
+                if(result["code"]==1){
+                    // alert(result["msg"]);
+                }else{
+                    alert(result["msg"]);
+                }
+        })
+        // $.ajax({
+        //     type:"get",
+        //     url:"php/goodscarupdate.php",
+        //     data:{id:id,num:num},
+        //     dataType:"json",
+        //     fn:function(result){
+        //         if(result["code"]==1){
+        //             // alert(result["msg"]);
+        //         }else{
+        //             alert(result["msg"]);
+        //         }
+        //     }
+        // })
+    }
+    function reduce(id,obj){//减少数量
+        let numinput=obj.nextElementSibling;
+        num=numinput.innerHTML*1-1;
+        if(num<2){
+            num=1;
+            obj.innerHTML="";
+        }
+        numinput.innerHTML=num;
+        let price=obj.parentNode.previousElementSibling;
+        let total=obj.parentNode.nextElementSibling;
+        total.innerHTML=(price.innerHTML*num).toFixed(2);
+
+        userinfo.goodscarupdate(urlphp.goodscarupdate,{id:id,num:num})
+        .then(function(result){
+                if(result["code"]==1){
+                    // alert(result["msg"]);
+                }else{
+                    alert(result["msg"]);
+                }
+        })
+        // $.ajax({
+        //     type:"get",
+        //     url:"php/goodscarupdate.php",
+        //     data:{id:id,num:num},
+        //     dataType:"json",
+        //     fn:function(result){
+        //         if(result["code"]==1){
+        //             // alert(result["msg"]);
+        //         }else{
+        //             alert(result["msg"]);
+        //         }
+        //     }
+        // })
+    }
+
+    function deleteone(id,obj){//删除商品
+        let tr=obj.parentNode;
+        tr.parentNode.removeChild(tr);
+        userinfo.goodscardelete(urlphp.goodscardelete,{id:id})
+        .then(function(result){
+                if(result["code"]==1){
+                    alert(result["msg"]);
+                }else{
+                    alert(result["msg"]);
+                }
+        });
+
+
+
+        //  $.ajax({
+        //     type:"get",
+        //     url:"php/goodscardelete.php",
+        //     data:{id:id},
+        //     dataType:"json",
+        //     fn:function(result){
+        //         if(result["code"]==1){
+        //             alert(result["msg"]);
+        //         }else{
+        //             alert(result["msg"]);
+        //         }
+        //     }
+        // })
+    }
+
+
+
+  
+
+
+getData(key,userid,order,desc,pagenum,datanum);
+    selectnum.onchange= function () {
+        datanum=this.value;
+        pagenum=0;
+        page.innerHTML=pagenum+1;
+        getData(key,userid,order,desc,pagenum,datanum);
+    }
+
+search.onclick= function () {
+        key=textinput.value;    
+        pagenum=0;
+        page.innerHTML=pagenum+1;
+        getData(key,userid,order,desc,pagenum,datanum);
+    };
+
+for(var i=0;i<radiolist.length;i++){
+    radiolist[i].onclick= function () {
+        order=this.value;
+        // key=textinput.value;
+        // pagenum=0;
+        page.innerHTML=pagenum+1;
+        getData(key,userid,order,desc,pagenum,datanum);
+    }
+}
+ascend.onclick= function () {
+        desc="asc";
+        pagenum=0;
+        page.innerHTML=pagenum+1;
+        getData(key,userid,order,desc,pagenum,datanum);
+    };
+descend.onclick= function () {
+        desc="desc";
+        pagenum=0;
+        page.innerHTML=pagenum+1;
+        getData(key,userid,order,desc,pagenum,datanum);
+    };
+
+function getData(key,userid,order,desc,pagenum,datanum){
+
+        userinfo.goodscarsearch(urlphp.goodscarsearch,{ userid:userid,order:order,
+        desc:desc,pagenum:pagenum,datanum:datanum})
+        .then(function(list){
+            var html="";
+                if(list.length>0){
+                    carcontent.innerHTML=`<a href="goodslist.html">返回商品列表</a>`;
+                for(var i=0;i<list.length;i++){
+                    var item=list[i];
+                    if(item["goodsname"].indexOf(key)!=-1){
+                        var id=item["id"];
+                        var goodsid=item["goodsid"];
+                        var goodsname=item["goodsname"];
+                        var goodsprice=item["goodsprice"];
+                        var goodsnum=item["goodsnum"];
+                        var goodsimg=item["goodsimg"];
+                        html+=`<tr>
+                            <td class="checkbox"><input type="checkbox" class="checkone check"></td>
+                            <td><span class="imgname">${goodsname}</span></td>
+                            <td><img src="images/${goodsimg}.jpg"></td>                            
+                            <td class="price">${(goodsprice*1).toFixed(2)}</td>
+                            <td class="num"><span class="reduce" onclick="reduce(${id},this)">${goodsnum>1?"-":""}</span><span class="count">${goodsnum}</span><span class="add" onclick="add(${id},this)">+</span></td>
+                            <td class="total">${(goodsnum*goodsprice).toFixed(2)}</td>
+                            <td class="deleteone" onclick="deleteone(${id},this)">删除</td>
+                        </tr>`; 
+                    }
+                          
+                }
+                tbody.innerHTML=html;
+                userinfo.goodscarcount(urlphp.goodscarcount,{userid:userid})
+                .then(function(obj){
+                    var count=obj["count"];
+                        var pagemax=Math.ceil(count/datanum-1);
+                        prev.disabled=false;
+                        prev.onclick= function () {
+                            pagenum--;                         
+                            page.innerHTML=pagenum+1;
+                            getData(key,userid,order,desc,pagenum,datanum);            
+                        };
+                        next.disabled = false;
+                        next.onclick= function () {
+                            pagenum++;
+                            page.innerHTML=pagenum+1;
+                            getData(key,userid,order,desc,pagenum,datanum);                           
+                        };
+                        if (pagemax == pagenum) { //就表明是最后一页
+                            next.disabled = true;
+                            next.onclick = null;
+                        }
+                        if (pagenum == 0) {
+                            prev.disabled = true;
+                            prev.onclick = null;
+                        }
+                })
+            }else{carcontent.innerHTML=`购物车空空如也 <a href="goodslist.html">点击前往购买</a>`;}
+        })
+    }
+
+        // $.ajax({
+        //     type:"get",
+        //     url:"php/goodscarsearch.php",
+        //     data:{  userid:userid,
+        //             order:order,
+        //             desc:desc,
+        //             pagenum:pagenum,
+        //             datanum:datanum},
+        //     dataType:"json",
+        //     fn:function (sum) {
+        //         var list=sum;
+        //         var html="";
+        //         if(list.length>0){
+        //             carcontent.innerHTML=`<a href="goodslist.html">返回商品列表</a>`;
+        //         for(var i=0;i<list.length;i++){
+        //             var item=list[i];
+        //             if(item["goodsname"].indexOf(key)!=-1){
+        //                 var id=item["id"];
+        //                 var goodsid=item["goodsid"];
+        //                 var goodsname=item["goodsname"];
+        //                 var goodsprice=item["goodsprice"];
+        //                 var goodsnum=item["goodsnum"];
+        //                 var goodsimg=item["goodsimg"];
+        //                 html+=`<tr>
+        //                     <td class="checkbox"><input type="checkbox" class="checkone check"></td>
+        //                     <td><span class="imgname">${goodsname}</span></td>
+        //                     <td><img src="images/${goodsimg}.jpg"></td>                            
+        //                     <td class="price">${(goodsprice*1).toFixed(2)}</td>
+        //                     <td class="num"><span class="reduce" onclick="reduce(${id},this)">${goodsnum>1?"-":""}</span><span class="count">${goodsnum}</span><span class="add" onclick="add(${id},this)">+</span></td>
+        //                     <td class="total">${(goodsnum*goodsprice).toFixed(2)}</td>
+        //                     <td class="deleteone" onclick="deleteone(${id},this)">删除</td>
+        //                 </tr>`; 
+        //             }
+                          
+        //         }
+        //         tbody.innerHTML=html;
+
+               
+
+                // $.ajax({
+                //     type:"get",
+                //     url:"php/goodscarcount.php",
+                //     data:{userid:userid},
+                //     dataType:"json",
+                //     fn:function (obj) {
+                //         var count=obj["count"];
+                //         var pagemax=Math.ceil(count/datanum-1);
+                //         prev.disabled=false;
+                //         prev.onclick= function () {
+                //             pagenum--;                         
+                //             page.innerHTML=pagenum+1;
+                //             getData(key,userid,order,desc,pagenum,datanum);            
+                //         };
+                //         next.disabled = false;
+                //         next.onclick= function () {
+                //             pagenum++;
+                //             page.innerHTML=pagenum+1;
+                //             getData(key,userid,order,desc,pagenum,datanum);                           
+                //         };
+                //         if (pagemax == pagenum) { //就表明是最后一页
+                //             next.disabled = true;
+                //             next.onclick = null;
+                //         }
+                //         if (pagenum == 0) {
+                //             prev.disabled = true;
+                //             prev.onclick = null;
+                //         }
+
+                //     }
+
+                // })
+
+    //              }else{carcontent.innerHTML=`购物车空空如也 <a href="goodslist.html">点击前往购买</a>`;}
+    //         }
+    //     })
+    // }
+
+</script>
+</html>
