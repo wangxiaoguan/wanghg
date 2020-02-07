@@ -1,0 +1,202 @@
+@import '~antd/lib/style/themes/default.less';
+
+.newList {
+  width: 100%;
+  margin-top: 10px;
+  min-height: 650px;
+}
+
+.main {
+  border-bottom: 1px solid #f5f5f5;
+  padding: 15px 20px;
+}
+
+.mainListNew {
+  cursor: pointer;
+
+  .newsLeft {
+    width: 300px;
+    height: 120px;
+    float: left;
+    overflow: hidden;
+
+    .newImg {
+      transition: all 0.5s ease;
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+      background-size: cover;
+      position: relative;
+    }
+
+    .vedioLogo {
+      width: 43px;
+      height: 43px;
+      margin-top: -66px;
+      left: 78px;
+      position: absolute;
+      background-image: url('@/assets/vedio.png');
+      background-size: cover;
+    }
+
+    .newStateY,
+    .newStateN {
+      position: absolute;
+      width: 45px;
+      height: 18px;
+      font-size: 12px;
+      background-color: #e22525;
+      color: #fff;
+      margin-top: 8px;
+      text-align: center;
+      z-index: 1;
+      line-height: 18px;
+    }
+
+    .newStateN {
+      background-color: #ffaf46;
+    }
+  }
+
+  .newImg:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  .newsContain {
+    float: right;
+    width: calc(100% - 308px);
+    padding: 0 15px;
+
+    p {
+      font-weight: 600;
+      overflow: hidden;
+      line-height: 20px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 280px;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+    p:hover {
+      color: red;
+    }
+
+    .newTime {
+      float: right;
+      font-size: 12px;
+    }
+
+    .newContain {
+      width: 320px;
+      overflow: hidden;
+      /* stylelint-disable */
+      /* autoprefixer: off */
+      -webkit-box-orient: vertical;
+      /* autoprefixer: on */
+      /* stylelint-enable */
+      font-size: 12px;
+      min-height: 32px;
+      color: #b3b3b3;
+      line-height: 16px;
+      text-overflow: ellipsis;
+      margin: 5px 0 10px;
+      white-space: pre-wrap;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+    }
+
+    .newBottom {
+      a {
+        text-decoration: none !important;
+        display: inline-block;
+        width: 100px;
+        font-size: 12px;
+        float: right;
+        text-align: right;
+      }
+
+      .department {
+        display: inline-block;
+        width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 12px;
+      }
+
+      span {
+        display: inline-block;
+        width: 120px;
+        color: #b3b3b3;
+        margin-left: 5px;
+        font-size: 12px;
+      }
+
+      .right {
+        display: block;
+        margin-top: 5px;
+
+        .progress {
+          width: 400px;
+          height: 20px;
+          display: inline-block;
+          vertical-align: top;
+          background-color: #f5f5f5;
+          overflow: hidden;
+
+          .inner {
+            float: left;
+            background: -webkit-linear-gradient(left, #00ddfd, #1caab9);
+            background: -o-linear-gradient(right, #00ddfd, #1caab9);
+            background: -moz-linear-gradient(right, #00ddfd, #1caab9);
+            background: linear-gradient(to right, #00ddfd, #1caab9);
+            height: 100%;
+            transition: 0.4s;
+            text-align: right;
+          }
+        }
+      }
+
+      .butn {
+        padding: 0;
+        width: 70px;
+        margin-top: -35px;
+        font-size: 13px;
+        text-align: center;
+        color: #fff;
+        background-color: #e22525;
+        float: right;
+
+        span {
+          width: 60px !important;
+        }
+      }
+    }
+  }
+
+  .mainListNew::after {
+    contain: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.inStyle,
+.endStyle {
+  color: #3699ff;
+  float: right;
+  font-size: 16px;
+  margin-top: -35px;
+}
+
+.endStyle {
+  color: #b3b3b3;
+}

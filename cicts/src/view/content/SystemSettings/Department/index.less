@@ -1,0 +1,66 @@
+.departmentManagement {
+  span {
+    vertical-align: baseline;
+    line-height: 24px;
+  }
+  display: flex;
+  flex-direction: row;
+  padding: 60px 30px;
+  .left {
+    flex: 0 0 400px;
+    height: 600px;
+    border-right: 1px solid #d7dae6;
+    padding-right: 40px;
+    margin-right: 40px;
+    position: relative;
+    .ant-tree {
+      height: 500px;
+      overflow-x: auto;
+      li .ant-tree-node-content-wrapper {
+        height: 24px;
+      }
+    }
+    .exportExcel {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+    }
+  }
+  .right {
+    width: 1px;
+    flex: 1 1;
+    height: 600px;
+    // background-color: red
+  }
+  .rightMenu {
+    width: 116px;
+    text-align: center;
+    background-color: #f8fbff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    border: none;
+    z-index: 1;
+    .ant-menu-item {
+      padding-right: 0;
+    }
+    .ant-menu-item-active {
+      background-color: #50a2ff;
+      color: white;
+    }
+  }
+  // .ant-tree {
+  //   li span.ant-tree-switcher {
+  //     display: none;
+  //     color: red;
+  //   }
+  //   .treeNodeDisable {
+  //     .ant-tree-node-content-wrapper {
+  //       color: rgb(185, 185, 185);
+  //     }
+  //   }
+  // }
+  .partyOrgSel {
+    .ant-select-selection {
+        overflow: hidden;
+    }
+  }
+}

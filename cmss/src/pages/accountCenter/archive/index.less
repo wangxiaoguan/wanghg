@@ -1,0 +1,101 @@
+.main {
+  text-align: left;
+  & > :first-child {
+    height: 140px;
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+
+    & > :first-child {
+      width: 72px;
+      height: 72px;
+      // background: url('@/assets/touxiang2.png') no-repeat;
+      margin: 58px 20px 21px 38px;
+    }
+
+    & > :nth-child(2) {
+      margin: 54px 0 25px 0;
+      height: 24px;
+      font-size: 24px;
+      color: rgba(51, 51, 51, 1);
+      align-items: center;
+    }
+  }
+
+  .content {
+    margin: 0 60px 50px 130px;
+  }
+}
+
+.name {
+  font-weight: 600 !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.line {
+  width: 100%;
+  min-height: 50px;
+  padding: 9px 0;
+  line-height: 30px;
+  align-items: center;
+  text-align: left;
+
+  &:last-child {
+    border-bottom: #e6e6e6 solid 1px;
+  }
+
+  & > :first-child {
+    display: inline-block;
+    width: 170px;
+    font-size: 16px;
+    vertical-align: top;
+    font-weight: 400;
+    color: #333;
+  }
+}
+
+.postContet {
+  display: inline-block;
+  width: 495px;
+  font-size: 16px;
+  vertical-align: top;
+  font-weight: 400;
+  color: #808080;
+  :global {
+    .ant-divider-horizontal {
+      display: block;
+      clear: both;
+      width: 100%;
+      min-width: 100%;
+      height: 1px;
+      margin: 8px 0;
+    }
+  }
+
+  & :last-child {
+    :global {
+      .ant-divider-dashed {
+        display: none;
+      }
+    }
+  }
+}
+
+.honorIcon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('@/assets/danghui-small.png');
+  background-size: 100% 100%;
+  margin-right: 6px;
+  position: relative;
+  top: 2px;
+}
+
+.divider {
+  position: relative;
+  left: 130px;
+  width: 668px;
+  border-bottom: #e6e6e6 solid 1px;
+}

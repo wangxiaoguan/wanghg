@@ -1,0 +1,234 @@
+@primaryColor: #d60d0d;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+// 党建任务通用表格
+.tableContent {
+  width: 820px;
+
+  :global {
+
+    .ant-table-thead>tr>th,
+    .ant-table-tbody>tr>td {
+      padding: 0 5px;
+      height: 40px !important;
+    }
+
+    .ant-table-thead>tr>th {
+      color: #808080 !important;
+      background: #f7f7f7;
+    }
+
+    .ant-pagination-total-text {
+      position: absolute;
+      left: 0;
+    }
+
+    .ant-pagination-item {
+      height: 30px !important;
+      width: 30px !important;
+
+      a {
+        text-align: center;
+        margin: 0 !important;
+      }
+    }
+
+    .ant-pagination-item.ant-pagination-item-active {
+      background: @primaryColor  !important;
+      border-color: @primaryColor  !important;
+    }
+
+    .ant-pagination-item:hover {
+      border-color: @primaryColor  !important;
+      color: @primaryColor  !important;
+    }
+
+    .ant-pagination-item:hover a {
+      color: @primaryColor  !important;
+    }
+
+    .ant-select-selection:hover {
+      border-color: @primaryColor  !important;
+    }
+
+    .ant-select-selection:active {
+      box-shadow: 0 0;
+    }
+
+    .ant-pagination-prev a,
+    .ant-pagination-next a {
+      border: none !important;
+    }
+
+    .ant-pagination-item.ant-pagination-item-active {
+      a {
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+//红色渐变按钮
+.primary_btn {
+  display: inline-block;
+
+  :global {
+
+    .ant-btn,
+    .ant-btn:hover {
+      background: linear-gradient(0deg, rgba(255, 230, 175, 0.5), rgba(255, 247, 209, 0));
+      color: #fff;
+      background-color: @primaryColor;
+      border-color: @primaryColor;
+      border-radius: 4px;
+    }
+  }
+}
+
+// 红色渐变的按钮
+.red-btn {
+  background-image: linear-gradient(180deg, rgba(255, 230, 175, 0.5), rgba(255, 247, 209, 0));
+  color: #fff;
+  background-color: @primaryColor;
+  border-color: @primaryColor;
+  border-radius: 4px;
+}
+
+.red-btn:hover,
+.red-btn:focus,
+.btn-vote:disabled,
+.btn-vote:hover,
+.btn-bordered:hover {
+  &:extend(.red-btn);
+  border-color: @primaryColor;
+}
+
+.btn-vote {
+  background: linear-gradient(0deg, rgba(255, 230, 175, 0.5), rgba(255, 247, 209, 0));
+  border: 1px solid rgba(221, 56, 55, 1);
+  border-radius: 4px;
+  color: #d60d0d;
+}
+
+.btn-vote:focus {
+  &:extend(.btn-vote);
+}
+
+// 活动详情下面的按钮
+.btn-bordered:extend(.btn-vote) {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.btn-bordered:focus {
+  &:extend(.red-btn);
+}
+
+.btn-cancel {
+  background: linear-gradient(0deg, rgba(245, 242, 237, 1), rgba(255, 255, 255, 1));
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  color: #808080;
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+  &:extend(.btn-cancel);
+  border: 1px solid @primaryColor;
+}
+
+//浅灰色按钮
+.global_btn {
+  display: inline-block;
+
+  :global {
+
+    .ant-btn,
+    .ant-btn:hover {
+      background: linear-gradient(0deg, rgba(245, 242, 237, 1), rgba(255, 255, 255, 1));
+      color: #808080;
+      border: 1px solid rgba(191, 191, 191, 1);
+      border-radius: 4px;
+    }
+  }
+}
+
+.ant-tabs-tab-active {
+  color: @primaryColor  !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: @primaryColor  !important;
+}
+
+.blueSpan {
+  color: #ba621b;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ant-pagination-item.ant-pagination-item-active {
+  background: @primaryColor  !important;
+  border-color: @primaryColor  !important;
+}
+
+.ant-pagination-item:hover {
+  border-color: @primaryColor  !important;
+  color: @primaryColor  !important;
+}
+
+.ant-pagination-item:hover a {
+  color: @primaryColor  !important;
+}
+
+.ant-pagination-item-active a {
+  color: #fff !important;
+}
+
+.ant-pagination-item-active:hover a {
+  color: #fff !important;
+}
+
+.ant-pagination-item-link:hover {
+  color: @primaryColor  !important;
+  border-color: @primaryColor  !important;
+}
+
+// 分页样式
+.party_pagination {
+  //.ant-pagination-item.ant-pagination-item-active {
+  //  background: @primaryColor  !important;
+  //  border-color: @primaryColor  !important;
+  //}
+  //
+  //.ant-pagination-item:hover {
+  //  border-color: @primaryColor  !important;
+  //  color: @primaryColor  !important;
+  //}
+  //
+  //.ant-pagination-item:hover a {
+  //  color: @primaryColor  !important;
+  //}
+  //
+  //.ant-pagination-item-active a {
+  //  color: #fff !important;
+  //}
+  //
+  //.ant-pagination-item-active:hover a {
+  //  color: #fff !important;
+  //}
+  //
+  //.ant-pagination-item-link:hover {
+  //  color: @primaryColor  !important;
+  //  border-color: @primaryColor  !important;
+  //}
+}

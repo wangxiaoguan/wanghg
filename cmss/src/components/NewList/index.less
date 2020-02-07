@@ -1,0 +1,175 @@
+.newList {
+  min-height: 700px;
+  width: 100%;
+  margin-top: 10px;
+
+  .newItem {
+    border-bottom: 1px solid #f5f5f5;
+    padding: 15px 20px;
+    cursor: pointer;
+    overflow: hidden;
+
+    .itemWraper {
+      .left {
+        width: 160px;
+        height: 90px;
+        float: left;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .newImg {
+          height: 100%;
+          border-radius: 5px;
+          width: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          z-index: 0;
+          position: relative;
+        }
+      }
+
+      .newsContain {
+        float: right;
+        width: calc(100% - 160px);
+        padding: 0 15px;
+
+        p {
+          font-weight: 600;
+          overflow: hidden;
+          line-height: 20px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: 362px;
+          display: inline-block;
+          font-size: 16px;
+          margin-bottom: 0;
+        }
+
+        p:hover {
+          color: #d60d0d;
+        }
+
+        .newTime {
+          float: right;
+          font-size: 12px;
+          color: #999;
+        }
+
+        .newContain {
+          width: 455px;
+          position: relative;
+          font-size: 12px;
+          padding-right: 10px;
+          height: 32px;
+          color: #b3b3b3;
+          line-height: 16px;
+          margin: 5px 0 10px;
+        }
+        .newBottom {
+          position: relative;
+
+          a {
+            display: inline-block;
+            width: 100px;
+            color: #3699ff;
+            margin-top: -20px;
+            right: 0;
+            position: absolute;
+            font-size: 14px;
+            text-align: right;
+          }
+
+          .department {
+            display: inline-block;
+            width: 150px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: #999;
+            font-size: 12px;
+          }
+
+          .span {
+            display: inline-block;
+            width: 80px;
+            color: #999;
+            margin-left: 5px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.newStateY,
+.newStateN,
+.endStyle {
+  position: absolute;
+  width: 45px;
+  height: 18px;
+  font-size: 12px;
+  background-color: #d60d0d;
+  color: #fff;
+  margin-top: 8px;
+  text-align: center;
+  z-index: 1;
+  line-height: 18px;
+}
+
+.newStateN {
+  background-color: #ffaf46;
+}
+
+.endStyle {
+  background-color: #999;
+}
+
+.progressContainer {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.butnTest,
+.studyBtn {
+  position: absolute;
+  right: 0;
+  margin-top: -10px;
+}
+
+.butnTest {
+  margin-top: -30px;
+}
+
+.right {
+  display: inline-block;
+
+  small {
+    display: inline-block;
+    color: #999;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .progress {
+    width: 400px;
+    height: 20px;
+    display: inline-block;
+    // display: inline-block;
+    vertical-align: top;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    border-radius: 5px;
+
+    .inner {
+      // float: left;
+      background: -webkit-linear-gradient(left, #f5273b, #ff6b6b);
+      background: -o-linear-gradient(right, #f5273b, #ff6b6b);
+      background: -moz-linear-gradient(right, #f5273b, #ff6b6b);
+      background: linear-gradient(to right, #f5273b, #ff6b6b);
+      height: 100%;
+      transition: 0.4s;
+      text-align: right;
+    }
+  }
+}

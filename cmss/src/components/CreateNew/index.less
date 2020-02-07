@@ -1,0 +1,177 @@
+@import '../../default.less';
+
+.main {
+  padding: 10px 20px;
+  :global {
+    .ant-tabs-nav-container {
+      text-align: center;
+    }
+
+    .ant-tabs-nav .ant-tabs-tab {
+      padding: 12px 0;
+    }
+    .ant-tabs-ink-bar {
+      width: 125px !important;
+      height: 4px;
+    }
+    .ant-tabs-nav .ant-tabs-tab:hover {
+      color: rgba(214, 13, 13, 1);
+    }
+
+    .ant-message {
+      .ant-message-success {
+        svg {
+          color: #03f40c;
+        }
+      }
+    }
+  }
+}
+
+.tabTitle {
+  .one,
+  .two,
+  .twoActive,
+  .complete {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-size: cover;
+    margin-right: 5px;
+  }
+
+  .complete {
+    background-image: url('@/assets/partyTask/complete.png');
+  }
+
+  .one,
+  .twoActive {
+    background: rgba(214, 13, 13, 1);
+    border-radius: 50%;
+    color: #fff;
+  }
+
+  .two {
+    // background-image: url('@/assets/partyTask/two.png');
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(172, 172, 172, 1);
+    border-radius: 50%;
+    color: rgba(172, 172, 172, 1);
+  }
+
+  p {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.spetor {
+  color: #e6e6e6;
+  position: relative;
+  display: inline-block;
+  margin-left: 45px;
+  font-size: 16px;
+}
+
+.setPage {
+  text-align: center;
+
+  button {
+    margin-right: 30px;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    margin-right: 30px;
+    margin-top: 30px;
+    line-height: 32px;
+    border: 1px solid @primaryColor;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block;
+    color: #fff;
+    background: linear-gradient(0deg, rgba(255, 230, 175, 0.5), rgba(255, 247, 209, 0));
+    background-color: @primaryColor;
+    width: 80px;
+    height: 32px;
+  }
+}
+
+.taskReceive {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  width: 46%;
+  margin: 20px 10px;
+  text-align: center;
+  height: 600px;
+  margin-bottom: 20px;
+
+  .TreeContain {
+    margin: 20px 10px 0;
+    height: 550px;
+    border: 1px solid #d9d9d9;
+    border-top: none;
+
+    :global {
+      .ant-input-affix-wrapper .ant-input-suffix {
+        right: 40px;
+      }
+      .ant-tree {
+        overflow: auto;
+        height: 515px;
+      }
+
+      .anticon svg {
+        color: #686666;
+      }
+
+      .ant-tree.ant-tree-show-line li {
+        text-align: left;
+      }
+
+      .ant-input {
+        border-radius: 0;
+      }
+
+      .ant-spin-container {
+        li::before {
+          border-left: 1px dashed #d9d9d9;
+        }
+      }
+    }
+  }
+
+  .typeTitle {
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.closeInput {
+  width: 14px;
+  position: absolute;
+  margin-left: -24px;
+  margin-top: 9px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.divider {
+  margin-left: -30px;
+  height: 32px;
+  width: 1px;
+  position: absolute;
+}

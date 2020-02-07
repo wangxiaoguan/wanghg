@@ -1,0 +1,28 @@
+.attach-main{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.ant-upload-list-text{
+  display: inline-block;
+}
+.attach-main .ant-select-arrow{
+  width: 0px;
+   height: 0px;
+background-color: #79d3ff;
+  top: 6px;
+  right: 0;
+  border-radius: 0 4px 4px 0;
+}
+.attach-main .ant-select-arrow:before {
+  content: "";
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s;
+}
+.attach-main .ant-upload-list-item-name {
+  cursor: default;
+}

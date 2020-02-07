@@ -1,0 +1,145 @@
+.wrapperClassName {
+  height: 100%;
+  background: #f5f2ed;
+}
+
+.nav {
+  display: inline-block;
+  vertical-align: top;
+  height: 810px;
+
+  :global {
+    .ant-menu-submenu-arrow {
+      display: none !important;
+    }
+
+    div.ant-typography,
+    .ant-typography p {
+      margin-bottom: 0;
+      display: inline-block;
+      vertical-align: bottom;
+      width: 112px;
+    }
+
+    .ant-menu-item-selected,
+    .ant-menu-item-active {
+      div.ant-typography,
+      .ant-typography p {
+        color: #d60d0d;
+      }
+    }
+
+    .ant-menu-inline {
+      border-right: #fff;
+    }
+
+    .ant-menu-item > a:hover {
+      color: #d60d0d;
+    }
+
+    .ant-menu-submenu-title {
+      display: inline-block;
+      padding: 20px 10px 0 !important;
+      height: auto !important;
+      line-height: 20px !important;
+      min-height: 60px;
+      font-weight: bold;
+      font-size: 15px;
+      margin: 0;
+
+      a {
+        color: #666;
+      }
+
+      a:hover {
+        color: #d60d0d;
+      }
+    }
+
+    .ant-menu-submenu-open {
+      background: #fff !important;
+      width: 143px;
+
+      .ant-menu-submenu-title a {
+        color: #d60d0d !important;
+      }
+    }
+
+    .ant-menu-submenu-open:before {
+      content: '';
+      width: 4px;
+      display: inline-block;
+      height: 60px;
+      background: #d60d0d;
+      position: absolute;
+    }
+
+    .ant-menu-submenu-title:active {
+      background: #fff;
+    }
+
+    .ant-menu-submenu {
+      position: relative;
+      background: #f5f2ed;
+    }
+
+    .ant-menu-item {
+      padding: 0 16px !important;
+      height: auto !important;
+      font-weight: bold;
+      color: #666;
+      margin: 0 !important;
+      background-color: #fdfcfa !important;
+    }
+
+    .ant-menu-item:not(:last-child) {
+      border-bottom: 1px solid #f5f2ed;
+    }
+
+    .ant-menu-item-selected {
+      background-color: #fdfcfa !important;
+
+      a {
+        color: #d60d0d;
+      }
+
+      .ant-badge-status-default {
+        background-color: #d60d0d !important;
+      }
+    }
+
+    .ant-menu-item:after {
+      border-right: none !important;
+    }
+  }
+
+  .subTitle {
+    width: 100;
+    height: auto;
+    white-space: pre-wrap;
+  }
+
+  .subLifeTitle {
+    width: 100;
+    height: auto;
+    white-space: pre-wrap;
+    position: relative;
+    top: -9px;
+  }
+}
+
+.title {
+  white-space: pre-wrap;
+  display: inline-block;
+  line-height: 22px;
+  width: 100px;
+  vertical-align: middle;
+}
+
+.content {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 142px);
+  background: #fff;
+  min-height: 810px;
+}

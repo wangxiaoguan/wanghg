@@ -1,0 +1,427 @@
+.InfromationPage {
+  padding: 10px 20px;
+  .InformationContent {
+    width: 100%;
+    margin-top: 40px;
+
+    .newsTitle {
+      padding-top: 39px;
+      padding-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .titleImg {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      padding: 15px 1%;
+
+      span {
+        font-size: 14px !important;
+      }
+
+      img {
+        width: 80% !important;
+        margin: 15px auto 10px;
+        display: block;
+      }
+    }
+
+    .buttonSure {
+      display: inline-block;
+      margin-right: 10px;
+      :global {
+        .ant-btn,
+        .ant-btn:hover {
+          background: linear-gradient(0deg, rgba(255, 230, 175, 0.5), rgba(255, 247, 209, 0));
+          color: #fff;
+          background-color: #d60d0d;
+          border-color: #d60d0d;
+          border-radius: 4px;
+          padding: 0 14px;
+        }
+      }
+    }
+
+    .completeRate {
+      display: inline-block;
+      :global {
+        .ant-btn,
+        .ant-btn:hover {
+          padding: 0 20px;
+          background: linear-gradient(0deg, rgba(245, 242, 237, 1), rgba(255, 255, 255, 1));
+          color: #808080;
+          border: 1px solid rgba(191, 191, 191, 1);
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .inputDisadled {
+      color: #333;
+    }
+
+    .cpmpleteSubtitle1 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .subtitleAround {
+      flex-direction: column-reverse;
+    }
+
+    .fliterAround {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px 0;
+      background-color: #fafafa;
+      text-align: center;
+    }
+
+    .sumTable {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .attachment {
+      width: 100%;
+      background-color: #f5f5f5;
+      margin-bottom: 10px;
+      // height: 50px;
+    }
+
+    .attachmentDiv {
+      display: inline;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .attachmentIcon {
+      // display: inline;
+      // margin-bottom: 10px;
+      // margin-top: 10px;
+      // margin-left: 20px;
+      width: 33px;
+      height: 100%;
+      margin-right: 5px;
+      // background: no-repeat center center;
+    }
+
+    .image {
+      width: 33px;
+      height: 100%;
+      margin-right: 10px;
+      // margin: auto;
+      // background: no-repeat center center;
+      // background-size: 100% 100%;
+      // cursor: pointer;
+    }
+
+    // 图片类
+    .icon-jpeg {
+      background-image: url('@/assets/jpeg.png');
+    }
+    .icon-jpg {
+      background-image: url('@/assets/jpg.png');
+    }
+    .icon-png {
+      background-image: url('@/assets/png.png');
+    }
+    .icon-bmp {
+      background-image: url('@/assets/bmp.png');
+    }
+    // .icon-gif {
+    //   background-image: url('@/assets/gif.png');
+    // }
+
+    // 文档类
+    .icon-doc {
+      background-image: url('@/assets/doc.png');
+    }
+    .icon-docx {
+      background-image: url('@/assets/docx.png');
+    }
+    .icon-xls {
+      background-image: url('@/assets/xls.png');
+    }
+    .icon-xlsx {
+      background-image: url('@/assets/xlsx.png');
+    }
+    .icon-ppt {
+      background-image: url('@/assets/ppt.png');
+    }
+    .icon-pptx {
+      background-image: url('@/assets/pptx.png');
+    }
+    .icon-pdf {
+      background-image: url('@/assets/pdf.png');
+    }
+    .icon-txt {
+      background-image: url('@/assets/txt.png');
+    }
+
+    // 视频类
+    .icon-mp4 {
+      background-image: url('@/assets/mp4.png');
+    }
+  }
+
+  .taskBack {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    height: 18px;
+    margin-bottom: 50px;
+    line-height: 18px;
+
+    span {
+      display: inline-block;
+      width: 4px;
+      vertical-align: top;
+      height: 18px;
+      margin-right: 2px;
+      background-color: #d60d0d;
+    }
+  }
+
+  :global {
+    .ant-pagination-total-text {
+      float: left;
+    }
+    div.ant-typography,
+    .ant-typography p {
+      margin-bottom: 0;
+    }
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      padding: 10px;
+    }
+  }
+
+  .pagination {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .commentItem {
+    margin: 0;
+
+    :global {
+      .ant-divider-dashed {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+    }
+
+    .userLogo {
+      display: inline-block;
+      width: 36px;
+      border-radius: 18px;
+      background-color: #d5d5d5;
+      height: 36px;
+      vertical-align: top;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 36px 36px;
+    }
+
+    .comment {
+      margin-left: 10px;
+      display: inline-block;
+      width: 750px;
+      min-height: 74px;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 24px;
+
+      :global {
+        .ant-avatar-lg {
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+        }
+      }
+
+      .name {
+        display: inline-block;
+        color: #ba621b;
+        width: 160px;
+        height: 24px;
+      }
+
+      .praice {
+        display: inline-block;
+        color: #333;
+        width: 200px;
+        height: 24px;
+        text-align: right;
+        float: right;
+      }
+
+      .return {
+        display: inline-block;
+        color: #f84883;
+        width: 100px;
+        height: 24px;
+        float: right;
+        text-align: right;
+      }
+
+      .make {
+        display: inline-block;
+        color: #3699ff;
+        float: right;
+        width: 230px;
+        transition: all 0.5s ease;
+        height: 24px;
+        text-align: right;
+
+        span {
+          color: #d60d0d;
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align: top;
+          cursor: pointer;
+        }
+
+        span:hover {
+          color: #f31212;
+        }
+
+        .cancel {
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+          cursor: pointer;
+          background-position: center;
+          background: url('@/assets/back.png') no-repeat;
+          background-size: 20px 20px;
+          margin-right: 7px;
+        }
+
+        .good {
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          display: inline-block;
+          background-position: center;
+          background: url('@/assets/flowers.png') no-repeat;
+          background-size: 20px 20px;
+          margin: 0 7px;
+        }
+
+        .estimate {
+          display: inline-block;
+          width: 30px;
+          vertical-align: top;
+          height: 100%;
+          color: #3699ff;
+          cursor: pointer;
+        }
+      }
+
+      .time {
+        display: inline-block;
+        width: 100%;
+        height: 24px;
+        text-align: right;
+        color: #999;
+        line-height: 24px;
+        font-size: 12px;
+      }
+
+      .main {
+        color: #333;
+        font-size: 14px;
+        line-height: 24px;
+        width: 580px;
+        min-height: 30px;
+      }
+
+      .attachList {
+        width: 580px;
+        min-height: 110px;
+      }
+
+      .returnresean {
+        color: #333;
+        min-height: 25px;
+        font-size: 14px;
+        background: #f6dbe1;
+        line-height: 24px;
+        width: 775px;
+      }
+    }
+  }
+}
+
+.seekItem {
+  width: 369px;
+  height: 58px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(191, 191, 191, 1);
+  border-radius: 4px;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+  .icon,
+  .actIcon {
+    height: 30px;
+    width: 30px;
+    margin-bottom: 14px;
+    vertical-align: bottom;
+    margin-left: 5px;
+    display: inline-block;
+    background: url('@/assets/partyTask/zixun.png') no-repeat;
+  }
+
+  .actIcon {
+    background: url('@/assets/partyTask/huodong.png') no-repeat;
+  }
+  .seekContent {
+    display: inline-block;
+    width: 325px;
+    margin-left: 5px;
+    border-left: 1px solid rgba(191, 191, 191, 1);
+    height: 100%;
+    position: relative;
+    vertical-align: bottom;
+
+    :global {
+      div.ant-typography,
+      .ant-typography p {
+        margin-bottom: 0;
+        height: 50px;
+        padding: 10px 10px 10px 7px;
+        line-height: 20px;
+      }
+    }
+  }
+  span {
+    position: absolute;
+    margin-top: -20px;
+    margin-left: -5px;
+    cursor: pointer;
+  }
+}
+
+.seekItem:hover {
+  box-shadow: 2px 2px 3px #999;
+}
+
+.backAddvice {
+  :global {
+    textarea.ant-input {
+      vertical-align: middle;
+    }
+  }
+}

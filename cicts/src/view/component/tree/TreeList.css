@@ -1,0 +1,27 @@
+.selectable-tree {
+  width: 250px;
+  background: #fff;
+  display: inline-block;
+}
+.selectable-tree .ant-tree {
+  overflow: auto;
+  height: 41.66666667vh;
+}
+.treeNodeDisable i {
+  color: rgba(0, 0, 0, 0.25);
+}
+.treeNodeDisable {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.treeNodeDisable > span {
+  color: rgba(0, 0, 0, 0.25) !important;
+}
+.treeNodeDisable > .ant-tree-checkbox.ant-tree-checkbox-checked {
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+.treeNodeDisable > .ant-tree-checkbox {
+  cursor: not-allowed;
+  pointer-events: none;
+}
