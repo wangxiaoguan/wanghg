@@ -34,7 +34,7 @@
             left:4%;
             width:40%;
             height: 70%;
-            background: #aaa;
+            overflow: hidden;
         }
         .img{
             width:100%;
@@ -70,7 +70,6 @@
             left:44%;
             width:1%;
             height:90%;
-            background: #777;
         }
         .line{
             width:100%;
@@ -101,7 +100,6 @@
             width:48%;
             height:70%;
             padding:0 1%;
-            background: #aaa;
         }
         
         h2{
@@ -109,8 +107,13 @@
             font-family:PingFang SC;
             font-weight:bold;
             color:rgba(51,51,51,1);
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
         }
-
+        sup{
+            color: red;
+        }
         .time{
             font-size: 20px;
             font-weight: 400;
@@ -124,18 +127,21 @@
         .company{
             padding: 0;
             margin: 0;
+            width: 100%;
             font-size:36px;
             font-family:PingFang SC;
             font-weight:bold;
-            line-height:64px;
+            line-height:40px;
             color:rgba(51,51,51,1);
-            opacity:1;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
             
         }
         .explain{
             font-size: 14px;
             color: #333;
-            margin-top: 60px;
+            margin-top:10%;
         }
         .explain h3{
             font-size:18px;
@@ -144,26 +150,29 @@
             line-height:25px;
             color:rgba(102,102,102,1);
             opacity:1;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
         }
         .btn{
-            margin-top: 40px;
+            margin-top: 10%;
         }
         a{
             display: inline-block;
-            /* width: 180px; */
-            /* padding: 15px; */
             color: #eee;
-            /* font-size: 14px; */
             text-align: center;
             cursor: pointer;
             text-decoration: none;
-            width:300px;
+            width:40%;
             height:50px;
             line-height: 50px;
             background:linear-gradient(168deg,rgba(250,84,84,1) 0%,rgba(228,30,30,1) 46%,rgba(202,0,0,1) 100%);
             box-shadow:0 3px 6px rgba(0,0,0,0.16);
             opacity:1;
             border-radius:10px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
         }
         .btn-left{
             margin-right: 40px;
