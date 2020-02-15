@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      pre{
+          font-size: 14px;
+          font-family:'宋体';
+      }
+  </style>
+</head>
+<body>
+<pre>
+  React-Redux的使用步骤
+type.js
+
+    export const ArticleData = 'ArticleData';
+    export const FileData = 'FileData';
+    export const FormData ='FormData';
+action.js
+
+    import {ArticleData,FileData,FormData} from './type.js';
+    export function setArticleData(n) {return { type: ArticleData, payload: n }}
+    export function setFileData(n) {return { type: FileData, payload: n }}
+    export function setFormData(n) {return { type: FormData, payload: n }}
+reducer.js
+
+    import { combineReducers } from 'redux';
+    import {ArticleData,ActivityData,FormData} from './type.js';
+    const articleData = (state = {}, action = {}) => {
+        switch (action.type) {
+            case ArticleData:
+                return action.payload;
+            default:
+                return state;
+        }
+    };
+    const activityData = (state = {}, action = {}) => {
+        switch (action.type) {
+            case ActivityData:
+                return action.payload;
+            default:
+                return state;
+        }
+    };
+    const formData = (state = {}, action = {}) => {
+        switch (action.type) {
+            case FormData:
+                return action.payload;
+            default:
+                return state;
+        }
+    };
+    export default combineReducers({
+        articleData,
+        activityData,
+        formData,
+    });
+store.js
+
+    import {createStore} 'redux';
+    import reducer from './reducer.js';
+    export default createStore(
+        reducer
+    );
+使用store
+
+    import store from './store.js'
+    import {setArticleData,setFileData,setFormData} from './action.js';
+
+    获取store状态数据
+    store.getState()
+
+    修改store状态数据
+    store.dispatch(setArticleData(data1))
+    store.dispatch(setFileData(data2))
+    store.dispatch(setFormData(data3))
+
+    监听函数
+    store.subscribe(Func) 
+</pre>
+</body>
+</html>
