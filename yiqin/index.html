@@ -12,39 +12,49 @@
         <form id="form1" onsubmit="return false" action="#" method="post">
             <div class="title">基本信息</div>
             <section class="section">
-                <span class="form_name">日期:</span><input type="date" name='time' /></section>
+                <span class="form_name">日期:</span>
+                <input type="date" name='time' />
+            </section>
             <section class="section">
-                <span class="form_name">姓名:</span><input type="text" name="username" /></section>
+                <span class="form_name">姓名:</span>
+                <input type="text" name="username" />
+            </section>
             <section class="section">
-                <span class="form_name">身份证号:</span><input type="number" name="number" /></section>
+                <span class="form_name">身份证号:</span>
+                <input type="number" name="number" />
+            </section>
             <section class="section">
                 <span class="form_name">性别:</span>
-                <!-- <input type="text" name="sex" id="sex" /> -->
                 <div class="fetch_data">
-                    <select id='psex'><option>湖北</option></select>
+                    <select id='psex' name="psex"><option>男</option></select>
                 </div>
             </section>
             <section class="section">
-                <span class="form_name">联系电话:</span><input type="number" name="phone" /></section>
+                <span class="form_name">联系电话:</span>
+                <input type="number" name="phone" />
+            </section>
             <section class="section">
                 <span class="form_name_long">是否来自重点疫区:</span>
-                <div class="fetch_data" id="epidemicArea"><input type="checkbox">武汉籍<input type="checkbox">温州籍</div></section>
+                <div class="fetch_data" id="epidemicArea">
+                    <input type="radio" name='epidemicArea'>武汉籍
+                </div>
+            </section>
             <section class="section">
                 <span class="form_name">户籍-省:</span>
                 <div class="fetch_data">
-                    <select id='City1'><option>湖北</option></select>
+                    <select id='provinceCity' name="provinceCity"><option>湖北</option></select>
                 </div>
             </section>
             <section class="section">
                 <span class="form_name">户籍-市:</span>
                 <div class="fetch_data">
-                    <select><option>武汉</option></select>
+                    <select id="" name=""><option>武汉</option></select>
                 </div>
             </section>
             <section class="section">
                 <span class="form_name">户籍-区</span>
                 <div class="fetch_data">
-                    <select><option>洪山</option></select>
+                    <select id="" name=""><option>洪山</option></select>
                 </div>
             </section>
             <section class="section">
@@ -55,10 +65,10 @@
             <section class="section">
                 <span class="form_name">珠海现住址:</span>
                 <div class="fetch_data">
-                    <select id="City4"><option>洪山区</option></select>
+                    <select id="districtStreet" name="districtStreet"><option>洪山区</option></select>
                 </div>
                 <div class="fetch_data">
-                    <select><option>花山街道</option></select>
+                    <select id="" name=""><option>花山街道</option></select>
                 </div>
             </section>
             <section class="section">
@@ -68,12 +78,12 @@
             <section class="section">
                 <span class="form_name">所在社区:</span>
                 <div class="fetch_data">
-                    <select id="community"><option>碧桂园社区</option></select>
+                    <select id="community" name="community"><option>碧桂园社区</option></select>
                 </div>
             </section>
             <section class="section">
                 <span class="form_name">目前是否在港:</span>
-                <select><option value="1">是</option><option value="0">否</option></select><br/>
+                <select id="inGl" name="inGl"><option value="1">是</option><option value="0">否</option></select><br/>
                 <span class="form_name"></span><input type="checkbox">2019年底起一直留在珠海
             </section>
             <section class="section">
@@ -96,7 +106,7 @@
                     <input type="checkbox" value="1" >其他
                     <input type="text" name="username" disabled="disabled" /> -->
                 </div>
-                <div class="fetch_data_checkbox" id="checkSymptom">
+                <div class="fetch_data_checkbox">
                     <input type="checkbox" value="1" >其他
                     <input type="text" name="username" disabled="disabled" />
                 </div>
@@ -146,7 +156,7 @@
             <section class="section">
                 <span class="form_name">隔离方式:</span>
                 <div class="fetch_data">
-                    <select id='quarantineType'><option>湖北</option></select>
+                    <select id='quarantineType' name="quarantineType"><option>湖北</option></select>
                 </div>
             </section>
             <section class="section">
@@ -160,17 +170,17 @@
                 <section class="section">
                     <span class="form_name">起点城市:</span>
                     <div class="fetch_data">
-                        <select><option>湖北</option></select>
+                        <select id="" name=""><option>湖北</option></select>
                     </div>
                     <div class="fetch_data">
-                        <select><option>武汉</option></select>
+                        <select id="" name=""><option>武汉</option></select>
                     </div>
                 </section>
 
                 <section class="section">
                     <span class="form_name">起点城市:</span>
                     <div class="fetch_data">
-                        <select><option>湖北</option></select>
+                        <select id="" name=""><option>湖北</option></select>
                     </div>
                     <div class="fetch_data">
                         <select><option>武汉</option></select>
@@ -265,7 +275,7 @@
                         <input type="checkbox" value="1" >其他
                         <input type="text" name="username" disabled="disabled" /> -->
                     </div>
-                    <div class="fetch_data_checkbox" id="contactType">
+                    <div class="fetch_data_checkbox">
                         <input type="checkbox" value="1" >其他
                         <input type="text" name="username" disabled="disabled" />
                     </div>
@@ -307,22 +317,22 @@ $(document).ready(function(){
         res.json().then(data=>{
             console.log(data)
             //省
-            let City1 = data.provinceCity||[];
-            let CityList1 = ""
-            $('#City1').html('')
-            City1.map(item=>{
-                CityList1 = CityList1 + `<option value="${item.value}">${item.text}</option>`
+            let provinceCity = data.provinceCity||[];
+            let provinceCityList = ""
+            $('#provinceCity').html('')
+            provinceCity.map(item=>{
+                provinceCityList = provinceCityList + `<option value="${item.value}">${item.text}</option>`
             })
-            $('#City1').html(CityList1)
+            $('#provinceCity').html(provinceCityList)
 
             //区
-            let City4 = data.districtStreet||[];
-            let CityList4 = ""
-            $('#City4').html('')
-            City4.map(item=>{
-                CityList4 = CityList4 + `<option value="${item.value}">${item.text}</option>`
+            let districtStreet = data.districtStreet||[];
+            let districtStreetList = ""
+            $('#districtStreet').html('')
+            districtStreet.map(item=>{
+                districtStreetList = districtStreetList + `<option value="${item.value}">${item.text}</option>`
             })
-            $('#City4').html(CityList4)
+            $('#districtStreet').html(districtStreetList)
 
             //接触重点疫区
             let contactArea = data.contactArea||[];
@@ -384,7 +394,7 @@ $(document).ready(function(){
             let epidemicAreaList = ""
             $('#epidemicArea').html('')
             epidemicArea.map(item=>{
-                epidemicAreaList = epidemicAreaList + `<input type="checkbox" value="${item.value}">${item.text}`
+                epidemicAreaList = epidemicAreaList + `<input type="radio" value="${item.value}" name="epidemicArea">${item.text}`
             })
             $('#epidemicArea').html(epidemicAreaList)
 
