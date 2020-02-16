@@ -488,10 +488,11 @@ $("#city5_2").change(function(){
 });
 
 
-//增加每日记录
+//增加每日记录==>按钮添加
 $(".add_day").click(function(){
     console.log('点击----->')
-    let add_data_1 = `<div class="add_data" id="add_data_${new Date().getTime()}" >
+    let data_time = new Date().getTime()
+    let add_data_1 = `<div class="add_data" id="add_data_${data_time}" >
                         <section class="section">
                             <span class="form_name">发生日期:</span>
                             <input type="date" name='time' />
@@ -516,22 +517,18 @@ $(".add_day").click(function(){
                         </section>
                         <section class="section">
                             <div class="btn_img">
-                                <img class="add_day" src="img/a1.png" alt=""/>
-                                <img class="reduce_day data-time="${new Date().getTime()}" src="img/a2.png" alt=""/>
-                                <img src="img/a3.png" alt=""/>
+                                <img class="add_img" onclick="add_day_img()" src="img/a1.png" alt=""/>
+                                <img class="reduce_img" onclick="reduce_common_img(${data_time})" src="img/a2.png" alt=""/>
+                                <img class="reduce_yes" src="img/a3.png" alt=""/>
                             </div>
                         </section>
                     </div>`
     $("#add_data_1").append(add_data_1)
 });
-
-
-$(".reduce_day").click(function(){
-    console.log('删除')
-})
-
+//增加外出史==>按钮添加
 $(".add_out").click(function(){
-    let add_data_2 = `<div class="add_data" id="add_data_${new Date().getTime()}">
+    let data_time = new Date().getTime()
+    let add_data_2 = `<div class="add_data" id="add_data_${data_time}">
                         <section class="section">
                             <span class="form_name">起点城市:</span>
                             <div class="fetch_data">
@@ -588,16 +585,18 @@ $(".add_out").click(function(){
                         </section>
                         <section class="section">
                             <div class="btn_img">
-                                <img src="img/a1.png" alt=""/>
-                                <img src="img/a2.png" alt=""/>
-                                <img src="img/a3.png" alt=""/>
+                                <img class="add_img" onclick="add_out_img()" src="img/a1.png" alt=""/>
+                                <img class="reduce_img" onclick="reduce_common_img(${data_time})" src="img/a2.png" alt=""/>
+                                <img class="reduce_yes" src="img/a3.png" alt=""/>
                             </div>
                         </section>
                     </div>`
     $("#add_data_2").append(add_data_2)
 })
+//增加接触史==>按钮添加
 $(".add_contact").click(function(){
-    let add_data_3 = `<div class="add_data" id="add_data_${new Date().getTime()}">
+    let data_time = new Date().getTime()
+    let add_data_3 = `<div class="add_data" id="add_data_${data_time}">
                         <section class="section">
                             <span class="form_name">末次接触日期:</span>
                             <input type="date" name='time' />
@@ -633,9 +632,9 @@ $(".add_contact").click(function(){
                         </section>
                         <section class="section">
                             <div class="btn_img">
-                                <img src="img/a1.png" alt=""/>
-                                <img src="img/a2.png" alt=""/>
-                                <img src="img/a3.png" alt=""/>
+                                <img class="add_img" onclick="add_contact_img()" src="img/a1.png" alt=""/>
+                                <img class="reduce_img" onclick="reduce_common_img(${data_time})" src="img/a2.png" alt=""/>
+                                <img class="reduce_yes" src="img/a3.png" alt=""/>
                             </div>
                         </section>
                     </div>`
@@ -669,5 +668,135 @@ function submit(){
     
 
 });
+
+
+//增加每日记录==>图片添加
+function add_day_img(){
+    let data_time = new Date().getTime()
+    let add_data_1 = `<div class="add_data" id="add_data_${data_time}" >
+                        <section class="section">
+                            <span class="form_name">发生日期:</span>
+                            <input type="date" name='time' />
+                            <input type="radio" name="sex">上午
+                            <input type="radio" name="sex">下午
+                        </section>
+                        <section class="section">
+                            <span class="form_name">体温情况:</span>
+                            <input type="number" name="number" />℃
+                        </section>
+                        <section class="section">
+                            <span class="form_name">不适症状:</span>
+                            <input type="checkbox" value="1" >无不适症状<br/>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >咳嗽<br/>
+                                <input type="checkbox" value="1" >发热<br/>
+                                <input type="checkbox" value="1" >乏力<br/>
+                                <input type="checkbox" value="1" >气促<br/>
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <div class="btn_img">
+                                <img class="add_img" onclick="add_day_img()" src="img/a1.png" alt=""/>
+                                <img class="reduce_img" onclick="reduce_common_img(${data_time})" src="img/a2.png" alt=""/>
+                                <img class="reduce_yes" src="img/a3.png" alt=""/>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_1").append(add_data_1)
+}
+
+//增加外出史==>图片添加
+function add_out_img(){
+    let data_time = new Date().getTime()
+    let add_data_2 = `<div class="add_data" id="add_data_${data_time}" >
+                        <section class="section">
+                            <span class="form_name">发生日期:</span>
+                            <input type="date" name='time' />
+                            <input type="radio" name="sex">上午
+                            <input type="radio" name="sex">下午
+                        </section>
+                        <section class="section">
+                            <span class="form_name">体温情况:</span>
+                            <input type="number" name="number" />℃
+                        </section>
+                        <section class="section">
+                            <span class="form_name">不适症状:</span>
+                            <input type="checkbox" value="1" >无不适症状<br/>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >咳嗽<br/>
+                                <input type="checkbox" value="1" >发热<br/>
+                                <input type="checkbox" value="1" >乏力<br/>
+                                <input type="checkbox" value="1" >气促<br/>
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <div class="btn_img">
+                                <img class="add_img" onclick="add_out_img()" src="img/a1.png" alt=""/>
+                                <img class="reduce_img" onclick="reduce_common_img(${data_time})" src="img/a2.png" alt=""/>
+                                <img class="reduce_yes" src="img/a3.png" alt=""/>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_2").append(add_data_2)
+}
+
+//增加接触史==>图片添加
+function add_contact_img(){
+    let data_time = new Date().getTime()
+    let add_data_3 = `<div class="add_data" id="add_data_${data_time}">
+                        <section class="section">
+                            <span class="form_name">末次接触日期:</span>
+                            <input type="date" name='time' />
+                        </section>
+                        <section class="section">
+                            <span class="form_name">接触地点:</span>
+                            <div class="fetch_data_checkbox" id="contactPlace">
+                            </div>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <span class="form_name">接触方式：</span>
+                            <div class="fetch_data_checkbox" id="contactType">
+                            </div>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">近距离接触人员:</span>
+                            <textarea></textarea>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">接触重点疫区</span>
+                            <div class="fetch_data">
+                                <select id="contactArea"><option>湖北</option></select>
+                            </div>
+                        </section>
+                        <section class="section">
+                            <div class="btn_img">
+                                <img class="add_img" onclick="add_contact_img()" src="img/a1.png" alt=""/>
+                                <img class="reduce_img" onclick="reduce_common_img(${data_time})" src="img/a2.png" alt=""/>
+                                <img class="reduce_yes" src="img/a3.png" alt=""/>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_3").append(add_data_3)
+}
+
+
+//增加每日记录、增加外出史、增加接触史==>图片删除
+function reduce_common_img(e){
+    console.log(e)
+    $(`#add_data_${e}`).remove();
+}
 </script>
 </html>
