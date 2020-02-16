@@ -1,0 +1,52 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+#app{
+    /* background: #aaa; */
+    /* padding: 0.5rem; */
+}
+header{
+    text-align: center;
+    font-size: 1.6rem;
+    line-height: 3rem;
+}
+.section{
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+}
+.form_name{
+    display: inline-block;
+    width:7rem ;
+}
+.form_name_long{
+    display: inline-block;
+    width:10rem ;
+}
+.fetch_data{
+    display: inline-block;
+}
+.fetch_data_checkbox{
+    margin-left: 7.25rem;
+}
+select{
+    width: 6rem;
+}
+.title{
+    padding: 0.3rem;
+    border: 0.07rem solid #999;
+    border-left:none;
+    border-right: none;
+}
+.btn_middle{
+    text-align: center;
+}
+.add_data{
+    border: 0.05rem solid #000;
+    clear: both;
+}
+.btn_img{
+    text-align: right;
+}

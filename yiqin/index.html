@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/healthy.css" />
+     
+</head>
+<body>
+    <div id="app">
+        <header>健康情况填报</header>
+        <form action="http://localhost:8080/user" method="post">
+            <div class="title">基本信息</div>
+            <section class="section">
+                <span class="form_name">日期:</span><input type="date" name='time' /></section>
+            <section class="section">
+                <span class="form_name">姓名:</span><input type="text" name="username" /></section>
+            <section class="section">
+                <span class="form_name">身份证号:</span><input type="number" name="number" /></section>
+            <section class="section">
+                <span class="form_name">性别:</span><input type="text" name="sex" id="sex" /></section>
+            <section class="section">
+                <span class="form_name">联系电话:</span><input type="number" name="phone" /></section>
+            <section class="section">
+                <span class="form_name_long">是否来自重点疫区:</span><div class="fetch_data"><input type="checkbox">武汉籍<input type="checkbox">温州籍</div></section>
+            <section class="section">
+                <span class="form_name">户籍-省:</span>
+                <div class="fetch_data">
+                    <select><option>湖北</option></select>
+                </div>
+            </section>
+            <section class="section">
+                <span class="form_name">户籍-市:</span>
+                <div class="fetch_data">
+                    <select><option>武汉</option></select>
+                </div>
+            </section>
+            <section class="section">
+                <span class="form_name">户籍-区</span>
+                <div class="fetch_data">
+                    <select><option>洪山</option></select>
+                </div>
+            </section>
+            <section class="section">
+                <span class="form_name">户籍详细地址:</span>
+                <input type="text" name="address">
+            </section>
+            <div class="title">在港信息</div>
+            <section class="section">
+                <span class="form_name">珠海现住址:</span>
+                <div class="fetch_data">
+                    <select><option>洪山区</option></select>
+                </div>
+                <div class="fetch_data">
+                    <select><option>花山街道</option></select>
+                </div>
+            </section>
+            <section class="section">
+                <span class="form_name">详细现住址:</span>
+                <input type="text" name="address">
+            </section>
+            <section class="section">
+                <span class="form_name">所在社区:</span>
+                <div class="fetch_data">
+                    <select><option>碧桂园社区</option></select>
+                </div>
+            </section>
+            <section class="section">
+                <span class="form_name">所在社区:</span>
+                <input type="text" name="address">
+            </section>
+            <section class="section">
+                <span class="form_name">目前是否在港:</span>
+                <select><option>是</option><option>否</option></select><br/>
+                <span class="form_name"></span><input type="checkbox">2019年底起一直留在珠海
+            </section>
+            <section class="section">
+                <span class="form_name_long">春节前后实际返港时间:</span>
+                <input type="date" name='time' />
+            </section>
+            <div class="title">健康信息</div>
+            <section class="section">
+                <span class="form_name">排查时体温情况:</span>
+                <input type="number" name="number" />℃
+            </section>
+            <section class="section">
+                <span class="form_name">排查时不适症状:</span>
+                <input type="checkbox" value="1" >无不适症状<br/>
+                <div class="fetch_data_checkbox">
+                    <input type="checkbox" value="1" >咳嗽<br/>
+                    <input type="checkbox" value="1" >发热<br/>
+                    <input type="checkbox" value="1" >乏力<br/>
+                    <input type="checkbox" value="1" >气促<br/>
+                    <input type="checkbox" value="1" >其他
+                    <input type="text" name="username" disabled="disabled" />
+                </div>
+            </section>
+            <section class="section btn_middle">
+                <button class="add_day">增加每日记录</button>
+            </section>
+            <div class="add_data">
+                <section class="section">
+                    <span class="form_name">发生日期:</span>
+                    <input type="date" name='time' />
+                    <input type="radio" name="sex">上午
+                    <input type="radio" name="sex">下午
+                </section>
+                <section class="section">
+                    <span class="form_name">体温情况:</span>
+                    <input type="number" name="number" />℃
+                </section>
+                <section class="section">
+                    <span class="form_name">不适症状:</span>
+                    <input type="checkbox" value="1" >无不适症状<br/>
+                    <div class="fetch_data_checkbox">
+                        <input type="checkbox" value="1" >咳嗽<br/>
+                        <input type="checkbox" value="1" >发热<br/>
+                        <input type="checkbox" value="1" >乏力<br/>
+                        <input type="checkbox" value="1" >气促<br/>
+                        <input type="checkbox" value="1" >其他
+                        <input type="text" name="username" disabled="disabled" />
+                    </div>
+                </section>
+                <section class="section">
+                    <div class="btn_img">
+                        <img src="img/a1.png" alt=""/>
+                        <img src="img/a2.png" alt=""/>
+                        <img src="img/a3.png" alt=""/>
+                    </div>
+                </section>
+            </div>
+            <section class="section">
+                <span class="form_name">开始隔离日期:</span>
+                <input type="date" name='time' />
+            </section>
+            <section class="section">
+                <span class="form_name">解除隔离日期:</span>
+                <input type="date" name='time' />
+            </section>
+
+            <section class="section">
+                <span class="form_name"></span>
+            </section>
+
+
+            <div>
+                开始隔离日期
+                解除隔离日期
+                隔离方式：<select>
+                    <option>水果</option>
+                    <option>蔬菜</option>
+                    <option>海鲜</option>
+                    <option>肉类</option>
+                </select>
+                详细情况:<textarea></textarea>
+            </div>
+            <div>
+                <button>增加外出史</button>
+                <div>
+                    起点城市：<select>
+                        <option>水果</option>
+                        <option>蔬菜</option>
+                        <option>海鲜</option>
+                        <option>肉类</option>
+                    </select>
+                    <select>
+                        <option>水果</option>
+                        <option>蔬菜</option>
+                        <option>海鲜</option>
+                        <option>肉类</option>
+                    </select>
+                    终点城市：<select>
+                        <option>水果</option>
+                        <option>蔬菜</option>
+                        <option>海鲜</option>
+                        <option>肉类</option>
+                    </select>
+                    <select>
+                        <option>水果</option>
+                        <option>蔬菜</option>
+                        <option>海鲜</option>
+                        <option>肉类</option>
+                    </select>
+                    逗留时间：从<input type="date" name='time' />到<input type="date" name='time' /><input type="checkbox">至今
+                    同行人员：<input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >其他
+                    <input type="text" name="username" disabled="disabled" />
+                    同行人员联系方式<textarea></textarea>
+                    交通方式<input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >其他
+                    <input type="text" name="username" disabled="disabled" />
+                    班次号：<input type="text" name="number" />座位号:<input type="text"/>
+                    <div><span>+</span><span>×</span><span>✔</span></div>
+                </div>
+                <button>增加接触史</button>
+                <div>
+                    末次接触日期:<input type="date" name='time' />
+                    接触地点<input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >其他
+                    <input type="text" name="username" disabled="disabled" />
+                    接触方式<input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >水果
+                    <input type="checkbox" value="水果" >其他
+                    <input type="text" name="username" disabled="disabled" />
+                    近距离接触人员:<textarea></textarea>
+                    <div><span>+</span><span>×</span><span>✔</span></div>
+                </div>
+            </div>
+            <button>返回</button>
+            <button type="submit">提交</button>
+
+        </form>
+    </div>
+</body>
+</html>
