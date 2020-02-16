@@ -48,13 +48,13 @@
             <section class="section">
                 <span class="form_name">户籍-市:</span>
                 <div class="fetch_data">
-                    <select id="" name=""><option>武汉</option></select>
+                    <select id="city1" name=""><option>武汉</option></select>
                 </div>
             </section>
             <section class="section">
                 <span class="form_name">户籍-区</span>
                 <div class="fetch_data">
-                    <select id="" name=""><option>洪山</option></select>
+                    <select id="city1" name=""><option>洪山</option></select>
                 </div>
             </section>
             <section class="section">
@@ -65,10 +65,12 @@
             <section class="section">
                 <span class="form_name">珠海现住址:</span>
                 <div class="fetch_data">
-                    <select id="districtStreet" name="districtStreet"><option>洪山区</option></select>
+                    <select id="districtStreet" name="districtStreet">
+                        <option>洪山区</option>
+                    </select>
                 </div>
                 <div class="fetch_data">
-                    <select id="" name=""><option>花山街道</option></select>
+                    <select id="city3" name=""><option>花山街道</option></select>
                 </div>
             </section>
             <section class="section">
@@ -112,9 +114,12 @@
                 </div>
             </section>
             <section class="section btn_middle">
-                <button class="add_day">增加每日记录</button>
+                <button class="add_day" id="add_day">增加每日记录</button>
             </section>
-            <div class="add_data">
+            <div id="add_data_1">
+
+            </div>
+            <!-- <div class="add_data" >
                 <section class="section">
                     <span class="form_name">发生日期:</span>
                     <input type="date" name='time' />
@@ -144,7 +149,7 @@
                         <img src="img/a3.png" alt=""/>
                     </div>
                 </section>
-            </div>
+            </div> -->
             <section class="section">
                 <span class="form_name">开始隔离日期:</span>
                 <input type="date" name='time' />
@@ -164,26 +169,29 @@
                 <textarea></textarea>
             </section>
             <section class="section btn_middle">
-                <button class="add_day">增加外出史</button>
+                <button class="add_out" id="add_out">增加外出史</button>
             </section>
-            <div class="add_data">
+            <div id="add_data_2">
+
+            </div>
+            <!-- <div class="add_data">
                 <section class="section">
                     <span class="form_name">起点城市:</span>
                     <div class="fetch_data">
-                        <select id="" name=""><option>湖北</option></select>
+                        <select id="city4_1" name=""><option>湖北</option></select>
                     </div>
                     <div class="fetch_data">
-                        <select id="" name=""><option>武汉</option></select>
+                        <select id="city4_2" name=""><option>武汉</option></select>
                     </div>
                 </section>
 
                 <section class="section">
-                    <span class="form_name">起点城市:</span>
+                    <span class="form_name">终点城市:</span>
                     <div class="fetch_data">
-                        <select id="" name=""><option>湖北</option></select>
+                        <select id="city5_1" name=""><option>湖北</option></select>
                     </div>
                     <div class="fetch_data">
-                        <select><option>武汉</option></select>
+                        <select id="city5_2" name=""><option>武汉</option></select>
                     </div>
                 </section>
                 <section class="section">
@@ -193,13 +201,6 @@
                 <section class="section">
                     <span class="form_name">同行人员</span>
                     <div class="fetch_data_checkbox" id="fellowWorker">
-                        <!-- <input type="checkbox" value="1" >父母<br/>
-                        <input type="checkbox" value="1" >兄弟姐妹<br/>
-                        <input type="checkbox" value="1" >外/祖父母<br/>
-                        <input type="checkbox" value="1" >其他亲属<br/>
-                        <input type="checkbox" value="1" >朋友<br/>
-                        <input type="checkbox" value="1" >其他
-                        <input type="text" name="username" disabled="disabled" /> -->
                     </div>
                     <div class="fetch_data_checkbox">
                         <input type="checkbox" value="1" >其他
@@ -213,13 +214,6 @@
                 <section class="section">
                     <span class="form_name">交通方式:</span>
                     <div class="fetch_data_checkbox" id="transportationMode">
-                        <!-- <input type="checkbox" value="1" >私家车<br/>
-                        <input type="checkbox" value="1" >高铁<br/>
-                        <input type="checkbox" value="1" >大巴车<br/>
-                        <input type="checkbox" value="1" >船舶<br/>
-                        <input type="checkbox" value="1" >公交<br/>
-                        <input type="checkbox" value="1" >其他
-                        <input type="text" name="username" disabled="disabled" /> -->
                     </div>
                     <div class="fetch_data_checkbox">
                         <input type="checkbox" value="1" >其他
@@ -242,11 +236,14 @@
                         <img src="img/a3.png" alt=""/>
                     </div>
                 </section>
-            </div>
+            </div> -->
             <section class="section btn_middle">
-                <button class="add_day">增加接触史</button>
+                <button class="add_contact">增加接触史</button>
             </section>
-            <div class="add_data">
+            <div id="add_data_3">
+
+            </div>
+            <!-- <div class="add_data">
                 <section class="section">
                     <span class="form_name">末次接触日期:</span>
                     <input type="date" name='time' />
@@ -264,16 +261,6 @@
                 <section class="section">
                     <span class="form_name">接触方式：</span>
                     <div class="fetch_data_checkbox" id="contactType">
-                        <!-- <input type="checkbox" value="1" >同餐<br/>
-                        <input type="checkbox" value="1" >同住<br/>
-                        <input type="checkbox" value="1" >同屋<br/>
-                        <input type="checkbox" value="1" >同床<br/>
-                        <input type="checkbox" value="1" >同室工作学习<br/>
-                        <input type="checkbox" value="1" >医疗、护理<br/>
-                        <input type="checkbox" value="1" >同病房<br/>
-                        <input type="checkbox" value="1" >娱乐活动<br/>
-                        <input type="checkbox" value="1" >其他
-                        <input type="text" name="username" disabled="disabled" /> -->
                     </div>
                     <div class="fetch_data_checkbox">
                         <input type="checkbox" value="1" >其他
@@ -297,7 +284,7 @@
                         <img src="img/a3.png" alt=""/>
                     </div>
                 </section>
-            </div>
+            </div> -->
             <section class="section">
                 <span class="form_name"></span>
             </section>
@@ -312,7 +299,9 @@
 <script src="js/jquery.js"></script>
 <script>
 $(document).ready(function(){
-    fetch("js/data.json").then(res=>{
+
+/*****************************************数据初始化*****************************************************/
+fetch("js/data.json").then(res=>{
         console.log(res)
         res.json().then(data=>{
             console.log(data)
@@ -425,16 +414,235 @@ $(document).ready(function(){
             })
             $('#community').html(communityList)
 
-
-
-
-
-
-
-
-
         })
     })
+var FormObject = {};
+/*****************************************事件*****************************************************/
+//省、市、区三级联动
+$("#provinceCity").change(function(){
+    console.log($(this).val());
+    let provinceCity = $(this).val();
+    if(FormObject["provinceCity"]!==provinceCity){
+        $("#city1").html('')
+        $("#city2").html('')
+        FormObject["provinceCity"] = provinceCity||'';
+    }
+});
+$("#city1").change(function(){
+    console.log($(this).val())
+    let city1 = $(this).val()
+    if(FormObject["city1"]!==city1){
+        $("#city2").html('')
+        FormObject["city1"] = city1||'';
+    }
+});
+$("#city2").change(function(){
+    console.log($(this).val())
+    let city2 = $(this).val()
+    FormObject["city2"] = city2||'';
+});
+
+
+//珠海现住址
+$("#districtStreet").change(function(){
+    console.log($(this).val())
+    let city1 = $(this).val()
+    if(FormObject["districtStreet"]!==districtStreet){
+        $("#city3").html('')
+        FormObject["districtStreet"] = districtStreet||'';
+    }
+});
+$("#city3").change(function(){
+    console.log($(this).val())
+    let city3 = $(this).val()
+    FormObject["city3"] = city3||'';
+});
+
+
+//起点城市-终点城市
+$("#city4_1").change(function(){
+    console.log($(this).val())
+    let city1 = $(this).val()
+    if(FormObject["city4_1"]!==city4_1){
+        $("#city4_2").html('')
+        FormObject["city4_1"] = city4_1||'';
+    }
+});
+$("#city4_2").change(function(){
+    console.log($(this).val())
+    let city4_2 = $(this).val()
+    FormObject["city4_2"] = city4_2||'';
+});
+$("#city5_1").change(function(){
+    console.log($(this).val())
+    let city5_1 = $(this).val()
+    if(FormObject["city5_1"]!== city5_1){
+        $("#city5_2").html('')
+        FormObject["city5_1"] = city5_1||'';
+    }
+});
+$("#city5_2").change(function(){
+    console.log($(this).val())
+    let city5_2 = $(this).val()
+    FormObject["city5_2"] = city5_2||'';
+});
+
+
+//增加每日记录
+$(".add_day").click(function(){
+    console.log('点击----->')
+    let add_data_1 = `<div class="add_data" id="add_data_${new Date().getTime()}" >
+                        <section class="section">
+                            <span class="form_name">发生日期:</span>
+                            <input type="date" name='time' />
+                            <input type="radio" name="sex">上午
+                            <input type="radio" name="sex">下午
+                        </section>
+                        <section class="section">
+                            <span class="form_name">体温情况:</span>
+                            <input type="number" name="number" />℃
+                        </section>
+                        <section class="section">
+                            <span class="form_name">不适症状:</span>
+                            <input type="checkbox" value="1" >无不适症状<br/>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >咳嗽<br/>
+                                <input type="checkbox" value="1" >发热<br/>
+                                <input type="checkbox" value="1" >乏力<br/>
+                                <input type="checkbox" value="1" >气促<br/>
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <div class="btn_img">
+                                <img class="add_day" src="img/a1.png" alt=""/>
+                                <img class="reduce_day data-time="${new Date().getTime()}" src="img/a2.png" alt=""/>
+                                <img src="img/a3.png" alt=""/>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_1").append(add_data_1)
+});
+
+
+$(".reduce_day").click(function(){
+    console.log('删除')
+})
+
+$(".add_out").click(function(){
+    let add_data_2 = `<div class="add_data" id="add_data_${new Date().getTime()}">
+                        <section class="section">
+                            <span class="form_name">起点城市:</span>
+                            <div class="fetch_data">
+                                <select id="city4_1" name=""><option>湖北</option></select>
+                            </div>
+                            <div class="fetch_data">
+                                <select id="city4_2" name=""><option>武汉</option></select>
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <span class="form_name">终点城市:</span>
+                            <div class="fetch_data">
+                                <select id="city5_1" name=""><option>湖北</option></select>
+                            </div>
+                            <div class="fetch_data">
+                                <select id="city5_2" name=""><option>武汉</option></select>
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name_sort ">逗留时间:</span>
+                            从<input class="date" type="date" name='time' />到<input class="date" type="date" name='time' /><input type="checkbox">至今
+                        </section>
+                        <section class="section">
+                            <span class="form_name">同行人员</span>
+                            <div class="fetch_data_checkbox" id="fellowWorker">
+                            </div>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">同行人员联系方式:</span>
+                            <textarea></textarea>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">交通方式:</span>
+                            <div class="fetch_data_checkbox" id="transportationMode">
+                            </div>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">班次号</span>
+                            <input type="text" name="number" />
+                            
+                        </section>
+                        <section class="section">
+                            <span class="form_name">座位号</span>
+                            <input type="text"/>
+                        </section>
+                        <section class="section">
+                            <div class="btn_img">
+                                <img src="img/a1.png" alt=""/>
+                                <img src="img/a2.png" alt=""/>
+                                <img src="img/a3.png" alt=""/>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_2").append(add_data_2)
+})
+$(".add_contact").click(function(){
+    let add_data_3 = `<div class="add_data" id="add_data_${new Date().getTime()}">
+                        <section class="section">
+                            <span class="form_name">末次接触日期:</span>
+                            <input type="date" name='time' />
+                        </section>
+                        <section class="section">
+                            <span class="form_name">接触地点:</span>
+                            <div class="fetch_data_checkbox" id="contactPlace">
+                            </div>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <span class="form_name">接触方式：</span>
+                            <div class="fetch_data_checkbox" id="contactType">
+                            </div>
+                            <div class="fetch_data_checkbox">
+                                <input type="checkbox" value="1" >其他
+                                <input type="text" name="username" disabled="disabled" />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">近距离接触人员:</span>
+                            <textarea></textarea>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">接触重点疫区</span>
+                            <div class="fetch_data">
+                                <select id="contactArea"><option>湖北</option></select>
+                            </div>
+                        </section>
+                        <section class="section">
+                            <div class="btn_img">
+                                <img src="img/a1.png" alt=""/>
+                                <img src="img/a2.png" alt=""/>
+                                <img src="img/a3.png" alt=""/>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_3").append(add_data_3)
+})
+
+
 function submit(){
     console.log($('#form1').serialize())
     // $.ajax({
