@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>健康情况填报</title>
     <link rel="stylesheet" type="text/css" href="css/healthy.css" />
-     
 </head>
 <body>
     <div id="app">
         <header>健康情况填报</header>
-        <form action="http://localhost:8080/user" method="post">
+        <form id="form1" onsubmit="return false" action="#" method="post">
             <div class="title">基本信息</div>
             <section class="section">
                 <span class="form_name">日期:</span><input type="date" name='time' /></section>
@@ -19,15 +18,21 @@
             <section class="section">
                 <span class="form_name">身份证号:</span><input type="number" name="number" /></section>
             <section class="section">
-                <span class="form_name">性别:</span><input type="text" name="sex" id="sex" /></section>
+                <span class="form_name">性别:</span>
+                <!-- <input type="text" name="sex" id="sex" /> -->
+                <div class="fetch_data">
+                    <select id='psex'><option>湖北</option></select>
+                </div>
+            </section>
             <section class="section">
                 <span class="form_name">联系电话:</span><input type="number" name="phone" /></section>
             <section class="section">
-                <span class="form_name_long">是否来自重点疫区:</span><div class="fetch_data"><input type="checkbox">武汉籍<input type="checkbox">温州籍</div></section>
+                <span class="form_name_long">是否来自重点疫区:</span>
+                <div class="fetch_data" id="epidemicArea"><input type="checkbox">武汉籍<input type="checkbox">温州籍</div></section>
             <section class="section">
                 <span class="form_name">户籍-省:</span>
                 <div class="fetch_data">
-                    <select><option>湖北</option></select>
+                    <select id='City1'><option>湖北</option></select>
                 </div>
             </section>
             <section class="section">
@@ -50,7 +55,7 @@
             <section class="section">
                 <span class="form_name">珠海现住址:</span>
                 <div class="fetch_data">
-                    <select><option>洪山区</option></select>
+                    <select id="City4"><option>洪山区</option></select>
                 </div>
                 <div class="fetch_data">
                     <select><option>花山街道</option></select>
@@ -63,16 +68,12 @@
             <section class="section">
                 <span class="form_name">所在社区:</span>
                 <div class="fetch_data">
-                    <select><option>碧桂园社区</option></select>
+                    <select id="community"><option>碧桂园社区</option></select>
                 </div>
             </section>
             <section class="section">
-                <span class="form_name">所在社区:</span>
-                <input type="text" name="address">
-            </section>
-            <section class="section">
                 <span class="form_name">目前是否在港:</span>
-                <select><option>是</option><option>否</option></select><br/>
+                <select><option value="1">是</option><option value="0">否</option></select><br/>
                 <span class="form_name"></span><input type="checkbox">2019年底起一直留在珠海
             </section>
             <section class="section">
@@ -87,11 +88,15 @@
             <section class="section">
                 <span class="form_name">排查时不适症状:</span>
                 <input type="checkbox" value="1" >无不适症状<br/>
-                <div class="fetch_data_checkbox">
-                    <input type="checkbox" value="1" >咳嗽<br/>
+                <div class="fetch_data_checkbox" id="checkSymptom">
+                    <!-- <input type="checkbox" value="1" >咳嗽<br/>
                     <input type="checkbox" value="1" >发热<br/>
                     <input type="checkbox" value="1" >乏力<br/>
                     <input type="checkbox" value="1" >气促<br/>
+                    <input type="checkbox" value="1" >其他
+                    <input type="text" name="username" disabled="disabled" /> -->
+                </div>
+                <div class="fetch_data_checkbox" id="checkSymptom">
                     <input type="checkbox" value="1" >其他
                     <input type="text" name="username" disabled="disabled" />
                 </div>
@@ -140,12 +145,9 @@
             </section>
             <section class="section">
                 <span class="form_name">隔离方式:</span>
-                <select>
-                    <option>居家</option>
-                    <option>酒店（企业）</option>
-                    <option>福泉酒店</option>
-                    <option>其他（备注说明）</option>
-                </select>
+                <div class="fetch_data">
+                    <select id='quarantineType'><option>湖北</option></select>
+                </div>
             </section>
             <section class="section">
                 <span class="form_name">详细情况:</span>
@@ -180,12 +182,16 @@
                 </section>
                 <section class="section">
                     <span class="form_name">同行人员</span>
-                    <div class="fetch_data_checkbox">
-                        <input type="checkbox" value="1" >父母<br/>
+                    <div class="fetch_data_checkbox" id="fellowWorker">
+                        <!-- <input type="checkbox" value="1" >父母<br/>
                         <input type="checkbox" value="1" >兄弟姐妹<br/>
                         <input type="checkbox" value="1" >外/祖父母<br/>
                         <input type="checkbox" value="1" >其他亲属<br/>
                         <input type="checkbox" value="1" >朋友<br/>
+                        <input type="checkbox" value="1" >其他
+                        <input type="text" name="username" disabled="disabled" /> -->
+                    </div>
+                    <div class="fetch_data_checkbox">
                         <input type="checkbox" value="1" >其他
                         <input type="text" name="username" disabled="disabled" />
                     </div>
@@ -195,13 +201,17 @@
                     <textarea></textarea>
                 </section>
                 <section class="section">
-                    <span class="form_name">交通方式：</span>
-                    <div class="fetch_data_checkbox">
-                        <input type="checkbox" value="1" >私家车<br/>
+                    <span class="form_name">交通方式:</span>
+                    <div class="fetch_data_checkbox" id="transportationMode">
+                        <!-- <input type="checkbox" value="1" >私家车<br/>
                         <input type="checkbox" value="1" >高铁<br/>
                         <input type="checkbox" value="1" >大巴车<br/>
                         <input type="checkbox" value="1" >船舶<br/>
                         <input type="checkbox" value="1" >公交<br/>
+                        <input type="checkbox" value="1" >其他
+                        <input type="text" name="username" disabled="disabled" /> -->
+                    </div>
+                    <div class="fetch_data_checkbox">
                         <input type="checkbox" value="1" >其他
                         <input type="text" name="username" disabled="disabled" />
                     </div>
@@ -233,20 +243,18 @@
                 </section>
                 <section class="section">
                     <span class="form_name">接触地点:</span>
+                    <div class="fetch_data_checkbox" id="contactPlace">
+                    </div>
                     <div class="fetch_data_checkbox">
-                        <input type="checkbox" value="1" >家中<br/>
-                        <input type="checkbox" value="1" >医疗机构<br/>
-                        <input type="checkbox" value="1" >工作场所<br/>
-                        <input type="checkbox" value="1" >娱乐场所<br/>
                         <input type="checkbox" value="1" >其他
                         <input type="text" name="username" disabled="disabled" />
                     </div>
                 </section>
 
                 <section class="section">
-                    <span class="form_name">交通方式：</span>
-                    <div class="fetch_data_checkbox">
-                        <input type="checkbox" value="1" >同餐<br/>
+                    <span class="form_name">接触方式：</span>
+                    <div class="fetch_data_checkbox" id="contactType">
+                        <!-- <input type="checkbox" value="1" >同餐<br/>
                         <input type="checkbox" value="1" >同住<br/>
                         <input type="checkbox" value="1" >同屋<br/>
                         <input type="checkbox" value="1" >同床<br/>
@@ -254,6 +262,10 @@
                         <input type="checkbox" value="1" >医疗、护理<br/>
                         <input type="checkbox" value="1" >同病房<br/>
                         <input type="checkbox" value="1" >娱乐活动<br/>
+                        <input type="checkbox" value="1" >其他
+                        <input type="text" name="username" disabled="disabled" /> -->
+                    </div>
+                    <div class="fetch_data_checkbox" id="contactType">
                         <input type="checkbox" value="1" >其他
                         <input type="text" name="username" disabled="disabled" />
                     </div>
@@ -265,7 +277,7 @@
                 <section class="section">
                     <span class="form_name">接触重点疫区</span>
                     <div class="fetch_data">
-                        <select><option>湖北</option></select>
+                        <select id="contactArea"><option>湖北</option></select>
                     </div>
                 </section>
                 <section class="section">
@@ -281,9 +293,163 @@
             </section>
             <section class="section btn_middle">
                 <button>返回</button>
-                <button type="submit">提交</button>
+                <button type="submit" onclick="submit()">提交</button>
             </section>
         </form>
+        <div></div>
     </div>
 </body>
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    fetch("js/data.json").then(res=>{
+        console.log(res)
+        res.json().then(data=>{
+            console.log(data)
+            //省
+            let City1 = data.provinceCity||[];
+            let CityList1 = ""
+            $('#City1').html('')
+            City1.map(item=>{
+                CityList1 = CityList1 + `<option value="${item.value}">${item.text}</option>`
+            })
+            $('#City1').html(CityList1)
+
+            //区
+            let City4 = data.districtStreet||[];
+            let CityList4 = ""
+            $('#City4').html('')
+            City4.map(item=>{
+                CityList4 = CityList4 + `<option value="${item.value}">${item.text}</option>`
+            })
+            $('#City4').html(CityList4)
+
+            //接触重点疫区
+            let contactArea = data.contactArea||[];
+            let contactAreaList = ""
+            $('#contactArea').html('')
+            contactArea.map(item=>{
+                contactAreaList = contactAreaList + `<option value="${item.value}">${item.text}</option>`
+            })
+            $('#contactArea').html(contactAreaList)
+
+            //接触地点
+            let contactPlace = data.contactPlace||[];
+            let contactPlaceList = ""
+            $('#contactPlace').html('')
+            contactPlace.map(item=>{
+                contactPlaceList = contactPlaceList + `<input type="checkbox" value="${item.value}" >${item.text}<br/>`
+            })
+            $('#contactPlace').html(contactPlaceList)
+
+
+            //接触方式
+            let contactType = data.contactType||[];
+            let contactTypeList = ""
+            $('#contactType').html('')
+            contactType.map(item=>{
+                contactTypeList = contactTypeList + `<input type="checkbox" value="${item.value}" >${item.text}<br/>`
+            })
+            $('#contactType').html(contactTypeList)
+
+            //排查时不适症状
+            let checkSymptom = data.checkSymptom||[];
+            let checkSymptomList = ""
+            $('#checkSymptom').html('')
+            checkSymptom.map(item=>{
+                checkSymptomList = checkSymptomList + `<input type="checkbox" value="${item.value}" >${item.text}<br/>`
+            })
+            $('#checkSymptom').html(checkSymptomList)
+
+            //同行人员
+            let fellowWorker = data.fellowWorker||[];
+            let fellowWorkerList = ""
+            $('#fellowWorker').html('')
+            fellowWorker.map(item=>{
+                fellowWorkerList = fellowWorkerList + `<input type="checkbox" value="${item.value}" >${item.text}<br/>`
+            })
+            $('#fellowWorker').html(fellowWorkerList)
+
+            //隔离方式
+            let quarantineType = data.quarantineType||[];
+            let quarantineTypeList = ""
+            $('#quarantineType').html('')
+            quarantineType.map(item=>{
+                quarantineTypeList = quarantineTypeList + `<option value="${item.value}">${item.text}</option>`
+            })
+            $('#quarantineType').html(quarantineTypeList)
+
+            //是否来自重点疫区
+            let epidemicArea = data.epidemicArea||[];
+            let epidemicAreaList = ""
+            $('#epidemicArea').html('')
+            epidemicArea.map(item=>{
+                epidemicAreaList = epidemicAreaList + `<input type="checkbox" value="${item.value}">${item.text}`
+            })
+            $('#epidemicArea').html(epidemicAreaList)
+
+            //交通方式
+            let transportationMode = data.transportationMode||[];
+            let transportationModeList = ""
+            $('#transportationMode').html('')
+            transportationMode.map(item=>{
+                transportationModeList = transportationModeList + `<input type="checkbox" value="${item.value}" >${item.text}<br/>`
+            })
+            $('#transportationMode').html(transportationModeList)
+
+            //性别
+            let psex = data.psex||[];
+            let psexList = ""
+            $('#psex').html('')
+            psex.map(item=>{
+                psexList = psexList + `<option value="${item.value}">${item.text}</option>`
+            })
+            $('#psex').html(psexList)
+
+            //所在社区
+            let community = data.community||[];
+            let communityList = ""
+            $('#community').html('')
+            community.map(item=>{
+                communityList = communityList + `<option value="${item.value}">${item.text}</option>`
+            })
+            $('#community').html(communityList)
+
+
+
+
+
+
+
+
+
+        })
+    })
+function submit(){
+    console.log($('#form1').serialize())
+    // $.ajax({
+    //         //几个参数需要注意一下
+    //             type: "POST",//方法类型
+    //             dataType: "json",//预期服务器返回的数据类型
+    //             url: "/users/login" ,//url
+    //             data: $('#form1').serialize(),
+    //             success: function (result) {
+    //                 console.log(result);//打印服务端返回的数据(调试用)
+    //                 if (result.resultCode == 200) {
+    //                     alert("SUCCESS");
+    //                 }
+    //                 ;
+    //             },
+    //             error : function() {
+    //                 alert("异常！");
+    //             }
+    //         })
+}
+
+
+    
+    
+
+});
+</script>
 </html>
