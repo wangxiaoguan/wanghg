@@ -13,25 +13,25 @@
             <div class="title">基本信息</div>
             <section class="section">
                 <span class="form_name">日期:</span>
-                <input type="date" name='time' />
+                <input type="date" id="inputDate" name='inputDate' />
             </section>
             <section class="section">
                 <span class="form_name">姓名:</span>
-                <input type="text" name="username" />
+                <input type="text" id="pname" name="pname" />
             </section>
             <section class="section">
                 <span class="form_name">身份证号:</span>
-                <input type="number" name="number" />
+                <input type="number" id="idcard" name="idcard" />
             </section>
             <section class="section">
                 <span class="form_name">性别:</span>
                 <div class="fetch_data">
-                    <select id='psex' name="psex"><option>男</option></select>
+                    <select id='psex' name="psex"></select>
                 </div>
             </section>
             <section class="section">
                 <span class="form_name">联系电话:</span>
-                <input type="number" name="phone" />
+                <input type="number" id="phone" name="phone" />
             </section>
             <section class="section">
                 <span class="form_name_long">是否来自重点疫区:</span>
@@ -288,16 +288,20 @@
             <section class="section">
                 <span class="form_name"></span>
             </section>
-            <section class="section btn_middle">
+            <!-- <section class="section btn_middle">
                 <button>返回</button>
                 <button type="submit" onclick="submit()">提交</button>
-            </section>
+            </section> -->
         </form>
-        <div></div>
+        <footer>
+            <button>返回</button>
+            <button type="submit" onclick="submit()">提交</button>
+        </footer>
     </div>
 </body>
 <script src="js/jquery.js"></script>
 <script>
+var FormObject = {};
 $(document).ready(function(){
 
 /*****************************************数据初始化*****************************************************/
@@ -416,7 +420,7 @@ fetch("js/data.json").then(res=>{
 
         })
     })
-var FormObject = {};
+
 /*****************************************事件*****************************************************/
 //省、市、区三级联动
 $("#provinceCity").change(function(){
@@ -642,26 +646,7 @@ $(".add_contact").click(function(){
 })
 
 
-function submit(){
-    console.log($('#form1').serialize())
-    // $.ajax({
-    //         //几个参数需要注意一下
-    //             type: "POST",//方法类型
-    //             dataType: "json",//预期服务器返回的数据类型
-    //             url: "/users/login" ,//url
-    //             data: $('#form1').serialize(),
-    //             success: function (result) {
-    //                 console.log(result);//打印服务端返回的数据(调试用)
-    //                 if (result.resultCode == 200) {
-    //                     alert("SUCCESS");
-    //                 }
-    //                 ;
-    //             },
-    //             error : function() {
-    //                 alert("异常！");
-    //             }
-    //         })
-}
+
 
 
     
@@ -797,6 +782,33 @@ function add_contact_img(){
 function reduce_common_img(e){
     console.log(e)
     $(`#add_data_${e}`).remove();
+}
+
+function submit(){
+    console.log($('#form1').serialize())
+    let result = $('#form1').serialize().split('&')
+    result.map(item=>{
+        let list = item.split('=')
+        FormObject[list[0]] = list[1]||''
+    })
+    console.log(FormObject)
+    // $.ajax({
+    //         //几个参数需要注意一下
+    //             type: "POST",//方法类型
+    //             dataType: "json",//预期服务器返回的数据类型
+    //             url: "/users/login" ,//url
+    //             data: $('#form1').serialize(),
+    //             success: function (result) {
+    //                 console.log(result);//打印服务端返回的数据(调试用)
+    //                 if (result.resultCode == 200) {
+    //                     alert("SUCCESS");
+    //                 }
+    //                 ;
+    //             },
+    //             error : function() {
+    //                 alert("异常！");
+    //             }
+    //         })
 }
 </script>
 </html>

@@ -1,0 +1,48 @@
+{
+    "inputDate":"2020-02-01", //排查日期
+    "pname":"2-16测试7接口", //姓名
+    "idcard":"110101199003070791", //身份证号
+    "psex":"1",//性别下拉
+    "phone":"15812773234", //联系电话
+    "epidemicArea":"420100", //是否来自重点疫区
+    "currentAddressDistrict":"440404", //珠海现住址-区
+    "currentAddressStreet":"440404103", //珠海现住址-街道（镇）
+    "detailedAddress":"详细住址", //详细现住址
+    "community":"440406001", //所在社区
+    "company":"所在企业", //所在企业
+    "inGl":"1", //目前是否在港 下拉
+    "stayFlag":1, //2019年底起一直留在珠海（0-否；1-是；）
+    "checkTemperature":"35.0", //排查时体温情况
+    "checkSymptomS":["2c9df6617032f34e0170335cbb8e0009","2c9df6617032f34e0170335ce51e000a"], //排查时不适症状
+    "checkOtherSymptom":"不适其他", //不适-其他
+    "quarantineStartDate":"2020-02-03", //开始隔离日期
+    "quarantineEndDate":"2020-02-19 18:45:06", //解除隔离日期
+    "quarantineType":"2c9df6617032f34e017033597c1f0006", //隔离方式下拉
+    "detailedSituation":"详细情况", //详细情况
+    "registerProvince":"420000", //户籍-省
+    "registerCity":"420100", //户籍-市
+    "registerArea":"420112", //户籍-区
+    "registerAddress":"现住址详细地址", 户籍-详细地址
+    "dailyTemperatures":[{"happenDate":"2020-02-01", //发生日期
+           "recordType":"1", //记录类型（1-上午；2-下午）
+           "checkTemperature":"36.0", //体温情况
+           "checkSymptomS":["2c9df6617032f34e0170335cbb8e0009","2c9df6617032f34e0170335ce51e000a"], //不适症状
+           "checkOtherSymptom":"不适其他"}, //不适症状-其他
+           {"happenDate":"2020-02-01",
+           "recordType":"2",
+           "checkTemperature":"36.0",
+           "checkSymptomS":["2c9df6617032f34e0170335cbb8e0009","2c9df6617032f34e0170335ce51e000a"],
+           "checkOtherSymptom":"不适其他"}],
+            "egressRecords":[{"startProvince":"110000", //起点-省份
+          "startCity":"110100", //起点-城市
+          "endProvince":"130000", //终点省份
+          "endCity":"130800", //终点城市
+          "egressStartTime":"2020-02-04", //逗留期间-开始
+          "egressSoFar":1, //逗留至今
+          "egressEndTime":"2020-02-05",//逗留期间-结束
+          "fellowWorkerArr":["2c9df6617032f34e0170335f6909000d","2c9df6617032f34e0170335f9b60000e"], //同行人员
+          "otherWorker":"同行其他",//同行人员-其他
+          "fellowWorkerPhone":"同行人员联系电话", //同行人员联系方式
+          "transportationModeArr":["2c9df6617032f34e0170336146f80012","2c9df6617032f34e01703361a33d0014"], //交通方式
+          "otherMod":""
+    }
