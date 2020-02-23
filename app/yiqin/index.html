@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <title>健康情况填报</title>
+    <link rel="stylesheet" type="text/css" href="css/healthy.css" />
+</head>
+<body>
+    <div id="app">
+        <header id="top"><span id="goBack" class="back"></span>健康情况填报</header>
+        <form id="form" onsubmit="return false" action="#" method="post">
+            <div class="title">基本信息</div>
+            <section class="section">
+                <span class="form_name">排查日期</span>
+                <input type="date" class="allTime" id="inputDate" placeholder="请输入时间" name="inputDate" />
+                <div id="inputDateCheck" class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name"><span class="red">*</span>姓名</span>
+                <input type="text" id="pname" name="pname" placeholder="请输入"/>
+                <div id="pnameCheck" class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">身份证号</span>
+                <input type="text" id="idcard" name="idcard" placeholder="41XXXXXXXXXXXXXXXX"/>
+                <div id="idcardCheck" class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name"><span class="red">*</span>性别</span>
+                <div class="fetch_data">
+                    <select id="psex" name="psex">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </div>
+                <div id="psexCheck" class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">联系电话</span>
+                <input type="number" id="phone" name="phone" placeholder="13XXXXXXXXX"/>
+                <div id="phoneCheck" class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_long">是否来自重点疫区</span>
+                <div class="fetch_data_long" id="epidemicArea"></div>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_sort">户籍</span>
+                <div class="fetch_data_huji">
+                    <select id="registerProvince" name="registerProvince">
+                    </select>
+                    <select id="registerCity" name="registerCity">
+                    </select>
+                    <select id="registerArea" name="registerArea">
+                    </select>
+                </div>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_6">户籍详细地址</span>
+                <input type="text" class="registerAddress" maxlength="37" name="registerAddress" placeholder="请输入"/>
+                <div class="promptTxt"></div>
+            </section>
+            <div class="title">在港信息</div>
+            <section class="section">
+                <span class="form_name_5">珠海现住址</span>
+                <div class="fetch_data_zhuhai">
+                    <select id="districtStreet" name="currentAddressDistrict">
+                    </select>
+                    <select id="currentAddressStreet" name="currentAddressStreet">
+                    </select>
+                </div>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">详细现住址</span>
+                <input type="text" maxlength="37" name="detailedAddress" placeholder="请输入"/>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">所在社区</span>
+                <div class="fetch_data">
+                    <select id="community" name="community">
+                    </select>
+                </div>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">所在单位</span>
+                <input type="text" maxlength="42" name="company" placeholder="请输入"/>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_6">目前是否在港</span>
+                <select id="inGl" name="inGl">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <input type="checkbox" id="stayFlag" value="1" name="stayFlag"><span class="checkbox">2019年底起一直留在珠海</span>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_9">春节前后实际返港时间</span>
+                <!-- <input type="datetime-local" step="01" id="returnTime" name="returnTime" /> -->
+                <input type="date" id="returnTime" class="time" name="returnTime" />
+                <div class="promptTxt"></div>
+            </section>
+            <div class="title">健康信息</div>
+            <section class="section">
+                <span class="form_name_7">排查时体温情况</span>
+                <input type="number" min="30" max="50" step="0.01" id="checkTemperature" name="checkTemperature" placeholder="请输入"/>℃
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">无不适症状</span>
+                <div class="fetch_data_checkbox" id="checkSymptom">
+                </div>
+                <div class="promptTxt"></div>
+            </section>
+            <div id="add_data_1"></div>
+            <section class="section btn_middle">
+                <button class="add_day addDataBtn" id="add_day"> + 增加每日记录</button>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_6">开始隔离日期</span>
+                <input type="date" class="form_name_6_input" id="quarantineStartDate" name="quarantineStartDate" />
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_6">解除隔离日期</span>
+                <input type="date" class="form_name_6_input" id="quarantineEndDate"  name="quarantineEndDate" />
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name_4">隔离方式</span>
+                <div class="fetch_data">
+                    <select class="select_6" id="quarantineType" name="quarantineType">
+                    </select>
+                </div>
+                <div class="promptTxt"></div>
+            </section>
+            <section class="section">
+                <span class="form_name">详细情况</span>
+                <textarea id="detailedSituation" rows="5"  maxlength="400" name="detailedSituation"></textarea>
+                <div class="promptTxt"></div>
+            </section>
+            <div id="add_data_2"></div>
+            <section class="section btn_middle">
+                <button class="add_out addDataBtn" id="add_out"> + 增加外出史</button>
+                <div class="promptTxt"></div>
+            </section>
+            
+            <div id="add_data_3"></div>
+            <section class="section btn_middle">
+                <button class="add_contact addDataBtn"> + 增加接触史</button>
+                <div class="promptTxt"></div>
+            </section>
+            
+        </form>
+        <footer id="footer">
+            <div class="footer_btn" id="goSubmit" onclick="submit()">提交</div>
+        </footer>
+        <div id="allScreen_1" class="allScreen">
+            <div id="submitModal" class="submitModal">
+                <div class="submitModal_middle">
+                    <img src="img/a4.png" alt=""/>
+                    <span>提交成功</span>
+                </div>
+                <div class="submitModal_button">
+                    <button id="btn_back">确定并回到首页</button>
+                    <button id="btn_add">确定并继续添加</button>
+                </div>
+            </div>
+        </div>
+        <div id="allScreen_2" class="allScreen">
+            <div id="alertModal" class="submitModal alertModal">
+                <!-- <h3 class="alertModal_title">提示！<span class="red">*</span>为必填项</h3> -->
+                <div class="submitModal_middle" id="content">
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/idCardNo.js"></script>
+<script src="js/form.js"></script>
+<script>
+window.sessionStorage.setItem("isFlog","1")
+var FormObject = {};
+//排查时不适症状
+// var checkSymptomList = "";
+var checkSymptom = [];
+
+//同行人员
+var fellowWorkerList = "";
+var fellowWorker = [];
+
+//交通方式
+var transportationModeList = "";
+var transportationMode = [];
+
+//接触地点
+var contactPlaceList = "";
+var contactPlace = [];
+
+//接触方式
+var contactTypeList = "";
+var contactType = [];
+
+//接触重点疫区
+var contactAreaList = "";
+
+//省,市初始化
+var provinceCityList = "";
+var Cityoption = "";
+
+// let IP = `http://wx.fitruna.com:80`;
+let IP = `http://14.215.219.149:8081`;
+$(document).ready(function(){
+
+
+
+/*****************************************数据初始化*****************************************************/
+var firstData = {};
+$.ajax({
+        url: `${IP}/gl_yqtj/manage/wx/investigators/investigators.json`,
+        type: "post",
+        dataType: "json",
+        async: true,
+        success: function (info) {
+            console.log(info)
+            firstData = info.root;
+            firstLoadData(firstData);//初始化省
+            registerCity(firstData);//初始化市
+            // currentAddressStreet(firstData);//初始化街道
+        },
+        error:function(error){
+            console.log(error)
+        }
+      })
+
+ 
+function firstLoadData(allData){
+    //省
+    let provinceCity = allData.provinceCity||[];
+    provinceCityList = ""
+    $("#provinceCity").html("")
+    provinceCity.map(item=>{
+        provinceCityList = provinceCityList + `<option value="${item.value}">${item.text}</option>`
+    })
+    $("#registerProvince").html(provinceCityList)
+
+    //区
+    let districtStreet = allData.districtStreet||[];
+    let districtStreetList = ""
+    $("#districtStreet").html("")
+    districtStreet.map(item=>{
+        districtStreetList = districtStreetList + `<option value="${item.value}">${item.text}</option>`
+    })
+    $("#districtStreet").html(districtStreetList).val("440406")
+    currentAddressStreet("440406")
+
+    //接触重点疫区
+    let contactArea = allData.contactArea||[];
+    // let contactAreaList = ""
+    $("#contactArea").html("")
+    contactArea.map(item=>{
+        contactAreaList = contactAreaList + `<option value="${item.value}">${item.text}</option>`
+    })
+    $("#contactArea").html(contactAreaList)
+
+    //接触地点
+    contactPlace = allData.contactPlace||[];
+    // let contactPlaceList = ""
+    $("#contactPlace").html("")
+    contactPlace.map((item,index)=>{
+        contactPlaceList = contactPlaceList + `<input type="checkbox" value="${item.value}" name="contactPlaceArr_${index}" >${item.text}<br/>`
+    })
+    $("#contactPlace").html(contactPlaceList)
+
+
+    //接触方式
+    contactType = allData.contactType||[];
+    // let contactTypeList = ""
+    $("#contactType").html("")
+    contactType.map((item,index)=>{
+        contactTypeList = contactTypeList + `<input type="checkbox" value="${item.value}" name="contactTypeArr_${index}" >${item.text}<br/>`
+    })
+    $("#contactType").html(contactTypeList)
+
+    //排查时不适症状
+    checkSymptom = allData.checkSymptom||[];
+    let checkSymptomList = `<div class="check_div"><input type="checkbox" class="checkbox" value="无不适症状" name="checkOtherSymptom" />无不适症状</div/>`
+    $("#checkSymptom").html("")
+    checkSymptom.map((item,index)=>{
+        checkSymptomList = checkSymptomList + `<div class="check_div"><input class="checkbox" type="checkbox" value="${item.value}" name="checkSymptomS1_${index}">${item.text}</div>`
+    })
+    checkSymptomList = checkSymptomList + `<div class="check_div"><input class="checkbox others" type="checkbox" value="其他" name="checkOtherSymptom" />其他(详细情况说明)</div><input type="text" placeholder="选中其他才可编辑" disabled="disabled" class="otherTxt" placeholder="选中其他才可编辑" maxlength="20" id="checkOtherSymptom_2" name="checkOtherSymptom"  />`
+    $("#checkSymptom").html(checkSymptomList)
+
+    //同行人员
+    fellowWorker = allData.fellowWorker||[];
+    // let fellowWorkerList = ""
+    $("#fellowWorker").html("")
+    fellowWorker.map((item,index)=>{
+        fellowWorkerList = fellowWorkerList + `<input type="checkbox" value="${item.value}" name="fellowWorkerArr_${index}" >${item.text}<br/>`
+    })
+    $("#fellowWorker").html(fellowWorkerList)
+
+    //隔离方式
+    let quarantineType = allData.quarantineType||[];
+    let quarantineTypeList = ""
+    $("#quarantineType").html("")
+    quarantineType.map(item=>{
+        quarantineTypeList = quarantineTypeList + `<option value="${item.value}">${item.text}</option>`
+    })
+    $("#quarantineType").html(quarantineTypeList)
+
+    //是否来自重点疫区
+    let epidemicArea = allData.epidemicArea||[];
+    // epidemicArea = [
+    //         {
+    //             "pVal": "420000",
+    //             "value": "420100",
+    //             "text": "武汉籍",
+    //             "children": null
+    //         },
+    //         {
+    //             "pVal": "330000",
+    //             "value": "330300",
+    //             "text": "温州籍",
+    //             "children": null
+    //         }
+    //     ]
+    let epidemicAreaList = ""
+    $("#epidemicArea").html("")
+    epidemicArea.map(item=>{
+        epidemicAreaList = epidemicAreaList + `<input type="radio" class="checkbox epidemicArea" value="${item.pVal}-${item.value}" name="epidemicArea"><span>${item.text}<span>`
+    })
+    $("#epidemicArea").html(epidemicAreaList)
+
+    //交通方式
+    transportationMode = allData.transportationMode||[];
+    // let transportationModeList = ""
+    $("#transportationMode").html("")
+    transportationMode.map((item,index)=>{
+        transportationModeList = transportationModeList + `<input type="checkbox" value="${item.value}" name="transportationModeArr_${index}" >${item.text}<br/>`
+    })
+    $("#transportationMode").html(transportationModeList)
+
+    //性别
+    let psex = allData.psex||[];
+    let psexList = ""
+    $("#psex").html("")
+    psex.map(item=>{
+        psexList = psexList + `<option value="${item.value}">${item.text}</option>`
+    })
+    $("#psex").html(psexList)
+
+    //所在社区
+    let community = allData.community||[];
+    let communityList = ""
+    $("#community").html("")
+    community.map(item=>{
+        communityList = communityList + `<option value="${item.id}">${item.text}</option>`
+    })
+    $("#community").html(communityList)
+}
+
+//市
+function registerCity(allData){
+    let City_1 = allData["provinceCity"]||null;
+    if(City_1){
+        let City_2 = City_1[0].value;
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictCityView.json`,
+            type: "post",
+            dataType: "json",
+            data:{pCode:City_2},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                registerArea(data)
+                Cityoption = "";
+                data.map(item=>{
+                    Cityoption = Cityoption + `<option value="${item.value}">${item.text}</option>`
+                })
+                $("#registerCity").html(Cityoption)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+    }
+}
+
+
+
+/*****************************************事件*****************************************************/
+//省、市、区三级联动
+$("#registerProvince").change(function(){
+    console.log($(this).val());
+    let registerProvince = $(this).val();
+    
+    if(FormObject["registerProvince"]!==registerProvince){
+        $("#registerCity").html("")
+        $("#registerArea").html("")
+
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictCityView.json`,
+            type: "post",
+            dataType: "json",
+            data:{pCode:registerProvince},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                registerArea(data)
+                let option = "";
+                data.map(item=>{
+                    option = option + `<option value="${item.value}">${item.text}</option>`
+                })
+                $("#registerCity").html(option)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+        FormObject["registerProvince"] = registerProvince||"";
+    }
+});
+$("#registerCity").change(function(){
+    console.log($(this).val())
+    let registerCity = $(this).val()
+    if(FormObject["registerCity"]!==registerCity){
+        $("#registerArea").html("")
+        $.ajax({
+        url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictDistrictView.json`,
+        type: "post",
+        dataType: "json",
+        data:{cCode:registerCity},
+        async: true,
+        success: function (info) {
+            console.log(info)
+            let data = info.root||[];
+            
+            let option = "";
+            data.map(item=>{
+                option = option + `<option value="${item.value}">${item.text}</option>`
+            })
+            $("#registerArea").html(option)
+        },
+        error:function(error){
+            console.log(error)
+        }
+      })
+        FormObject["registerCity"] = registerCity||"";
+    }
+});
+$("#registerArea").change(function(){
+    console.log($(this).val())
+    let registerArea = $(this).val()
+    FormObject["registerArea"] = registerArea||"";
+});
+
+
+//珠海现住址
+$("#districtStreet").change(function(){
+    console.log($(this).val())
+    let districtStreet = $(this).val()
+    if(FormObject["districtStreet"]!==districtStreet){
+        $("#currentAddressStreet").html("")
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictStreetView.json`,
+            type: "post",
+            dataType: "json",
+            data:{areaCode:districtStreet},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                let option = "";
+                data.map(item=>{
+                    option = option + `<option value="${item.streetId}">${item.streetName}</option>`
+                })
+                $("#currentAddressStreet").html(option)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+        FormObject["districtStreet"] = districtStreet||"";
+    }
+});
+
+//街道
+function currentAddressStreet(code){
+    let districtStreet = code||null;
+    if(districtStreet){
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictStreetView.json`,
+            type: "post",
+            dataType: "json",
+            data:{areaCode:districtStreet},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                let option = "";
+                data.map(item=>{
+                    option = option + `<option value="${item.streetId}">${item.streetName}</option>`
+                })
+                $("#currentAddressStreet").html(option)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+    }
+
+}
+$("#currentAddressStreet").change(function(){
+    console.log($(this).val())
+    let currentAddressStreet = $(this).val()
+    FormObject["currentAddressStreet"] = currentAddressStreet||"";
+});
+
+//增加每日记录==>按钮添加
+$(".add_day").click(function(){
+    console.log("点击----->")
+    let data_time = new Date().getTime()
+    let List = "";
+    checkSymptom.map((item,index)=>{
+        List = List + `<div class="check_div"><input type="checkbox" class="checkbox" value="${item.value}" name="checkSymptomS_${index}_${data_time}">${item.text}</div>`
+    })
+    let add_data_1 = `<div class="add_data" id="add_data_${data_time}" >
+                        <h4>新增每日记录</h4>
+                        <div class="reduce_X" onclick="reduce_common_img(${data_time})">×</div>
+                        <section class="section">
+                            <span class="form_name">发生日期</span>
+                            <input type="date" name="happenDate_${data_time}" />
+                            <input type="radio" class="checkbox" value="1" name="recordType_${data_time}">上午
+                            <input type="radio" class="checkbox" value="2" name="recordType_${data_time}">下午
+                        </section>
+                        <section class="section">
+                            <span class="form_name_4">体温情况</span>
+                            <input type="number" name="checkTemperature_${data_time}" />℃
+                        </section>
+                        <section class="section">
+                            <span class="form_name">不适症状</span>
+                            <div class="fetch_data_checkbox">
+                                <div class="check_div"><input type="checkbox" class="checkbox" value="无不适症状" name="checkOtherSymptom_${data_time}" />无不适症状</div>
+                                ${List}
+                                <div class="check_div"><input type="checkbox" class="checkbox others" value="其他" name="checkOtherSymptom_${data_time}" />其他(详细情况说明)</div>
+                                <input type="text" placeholder="选中其他才可编辑" disabled="disabled" class="otherTxt" maxlength="20" name="checkOtherSymptom_${data_time}"  />
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_1").append(add_data_1)
+});
+
+//增加外出史==>按钮添加
+$(".add_out").click(function(){
+    let data_time = new Date().getTime()
+    let List = "";
+    fellowWorker.map((item,index)=>{
+        List = List + `<div class="check_div"><input type="checkbox" class="checkbox" value="${item.value}" name="fellowWorkerArr_${index}_${data_time}" >${item.text}</div>`
+    })
+    let List_2 = "";
+    transportationMode.map((item,index)=>{
+        List_2 = List_2 + `<div class="check_div"><input type="checkbox" class="checkbox" value="${item.value}" name="transportationModeArr_${index}_${data_time}" >${item.text}</div>`
+    })
+    let add_data_2 = `<div class="add_data" id="add_data_${data_time}">
+                        <section class="section">
+                            <h4>增加外出史</h4>
+                            <div class="reduce_X" onclick="reduce_common_img(${data_time})">×</div>
+                            <span class="form_name">起点城市</span>
+                            <div class="fetch_data">
+                                <select id="startProvince_${data_time}" onchange="startProvince(${data_time})" name="startProvince_${data_time}">
+                                    ${provinceCityList}
+                                </select>
+                                <select id="startCity_${data_time}" name="startCity_${data_time}">
+                                    ${Cityoption}
+                                </select>
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <span class="form_name">终点城市</span>
+                            <div class="fetch_data">
+                                <select id="endProvince_${data_time}" onchange="endProvince(${data_time})" name="endProvince_${data_time}">
+                                    ${provinceCityList}
+                                </select>
+                                <select id="endCity_${data_time}" name="endCity_${data_time}">
+                                    ${Cityoption}
+                                </select>
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name_4">逗留时间</span></br>
+                            从<input class="date" type="date" name="egressStartTime_${data_time}" />到<input class="date" type="date" name="egressEndTime_${data_time}" /></br><input type="checkbox" class="checkbox" value="1" name="egressSoFar_${data_time}">至今
+                        </section>
+                        <section class="section">
+                            <span class="form_name">同行人员</span>
+                            <div class="fetch_data_checkbox">
+                                ${List}
+                                <div class="check_div"><input type="checkbox" class="checkbox others" name="otherWorker_${data_time}" value="1" >其他(详细情况说明)</div>
+                                <input type="text" maxlength="20" placeholder="选中其他才可编辑" class="otherTxt" disabled="disabled" name="otherWorker_${data_time}"  />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name_9">同行人员联系方式</span>
+                            <textarea rows="4" placeholder="请输入"  maxlength="100" name="fellowWorkerPhone_${data_time}"></textarea>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">交通方式</span>
+                            <div class="fetch_data_checkbox">
+                                ${List_2}
+                                <div class="check_div"><input type="checkbox" class="checkbox others" name="otherMode_${data_time}" value="其他" >其他(详细情况说明)</div>
+                                <input type="text" disabled="disabled" maxlength="20" class="otherTxt" placeholder="选中其他才可编辑" name="otherMode_${data_time}"  />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name">班次号</span>
+                            <input type="text" placeholder="请输入" maxlength="20" name="flightNum_${data_time}" />
+                        </section>
+                        <section class="section">
+                            <span class="form_name">座位号</span>
+                            <input type="text" placeholder="请输入" class="seatNum" name="seatNum_${data_time}"/>
+                            <div class="promptTxt"></div>
+                        </section>
+                    </div>`
+    $("#add_data_2").append(add_data_2)
+})
+
+//增加接触史==>按钮添加
+$(".add_contact").click(function(){
+    let data_time = new Date().getTime()
+    let List = "";
+    contactPlace.map((item,index)=>{
+        List = List + `<div class="check_div"><input type="checkbox" class="checkbox" value="${item.value}" name="contactPlaceArr_${index}_${data_time}" >${item.text}</div>`
+    })
+    let List_2 = "";
+    contactType.map((item,index)=>{
+        List_2 = List_2 + `<div class="check_div"><input type="checkbox" class="checkbox" value="${item.value}" name="contactTypeArr_${index}_${data_time}" >${item.text}</div>`
+    })
+    let add_data_3 = `<div class="add_data" id="add_data_${data_time}">
+                        <h4>增加接触史</h4>
+                        <div class="reduce_X" onclick="reduce_common_img(${data_time})">×</div>
+                        <section class="section">
+                            <span class="form_name_6">末次接触日期</span>
+                            <input type="date" class="lastContactDate" name="lastContactDate_${data_time}" />
+                        </section>
+                        <section class="section">
+                            <span class="form_name">接触地点</span>
+                            <div class="fetch_data_checkbox">
+                                ${List}
+                                <div class="check_div"><input type="checkbox" class="checkbox others" name="otherPlace_${data_time}" value="其他" >其他(详细情况说明)</div>
+                                <input type="text" maxlength="20" class="otherTxt" placeholder="选中其他才可编辑" disabled="disabled" name="otherPlace_${data_time}" />
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <span class="form_name">接触方式：</span>
+                            <div class="fetch_data_checkbox">
+                                ${List_2}
+                                <div class="check_div"><input type="checkbox" class="checkbox others" value="1" name="otherType_${data_time}" >其他(详细情况说明)</div>
+                                <input type="text" maxlength="20" class="otherTxt" placeholder="选中其他才可编辑" disabled="disabled" name="otherType_${data_time}"  />
+                            </div>
+                        </section>
+                        <section class="section">
+                            <span class="form_name_9">近距离接触人员</span>
+                            <textarea rows="3" placeholder="上述勾选人员有哪些近距离接触"  maxlength="20" name="contactPerson_${data_time}"></textarea>
+                        </section>
+                        <section class="section">
+                            <span class="form_name_6">接触重点疫区</span>
+                            <div class="fetch_data">
+                                <select class="select_6" id="contactArea_${data_time}" name="contactArea_${data_time}">
+                                    ${contactAreaList}
+                                </select>
+                            </div>
+                        </section>
+                    </div>`
+    $("#add_data_3").append(add_data_3)
+})
+
+
+
+});
+
+//增加每日记录、增加外出史、增加接触史==>图片删除
+function reduce_common_img(e){
+    console.log(e)
+    $(`#add_data_${e}`).remove();
+}
+
+function submit(){
+    let result = $("#form").serialize().split("&");
+    let checkData = {}
+    result.map(item=>{
+        let list = item.split("=")
+        checkData[list[0]] = list[1]||""
+    })
+    console.log(checkData)
+    let flag = true;
+    $("#content").html("")
+    // if(!checkData["inputDate"]){
+    //     $("#inputDateCheck").html("日期不可为空")
+    //     flag = false;
+    // }
+    if(!checkData["pname"]){
+        $("#pnameCheck").html("姓名不可为空")
+        flag = false;
+    }
+    if($("#pnameCheck").html()){
+        flag = false;
+    }
+    if($("#idcardCheck").html()){
+        flag = false;
+    }
+    if($("#phoneCheck").html()){
+        flag = false;
+    }
+
+    if(flag){
+        submitFormData()
+    }else{
+        $("#content").html("信息没填写或不规范，请重新填写")
+        $("#allScreen_2").fadeIn();
+    }
+    
+}
+
+
+//起点城市  
+function startProvince(time){
+    console.log($(`#startProvince_${time}`).val())
+    let startProvince = $(`#startProvince_${time}`).val()
+    if(FormObject["startProvince"]!==startProvince){
+        $(`#startCity_${time}`).html("")
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictCityView.json`,
+            type: "post",
+            dataType: "json",
+            data:{pCode:startProvince},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                let option = "";
+                data.map(item=>{
+                    option = option + `<option value="${item.value}">${item.text}</option>`
+                })
+                $(`#startCity_${time}`).html(option)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+        FormObject["startProvince"] = startProvince||"";
+    }
+};
+
+function endProvince(time){
+    console.log($(`#endProvince_${time}`).val())
+    let endProvince = $(`#endProvince_${time}`).val()
+    if(FormObject["endProvince"]!== endProvince){
+        $(`#endCity_${time}`).html("")
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictCityView.json`,
+            type: "post",
+            dataType: "json",
+            data:{pCode:endProvince},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                let option = "";
+                data.map(item=>{
+                    option = option + `<option value="${item.value}">${item.text}</option>`
+                })
+                $(`#endCity_${time}`).html(option)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+        FormObject["endProvince"] = endProvince||"";
+    }
+};
+
+
+//遍历对象属性
+function ObjectKeys(obj){
+    let arr = Object.keys(obj)
+    console.log("===========>",arr)
+    return arr;
+}
+//确定并继续添加
+$("#btn_add").click(()=>{
+    $("#allScreen_1").hide();//隐藏弹框
+    document.getElementById("form").reset();//表单重置
+})
+
+//确定并返回首页
+$("#btn_back").click(()=>{
+    $("#allScreen_1").hide();//隐藏弹框
+    document.getElementById("form").reset();//表单重置
+    window.location.href="home.html?isLogin=1";
+})
+
+//隐藏提示框
+$("#allScreen_2").click(()=>{
+    $("#allScreen_2").hide()
+})
+
+//返回按钮
+$("#goBack").click(()=>{
+    window.location.href="home.html?isLogin=1"
+})
+
+function submitFormData(){
+    let result = $("#form").serialize().split("&")
+    result.map(item=>{
+        let list = item.split("=")
+        FormObject[list[0]] = decodeURIComponent(list[1])||""
+    })
+    console.log(FormObject)
+
+    
+    //排查时不适症状
+    let checkSymptomS = [];
+    for(let m  in FormObject){
+        if(m.indexOf("checkSymptomS1")>-1){
+            checkSymptomS.push(FormObject[m])
+        }
+    }
+
+    //增加每日记录
+    let keysList = ObjectKeys(FormObject);
+    let dailyTemperatures = [];
+    for(let m  in FormObject){
+        if(m.indexOf("happenDate")>-1){
+            let checkSymptomS_2 = [];
+            let time = m.split("_")[1]
+            keysList.map(item=>{
+                if(item.indexOf("checkSymptomS")>-1&&item.indexOf(time)>-1){
+                    checkSymptomS_2.push(FormObject[item])
+                }
+            })
+            dailyTemperatures.push({
+                "happenDate":FormObject[`happenDate_${time}`]||"",
+                "recordType":FormObject[`recordType_${time}`]||"",
+                "checkTemperature":FormObject[`checkTemperature_${time}`]||"",
+                "checkSymptomS":checkSymptomS_2,
+                "checkOtherSymptom":FormObject[`checkOtherSymptom_${time}`]||""
+            })
+        }
+    }
+
+    //增加外出史
+    let egressRecords = [];
+    for(let m  in FormObject){
+        if(m.indexOf("startProvince")>-1){
+            let checkSymptomS_1 = [];
+            let checkSymptomS_2 = [];
+            let time = m.split("_")[1]
+            keysList.map(item=>{
+                if(item.indexOf("fellowWorkerArr")>-1&&item.indexOf(time)>-1){
+                    checkSymptomS_1.push(FormObject[item])
+                }
+            })
+            keysList.map(item=>{
+                if(item.indexOf("transportationModeArr")>-1&&item.indexOf(time)>-1){
+                    checkSymptomS_2.push(FormObject[item])
+                }
+            })
+            egressRecords.push({
+                "startProvince":FormObject[`startProvince_${time}`]||"", //起点-省份
+                "startCity":FormObject[`startCity_${time}`]||"", //起点-城市
+                "endProvince":FormObject[`endProvince_${time}`]||"", //终点省份
+                "endCity":FormObject[`endCity_${time}`]||"", //终点城市
+                "egressStartTime":FormObject[`egressStartTime_${time}`]||"", //逗留期间-开始
+                "egressSoFar":Number(FormObject[`egressSoFar_${time}`])||"", //逗留至今
+                "egressEndTime":FormObject[`egressEndTime_${time}`]||"",//逗留期间-结束
+                "fellowWorkerArr":checkSymptomS_1, //同行人员
+                "otherWorker":FormObject[`otherWorker_${time}`]||"",//同行人员-其他
+                "fellowWorkerPhone":FormObject[`fellowWorkerPhone_${time}`]||"", //同行人员联系方式
+                "transportationModeArr":checkSymptomS_2, //交通方式
+                "otherMode":FormObject[`otherMode_${time}`]||"", //交通方式-其他
+                "flightNum":FormObject[`flightNum_${time}`]||"", //班次号
+                "seatNum":FormObject[`seatNum_${time}`]||"",//座位号
+            })
+        }
+    }
+    
+
+    //增加接触史
+    let contactRecords = [];
+    for(let m  in FormObject){
+        if(m.indexOf("lastContactDate")>-1){
+            let checkSymptomS_1 = [];
+            let checkSymptomS_2 = [];
+            let time = m.split("_")[1]
+            keysList.map(item=>{
+                if(item.indexOf("contactPlaceArr")>-1&&item.indexOf(time)>-1){
+                    checkSymptomS_1.push(FormObject[item])
+                }
+            })
+            keysList.map(item=>{
+                if(item.indexOf("contactTypeArr")>-1&&item.indexOf(time)>-1){
+                    checkSymptomS_2.push(FormObject[item])
+                }
+            })
+            contactRecords.push({
+                "lastContactDate":FormObject[`lastContactDate_${time}`]||"", //末次接触日期
+                "contactPlaceArr":checkSymptomS_1, //接触地点
+                "otherPlace":FormObject[`otherPlace_${time}`]||"",  //接触地点-其他
+                "contactTypeArr":checkSymptomS_2, //接触方式
+                "otherType":FormObject[`otherType_${time}`]||"",  //接触方式-其他
+                "contactPerson":FormObject[`contactPerson_${time}`]||"", //近距离接触人员
+                "contactArea":FormObject[`contactArea_${time}`]||"",//接触重点疫区
+            })
+        }
+    }
+
+    if(FormObject["quarantineEndDate"]){
+        FormObject["quarantineEndDate"] = FormObject["quarantineEndDate"] + " 00:00:00"
+
+    }
+    if(FormObject["returnTime"]){
+        FormObject["returnTime"] = FormObject["returnTime"] + " 00:00:00"
+
+    }
+    if(FormObject["epidemicArea"]){
+        let object = FormObject["epidemicArea"].split("-");
+        FormObject["epidemicArea"] = object[1]
+        FormObject["registerProvince"] = object[0]
+        FormObject["registerCity"] = object[1]
+    }
+    let FormData = {
+        "inputDate":FormObject["inputDate"]||"", //排查日期
+        "pname":FormObject["pname"]||"", //姓名
+        "idcard":FormObject["idcard"]||"", //身份证号
+        "psex":FormObject["psex"]||"",//性别下拉
+        "phone":FormObject["phone"]||"", //联系电话
+        "epidemicArea":FormObject["epidemicArea"]||"", //是否来自重点疫区
+        "currentAddressDistrict":FormObject["currentAddressDistrict"]||"", //珠海现住址-区
+        "currentAddressStreet":FormObject["currentAddressStreet"]||"", //珠海现住址-街道（镇）
+        "detailedAddress":FormObject["detailedAddress"]||"", //详细现住址
+        "community":FormObject["community"]||"", //所在社区
+        "company":FormObject["company"]||"", //所在企业
+        "inGl":FormObject["inGl"]||"", //目前是否在港 下拉
+        "stayFlag":Number(FormObject["stayFlag"]||0), //2019年底起一直留在珠海（0-否；1-是；）
+        "returnTime":FormObject["returnTime"]||"",//春节前后实际返港时间
+        "checkTemperature":FormObject["checkTemperature"]||"", //排查时体温情况
+        "checkSymptomS":checkSymptomS, //排查时不适症状
+        "checkOtherSymptom":FormObject["checkOtherSymptom"]||"", //不适-其他
+        "quarantineStartDate":FormObject["quarantineStartDate"]||"", //开始隔离日期
+        "quarantineEndDate":FormObject["quarantineEndDate"]||"", //解除隔离日期
+        "quarantineType":FormObject["quarantineType"]||"", //隔离方式下拉
+        "detailedSituation":FormObject["detailedSituation"]||"", //详细情况
+        "registerProvince":FormObject["registerProvince"]||"", //户籍-省
+        "registerCity":FormObject["registerCity"]||"", //户籍-市
+        "registerArea":FormObject["registerArea"]||"", //户籍-区
+        "registerAddress":FormObject["registerAddress"]||"", //户籍-详细地址
+        "dailyTemperatures":dailyTemperatures,
+        "egressRecords":egressRecords, 
+        "contactRecords":contactRecords
+    }
+
+
+    console.log("==============>",FormData)
+    $.ajax({
+        url: `${IP}/gl_yqtj/manage/wx/investigators/wxSaveInvestigators.json`,
+        type: "POST",
+		contentType :"application/json;charset=UTF-8",
+        data:JSON.stringify(FormData),
+        async: true,
+        success: function (info) {
+            console.log(info)
+            $("#allScreen_1").show();
+            // $("#content").html("提交成功")
+            // $("#allScreen_2").fadeIn();
+            // document.getElementById("form").reset();//表单重置
+            // setTimeout(function(){
+            //     window.location.href="home.html?isLogin=1";
+            // },1000)
+            
+        },
+        error:function(error){
+            console.log(error)
+            document.getElementById("form").reset();//表单重置
+            $("#content").html("提交失败")
+            $("#allScreen_2").fadeIn();
+        }
+    })
+}
+
+//区
+function registerArea(allData){
+    let registerCity = allData[0].value||null;
+    if(registerCity){
+        $("#registerArea").html("")
+        $.ajax({
+            url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictDistrictView.json`,
+            type: "post",
+            dataType: "json",
+            data:{cCode:registerCity},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                let data = info.root||[];
+                let option = "";
+                data.map(item=>{
+                    option = option + `<option value="${item.value}">${item.text}</option>`
+                })
+                $("#registerArea").html(option)
+            },
+            error:function(error){
+                console.log(error)
+            }
+        })
+    }
+}
+
+//是否来自重点疫区——户籍
+$(document).on('click','.epidemicArea',function(){
+    let domName = $(this).attr('name');
+    let $radio = $(this);
+    if ($radio.data('waschecked') == true){
+        $radio.prop('checked', false);
+        $("input:radio[name='" + domName + "']").data('waschecked',false);
+    } else {
+        $radio.prop('checked', true);
+        $("input:radio[name='" + domName + "']").data('waschecked',false);
+        $radio.data('waschecked', true);
+    }
+    console.log("选中状态:",$(this).prop("checked"));
+    let isChecked = $(this).prop("checked");
+
+    
+    if(!isChecked){
+        $("#registerProvince").removeAttr("disabled").css("background-color","#fff")
+        $("#registerCity").removeAttr("disabled").css("background-color","#fff");
+        return
+    }
+    let val=$('input:radio[name="epidemicArea"]:checked').val().split("-");
+    $("#registerProvince").val(val[0]).attr("disabled","disabled").css("background-color","#eee")
+    $.ajax({
+        url: `${IP}/gl_yqtj/manage/wx/investigators/commonDictCityView.json`,
+        type: "post",
+        dataType: "json",
+        data:{pCode:val[0]},
+        async: true,
+        success: function (info) {
+            console.log(info)
+            let data = info.root||[];
+            registerArea([{value:val[1]}])
+            let option = "";
+            data.map(item=>{
+                option = option + `<option value="${item.value}">${item.text}</option>`
+            })
+            $("#registerCity").html(option)
+            setTimeout(function(){
+                $("#registerCity").val(val[1]).attr("disabled","disabled").css("background-color","#eee");
+            },10)
+        },
+        error:function(error){
+            console.log(error)
+        }
+        
+    })
+})
+</script>
+</html>

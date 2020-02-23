@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .banner{
+            width: 100%;
+        }
+        #middle{
+            padding:1rem;
+            height: 6rem;
+            border-bottom: 0.5rem solid #e0dede;
+        }
+        .middle_section{
+            width: 33%;
+            text-align: center;
+        }
+        .middle_section_img{
+            width: 60%;
+        }
+        .middle_section_div{
+            font-size: 0.8rem;
+        }
+
+        #footer{
+            width: 100%;
+            position:fixed;
+            bottom: 0;
+            left: 0;
+            padding: 0.5rem 0;
+            box-shadow: 0px -1rem 1.8rem rgba(0,0,0,0.1)
+            
+        }
+        .footer_bottom{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .footer_section{
+            text-align: center;
+        }
+        .footer_section_img{
+            width: 50%;
+        }
+        .footer_section_div{
+            font-size: 1rem;
+        }
+        .hover_blue{
+            color: #2c2cfd;
+        }
+        .hover_hui{
+            color: #aaa;
+        }
+        .footer_section_add{
+            width: 4.6rem;
+            height: 4.6rem;
+            padding: 0.1rem;
+            position: absolute;
+            top: -2rem;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+            text-align: center;
+            background: #fff;
+            border-radius: 50%;
+            line-height: 4.6rem;
+        }
+        .footer_add{
+            width: 80%;
+            vertical-align: middle;
+        }
+        .skip{
+            color: #000;
+            text-decoration: none;
+        }
+        #modal{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #fff;
+        }
+        #modalContent{
+            width: 100%;
+            height: 3rem;
+            font-size: 1.2rem;
+            line-height: 3rem;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="home">
+        <header>
+            <img class="banner" src="img/banner.png" alt=""/>
+        </header>
+        <div id="middle">
+            <section class="middle_section">
+                <a class="skip" href="form.html">
+                    <img class="middle_section_img" src="img/xin.png" alt=""/>
+                    <div class="middle_section_div">健康情况上报</div>
+                </a>
+            </section>
+        </div>
+        <footer id="footer">
+            <section class="footer_section_add">
+                <img class="footer_add" src="img/add.png" alt=""/>
+            </section>
+            <div class="footer_bottom">
+                <section class="footer_section" id="footer_section_left">
+                    <img class="footer_section_img" id="img_left" src="img/a6_1.png" alt=""/>
+                    <div class="footer_section_div hover_blue" id="div_left">首页</div>
+                </section>
+                <section class="footer_section" id="footer_section_right">
+                    <img class="footer_section_img" id="img_right" src="img/a5_2.png" alt=""/>
+                    <div class="footer_section_div hover_hui" id="div_right">我的上报</div>
+                </section>
+            </div>
+        </footer>
+        <div id="modal">
+            <section id="modalContent"></section>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+    let code = window.location.search.split("=")[1]||window.sessionStorage.getItem("isFlog")||0;
+    if(code != 1){
+        $.ajax({
+            url: "http://wx.fitruna.com:80/gl_yqtj/manage/wx/investigators/wxLogin.json",
+            type: "post",
+            dataType: "json",
+            data:{code:code},
+            async: true,
+            success: function (info) {
+                console.log(info)
+                if(!info.success){
+                    $("#modalContent").html(info.root)
+                }else{
+                    $("#modal").hide()
+                    window.sessionStorage.setItem("isFlog","1")
+                }
+            },
+            error:function(error){
+                console.log(error)
+                $("#modalContent").html("请求错误")
+            }
+        })
+    }else{
+        $("#modal").hide()
+    }
+
+    $("#footer_section_left").click(()=>{
+        $("#img_left").attr('src',"img/a6_1.png");
+        $("#div_left").addClass("hover_blue").removeClass("hover_hui");
+
+        $("#img_right").attr('src',"img/a5_2.png");
+        $("#div_right").addClass("hover_hui").removeClass("hover_blue");
+    })
+
+    $("#footer_section_right").click(()=>{
+        $("#img_left").attr('src',"img/a6_2.png");
+        $("#div_left").addClass("hover_hui").removeClass("hover_blue");
+
+        $("#img_right").attr('src',"img/a5_1.png");
+        $("#div_right").addClass("hover_blue").removeClass("hover_hui");
+    })
+
+
+})
+    
+</script>
+</html>
