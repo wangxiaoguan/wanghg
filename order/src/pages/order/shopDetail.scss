@@ -1,0 +1,200 @@
+@import "~taro-ui/dist/style/index.scss";
+
+.shop_details {
+  width: 100%;
+  // height: 100%;
+  overflow-y: auto;
+  font-family: PingFang SC;
+  background: rgba(245, 245, 245, 1);
+  // overflow-y: hidden;
+  // padding-bottom: 96px;
+  box-sizing: border-box;
+  position: relative;
+  .top_title {
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    line-height: 66.75px;
+    font-size: 31px;
+    font-weight: bold;
+    color: rgba(51, 51, 51, 1);
+    background: #fff;
+    .back_up {
+      position: absolute;
+      left: 27.31px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .shop_content {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    .content_img {
+      width: 100%;
+      height: auto;
+      .swiper-wrapper {
+        // width: 100% !important;
+        // height: auto;
+        line-height: initial;
+        .swiper-slide {
+          width: 100% !important;
+          height: auto;
+          .taro-img {
+            img {
+              width: 100%;
+              height: auto;
+              display: block !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .shop_bottom {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    .shop_row {
+      display: flex;
+      height: auto;
+      // line-height: 43px;
+      padding: 15px 20px 0;
+      box-sizing: border-box;
+      .shop_title {
+        flex: 1;
+        width: 50%;
+        height: auto;
+        font-size: 31px;
+        line-height: 43px;
+        color: rgba(51, 51, 51, 1);
+        text-align: left;
+      }
+      .shop_name {
+        flex: 1;
+        width: 50%;
+        height: auto;
+        font-size: 24px;
+        line-height: 43px;
+        color: rgba(153, 153, 153, 1);
+        text-align: right;
+      }
+    }
+    .shop_much {
+      margin-top: 17px;
+      width: 100%;
+      height: auto;
+      font-size: 20px;
+      line-height: 36px;
+      color: rgba(153, 153, 153, 1);
+      padding: 0 20px;
+      box-sizing: border-box;
+      span {
+        margin: 0 27px 0 10px;
+      }
+    }
+    .shop_add {
+      width: 100%;
+      height: auto;
+      margin-top: 22px;
+      padding: 0 20px 15px;
+      box-sizing: border-box;
+      border-bottom: solid 1px #f5f5f5;
+      .shop_price {
+        font-size: 34px;
+        line-height: 41px;
+        color: rgba(215, 0, 0, 1);
+        text-align: left;
+      }
+      .shop_name {
+        text-align: right;
+        .at-button {
+          // width: 147px;
+          height: 41px;
+          // background: rgba(223, 41, 41, 1);
+          border-radius: 7px;
+          border: none;
+          font-size: 24px;
+          display: inline-block;
+          line-height: 41px;
+          padding: 0 14px;
+        }
+        .add_shop {
+          background: rgba(223, 41, 41, 1);
+        }
+        .no_shop {
+          background: rgba(179, 179, 179, 1);
+        }
+      }
+    }
+    .at-article {
+      width: 100%;
+      height: auto;
+      background: #fff;
+      box-sizing: border-box;
+      padding: 17px 20px 27px;
+      .at-article__content {
+        .at-article__section {
+          .at-article__h3 {
+            margin: 0;
+            width: 100%;
+            height: auto;
+            font-size: 27px;
+            line-height: 41px;
+            color: rgba(51, 51, 51, 1);
+          }
+          .at-article__p {
+            margin: 0;
+            margin-top: 10px;
+            font-size: 24px;
+            line-height: 36px;
+            color: rgba(153, 153, 153, 1);
+          }
+        }
+      }
+    }
+  }
+  .bottom_tabs {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    .at-row {
+      width: 100%;
+      .at-col-8 {
+        background: #fff;
+        height: 96px;
+        box-sizing: border-box;
+        padding: 22px 29px;
+        text-align: left;
+        line-height: 96px;
+        .at-badge {
+          float: left;
+        }
+        .shopCar_img {
+          float: left;
+          img {
+            width: 52px;
+            height: auto;
+          }
+        }
+        .shopCar_price {
+          float: left;
+          font-size: 41px;
+          color: rgba(215, 0, 0, 1);
+          margin-left: 29px;
+          line-height: 52px;
+        }
+      }
+      .at-col-4 {
+        // background: rgba(223, 41, 41, 1);
+        line-height: 96px;
+        text-align: center;
+        font-size: 27px;
+        color: #fff;
+      }
+    }
+  }
+}

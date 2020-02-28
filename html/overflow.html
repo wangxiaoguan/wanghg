@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        header{
+            height: 70px;
+            background: #aaa;
+        }
+        .box{
+            height: calc(100vh - 70px);
+            background: #c0c;
+            overflow-y: auto;
+        }
+        .content{
+            height: 300vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>搜索框</header>
+        <div class="box">
+            <div class="content">
+                if(window.history && window.history.pushState) {
+                    $(window).on('popstate', function() {
+                        var hashLocation = location.hash;
+                        var hashSplit = hashLocation.split("#!/");
+                        var hashName = hashSplit[1];
+                        if(hashName !== '') {
+                            var hash = window.location.hash;
+                            if(hash === '') {
+                                alert("你点击了返回键");
+                            }
+                        }
+                    });
+                    window.history.pushState('forward', null, './#forward');
+                }                
+                
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

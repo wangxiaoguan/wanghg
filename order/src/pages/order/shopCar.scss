@@ -1,0 +1,258 @@
+@import "~taro-ui/dist/style/index.scss";
+
+.shop_lsit {
+  width: 100%;
+  // height: auto;
+  overflow-y: auto;
+  font-family: PingFang SC;
+  background: rgba(245, 245, 245, 1);
+  padding-bottom: 96px;
+  box-sizing: border-box;
+  position: relative;
+  // overflow: hidden;
+  .top_title {
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    line-height: 66.75px;
+    font-size: 31px;
+    font-weight: bold;
+    color: rgba(51, 51, 51, 1);
+    background: #fff;
+    .back_up {
+      position: absolute;
+      left: 27.31px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .shop_content {
+    width: 100%;
+    height: auto;
+    .shop_main {
+      width: 100%;
+      height: auto;
+      background: #fff;
+      margin-top: 17.07px;
+      .busin_name {
+        // width: 100%;
+        height: auto;
+        line-height: 95.57px;
+        padding: 0 20.48px;
+        font-size: 27px;
+        color: rgba(51, 51, 51, 1);
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+      }
+      .busin_wares {
+        width: 100%;
+        height: auto;
+        ul {
+          width: 100%;
+          height: auto;
+          margin: 0;
+          list-style-type: none;
+          margin-block-start: 0;
+          margin-block-end: 0;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          padding-inline-start: 0;
+          padding: 0 20.48px;
+          border-top: 1px solid #f3f3f3;
+          box-sizing: border-box;
+          li {
+            width: 100%;
+            height: auto;
+            border-top: 1px solid #f3f3f3;
+            padding: 27.31px 0;
+            box-sizing: border-box;
+            .li_row {
+              width: 100%;
+              position: relative;
+              .left_img {
+                width: auto;
+                height: auto;
+                position: absolute;
+                left: 0;
+                top: 0;
+                max-height: 100%;
+                overflow-y: hidden;
+                img {
+                  width: 199.68px;
+                  height: auto;
+                }
+              }
+              .right_content {
+                width: 100%;
+                height: auto;
+                padding-left: 220.16px;
+                padding-right: 171px;
+                box-sizing: border-box;
+
+                .busin_name {
+                  width: 100%;
+                  height: auto;
+                  font-size: 27px;
+                  font-weight: 400;
+                  line-height: 41px;
+                  color: rgba(51, 51, 51, 1);
+                  margin: 0;
+                  padding: 0;
+                }
+                .busin_time {
+                  font-size: 20px;
+                  line-height: 36px;
+                  color: rgba(153, 153, 153, 1);
+                  margin: 0;
+                  padding: 0;
+                  span {
+                    margin: 0 20px;
+                  }
+                }
+                .busin_price {
+                  font-size: 34px;
+                  line-height: 41px;
+                  color: rgba(215, 0, 0, 1);
+                  margin: 0;
+                  padding: 0;
+                  margin-top: 24px;
+                }
+              }
+              .right_set {
+                width: auto;
+                height: auto;
+                position: absolute;
+                display: inline-block;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 5;
+                span {
+                  width: 75px;
+                  font-size: 27px;
+                  line-height: 41px;
+                  color: rgba(51, 51, 51, 1);
+                  float: right;
+                  text-align: center;
+                }
+                img {
+                  width: 38px;
+                  height: auto;
+                  float: right;
+                }
+              }
+            }
+          }
+          li:nth-of-type(1) {
+            border-top: none;
+          }
+        }
+      }
+    }
+    .shop_main:nth-of-type(1) {
+      margin-top: 0;
+    }
+  }
+  .bottom_tabs {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    .at-row {
+      width: 100%;
+      .at-col-8 {
+        background: #fff;
+        height: 96px;
+        box-sizing: border-box;
+        padding: 22px 29px;
+        text-align: left;
+        // line-height: 96px;
+        .at-badge {
+          float: left;
+        }
+        .shopCar_img {
+          float: left;
+          img {
+            width: 52px;
+            height: auto;
+          }
+        }
+        .shopCar_price {
+          float: left;
+          font-size: 41px;
+          color: rgba(215, 0, 0, 1);
+          margin-left: 29px;
+          line-height: 52px;
+        }
+      }
+      .at-col-4 {
+        // background: rgba(223, 41, 41, 1);
+        line-height: 96px;
+        text-align: center;
+        font-size: 27px;
+        color: #fff;
+      }
+    }
+  }
+  .at-float-layout {
+    height: calc(100% - 96px);
+    .at-float-layout__container {
+      border-bottom: solid 2px #fbfbfb;
+      .layout-header {
+        .layout-header__btn-close {
+          display: none;
+        }
+      }
+      .layout-header__title {
+        color: rgba(102, 102, 102, 1);
+      }
+      .layout-body {
+        position: relative;
+        .del_car {
+          position: absolute;
+          right: 20px;
+          top: -55px;
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          width: auto;
+          img {
+            width: 30px;
+            height: auto;
+            margin-right: 8px;
+            float: left;
+          }
+          span {
+            float: left;
+            width: auto;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 30px;
+            color: rgba(153, 153, 153, 1);
+          }
+        }
+      }
+    }
+  }
+  .at-modal__footer{
+    padding: 10px 0;
+  }
+  .AtModal-content{
+    text-align: center;
+    font-size: 0.6rem;
+    padding: 10px 0;
+  }
+  .shopCar_load{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6999;
+    background-color: rgb(242, 242, 242,0.5);
+  }
+}

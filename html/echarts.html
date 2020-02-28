@@ -565,20 +565,25 @@
                 chart4.setOption(option4);
             } 
 
-                fetch('http://wanghg.top/js/china.json').then(res=>{
-                    res.json().then(data=>{
-                        console.log(data)
-                    })
-                })
-                $.ajax({
-                type:"get",
-                url:"http://wanghg.top/js/china.json",
-                success(data){
-                    console.log(data);   // 中国地图的数据 
-                    echarts.registerMap("china",data);   //注册地图 
-                    init("china")  //注册地图 
-                }
-            })
+            // fetch('http://wanghg.top/js/china.json').then(res=>{
+            //     res.json().then(data=>{
+            //         console.log(data)
+            //     })
+            // })
+            // $.ajax({
+            //     type:"get",
+            //     url:"http://wanghg.top/js/china.json",
+            //     success(data){
+            //         console.log(data);   // 中国地图的数据 
+            //         echarts.registerMap("china",data);   //注册地图 
+            //         init("china")  //注册地图 
+            //     }
+            // })
+            function getChinaAddress(data){
+                echarts.registerMap("china",data);   //注册地图 
+                init("china")  //注册地图 
+            }
     </script>
+    <script src="http://wanghg.top/js/china.js"></script>
 </body>
 </html>
