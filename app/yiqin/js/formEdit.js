@@ -1,8 +1,5 @@
 /*****************************************表单校验以及默认值*****************************************************/ 
 
-// $("#inputDate").attr("value",nowTime);
-
-
 //姓名校验 ^[A-Za-z]+$
 $("#pname").change(function(){
     let pname = $("#pname").val();
@@ -118,6 +115,21 @@ $(document).on('change','.seatNum',function(){
     }
 })
 
+//回旋的每日记录
+$(document).on('click','.checkboxInput',function(){
+
+    let spanTxt = $(this).next().html();
+    let check = $(this).is(':checked');
+    if(spanTxt === '无不适症状'&&check){
+        console.log('无不适症状')
+        $(this).parent().siblings(".check_div").children(".checkbox").removeAttr("checked")
+        $(this).parent().siblings().eq(-2).attr("disabled","disabled").val('')
+        $(this).parent().siblings().last().html('')
+    }else if(spanTxt !== '无不适症状'&&check){
+        $(this).parent().siblings(".check_div").eq(0).children(".checkbox").removeAttr("checked")
+        
+    }
+})
 
 $(document).on('change','.otherTxt',function(){
     let text = $(this).val();
@@ -182,3 +194,4 @@ function checkProv(val) {
     }
     return false;
 }
+console.log(idCardNoUtil)

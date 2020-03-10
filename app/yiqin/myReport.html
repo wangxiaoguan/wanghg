@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的上报</title>
+    <link rel="stylesheet" type="text/css" href="css/myReport.css"/>
+    <link rel="stylesheet" type="text/css" href="css/spin.css"/>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/common.js"></script>
+
+
+    <script src="js/spin.js"></script>
+    <script src="js/dataFormat.js"></script>
+    <script src="js/myReport.js"></script>
+</head>
+<body style="width: calc(100% - 16px)">
+
+	<div class="box" style="width:100%">
+		<div class="cat-tab">
+			<span class="tab on">今日上报</span>
+			<span class="tab">所有上报</span>
+		</div>
+		<div class="list-box active">
+              <div class="search">
+                <input id="keyword" placeholder="输入关键字搜索">
+                    <img src="img/report/search.png"></img>
+                </input>
+            </div>
+            <div class="title">
+                <div><label id="today" /></div>
+            </div>
+            <div id="myReportTable" class="table">
+                <!-- <row>
+                    <div class="firstdiv">张三<img src="img/report/arrow.png"></img></div>
+                    <div>身份证号：420117198912923847</div>
+                    <div>联系电话：18781742334</div>
+                </row> -->
+            </div>
+		</div>
+		<div class="list-box list-box-flex">
+
+            <div class="allsearchdiv">
+                <div class="search" style="width: 78%;">
+                    <input id="allkeyword" placeholder="输入关键字搜索">
+                        <img src="img/report/search.png"></img>
+                    </input>
+                </div>
+                <div class="sxdiv">筛选 <img src="img/report/shaixuan.png" /></div>
+            </div>
+
+            <div class="title">
+                <!-- <p>
+                    2020年2月12日  到  2020年2月12日 的上报记录
+                </p> -->
+            </div>
+
+            <div class="sleData">
+                <div class="datatitle">排查日期：</div>
+                <div class="sleDatainput">
+                    <input type="date" id="startTime"  ></input>
+                    至<input type="date" id="endTime"></input>
+                </div>
+                <div class="sleDatabtn">
+                    <div id="cancle">清除</div>
+                    <div id="commit">确定</div>
+                </div>
+            </div>
+            <div id="allReportTable" class="table">
+                <!-- <row>
+                    <div class="firstdiv">张三<img src="img/report/arrow.png"></img></div>
+                    <div>身份证号：420117198912923847</div>
+                    <div>
+                        <div>联系电话：18781742334</div>
+                        <div  class="time"><img src="img/report/time.png"></img>2020-02-23</div>
+                    </div>
+                </row> -->
+                <div id="allReport"></div>
+            </div>
+		</div>
+	</div>
+</body>

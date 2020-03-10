@@ -35,9 +35,8 @@ header{
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     border-bottom: 0.05rem solid #f6f6f6;
-    overflow: hidden;
+    color: #111;
 }
-
 .module{
     width: 100%;
     height: 0.5rem;
@@ -47,42 +46,49 @@ header{
     display: inline-block;
     width:7rem ;
     font-size:1rem;
-    color: #111;
+    color: #999;
 }
 .form_name_long{
     display: inline-block;
     width:10rem ;
     font-size:1rem;
+    color: #999;
 }
 .form_name_sort{
     display: inline-block;
     width:3rem ;
     font-size:1rem;
+    color: #999;
 }
 .form_name_4{
     display: inline-block;
     width:6rem;
     font-size:1rem;
+    color: #999;
 }
 .form_name_5{
     display: inline-block;
     width:7rem ;
     font-size:1rem;
+    color: #999;
 }
 .form_name_6{
     display: inline-block;
     width:7.6rem ;
     font-size:1rem;
+    color: #999;
 }
 .form_name_7{
     display: inline-block;
     width:9rem ;
     font-size:1rem;
+    color: #999;
 }
 .form_name_9{
     display: inline-block;
     width:12rem ;
     font-size:1rem;
+    color: #999;
 }
 .form_name_radio{
     display: inline-block;
@@ -93,13 +99,14 @@ header{
     display: inline-block;
     width: 9rem;
     font-size:1rem;
+    color: #999;
 }
-
 
 .fetch_data{
     width: calc(100% - 8rem);
     display: inline-block;
     text-align: right;
+
 }
 .fetch_data_4{
     width: calc(100% - 8rem);
@@ -130,7 +137,7 @@ header{
     margin-right: 1.2rem;
     line-height: 2rem;
     font-size: 1rem;
-    color: #999;
+    color: #111;
 }
 .fetch_data_huji{
     display: inline-block;
@@ -146,7 +153,7 @@ select{
     line-height: 1.4rem;
     height: 1.4rem;
     -webkit-appearance: none;
-    color: #999;
+    color: #111;
     width: 80%;
     direction: rtl;
 }
@@ -160,7 +167,6 @@ select{
 }
 option{
     text-align: right;
-    color: #999;
 
 }
 .title{
@@ -379,7 +385,6 @@ h4{
 }
 .left{
     text-align: left;
-    text-indent: 0;
 }
 input{
     width: calc(100% - 9rem);
@@ -389,7 +394,7 @@ input{
     text-align: right;
     font-size:1rem;
     -webkit-appearance: none;
-    color: #999;
+    color: #111;
 }
 
 input::-webkit-input-placeholder {
@@ -427,7 +432,7 @@ input::-webkit-calendar-picker-indicator {
     width: 1rem;
 }
 .checkbox{
-    color: #666;
+    color: #111;
     width: 0.8rem;
 }
 .time{
@@ -451,7 +456,6 @@ input::-webkit-calendar-picker-indicator {
 .form_name_6_input{
     width: calc(100% - 9rem);
 }
-
 .form_name_7_input{
     width: calc(100% - 12rem);
 }
@@ -461,7 +465,7 @@ textarea{
     /* height: 6rem; */
     border-radius: 0.3rem;
     margin: 0.6rem 0;
-    color: #666;
+    color: #111;
     font-size:1rem;
     background: #f6f6f6;
 }
@@ -494,7 +498,7 @@ textarea{
 
 .radio_div{
     line-height: 2.2rem;
-    color: #999;
+    color: #111;
 }
 .checkbox:checked {
 	background:#00a2ff
@@ -518,7 +522,7 @@ textarea{
 	user-select:none;
 	-webkit-transition:background-color ease 0.1s;
     transition:background-color ease 0.1s;
-    color: #999;
+    color: #111;
 }
 .checkbox:checked::after {
 	content:'';
@@ -538,7 +542,7 @@ textarea{
 }
 #epidemicArea{
 	font-size: 1rem;
-    color: #666;
+    color: #111;
     display: flex;
     justify-self: start;
 }
@@ -572,6 +576,7 @@ textarea{
 .select_6{
     width: 100%;
 }
+
 
 #modal{
     position:fixed;
