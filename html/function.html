@@ -29,9 +29,12 @@
                 var person1= Object.create(person);
             </pre>
     <pre>
-        函数也是对象，只不过是具有特殊功能的对象而已。任何函数都可以看做是通过Function()构造函数的new操作实例化的结果
+        函数也是对象，只不过是具有特殊功能的对象而已。
+        任何函数都可以看做是通过Function()构造函数的new操作实例化的结果
 
-        如果把函数Foo当成实例对象的话，其构造函数是Function()，其原型对象是Function.prototype；类似地，函数Object的构造函数也是Function()，其原型对象是Function.prototype
+        如果把函数Foo当成实例对象的话，其构造函数是Function()，
+        其原型对象是Function.prototype；类似地，函数Object的构造函数也是Function()，
+        其原型对象是Function.prototype
 
         function Foo(){};
         var f1 = new Foo;
