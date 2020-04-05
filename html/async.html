@@ -7,19 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    generator（生成器）是ES6标准引入的新的数据类型。一个generator看上去像一个函数，但可以返回多次。
-ES6定义generator标准的哥们借鉴了Python的generator的概念和语法，如果你对Python的generator很熟悉，那么ES6的generator就是小菜一碟了。
-如果你对Python还不熟，赶快恶补Python教程！。
-
-    我们先复习函数的概念。一个函数是一段完整的代码，调用一个函数就是传入参数，然后返回结果：
-next()方法会执行generator的代码，然后，每次遇到yield x;就返回一个对象{value: x, done: true/false}，然后“暂停”。返回的value就是yield的返回值，done表示这个generator是否已经执行结束了。如果done为true，则value就是return的返回值。
-当执行到done为true时，这个generator对象就已经全部执行完毕，不要再继续调用next()了。
-第二个方法是直接用for ... of循环迭代generator对象，这种方式不需要我们自己判断done：
+    
 </body>
 <script>
-// async function timeout() {
-//     return 'hello world'
-// }
+
 // timeout().then(data=>{
 //     console.log(data)
 // });
@@ -59,133 +50,80 @@ next()方法会执行generator的代码，然后，每次遇到yield x;就返回
 //     console.log(first + second + third);
 // }
 
-function* foo(x) {
-    yield x + 1;
-    yield x + 2;
-    return x + 3;
-}
-// foo(1)
-var foo = foo(1)
-console.log(foo.next())
-console.log(foo.next())
-console.log(foo.next())
-// console.log(foo(2).next())
-// console.log(foo(3).next())
-// console.log(foo(4).next())
 
-// var foo = function *() { // 没错，尼玛还可以这样写
-//   var x = 1;
-//   var y =  yield (x + 1);
-//   console.log(y)
-//   var z = yield (x + y);
-//   console.log(z)
-//   return z;
-// }() // 你必须先执行一下Generator函数，才能把遍历器返回给某个变量
-// var a = foo.next(); // 第一次执行next()不可以传参
-// var b = foo.next(3);
-// var c = foo.next(5);
-// console.log(a,b,c)//2,4,5
 
-    // var p1 = new Promise((pass,fail)=>{
-    //     setTimeout(()=>{
-    //         pass(12)
-    //     },1000)
-    // })
-    // console.log('1111111')
-    // var p2 = new Promise((pass,fail)=>{
-    //     setTimeout(()=>{
-    //         pass(12)
-    //     },2000)
-    // })
-    // console.log('2222222')
-    // var p3 = new Promise((pass,fail)=>{
-    //     setTimeout(()=>{
-    //         pass(12)
-    //     },3000)
-    // })
-    // console.log('33333333')
-    // async function get(){
-    //     let num = await p1
-    //     let num1 = await p2
-    //     let num2 = await p3
-    //     console.log(num)
-    //     console.log(num1)
-    //     console.log(num2)
-    // }
-    // get()
+    var p1 = new Promise((pass,fail)=>{
+        setTimeout(()=>{
+            pass('AAAAA')
+        },1000)
+    })
+    var p2 = new Promise((pass,fail)=>{
+        setTimeout(()=>{
+            pass('BBBBB')
+        },2000)
+    })
+    var p3 = new Promise((pass,fail)=>{
+        setTimeout(()=>{
+            pass('CCCCC')
+        },3000)
+    })
+    async function get(){
+        let num1 = await p1
+        let num2 = await p2
+        let num3 = await p3
+        console.log(num1)
+        console.log(num2)
+        console.log(num3)
+    }
+    get()
 
-//     async function asyncAwaitFn(str) {
-//     return await new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             resolve(str)
-//         }, 1000);
-//     })
-// }
 
-// const serialFn = async () => { //串行执行
 
-//     console.time('serialFn')
-//     console.log(await asyncAwaitFn('string 1'));
-//     console.log(await asyncAwaitFn('string 2'));
-//     console.timeEnd('serialFn')
-// }
 
-// serialFn();
+
 
 async function fn0() {  await 0; }
-
 console.log(fn0())
-
-fn0().then(e => console.log(e))
 
 
 async function fn1() {  return await 1; }
-
 console.log(fn1())
-
-fn1().then(e => console.log(e))
 
 
 async function fn2() {  return 2;   }
-
 console.log(fn2());
 
-fn2().then(e => console.log(e))
+
+async function fn3() { return Promise.resolve(3);}
+console.log(fn3())
 
 
-async function fn3(flag) {
+console.log(Promise.resolve(4))
+
+async function fn4(flag) {
     if (flag) {
         return 'hello world'
     } else {
         throw 'my god, failure'
     }
 }
-console.log(fn3(true))  // 调用Promise.resolve() 返回promise 对象。调用then()方法
-console.log(fn3(false)); // 调用Promise.reject() 返回promise 对象。调用catch()方法
 
-
-function getSomething() {
-    return "something";
-}
-
-async function testAsync() {
-    return Promise.resolve("hello async");
-}
-
-console.log(Promise.resolve("000000000000000000"))
 
 async function test() {
-    const v1 = await getSomething();
-    const v2 = await testAsync();
-    console.log(v1, v2);
+    const v0 = await fn0();
+    const v1 = await fn1();
+    const v2 = await fn2();
+    const v3 = await fn3();
+    const v4 = await Promise.resolve(4)
+    console.log(v0);
+    console.log(v1);
+    console.log(v2);
+    console.log(v3);
+    console.log(v4);
 }
 
 test();
 
 
-//     async function testAsync2() {
-//         return  Promise.resolve("1111111");
-//     }
-//     console.log(testAsync2())
 </script>
 </html>
