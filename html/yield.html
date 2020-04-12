@@ -16,15 +16,16 @@ next()方法会执行generator的代码，然后，每次遇到yield x;就返回
 当执行到done为true时，这个generator对象就已经全部执行完毕，不要再继续调用next()了。
 第二个方法是直接用for ... of循环迭代generator对象，这种方式不需要我们自己判断done：
 </body>
+<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 <script>
-    function* foo(x) {
-    yield x + 1;
-    yield x + 2;
-    return x + 3;
-}
+//     function* foo(x) {
+//     yield x + 1;
+//     yield x + 2;
+//     return x + 3;
+// }
 // console.log(foo)
 // foo(1)
-var fn = foo(1)
+// var fn = foo(1)
 // console.log(fn.next())
 // console.log(fn.next())
 // console.log(fn.next())
@@ -34,20 +35,53 @@ var fn = foo(1)
 // console.log(foo(3).next())
 // console.log(foo(4).next())
 
-var foo = function *() { // 没错，尼玛还可以这样写
-  var x = 7;
-  var y =  yield (x + 1);
-  console.log(y,x)
-  var z = yield (x + y);
-  console.log(z)
-  var m = yield (y+z);
-  console.log(m)
-  return z;
-}() // 你必须先执行一下Generator函数，才能把遍历器返回给某个变量
-var a = foo.next(); // 第一次执行next()不可以传参
-var b = foo.next(100);
-var c = foo.next(500);
-var d = foo.next(5);
-console.log(a,b,c)//2,4,5
+// var foo = function *() { // 没错，尼玛还可以这样写
+//   var x = 7;
+//   var y =  yield (x + 1);
+//   console.log(y,x)
+//   var z = yield (x + y);
+//   console.log(z)
+//   var m = yield (y+z);
+//   console.log(m)
+//   return z;
+// }() // 你必须先执行一下Generator函数，才能把遍历器返回给某个变量
+// var a = foo.next(); // 第一次执行next()不可以传参
+// var b = foo.next(100);
+// var c = foo.next(500);
+// var d = foo.next(5);
+// console.log(a,b,c)//2,4,5
+
+
+
+async function fn1(){
+    const time = new Promise((reject,resolve)=>{
+        setTimeout(()=>{
+            reject('11111111')
+        },3000)
+    })
+  return await time
+
+}
+console.log(fn1())
+let fn2 = () => {
+    setTimeout(()=>{
+        console.log(2)
+    },2000)
+}
+function* getData(){
+    console.time('000000000000000000')
+    let res = yield fn1()
+    console.log(res)
+    console.timeEnd('000000000000000000')
+    yield fn2();
+    
+}
+var fn = getData()
+console.time(fn.next())
+console.log(fn.next())
+console.log(fn.next())
+console.log(fn.next())
+console.log(fn.next())
+
 </script>
 </html>
