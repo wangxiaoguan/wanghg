@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .hang{
+            clear: both;
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+        .left{
+            float: left;
+            width: 10%;
+            height: 100%;
+            background: #d0d0d0;
+        }
+        .middle{
+            float: left;
+            width: 20%;
+            height: 100%;
+            background: #f0f0f0;
+        }
+        .right{
+            float: left;
+            width: 70%;
+            height: 100%;
+            background: #f0f0f0;
+        }
+        textarea{
+            width: 100%;
+            height: 180px;
+            margin: 6px 0 0 10px;
+        }
+        .copy{
+            width: 120px;
+            height: 30px;
+            margin:80px auto;
+            border-radius: 8px;
+            background: #007aff;
+            color: #fff;
+            font-size: 10px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .copy:hover{
+            background: #82bcfa;
+        }
+        pre{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="hang">
+            <div class="left"><div class='copy' onclick="copy1()">点击复制</div></div>
+            <div class="middle"><textarea id="text">文本内容，可以复制到剪切板</textarea></div>
+            <div class="right">
+                <pre>
+                    &lt;textarea id="text1"&gt;文本内容，可以复制到剪切板 &lt;/textarea&gt;
+
+
+                    function copy(){
+                        let textarea = document.getElementById('text1')
+                        textarea.select();
+                        document.execCommand('Copy');
+                    }
+                </pre>
+            </div>
+        </div>
+        <div class="hang">
+            <div class="left"><div class='copy' onclick="copy2()">点击复制</div></div>
+            <div class="middle"></div>
+            <div class="right">
+                <pre>    
+                    function copy(){
+                        let input = document.createElement('input')
+                        input.value = '创建input标签并设值，可以复制到剪切板';
+                        document.body.appendChild(input);
+                        input.select();
+                        document.execCommand('Copy');
+                        document.body.removeChild(input);
+                    } 
+                </pre>
+            </div>
+        </div>
+        <div class="hang">
+            <div class="left"><div class='copy' onclick="copy3()">点击复制</div></div>
+            <div class="middle"></div>
+            <div class="right">
+                <pre>    
+                    function copy(){
+                        let textarea = document.createElement('textarea')
+                        textarea.value = '创建textarea标签并设值，可以复制到剪切板';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('Copy');
+                        document.body.removeChild(textarea);
+                    } 
+                </pre>             
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function copy1(){
+        let textarea = document.getElementById('text')
+        textarea.select();
+        document.execCommand('Copy');
+    }
+    function copy2(){
+        let input = document.createElement('input')
+        input.value = '创建input标签并设值，可以复制到剪切板';
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('Copy');
+        document.body.removeChild(input);
+    }
+    function copy3(){
+        let textarea = document.createElement('textarea')
+        textarea.value = '创建textarea标签并设值，可以复制到剪切板';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('Copy');
+        document.body.removeChild(textarea);
+    }
+
+</script>
+</html>
