@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="content-type" content="no-cache, must-revalidate" />
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>填报</title>
+    <link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <link rel="stylesheet" type="text/css" href="css/validate.css">
+
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin:0;
+        }
+        #app{
+            width: 100%;
+            height: 100%;
+        }
+        header>img{
+            width: 100%;
+        }
+        .middle{
+            border: 0px solid transparent;
+            text-align: center;
+        }
+        .middle>img{
+            width: 30%;
+            margin-top: 40%;
+        }
+        .status{
+            line-height: 3.6rem;
+            font-size: 1.2rem;
+            font-family:'PingFang SC';
+            font-weight:400;
+        }
+
+        footer{
+            width: 100%;
+            padding: 2rem 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .submitBtn{
+            width: 60%;
+            margin:0 20%;
+            height: 2.4rem;
+            border-radius: 1.2rem;
+            background: #635CEA;
+            text-align: center;
+            line-height: 2.4rem;
+            color: #fff;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header><img src='img/img_bg.png' alt=""/></header>
+        <div class="middle">
+            <img src='img/ok.png' alt=""/>
+            <div class="status">填报完成</div>
+        </div>
+        <!-- <footer>
+            <div class="submitBtn" onclick="submit()">返回</div>
+        </footer> -->
+    </div>
+</body>
+<script>
+    // function submit(){
+    //     let formId = sessionStorage.getItem('formId');
+    //     let userId = sessionStorage.getItem('userId');
+    //     window.location.href = `index.html?formId=${formId}&userId=${userId}`
+    // }
+</script>
+</html>

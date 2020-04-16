@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+
+ Date.prototype.addMonth = function (addMonth) {
+  var y = this.getFullYear();
+  var m = this.getMonth();
+  var nextY = y;
+  var nextM = m;
+  //如果当前月+要加上的月>11 这里之所以用11是因为 js的月份从0开始
+  if ((m + addMonth)> 11) {
+   nextY = y + 1;
+   nextM = parseInt(m + addMonth) - 12;
+  } else {
+   nextM = this.getMonth() + addMonth
+  }
+  var daysInNextMonth = Date.daysInMonth(nextY, nextM);
+  var day = this.getDate();
+  if (day > daysInNextMonth) {
+   day = daysInNextMonth;
+  }
+  return new Date(nextY, nextM, day);
+  };
+  Date.daysInMonth = function (year, month) {
+  if (month == 1) {
+   if (year % 4 == 0 && year % 100 != 0)
+   return 29;
+   else
+   return 28;
+  } else if ((month <= 6 && month % 2 == 0) || (month = 6 && month % 2 == 1))
+   return 31;
+  else
+   return 30;
+  };
+ 
+ 
+Date.prototype.format = function (format) {
+ var date = {
+  "M+": this.getMonth() + 1,
+  "d+": this.getDate(),
+  "h+": this.getHours(),
+  "m+": this.getMinutes(),
+  "s+": this.getSeconds(),
+  "q+": Math.floor((this.getMonth() + 3) / 3),
+  "S+": this.getMilliseconds()
+ };
+ if (/(y+)/i.test(format)) {
+  format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+ }
+ for (var k in date) {
+  if (new RegExp("(" + k + ")").test(format)) {
+  format = format.replace(RegExp.$1, RegExp.$1.length == 1
+   ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+  }
+ }
+ return format;
+ };
+  var str = '2018-12-27'; //字符串格式的时间类型
+// var str1 = str.replace(/-/g,'/'); //'2018/01/01 00:00:00'
+var date = new Date(Date.parse(str)); //date格式的时间类型
+var nowDate = date.addMonth(2); //date格式的时间类型
+var nowStr = nowDate.format('yyyy-MM-dd hh:mm:ss'); //指定字符串格式的时间类型
+console.log(nowStr)
+
+// [{
+//     "ProID": 1,
+//     "name": "北京",
+// }, {
+//     "ProID": 2,
+//     "name": "天津",
+// }, {
+//     "ProID": 3,
+//     "name": "河北省",
+// }, {
+//     "ProID": 4,
+//     "name": "山西省",
+// }, {
+//     "ProID": 5,
+//     "name": "内蒙古",
+// }, {
+//     "ProID": 6,
+//     "name": "辽宁省",
+// }, {
+//     "ProID": 7,
+//     "name": "吉林省",
+// }, {
+//     "ProID": 8,
+//     "name": "黑龙江省",
+// }, {
+//     "ProID": 9,
+//     "name": "上海",
+// }, {
+//     "ProID": 10,
+//     "name": "江苏省",
+// }, {
+//     "ProID": 11,
+//     "name": "浙江省",
+// }, {
+//     "ProID": 12,
+//     "name": "安徽省",
+// }, {
+//     "ProID": 13,
+//     "name": "福建省",
+// }, {
+//     "ProID": 14,
+//     "name": "江西省",
+// }, {
+//     "ProID": 15,
+//     "name": "山东省",
+// }, {
+//     "ProID": 16,
+//     "name": "河南省",
+// }, {
+//     "ProID": 17,
+//     "name": "湖北省",
+// }, {
+//     "ProID": 18,
+//     "name": "湖南省",
+// }, {
+//     "ProID": 19,
+//     "name": "广东省",  
+// }, {
+//     "ProID": 20,
+//     "name": "海南省",
+// }, {
+//     "ProID": 21,
+//     "name": "广西",
+// }, {
+//     "ProID": 22,
+//     "name": "甘肃省",
+// }, {
+//     "ProID": 23,
+//     "name": "陕西省",
+// }, {
+//     "ProID": 24,
+//     "name": "新疆",
+// }, {
+//     "ProID": 25,
+//     "name": "青海省",
+// }, {
+//     "ProID": 26,
+//     "name": "宁夏",
+// }, {
+//     "ProID": 27,
+//     "name": "重庆市",
+// }, {
+//     "ProID": 28,
+//     "name": "四川省",
+// }, {
+//     "ProID": 29,
+//     "name": "贵州省",
+// }, {
+//     "ProID": 30,
+//     "name": "云南省",
+// }, {
+//     "ProID": 31,
+//     "name": "西藏",
+// }, {
+//     "ProID": 32,
+//     "name": "台湾省",
+// }, {
+//     "ProID": 33,
+//     "name": "澳门",
+// }, {
+//     "ProID": 34,
+//     "name": "香港",
+// }]
+
+</script>
+</html>

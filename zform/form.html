@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="content-type" content="no-cache, must-revalidate" />
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>填报</title>
+    <link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <link rel="stylesheet" type="text/css" href="css/validate.css">
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin:0;
+        }
+        #app{
+            width: 100%;
+            display: none;
+        }
+        header>img{
+            width: 100%;
+        }
+        #form{
+            height: 100%;
+            padding: 0.5rem 1rem;
+        }
+        .form-item{
+            padding-bottom: 1.4rem;
+            position: relative;
+        }
+        label{
+            font-size: 0.8rem;
+        }
+        .form-item-show{
+            display: block;
+        }
+        .form-item-hide{
+            display: none;
+        }
+        .field-rule{
+            width: calc(100% - 1rem);
+            position: absolute;
+            left: 0;
+            bottom: 6px;
+            height: 1rem;
+            margin: 0 0.5rem;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            color: #ff0000;
+            text-indent: 1rem;
+        }
+        .field-icon{
+            display: block;
+            float: left;
+            height: 1rem;
+            margin: 0.6rem 0;
+            padding-right:0.6rem;
+            border-left: 0.2rem solid #635CEA;
+        }
+        .field-name{
+            width: calc(100% - 1rem);
+            display: block;
+            float: left;
+            margin: 0.6rem 0;
+            line-height: 1.2rem;
+        }
+        .field-area{
+            text-align: right;
+            font-size: 1rem;
+            font-family:PingFang SC;
+            font-weight:400;
+            color:rgba(181,181,181,1);
+            padding: 0.3rem;
+        }
+        .field-text{
+            display:inline-block;
+            width: 100%;
+            font-size:16px;
+            font-family:PingFang SC;
+            font-weight:bold;
+            color:rgba(0,0,0,1);
+            line-height:24px;
+            height: 36px;
+            padding: 6px 5px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            background-image: none;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            outline: none;
+            -webkit-appearance: none;
+            border-radius: 0;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        .field-text-date{
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            padding-left: 40px;
+            background-image: url('img/icon_day.png');
+            background-size: 16px 20px;
+            background-position: 10px 6px;
+            background-repeat: no-repeat;
+        }
+        .field-text-address{
+            padding-left: 40px;
+            background-image: url('img/icon_address.png');
+            background-size: 16px 20px;
+            background-position: 10px 6px;
+            background-repeat: no-repeat;
+        }
+        .field-text-select{
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            padding-left: 20px;
+            background-image: url('img/down.png');
+            background-size: 16px 20px;
+            background-position: 96% 7px;
+            background-repeat: no-repeat;
+        }
+        .field-txt{
+            width: calc(100% - 20px);
+            /* height: 6rem; */
+            outline: none;
+            border-radius: 0.4rem;
+            resize: none;
+            padding: 10px;
+            border-color: #e0e0e0;
+            -webkit-appearance: none;
+            font-size:16px;
+            font-family:PingFang SC;
+            font-weight:bold;
+            color:rgba(0,0,0,1);
+            line-height:24px;
+        }
+        .field-div{
+            padding: 0.3rem 0.4rem;
+        }
+        .field-radio{
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            background-color: transparent;
+        }
+        .field-radio + label::before {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            /* font-size: 18px; */
+            width: 18px;
+            height: 18px;
+            margin-right: .4em;
+            border-radius: 50%;
+            background: url('img/checkNo.png');
+            background-size:18px 18px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            background-color: transparent;
+        }
+
+        .field-radio:checked + label::before {
+            content: " "; 
+            display: inline-block;
+            vertical-align: middle;
+            /* font-size: 18px; */
+            width: 18px;
+            height: 18px;
+            margin-right: .4em;
+            border-radius: 50%;
+            background: url('img/checkYes.png') center center no-repeat;;
+            background-size:18px 18px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            background-color: transparent;
+        }
+        .field-checkbox{
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            background-color: transparent;
+        }
+        .field-checkbox + label::before {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            width: 18px;
+            height: 18px;
+            margin-right: .4em;
+            background: url('img/checkboxNo.png');
+            background-size:18px 18px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            background-color: transparent;
+        }
+
+        .field-checkbox:checked + label::before {
+            content: " "; 
+            display: inline-block;
+            vertical-align: middle;
+            width: 18px;
+            height: 18px;
+            margin-right: .4em;
+            background: url('img/checkboxYes.png') center center no-repeat;;
+            background-size:18px 18px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            background-color: transparent;
+        }
+        input:-webkit-autofill {-webkit-box-shadow:0 0 0px 100px white inset;}
+        input::-webkit-input-placeholder{
+            color:#e0e0e0;
+            font-size: 0.8rem;
+            text-indent: 0rem;
+            font-weight: normal;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:#e0e0e0;
+            font-size: 0.8rem;
+            text-indent: 0rem;
+            font-weight: normal;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:#e0e0e0;
+            font-size: 0.8rem;
+            text-indent: 0rem;
+            font-weight: normal;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:#e0e0e0;
+            font-size: 0.8rem;
+            text-indent: 0rem;
+            font-weight: normal;
+        }
+        textarea::-webkit-input-placeholder{
+            color:#e0e0e0;
+            font-size: 0.8rem;
+            text-indent: 0rem;
+            font-weight: normal;
+        }
+        footer{
+            padding: 2rem 0;
+        }
+        .submitBtn{
+            width: 60%;
+            margin:0 20%;
+            height: 2.4rem;
+            border-radius: 1.2rem;
+            background: #635CEA;
+            text-align: center;
+            line-height: 2.4rem;
+            color: #fff;
+        }
+        .field-file{
+            width: 100px;
+            height: 70px;
+            padding: 0;
+            margin: 0;
+            background: #fff;
+            border: none;
+            background-image: url('img/upload.png');
+            background-size:70px 70px;
+            background-position:30px 0;
+            background-repeat: no-repeat;
+        }
+        input[type="file" i]::-webkit-file-upload-button {
+            display: none;
+        }
+        .deleteFile{
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            top: 28px;
+            left: 92px;
+            background-image: url('img/deleteFile.png');
+            background-size:24px 24px;
+            background-position:0 0;
+            background-repeat: no-repeat;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header><img src='img/img_bg.png' alt=""/></header>
+        <form id="form" onsubmit="return false" action="#" method="post">
+        </form>
+        <footer>
+            <div class="submitBtn" onclick="submit()">完成并提交</div>
+        </footer>
+    </div>
+</body>
+<script type="text/javascript" src="js/rolldate.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/weui.js"></script>
+<script type="text/javascript" src='js/moment.js'></script>
+<script>
+        let IP = 'http://10.110.200.62:443';
+        // let IP = location.origin;
+        let formId = sessionStorage.getItem('formId');
+        let userId = sessionStorage.getItem('userId');
+        
+        
+        let url = `${IP}/services/web/config/questionnaireForm/getDetailByFormIdFromCache/${formId}/${userId}`;
+        var formData = {};//总表单数据
+        var topicAllList = [];//总题目列表
+        var FormObject = {};//提交表单数据
+        var topicList1 = [];//下拉框
+        var topicList2 = [];//单选框
+        var topicList3 = [];//多选框
+        var topicList4 = [];//数字
+        var topicList5 = [];//问答
+        var topicList6 = [];//城市
+        var topicList7 = [];//日期
+        var topicList8 = [];//附件
+        
+        function getFormData(){
+            let DataLoading = weui.loading('数据请求中...');
+            fetch(url).then(function(res){
+                res.json().then(data=>{
+                    if(data.status === 1){
+                        DataLoading.hide();
+                        formData = data.root.object;
+                        topicAllList = formData.form.topics;
+                        getTopicList(topicAllList)
+                        $('#app').show()
+                    }else{
+                        DataLoading.hide();
+                        let loading = weui.loading("系统异常");
+                        setTimeout(()=>{
+                            loading.hide();
+                        },3500)
+                    }
+                })
+            }).catch(error=>{
+                DataLoading.hide();
+                
+            })
+        }
+
+        function getTopicList(topicAllList){
+            
+            topicAllList.map(item=>{
+                if(item.type === 1){
+                    item.content = JSON.parse(item.content)
+                    topicList1.push(item)
+                    $('#form').append(fieldItem1([item]).join(''))
+                }else if(item.type === 2){
+                    item.content = JSON.parse(item.content)
+                    topicList2.push(item)
+                    $('#form').append(fieldItem2([item]).join(''))
+                }else if(item.type === 3){
+                    item.content = JSON.parse(item.content)
+                    topicList3.push(item)
+                    $('#form').append(fieldItem3([item]).join(''))
+                }else if(item.type === 4){
+                    topicList4.push(item)
+                    $('#form').append(fieldItem4([item]).join(''))
+                }else if(item.type === 5){
+                    topicList5.push(item)
+                    $('#form').append(fieldItem5([item]).join(''))
+                }else if(item.type === 6){
+                    topicList6.push(item)
+                    $('#form').append(fieldItem6([item]).join(''))
+                }else if(item.type === 7){
+                    topicList7.push(item)
+                    $('#form').append(fieldItem7([item]).join(''))
+                }else if(item.type === 8){
+                    topicList8.push(item)
+                    $('#form').append(fieldItem8([item]).join(''))
+                }
+            })
+            
+            // $('#form').append(fieldItem2(topicList2).join(''))
+            // $('#form').append(fieldItem3(topicList3).join(''))
+            // $('#form').append(fieldItem4(topicList4).join(''))
+            // $('#form').append(fieldItem5(topicList5).join(''))
+            // $('#form').append(fieldItem6(topicList6).join(''))
+            // $('#form').append(fieldItem7(topicList7).join(''))
+            // $('#form').append(fieldItem8(topicList8).join(''))
+        }
+        getFormData()
+</script>
+<script>
+
+    //下拉框
+    function fieldItem1(data){
+        return data.map(item=>{
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'} form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        <div class="field-div">
+                            <input name='select-${item.id}' id="select-${item.id}" data-id="${item.id}" readonly="readonly" unselectable="on" class="field-text field-text-select" placeholder="请选择"/>
+                        </div>
+                        <div class="field-rule">${item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+    }
+    //单选框
+    function fieldItem2(data){
+        return data.map(item=>{
+            let optionList = item.content;
+            let option = optionItem2(item,optionList).join('')
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        ${option}
+                        <div class="field-rule">${item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+    function optionItem2(item,data){
+        return data.map(e=>{
+            console.log('---------------->',e)
+                return `<div class="field-div">
+                            <input type="radio" data-logic='${JSON.stringify(e.logic)}' data-id='${item.id}' id="radio*${item.id}-${e.order}" name="radio-${item.id}" class="field-radio" value="${e.order}"/><label for="radio*${item.id}-${e.order}">${e.content}</label><br/>
+                        </div>`
+                })
+    }
+
+    //多选框
+    function fieldItem3(data){
+        return data.map(item=>{
+            let optionList = item.content;
+            let option = optionItem3(item,optionList).join('')
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        ${option}
+                        <div class="field-rule">${item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+    function optionItem3(item,data){
+        let rule = JSON.parse(item.typeDetailLimit)
+        rule = JSON.stringify({...rule,isRequiredQuestions:item.isRequiredQuestions})
+        return data.map(e=>{
+                return `<div class="field-div">
+                            <input type="checkbox" data-rule='${rule}' data-logic='${JSON.stringify(e.logic)}'' id="checkbox*${item.id}-${e.order}" name="checkbox-${item.id}" class="field-checkbox" value="${e.order}"><label for="checkbox*${item.id}-${e.order}">${e.content}</label><br/>
+                        </div>`
+                })
+    }
+
+    //数字类型
+    function fieldItem4(data){
+        
+        return data.map(item=>{
+            let rule = JSON.parse(item.typeDetailLimit)
+            rule = JSON.stringify({...rule,isRequiredQuestions:item.isRequiredQuestions})
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        <div class="field-div">
+                            <input type="text" name='number-${item.id}' data-rule='${rule}' class="field-text field-text-number" placeholder="请输入..."/>
+                        </div>
+                        <div class="field-rule">${item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+
+    //问答
+    function fieldItem5(data){
+        return data.map(item=>{
+            // let rule = JSON.parse(item.typeDetailLimit)
+            let rule = eval("("+item.typeDetailLimit+")");
+            let ruleStr = JSON.stringify({...rule,isRequiredQuestions:item.isRequiredQuestions})
+            let height = Math.ceil(rule.max/18)
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        <div class="field-div">
+                            <textarea name='textarea-${item.id}' class="field-txt" rows="${height}" data-rule='${ruleStr}' placeholder="请输入...">${item.content}</textarea>
+                        </div>
+                        <div class="field-rule">${item.content?'':item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+
+    //城市
+    function fieldItem6(data){
+        return data.map(item=>{
+            // let rule = JSON.parse(item.typeDetailLimit)
+            let rule = eval("("+item.typeDetailLimit+")");
+            let includeAll = rule.includeAll?`<div class="field-area">海外地区填写</div>`:''
+            let height = Math.ceil(rule.max/18)
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        <div class="field-div">
+                            <input type="text" name='address-${item.id}' id="address${item.orderNum}" readonly="readonly" unselectable="on" class="field-text field-text-address" placeholder="省/市/区/详细地址"/>
+                            ${includeAll}
+                        </div>
+                        <div class="field-rule">${item.content?'':item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+
+    //日期
+    function fieldItem7(data){
+        return data.map(item=>{
+            // let rule = JSON.parse(item.typeDetailLimit)
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        <div class="field-div">
+                            <input type="text" name='date-${item.id}' data-rule='${item.typeDetailLimit}' id="date${item.orderNum}" readonly="readonly" unselectable="on" class="field-text field-text-date"/>
+                        </div>
+                        <div class="field-rule">${item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+
+    //附件
+    function fieldItem8(data){
+        return data.map(item=>{
+            let rule = JSON.parse(item.typeDetailLimit).type;
+            console.log(rule)
+            let acceptType = '';
+            if(rule.indexOf('jpg,jpeg,png,gif')>-1){
+                acceptType = acceptType + 'image/jpeg,jpeg,image/png,image/gif'
+            }
+            if(rule.indexOf('word,excel,powerpoint,pdf')>-1){
+                acceptType = acceptType + 'application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/pdf'
+            }
+            if(rule.indexOf('mp3,mp4')>-1){
+                acceptType = acceptType + 'audio/mp3,video/mp4'
+            }
+            if(rule.indexOf('zip,rar,7z')>-1){
+                acceptType = acceptType + 'application/x-zip-compressed'
+            }
+            return `<div class="form-item form-item-${item.isShow?'show':'hide'}  form-item-${item.id}" data-count="${item.isShow?'1':'0'}">
+                        <span class="field-icon"></span>
+                        <span class="field-name">${item.orderNum}、${item.name}</span><br/>
+                        <div class="field-div">
+                            <input type="file" id="file-${item.id}" accept="${acceptType}" data-id="${item.id}"  name="file-${item.id}" data-rule='${item.typeDetailLimit}' class="field-text field-file" />
+                            <div class='deleteFile deleteFile-${item.id}' data-rule="${item.isRequiredQuestions}" data-id="${item.id}"></div>
+                        </div>
+                        <div class="field-rule field-rule-${item.id}">${item.isRequiredQuestions?'必填项':''}</div>
+                    </div>`
+        })
+        
+    }
+
+   
+
+
+</script>
+
+<script>
+    
+    //下拉框
+    $(document).on('click','.field-text-select',function(){
+        let that = $(this)
+        let topicId = that.attr("data-id")
+        console.log(topicId)
+        let name = $(this).attr('name')
+        console.log(name)
+        let list = topicList1.filter(item=>{return item.id===topicId})[0].content;
+        console.log(list)
+        list.map(item=>{
+            item.label = item.content;
+            item.value = item.order;
+            item.logic = item.logic || [];
+        })
+        weui.picker(list, 
+            {
+                onChange: function (e) {
+                    console.log(e);
+                },
+                onConfirm: function (e) {
+                    console.log(e);
+                    that.val(e[0].label)
+                    that.parent().parent().children(".field-rule").html('')
+                    let logic = e[0].logic;
+                    let order = e[0].order;
+                    console.log(logic)
+
+                    FormObject[name] = e[0].label;
+                    console.log(FormObject)
+
+                    list.map(item=>{
+                        if(item.order!==order){
+                            let otherlogic = item.logic;
+                            otherlogic.length&&otherlogic.map(item=>{
+                                let el = $(`.form-item-${item}`).attr('data-count') - 1;
+                                $(`.form-item-${item}`).attr('data-count',el)
+                                el===0&&$(`.form-item-${item}`).addClass('form-item-hide')
+                                topicAllList.map(e=>{
+                                    if(e.id===item){
+                                        e.isShow = false;
+                                    }
+                                })
+                            })
+                        }
+                    })
+
+                    logic.length&&logic.map(item=>{
+                        let el = $(`.form-item-${item}`).attr('data-count')*1 + 1;
+                        $(`.form-item-${item}`).attr('data-count',el).removeClass('form-item-hide')
+                        topicAllList.map(e=>{
+                            if(e.id===item){
+                                e.isShow = true;
+                            }
+                        })
+                    })
+                    
+                }
+        });
+    })
+
+    //单选框
+    $(document).on('click','.field-radio',function(){
+        $(this).attr('data-check','1')
+
+        let value = $(this).val()
+        console.log(value)
+
+        let topicId = $(this).attr('data-id');
+        console.log(topicId)
+
+        let name = $(this).attr('name');
+        console.log(name)
+
+        let radioList = $(`input:radio[name="${name}"]`).not(this)
+        console.log(radioList)
+        radioList.each(function() { 
+            if($(this).attr('data-check')==='1'){
+                let otherlogic = $(this).attr('data-logic');
+                otherlogic = JSON.parse(otherlogic);
+                console.log(otherlogic)
+                otherlogic.length&&otherlogic.map(item=>{
+                    let el = $(`.form-item-${item}`).attr('data-count') - 1;
+                    el===0&&$(`.form-item-${item}`).addClass('form-item-hide').attr('data-count','0')
+                    $(`.form-item-${item}`).attr('data-count',el)
+                    topicAllList.map(e=>{
+                        if(e.id===item){
+                            e.isShow = false;
+                        }
+                    })
+                    
+                })
+            }
+            $(this).attr('data-check','0');
+        });
+
+        let logic = $(this).attr('data-logic');
+        logic = JSON.parse(logic)
+        console.log(logic)
+        logic.length&&logic.map(item=>{
+            let el = $(`.form-item-${item}`).attr('data-count')*1 + 1;
+            $(`.form-item-${item}`).attr('data-count',el).removeClass('form-item-hide')
+            topicAllList.map(e=>{
+                if(e.id===item){
+                    e.isShow = true;
+                }
+            })
+        })
+        $(this).parent().parent().children(".field-rule").html('')
+        
+    })
+
+    //多选框
+    $(document).on('click','.field-checkbox',function(){
+        let that = $(this)
+
+        let value = $(this).val()
+        console.log(value)
+
+        let name = $(this).attr('name')
+        console.log(name)
+
+        let rule = JSON.parse(that.attr("data-rule"));
+        console.log('多选框',rule)
+
+        let logic = $(this).attr('data-logic');
+        logic = JSON.parse(logic)
+        console.log(logic)
+
+        let list=[];
+        let isCheck = $(this).prop('checked');
+        console.log('是否选中',isCheck)
+        if(isCheck){
+            logic.length&&logic.map(item=>{
+                let el = $(`.form-item-${item}`).attr('data-count')*1 + 1;
+                $(`.form-item-${item}`).attr('data-count',el).removeClass('form-item-hide')
+                topicAllList.map(e=>{
+                    if(e.id===item){
+                        e.isShow = true;
+                    }
+                })
+            })
+        }else{
+            logic.length&&logic.map(item=>{
+                let el = $(`.form-item-${item}`).attr('data-count')*1 - 1;
+                if(el === 0 ){
+                    $(`.form-item-${item}`).addClass('form-item-hide')
+                    topicAllList.map(e=>{
+                        if(e.id===item){
+                            e.isShow = false;
+                        }
+                    })
+                }
+                $(`.form-item-${item}`).attr('data-count',el)
+                
+            })
+        }
+
+        $(`input[name='${name}']:checked`).each(function() { 
+            console.log($(this).next().text())
+            list.push($(this).next().text());
+        });
+
+        FormObject[name] = list.join(';')
+        if(list.length){
+            if(list.length<rule.min){
+                $(this).parent().parent().children(".field-rule").html(`最少选择${rule.min}项`)
+            }else if(list.length>rule.max){
+                $(this).parent().parent().children(".field-rule").html(`最多选择${rule.max}项`)
+            }else{
+                $(this).parent().parent().children(".field-rule").html('')
+            }
+           
+        }else{
+            if(rule.isRequiredQuestions){
+                $(this).parent().parent().children(".field-rule").html('必填项')
+            }else{
+                $(this).parent().parent().children(".field-rule").html('')
+            }
+            
+        }
+        
+        
+    })
+
+    //数字
+    $(document).on('input','.field-text-number',function(){
+        let that = $(this);
+        let value = that.val();
+        let rule = JSON.parse(that.attr("data-rule"));
+        console.log('数字',rule)
+        if(value===""){
+            if(rule.isRequiredQuestions){
+                $(this).parent().parent().children(".field-rule").html('必填项');
+            }else{
+                $(this).parent().parent().children(".field-rule").html('');
+            }
+            
+        }else if(isNaN(value)){
+            $(this).parent().parent().children(".field-rule").html('非数字值，请规范填写')
+        }else{
+            let num = Number(value)
+            if(!isNaN(rule.min)){
+                if(num<rule.min){
+                    $(this).parent().parent().children(".field-rule").html(`数值范围为${rule.min}~${rule.max}`)
+                }else if(num>rule.max){
+                    $(this).parent().parent().children(".field-rule").html(`数值范围为${rule.min}~${rule.max}`)
+                }else if(rule.numbersetup.indexOf('2')<0&&String(value).indexOf('.')>-1){
+                    $(this).parent().parent().children(".field-rule").html(`限制小数输入`)
+                }else if(rule.numbersetup.indexOf('3')<0&&num<0){
+                    $(this).parent().parent().children(".field-rule").html(`限制负数输入`)
+                }else{
+                    $(this).parent().parent().children(".field-rule").html('')
+                }
+            }else{
+                if(rule.numbersetup.indexOf('2')<0&&String(value).indexOf('.')>-1){
+                    $(this).parent().parent().children(".field-rule").html(`限制小数输入`)
+                }else if(rule.numbersetup.indexOf('3')<0&&num<0){
+                    $(this).parent().parent().children(".field-rule").html(`限制负数输入`)
+                }else{
+                    $(this).parent().parent().children(".field-rule").html('')
+                }
+            }
+        }
+    })
+
+    //问答
+    $(document).on('input','.field-txt',function(){
+        let that = $(this);
+        let value = that.val();
+        let rule = that.attr("data-rule");
+        rule = JSON.parse(rule)
+        if(value.length>rule.max){
+            $(this).parent().parent().children(".field-rule").html(`字数限制${rule.max}字`)
+        }else{
+            if(rule.isRequiredQuestions&&value===""){
+                $(this).parent().parent().children(".field-rule").html('必填项')
+            }else{
+                $(this).parent().parent().children(".field-rule").html('')
+            }
+        }
+    })
+    
+    //城市
+    $(document).on('click','.field-text-address',function(){
+        let that = $(this)
+        let value = $(this).val()
+        weui.picker(chinaCityList, 
+            {
+                defaultValue: ['110000','110100','110101'],
+                onChange: function (e) {
+                    console.log(e);
+                },
+                onConfirm: function (e) {
+                    console.log(e);  
+                    if(e.length===1){
+                        that.val(e[0].label)
+                    }else if(e.length===2){
+                        that.val(`${e[0].label}|${e[1].label}`)
+                    }else if(e.length===3){
+                        that.val(`${e[0].label}|${e[1].label}|${e[2].label}`)
+                    }  
+                    that.parent().parent().children(".field-rule").html('')      
+                }
+            }
+        );
+       
+        
+    })
+
+    //海外国家
+    $(document).on('click','.field-area',function(){
+        let that = $(this)
+        // let value = $(this).val()
+        weui.picker(country, 
+            {
+                defaultValue: ['1'],
+                onChange: function (e) {
+                    console.log(e);
+                },
+                onConfirm: function (e) {
+                    that.prev().val(e[0].label)
+                    that.parent().parent().children(".field-rule").html('')   
+                }
+            }
+        );
+        
+        
+    })
+
+    //日期
+    $(document).on('click','.field-text-date',function(){
+        let that = $(this);
+        let id = $(this).attr('id');
+        let rule = $(this).attr('data-rule');
+        rule = JSON.parse(rule);
+        console.log(rule)
+        let format = rule.format.toUpperCase();
+        console.log(format)
+        if(format==='YYYY-MM-DD'||format==='YYYY-MM'||format==='YYYY'||format==='MM-DD'||format==='DD'){
+            weui.datePicker({
+                start:2000,
+                end:2020,
+                // end: new Date(),
+                defaultValue: [new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate()],
+                depth:format==='YYYY-MM-DD'?3:format==='YYYY-MM'?2:format==='YYYY'?1:3,
+                onChange: function (e) {
+                    console.log(e);
+                    
+                },
+                onConfirm: function (e) {
+                    console.log(e);
+                    if(format==='YYYY-MM-DD'){
+                        that.val(`${e[0].value}-${e[1].value}-${e[2].value}`)
+                        if(rule.min){
+                            let min = new Date(rule.min).getTime() + rule.delay*3600*24*1000;
+                            let max = new Date(rule.max).getTime();
+                            let time = new Date(`${e[0].value}-${e[1].value}-${e[2].value}`).getTime();
+                            if(time<min||time>max){
+                                that.parent().parent().children(".field-rule").html(`时间限制范围${rule.min}~${rule.max}`)
+                            }else{
+                                that.parent().parent().children(".field-rule").html('')
+                            }
+                            
+                        }
+
+                    }else if(format==='YYYY-MM'){
+                        that.val(`${e[0].value}-${e[1].value}`)
+                        if(rule.min){
+                            let min = new Date(moment(rule.min).format('YYYY-MM-01')).getTime();
+                            let max = new Date(rule.max).getTime();
+                            console.log(`${e[0].value}-${e[1].value}-01`)
+                            let nowTime = new Date(moment(`${e[0].value}-${e[1].value}-01`).format('YYYY-MM-01')).getTime();
+                            console.log(min,nowTime,max)
+                            if(nowTime<min||nowTime>max){
+                                that.parent().parent().children(".field-rule").html(`时间限制范围${moment(rule.min).format('YYYY-MM')}~${moment(rule.max).format('YYYY-MM')}`)
+                            }else{
+                                that.parent().parent().children(".field-rule").html('')
+                            }
+                        }
+                        
+                      
+
+                    }else if(format==='MM-DD'){
+                        that.val(`${e[1].value}-${e[2].value}`)
+                        if(rule.min){
+                            let year = new Date().getFullYear();
+                            let month = new Date().getMonth()+1
+
+                            let min = new Date(moment(rule.min).format('YYYY-MM-DD')).getTime();
+                            let max = new Date(rule.max).getTime();
+                            let nowTime = new Date(moment(`${year}-${e[1].value}-${e[2].value}`).format('YYYY-MM-DD')).getTime();
+                            console.log(year,month,min,nowTime,max)
+                            if(nowTime<min||nowTime>max){
+                                that.parent().parent().children(".field-rule").html(`时间限制范围${moment(rule.min).format('YYYY-MM-DD')}~${moment(rule.max).format('YYYY-MM-DD')}`)
+                            }else{
+                                that.parent().parent().children(".field-rule").html('')
+                            }
+                        }
+
+                    }else if(format==='YYYY'){
+                        that.val(`${e[0].value}`)
+                        if(rule.min){
+                            let min = Number(rule.min.substring(0,4));
+                            let max = Number(rule.max.substring(0,4));
+                            let nowTime = Number(`${e[0].value}`);
+                            if(nowTime<min||nowTime>max){
+                                that.parent().parent().children(".field-rule").html(`时间限制范围${min}~${max}`)
+                            }else{
+                                that.parent().parent().children(".field-rule").html('')
+                            }
+                        }
+                    }else if(format==='MM'){
+                        that.val(`${e[1].value}`)
+                        if(rule.min){
+                            let min = new Date(moment(rule.min).format('YYYY-MM-01')).getTime();
+                            let max = new Date(rule.max).getTime();
+                            let nowTime = new Date(moment(`2020-${e[1].value}-01`).format('YYYY-MM-01')).getTime();
+                            console.log(min,nowTime,max)
+                            if(nowTime<min||nowTime>max){
+                                that.parent().parent().children(".field-rule").html(`时间限制范围${moment(rule.min).format('YYYY-MM')}~${moment(rule.max).format('YYYY-MM')}`)
+                            }else{
+                                that.parent().parent().children(".field-rule").html('')
+                            }
+                        }
+                    }else if(format==='DD'){
+                        that.val(`${e[2].value}`)
+                        if(rule.min){
+                            let year = new Date().getFullYear();
+                            let month = new Date().getMonth()+1
+
+                            let min = new Date(moment(rule.min).format('YYYY-MM-DD')).getTime();
+                            let max = new Date(rule.max).getTime();
+                            let nowTime = new Date(`${year}-${month}-${e[2].value}`).getTime();
+                            
+                            if(nowTime<min||nowTime>max){
+                                that.parent().parent().children(".field-rule").html(`时间限制范围${moment(rule.min).format('YYYY-MM-DD')}~${moment(rule.max).format('YYYY-MM-DD')}`)
+                            }else{
+                                that.parent().parent().children(".field-rule").html('')
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                }
+            });
+            if(format==='MM-DD'){
+                $(".weui-picker__group").eq(0).remove()
+            }else if(format==='DD'){
+                $(".weui-picker__group").eq(0).hide()
+                $(".weui-picker__group").eq(1).hide()
+            }
+        }else if(format==='MM'){
+            let list = []
+            for(let i=1;i<13;i++){
+                list.push({label:i+'月',value:i})
+            }
+
+            weui.picker(list, 
+                {
+                    onChange: function (e) {
+                        console.log(e);
+                    },
+                    onConfirm: function (e) {
+                        console.log(e);
+                        that.val(e[0].value)
+                        that.parent().parent().children(".field-rule").html('')
+                    }
+            });
+        }
+        
+        
+        
+    })
+
+    //附件
+    $(document).on('change','.field-file',function(){
+        let that = this;
+        let fileObj = $(this)[0].files[0];
+        console.log(fileObj,fileObj.type)
+
+        let rule = $(this).attr("data-rule");
+        rule = JSON.parse(rule)
+
+        let topicId = $(this).attr("data-id");
+
+        if(fileObj.size>=rule.max*1024*1024){
+            weui.topTips(`文件大小限制${rule.max}M`, 1500);
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("file", fileObj);
+        let fileLoading = weui.loading('上传中...');
+        
+        // fetch("http://10.110.200.62:443/services/web/file/upload/mallUpload/form",{
+        //     method: 'POST',
+        //     mode: 'no-cors',
+        //     headers: {'Content-Type': 'application/json'},
+        //     credentials: 'include',
+        //     cache: 'default',
+        //     // body: JSON.stringify(formData),
+        //     body: formData,
+        // }).then(function(res){
+        //         res.json().then(data=>{
+        //             console.log(res)
+        //         })
+        //     }).catch(error=>{
+        //         console.log(error)
+                
+        //     })
+
+        $.ajax({ 
+            url:`${IP}/services/web/file/upload/mallUpload/form`, 
+            type:"post", 
+            // mode: 'no-cors',
+            data:formData, 
+            contentType:'application/x-www-form-urlencoded;charset=utf-8',
+            processData: false ,    // 不处理数据
+            contentType: false,    // 不设置内容类型
+            success:function(res){ 
+                fileLoading.hide();
+                if(res.status === 1){ 
+                    $(that).css('backgroundImage','url(img/uploadOk.png)')
+                    $(`.deleteFile-${topicId}`).css('display','block')
+                    $(`.field-rule-${topicId}`).html('')
+                    FormObject[`file-${topicId}`] = res.root.object[0].filePath
+                } 
+                console.log(res); 
+                
+            }, 
+            error:function(err){ 
+                console.log(err); 
+
+
+
+                console.log('0000000000000')
+                
+
+
+                fileLoading.hide();
+                let errorLoading = weui.loading('上传失败');
+                setTimeout(()=>{
+                    errorLoading.hide();
+                },1500)
+                
+            } 
+        
+        }) 
+    })
+
+    //删除附件
+    $(document).on('click','.deleteFile',function(){
+
+        let topicId = $(this).attr("data-id");
+
+        let rule = $(this).attr("data-rule");
+        console.log(rule)
+        if(rule==='true'){
+            $(`.field-rule-${topicId}`).html('必填项')
+        }
+        FormObject[`file-${topicId}`] = '';
+        $(`#file-${topicId}`).css('backgroundImage','url(img/upload.png)')
+        $(this).css('display','none')
+    })
+</script>
+<script>
+    function submit(){
+
+        let ruleList = [];
+        $('.field-rule:visible').each(function() { 
+            let text = $(this).text()
+            text&&ruleList.push(text)
+        });
+        console.log(ruleList)
+        if(ruleList.length){
+            weui.topTips('表单填写不规范或必填项没填', 1500);
+            return;
+        }
+        
+        
+
+        console.log($('#form').serialize());
+        let result = $('#form').serialize().split('&')
+        result.map(item=>{
+            if(item.indexOf('checkbox')<0&&item.indexOf('select')<0){
+                let list = item.split('=')
+                FormObject[list[0]] = list[1]||''
+                
+                
+            }
+            
+        })
+        console.log(FormObject)
+
+
+        let list = [];
+        for(let name in FormObject){
+            let formName = name.split('-')[0];
+            let formId = name.split('-')[1];
+            let content = FormObject[name]
+            if(formName==='checkbox'){
+                list.push({
+                    "topicId": formId,
+                    "content": content,
+                    "remark": ""
+                })
+            }else{
+                list.push({
+                    "topicId": formId,
+                    "content": decodeURI(String(content)),
+                    "remark": ""
+                })
+            }
+            
+        }
+        let body = [];
+        topicAllList.map(item=>{
+            list.map(e=>{
+                if(e.topicId===item.id){
+                    if(item.isShow){
+                        body.push(e)
+                    }else{
+                        e.content = '';
+                        e.remark = '';
+                        body.push(e)
+                    }
+                }
+                
+            })
+        })
+        console.log(body)
+
+        let submitUrl = `${IP}/services/web/config/questionnaireFormAnswer/commitForm/${formId}/${userId}`;
+        let submitLoading = weui.loading('提交中...');
+        $.ajax({
+            type:'post',
+            url:submitUrl,
+            contentType:'application/json;charset=utf-8',
+            dataType:'json',
+            data:JSON.stringify(body),      
+            success:function(data){
+                console.log(data)
+                submitLoading.hide();
+                if(data.status === 1){
+                    setTimeout(()=>{
+                        weui.toast('提交成功', 1200);
+                        window.location.href = 'finish.html?ToAPP=1'
+                    },200)
+                }
+            },
+            error:function(error){
+
+            }
+        });   
+
+        
+        
+
+        
+    }
+</script>
+</html>
