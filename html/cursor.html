@@ -7,22 +7,23 @@
     <title>Document</title>
     <style>
         ul{
-            width:900px;
-            height:500px;
+            width:600px;
+            height:300px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            margin: 0 auto;
         }
         li{
-            width:200px;
-            height:100px;
+            width:140px;
+            height:50px;
             text-align: center;
-            line-height: 100px;
+            line-height: 50px;
             border:1px solid #999;
-            border-radius: 8px;
+            border-radius: 6px;
             list-style: none;
         }
-        li:hover{background: #ccc}
+        li:hover{background: #f0f0f0}
         li:nth-child(1):hover{cursor:default}
         li:nth-child(2):hover{cursor:auto}
         li:nth-child(3):hover{cursor:crosshair}
@@ -39,10 +40,14 @@
         li:nth-child(14):hover{cursor:text}
         li:nth-child(15):hover{cursor:wait}
         li:nth-child(16):hover{cursor:help}
+        p{
+            font-size: 24px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>鼠标箭头样式</h1>
+    <p>鼠标箭头样式</p>
     <ul>
         <li>cursor:default</li>
         <li>cursor:auto</li>
