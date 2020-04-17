@@ -1,0 +1,65 @@
+.ProgressBar {
+  position: absolute;
+  h2{
+    font-size: 18px;
+    color: #64677a;
+    margin-bottom: 0;
+    margin-top:3px;
+    margin-left:5px;
+    font-weight: normal;
+  }
+  .BarContainer {
+    width: 154px;
+    height: 22px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 3px 0px #999999;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: ProgressBar 0.6s 1;
+
+    @keyframes ProgressBar {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .Track {
+      width: 100px;
+      height: 4px;
+      border-radius: 2px;
+      position: relative;
+
+      margin-right: 10px;
+      overflow: hidden;
+    }
+
+    .TrackBg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.3;
+    }
+
+    .Bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s;
+    }
+
+    span {
+      font-size: 14px;
+      color: #828890;
+    }
+  }
+}

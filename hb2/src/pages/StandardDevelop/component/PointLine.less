@@ -1,0 +1,23 @@
+.PointLine {
+  position: absolute;
+
+  .Mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 100%;
+    animation: Mask 0.6s 1;
+    background: white;
+
+    @keyframes Mask {
+      0% {
+        left: 0;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+  }
+}
