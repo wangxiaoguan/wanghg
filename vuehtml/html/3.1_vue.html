@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h2>{{msg}}</h2>
+        <h2>翻转msg {{ msg.split("").reverse().join("")}}</h2>
+        <h2>方法翻转 {{reverse()  }}</h2>
+
+
+        <div>
+            <h2>计算属性</h2>
+            <h2>msg==={{myMsg}}</h2>
+
+            <input type="text" v-model="word">
+            <h2>{{word}}</h2>
+            <h2>computed ===> {{myWord}}</h2>
+            <h2>methods ===> {{reverseWord()}}</h2>
+        </div>
+
+        <div>
+            <h2>侦听属性 watch </h2>
+            <input type="text" v-model="fisrtName">
+            <input type="text" v-model="lastName">
+            <h2>{{fullName}}</h2>
+            <h2>{{fuName}}</h2>
+            <h2>{{fName}}</h2>
+        </div>
+
+        <div>
+            <h2>big--{{bigNum}}</h2>
+            <h2>small--{{smallNum}}</h2>
+            <button @click="smallNum=400">修改smallNum的值</button>
+            <button @click="bigNum=600">修改bigNum的值</button>
+
+        </div>
+
+        <div>
+            <h2>搜索水果</h2>
+            <input type="text" v-model="fruit" placeholder="搜索">
+            <div>
+                <p v-for="f in newFruits">{{f}}</p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- 
+        计算属性 computed 适用复杂的逻辑 
+        计算属性 依赖实例 data属性里面某个数值 
+
+        计算属性是基于它们的依赖进行缓存 
+        计算属性只有在它的相关依赖(data)发生改变时才会重新求值
+
+        计算属性 computed 
+        set  计算属性主动变化进入函数
+        get  取值  依赖data 发送变化就进入 
+
+
+        侦听属性 watch   观察和响应 Vue 实例上的数据变动  
+        数据需要随着其它数据变动而变动 
+        主动去监听某个数值  返回newVal  从而去改变其他数值 
+     -->
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+    let vm = new Vue({
+        data:{
+            title:"计算属性 computed & 侦听属性 watch",
+            msg:"computed 适用复杂逻辑 ",
+            word:"1803",
+            fisrtName:"Stevens",
+            lastName:"DaLei ",
+            fullName:"",
+            smallNum:200,
+            fruit:"",
+            newFruits:[],
+            fruits:["apple","bear","orange","Lemon","Banana","Grape","watermelon","pumelo","peach","Mango"],
+        },
+        computed:{
+            myMsg:function(){
+                return this.msg.split("").reverse().join("");
+            },
+            myWord(){
+                return this.word.split("").reverse().join("") + "-" +new Date().getSeconds()
+            },
+            fuName(){
+                return this.fisrtName + "-" + this.lastName;
+            },
+            fName:{
+                // getter 取值  设置当前计算属性的值
+                get(){
+                    return this.fisrtName + "*" + this.lastName;
+                },
+                // setter 监听 watch  只有自己主动修改当前计算属性的值才会进入set  
+                set(val,oldVal){
+                    console.log(val);
+                    var names = val.split("*");
+                    this.fisrtName = names[0];
+                    this.lastName = names[1];
+                }
+            },
+            bigNum:{
+                get(){
+                    return this.smallNum + 123;
+                },
+                // 主动修改才会进入set 
+                set(val){
+                    this.smallNum = val + 123;
+                }
+            },
+            myFruit:{
+                get(){
+                    var arr = [ ]
+                    // arr =  this.fruits.filter((fruit)=>fruit.indexOf(this.fruit)!=-1);
+                    this.fruits.forEach((fruit)=>{
+                        if(fruit.indexOf(this.fruit)!==-1){
+                            arr.push(fruit);
+                        }
+                    })
+                    return arr;
+                },
+                set(){
+
+                }
+            }
+        },
+        watch:{
+            fisrtName:function(val,oldVal){
+                this.fullName = val +" " + this.lastName;                
+            },
+            lastName:function(val,oldVal){
+                this.fullName = this.fisrtName +" " + val;  
+            },
+            fruit(val){
+                var arr = [];
+                this.newFruits = this.fruits.filter(fruit=>fruit.indexOf(val)!==-1);
+            }
+
+        },
+        methods:{
+           reverse(){
+               return this.msg.split("").reverse().join("");
+           },
+           reverseWord(){
+            return this.word.split("").reverse().join("") + "~" +new Date().getSeconds()
+           }
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+            this.fullName = this.fisrtName +" " + this.lastName;
+        }
+    }).$mount("#app")
+
+    vm.$watch("fruit",(newVal,oldVal)=>{
+        console.log("fruit change ")
+        // this.newFruits = newVal;
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>定位锚点透明</title>
+<style>
+*{ margin:0; padding:0;}
+body{ padding: 30px; padding-top:10px; line-height: 35px; font-family: "微软雅黑";}
+h1,h2{padding: 20px 0;}
+h3{    background: #00AA88;
+    color: #FFFCF4;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0;
+    border-radius: 4px;
+    padding: 5px 0px 5px 15px;}
+p{ line-height: 40px;}
+ul li{ list-style: none;line-height: 40px;}
+span{ color: #199475; font-weight: 700; font-size:18px; display: block; border-radius: 4px; padding: 10px; font-size: 18px; padding-left: 0px;}
+em{ font-style: normal; color:red;}
+.other{ color:#044D22;}
+.oo{ color:red; display:inline; font-size:18px; font-weight:normal;}
+.marleft{ margin-left:30px;}
+.marbtom{ margin:15px 0; font-weight:600;}
+.borderbtm{ border-bottom: solid 1px #eee;
+				    padding-bottom: 15px;margin-bottom: 15px;}
+.textcon{
+	    margin: 10px 0;
+    border: solid 1px #ddd;
+    border-left-width: 6px;
+    padding: 10px;
+    border-radius: 4px;
+    border-color: #f60;
+	
+}
+.oos{ color:#000; font-weight:800;}
+</style>
+</head>
+
+<body>
+<div class="boxs">
+	<h1>定位锚点透明</h1>
+    <ul >
+    	<li>1、position 定位属性和属性值</li>
+      <li>2、定位元素的层级属性</li>
+    	<li>3、包含块的概念和应用</li>
+    	<li>4、锚点连接的语法和应用场景</li>
+    	<li>5、透明属性的应用</li>
+        
+  </ul>
+    <h3>一、position 定位属性和属性值</h3>
+    <div class="marleft"><strong class="oo">position 定位属性，检索对象的定位方式；</strong><br>
+语法：position：static /absolute/relative/fixed<br>
+取值：<br>
+1、static：默认值，无特殊定位，对象遵循HTML原则；<br>
+2、absolute：绝对定位，将对象从文档流中拖离出来，使用left/right/top/bottom等属性相对其最接近的一个并有定位设置的父元素进行绝对定位；如果不存在这样的父对象，则依据根元素(html)《浏览器》进行定位，而其层叠通过z-index属性定义<br>
+3、relative ：相对定位，该对象的文档流位置不动，将依据right，top，left，bottom（相对定位）等属性在正常文档流中偏移位置；其层叠通过z-index属性定义<br>
+4、fixed：(固定定位)未支持，对象定位遵从绝对定位方式（absolute）；但是要遵守一些规范（IE6浏览器不支持此定位） ；<br>
+    </div>
+    <h3>二、定位元素的层级属性</h3>
+    <div class="marleft">
+      <p class="oo">z-index : auto |number</p>
+      <p class="oo">检索或设置对象的层叠顺序。<br>
+        auto：默认值。遵从其父对象<br>
+        number:无单位的整数值。可为负数<br>
+        没有设置z-index时，最后写的对象优先显示在上层，设置后，数值越大，层越靠上；<br>
+      </p>
+      <p>说明：</p>
+      <p>1）较大 数值的对象会覆盖在较小 数值的对象之上。如两个绝对定位对象的此属性具有同样的 number 值，那么将依据它们在HTML文档中声明的顺序层叠。<br>
+        此属性仅仅作用于 position 属性值 relative 或 absolute,fixed 的对象。</p>
+      <p></p>
+    </div>
+    <h3>三、包含块的概念及作用</h3>
+    <div class="marleft">
+      <p><strong class="oo">包含块是绝对定位的基础，包含块就是为绝对定位元素提供坐标，偏移和显示范围的参照物，即确定绝对定位的偏移起点和百分比 长度的参考；</strong><br>
+        默认状态下，body是一个大的包含块，所有绝对定位的元素都是根据窗口来定自己所处的位置和百分比大小的显示的，如果我们定义了包含元素为包含元素块以后，对于被包含的绝对定位元素来说，就会根据最接近的具有定位功能的上级包含元素来定位自己的显示位置。<br>
+        <strong class="oo">定义元素为包含块：给绝对定位元素的父元素添加声明position：relative；</strong></p>
+      <p>如果我们的父素设置了position:absolute;那么子元素也会相对父元素来定义自己的位置。</p>
+      <p class="oo">绝对和相对定位的区别</p>
+      <p>1、参照物不同，绝对定位（absolute）的参照物是包含块（父级），相对定位的参照物是元素本身位置；</p>
+      <p>2、绝对定位将对象从文档流中拖离出来因此不占据空间，相对定位不破坏正常的文档流顺序无论是否进行移动，元素仍然占据原来的空间。<br>
+      </p>
+    </div>
+    <h3>四、锚点连接的语法和应用场景</h3>
+    <div class="marleft">
+      <p>命名锚点链接的应用</p>
+      <p>定义：<br>
+        是网页制作中超级链接的一种，又叫命名锚记。命名锚记像一个迅速定位器一样是一种页面内的超级链接，运用相当普遍。</p>
+      <p>
+        <strong class="oo">命名锚点的作用：在同一页面内的不同位置进行跳转。</strong><br>
+        制作锚标记：<br>
+        1)给元素定义命名锚记名<br>
+        语法：&lt;标记   id=&quot;命名锚记名&quot;&gt;    &lt;/标记&gt;<br>
+        2)命名锚记连接<br>
+        语法：&lt;a href=&quot;#命名锚记名称&quot;&gt;&lt;/a&gt;<br>
+      </p>
+    </div>
+    <h3>五、透明写法</h3>
+    <div class="marleft">IE浏览器写法：filter:alpha(opacity=value);取值范围 1-100<br>
+      兼容其他浏览器写法：opacity:0.value;(value的取值范围<br>
+      0-1     0.1,0.2,0.3-----0.9---1)<br>
+    </div>
+</div>
+<div style="     width: 130px;
+    height: 45px;
+    line-height: 44px;
+    text-align: center;
+    color: #f00;
+    background: #000;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 50px;
+    cursor:pointer;
+    right: 10px; "><a href="#" style="color:#f00; text-decoration:none;">返回顶部</a></div>
+
+
+</body>
+</html>

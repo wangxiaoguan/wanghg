@@ -1,0 +1,64 @@
+<!DOCTYPE html><!-- 定义文档类型 -->
+<html><!-- 文档根标签，双标签 -->
+<head><!-- 文档头标签，双标签 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>HTML与CSS运用</title><!-- 标题标签 -->
+<style type="text/css">/*CSS层叠样式表*/
+    body{border:5px solid red;width: 900px;height:500px;}
+	h1{font-family:"楷体"}/*修改字体*/ /*标签选择器*/
+    h2{font-size:20px;} /*字体大小*/
+    h3{font-style:italic;}/*字体风格normal(正常)italic(倾斜)*/
+	h4{font-weight: bold;}/*字体加粗normal(正常)bold(加粗)*/   
+	div{border-width: 5px;/*边框宽度5*//*给div这个块元素设计一个边框*/
+     	border-color:green;/*边框颜色red(红色)black(黑色)green(绿色)rgb(255,255,255)#999999*/
+     	border-style:double;}/*边框风格solid(实线)dashed(虚线)double(双实线)*/   
+	.tagoo{list-style-type: none;}/*列表是否显示空心圆，实心圆，方块，无*//*类选择器 */  
+	a:link{color: red;}/*点击前的颜色*/ /*CSS中的伪类*/
+	a:visited{color: #7bff00} /*点击浏览后颜色*/
+	a:hover{color: green;text-decoration: none;}/*悬停颜色，文本修饰默认下划线*/
+	a:active{color: blue;font-weight:bold;}/*点击同时颜色，文字是否加粗*/
+	h1,h2,h3,h4{color:pink}/*群体选择器*/
+	table{font-family:宋体;
+		 font-size: 20px;
+		 font-style: italic;
+		 font-weight: bold;}
+
+     .tag01{text-decoration: overline;}
+     .tag02{text-decoration: line-through;}
+     .tag03{text-decoration: underline;}
+     .tag04{text-decoration: none;}
+     table{border-width: 5px;
+     	border-color: red;
+     	border-spacing: 0;
+     	background-color:yellow;}
+
+</style>
+</head>
+
+<body>
+	<p  class="body tag">
+		<h1>我是标题一</h1>
+		<h2><a href="#">我是标题二</h2>
+		<h3><a href="#">我是标题三</h3>
+		<h4><a href="#">我是标题四</h4>
+	</p>
+	<div>
+		<ul class="ul li">
+			<li class="tag01">我是列表一</li>
+			<li class="tag02">我是列表二</li>
+			<li class="tag03">我是列表三</li>
+			<li class="tag04">我是列表四</li>
+		</ul>
+    </div>
+	<p>	
+		<table class="tab01 tab02 tab03">
+			<tr>
+				<td>我是表格一</td>
+				<td>我是表格二</td>
+				<td>我是表格三</td>
+			</tr>
+		</table>
+	</p>
+	<p>我是一个div</p>
+</body>
+</html>

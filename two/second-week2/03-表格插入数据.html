@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table{margin: 20px auto;border-collapse: collapse;background: black;}
+        table td{width: 100px;border: 1px solid darkred;
+            height: 20px;text-align: center;color: white;}
+    </style>
+</head>
+<body>
+</body>
+<script>
+    var list=[["姓名","语文","数学","英语","总分"],["张三",75,72,80],["李四",94,86,71],["王二",92,61,52]];
+    list.shift();
+    list.sort(function (a, b) { return (b[1]+b[2]+b[3])-(a[1]+a[2]+a[3] ); });
+    document.write("<div class='table'><table><tr><td>姓名</td><td>语文</td><td>数学</td><td>英语</td><td>总分</td></tr>");
+        for (i=0;i<list.length;i++){
+        var item=list[i];
+        var username=item[0];
+        var chinese=item[1]*1;
+        var shuxu=item[2]*1;
+        var english=item[3]*1;
+        var totalscore=chinese+shuxu+english;
+        document.write("<tr><td>"+username+"</td><td>"+chinese+"</td><td>"+shuxu+"</td><td>"+english+"</td><td>"+totalscore+"</td></tr>")
+        }
+document.write("</tr></table></div>")
+
+
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html,body{
+            width: 1700px;
+            height: 1000px;}
+        #red{width: 400px;height: 400px;background-color: red;margin: 30px auto;}
+    </style>
+</head>
+<body>
+<div id="red"></div>
+</body>
+<script>
+    var red=document.getElementById("red");
+    document.onmousemove=function () {
+        var evt=window.event;
+        var clientX=evt.clientX;//可视左边距
+        var clientY=evt.clientY;//可视上边距
+
+        var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+
+        var redleft=parseInt(getStyleAttr(red,"width"))/2;
+        var redtop=parseInt(getStyleAttr(red,"height"))/2;
+
+        red.style.marginLeft=clientX+scrollLeft+"px";
+        red.style.marginTop=clientY+scrollTop+"px";
+    };
+
+    function getStyleAttr(obj,attr) {
+        if (window.getComputedStyle){
+            return getComputedStyle(obj)[attr];
+        }else {
+            return obj.currentStyle[attr];
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;list-style: none;}
+        #box{width:400px;height:380px;margin:80px 0 0 80px;
+            position:relative; }
+        #big{position:absolute;left:420px;top:0;width:300px;height:300px;
+             overflow:hidden;display:none;}
+        #big img{width:1200px;height:900px;position:absolute;top:0;left:0;}
+        #main{width:400px;height:300px;position:relative; }
+        #main img{width:400px;height:300px;}
+        #show{width:100px;height:100px;background:rgba(120,120,120,.5);position:absolute;
+              left:0;top:0;display:none;}
+        #small .image{width: 400px;height:80px;margin-top:20px}
+        #small .image li{float:left;margin-right:20px;}
+        #small .image img{width:80px;height:60px;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="big">
+        <img src="images/p1.jpg">
+    </div>
+
+    <div id="main">
+        <img src="images/p1.jpg">
+        <div id="show"></div>
+    </div>
+
+    <div id="small">
+        <ul class="image">
+            <li><img src="images/p1.jpg" ></li>
+            <li><img src="images/p2.jpg" ></li>
+            <li><img src="images/p3.jpg" ></li>
+            <li><img src="images/p4.jpg" ></li>
+        </ul>
+    </div>
+
+</div>
+</body>
+<script src="00-$getNode.js"></script>
+<script>
+    var box=$("#box");
+    var big=$("#big");
+    var show=$("#show");
+    var bigimg=$("#big img")[0];//放大图
+    var main=$("#main");
+    var mainimg=$("#main img")[0];
+    var smalllist=$("#min .image li");//获取li的集合
+
+    for (var i=0;i<smalllist.length;i++) {
+        var smallimg=smalllist[i];
+        smallimg.onmouseover=function(){
+           var img=this.getElementsByTagName("img")[0];
+            bigimg.src=img.src;
+            mainimg.src=img.src;
+        }
+    }
+    main.onmousemove=function (e) {
+        big.style.display="block";
+        show.style.display="block";
+        var evt=window.event||e;
+        var pageX=evt.clientX+document.documentElement.scrollLeft||document.body.scrollLeft;
+        var pageY=evt.clientY+document.documentElement.scrollTop||document.body.scrollTop;
+
+        var mainwidth=parseInt(getStyleAttr(main,"width"));//main宽度400
+        var mainheight=parseInt(getStyleAttr(main,"height"));//main高度300
+
+        var boxleft=parseInt(getStyleAttr(box,"margin-left"));//box左边距80
+        var boxtop=parseInt(getStyleAttr(box,"margin-top"));//box上边距80
+
+        var showwidth=parseInt(getStyleAttr(show,"width"));
+        var showheight=parseInt(getStyleAttr(show,"height"));
+
+        var bigwidth=parseInt(getStyleAttr(big,"width"));
+        var bigheight=parseInt(getStyleAttr(big,"height"));
+
+        var x=pageX-boxleft-showwidth/2;
+        var y=pageY-boxtop-showheight/2;
+        if (x<=0){x=0}
+        if (x>=mainwidth-showwidth){x=mainwidth-showwidth}
+        if (y<=0){y=0}
+        if (y>=mainheight-showheight){y=mainheight-showheight;}
+        show.style.left=x+"px";
+        show.style.top=y+"px";
+        bigimg.style.left=-(bigwidth/showwidth)*x+"px";
+        bigimg.style.top=-(bigwidth/showwidth)*y+"px";
+    };
+    main.onmouseout=function () {
+        big.style.display="none";
+        show.style.display="none";
+    };
+function getStyleAttr(obj,attr) {
+    if (window.getComputedStyle){return getComputedStyle(obj)[attr]}
+    else {return obj.currentStyle[attr]}
+}
+
+</script>
+</html>

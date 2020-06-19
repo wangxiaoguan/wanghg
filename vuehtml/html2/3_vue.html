@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .box{width:120px;height: 120px;border:2px solid rgb(103, 253, 17)}
+        .a{background:rgb(241, 204, 82)}
+        .b{border:6px solid red}
+        #box{overflow: hidden;}
+        #box p{float: left; width: 50px;height: 50px;margin-right:10px;;border: 1px solid #a22}
+        .active{background: palevioletred}
+        #content p{width: 200px;height: 200px;background: palegreen;border:2px solid blue;float: left;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div :class="box" :style="style"></div>
+        <div :class="[box,A,B]"></div>
+        <div class="box" :style="{background:'yellow'}"></div>
+
+        <div id="box">
+            <p :class="index==0?'active':''" @click="index=0">num1</p>
+            <p :class="index==1?'active':''" @click="index=1">num2</p>
+            <p :class="index==2?'active':''" @click="index=2">num3</p>
+        </div>
+        <div id="content">
+            <p :style="{display:index==0?'block':'none'}">conent001</p>
+            <p :style="{display:index==1?'block':'none'}">conent002</p>
+            <p :style="{display:index==2?'block':'none'}">conent003</p>
+        </div>
+    </div>
+    <script>
+        var vm =new Vue({
+            data:{
+                box:"box",
+                length:"100px",
+                style:{
+                    background:'#a0a',
+                    borderRadius:'10PX'
+                },
+                A:'a',
+                B:'b',
+                index:0
+            }
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

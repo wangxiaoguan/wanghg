@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="year">年<br/>
+<input id="month">月<br/>
+<input id="day">日<br/>
+<button id="btn">计算</button><br/>
+<input id="result">
+</body>
+<script>
+    //判断某日是某年的第几天
+    var btn=document.getElementById("btn");
+    btn.onclick=function(){
+        var yearInput=document.getElementById("year");
+        var year=yearInput.value*1;
+
+        var monthInput=document.getElementById("month");
+        var month=monthInput.value*1;
+
+        var dayInput=document.getElementById("day");
+        var day=dayInput.value*1;
+
+        var febDay=28;
+        if(year%400==0||(year%4==0&&year%100!=0)){
+            febDay=29; //是闰年二月就有29天
+        }
+
+        var count=0; //用来计数
+        if(month==1){
+            count=day;
+        }else if(month==2){
+            count=31+day;
+        }else if(month==3){
+            count=31+febDay+day;
+        }else if(month==4){
+            count=31+febDay+31+day;
+        }else if(month==5){
+            count=31+febDay+31+30+day;
+        }else if(month==6){
+            count=31+febDay+31+30+31+day;
+        }else if(month==7){
+            count=31+febDay+31+30+31+30+day;
+        }else if(month==8){
+            count=31+febDay+31+30+31+30+31+day;
+        }else if(month==9){
+            count=31+febDay+31+30+31+30+31+31+day;
+        }else if(month==10){
+            count=31+febDay+31+30+31+30+31+31+30+day;
+        }else if(month==11){
+            count=31+febDay+31+30+31+30+31+31+30+31+day;
+        }else if(month==12){
+            count=31+febDay+31+30+31+30+31+31+30+31+30+day;
+        }
+
+        var resultInput=document.getElementById("result");
+        result.value=count;
+    }
+    //判断某日是某年的第几天
+
+</script>
+</html>

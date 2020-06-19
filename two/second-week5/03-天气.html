@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;list-style: none;}
+        #box{width:100%;overflow: hidden;margin:20px }
+        #province span{display:inline-block;padding:0 5px;color:green;}
+        #province span:hover{background: fuchsia;}
+        #city span{display:inline-block;padding:0 5px;color:red;}
+        #city span:hover{background:orange;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="province"></div>
+    <div id="city"></div>
+    <div id="area"></div>
+</div>
+</body>
+<script>
+    var province=document.getElementById("province");
+    var city=document.getElementById("city");
+    var area=document.getElementById("area");
+
+    var req=new XMLHttpRequest();
+    req.open("get","http://api.yytianqi.com/citylist/id/2",true);
+    req.send();
+    req.onreadystatechange=function() {
+        if (req.readyState == 4 && req.status == 200) {
+            var result = req.responseText;
+            var list = JSON.parse(result);
+            var previncelist = list.list;
+            var html = "";
+            previncelist.map(function (item) {
+                html += "<span>" + item.name + "</span>";
+            });
+            province.innerHTML = html;//省份
+
+            var spanlist = province.getElementsByTagName("span");
+            for (var i = 0; i < spanlist.length; i++) {
+                // var provincespan = spanlist[i];
+                (function(i){
+                    spanlist[i].onmouseover = function() {
+                        var spancity = previncelist.filter(function (item) {
+                            return spanlist[i].innerHTML == item.name
+                        });
+                        var html = "";
+                        var spancitylist = spancity[0].list;
+                        spancitylist.map(function (item) {
+                            html += "<span>" + item.name + "</span>";
+                        });
+                        city.innerHTML = html;//省份城市
+                        var citylist=city.getElementsByTagName("span");//城市列表
+                    }
+                })(i);
+            }
+        }
+    }
+
+</script>
+</html>

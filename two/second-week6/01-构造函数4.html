@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="content"></div>
+
+</body>
+<!-- <script src="js/ajax.js"></script> -->
+<!-- <script src="http://json391.gz01.bdysite.com/1803/js/showdata.js"></script> -->
+<!-- <script src="date.js"></script> -->
+
+<script>
+    // var str="ACXKFL";
+    // alert(str.toLowerCase())
+    // var data1=show();]
+ 
+    var content=document.getElementById("content");
+   function show(data){
+    // content.innerHTML="今天是"+data.date+"气温"+data.qw+"天气"+data.tq;
+    content.innerHTML="他是"+data["username"]+"年龄"+data["userage"]+"性别"+data["usersex"];
+   }
+</script>
+<script src="js/data.js"></script>
+</html>

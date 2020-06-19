@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;list-style: none;}
+        #box{width: 450px;height:400px;border:1px solid black;margin:80px 0 0 80px;
+            position:relative; }
+        #mod{position: absolute;width:100px;height:100px;background:rgba(120,0,120,.3);z-index:9}
+        #mag{position:absolute;left:460px;top:0;width:430px;height:300px;border:1px solid black;overflow: hidden;display: none;}
+        #mag .image{position:absolute;}
+        #main{width:430px;height:300px;position:relative; }
+
+        #main .image img{width:430px;height:300px;}
+        #main .image li{display:none;margin:10px;}
+        #main .image .selected{display: block;}
+        #mag .image li{display:none;}
+        #mag .image .selected{display: block;}
+        #min .image{width: 450px;height:100px;margin-top:20px}
+        #min .image li{float:left;margin-left:10px;}
+        #min .image img{width: 100px;height: 60px;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="mag">
+        <ul class="image">
+            <li class="selected"><img src="images/p1.jpg" draggable="false"></li>
+            <li><img src="images/p2.jpg" draggable="false"></li>
+            <li><img src="images/p3.jpg" draggable="false"></li>
+            <li><img src="images/p4.jpg" draggable="false"></li>
+        </ul>
+    </div>
+    <div id="main">
+        <ul class="image">
+            <li class="selected"><img src="images/p1.jpg" draggable="false"></li>
+            <li><img src="images/p2.jpg" draggable="false"></li>
+            <li><img src="images/p3.jpg" draggable="false"></li>
+            <li><img src="images/p4.jpg" draggable="false"></li>
+        </ul>
+    </div>
+
+    <div id="min">
+        <ul class="image">
+            <div id="mod"></div>
+            <li class="selected"><img src="images/p1.jpg" draggable="false"></li>
+            <li><img src="images/p2.jpg" draggable="false"></li>
+            <li><img src="images/p3.jpg" draggable="false"></li>
+            <li><img src="images/p4.jpg" draggable="false"></li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="00-$getNode.js"></script>
+<script>
+    var mod=$("#mod");
+    var mag=$("#mag");
+    var magul=$("#mag .image")[0];
+    var main=$("#main");
+    var mainlist=$("#main .image li");
+    var minlist=$("#min .image li");
+    var maglist=$("#mag .image li");
+
+    var index=0;
+
+    for (var i=0;i<minlist.length;i++) {
+        var minimg=minlist[i];
+        minimg.setAttribute("index",i);
+        minimg.onclick=function(){
+            index=this.getAttribute("index");
+           show();
+        }
+    }
+    for (var j=0;j<mainlist.length;j++) {
+        main.onmousemove=function (e) {
+            mag.style.display="block";
+
+            var evt=window.event||e;
+            var pagX=evt.clientX;
+            var pagY=evt.clientY;
+            magul.style.left=(-(pagX-90)*3.5)+"px";
+            magul.style.top=(-(pagY-90)*3.5)+"px";
+
+        };
+        main.onmouseout=function (e) {
+            mag.style.display="none";
+            mod.style.display="none";
+
+            var evt=window.event||e;
+            var pagX=evt.clientX;
+            var pagY=evt.clientY;
+
+        }
+    }
+
+
+function show() {
+    for (var j=0;j<mainlist.length;j++) {
+        mainlist[j].className="";
+        minlist[j].className="";
+        maglist[j].className="";
+    }
+    mainlist[index].className="selected";
+    minlist[index].className="selected";
+    maglist[index].className="selected";
+}
+</script>
+</html>

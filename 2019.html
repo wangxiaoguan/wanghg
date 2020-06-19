@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var list = [
+        {name:'电饭锅',age:20},{name:'下单',age:22},{name:'方法',age:21},{name:'丰富',age:23},{name:'可乐',age:24},{name:'方法',age:21},{name:'方法',age:21}
+    ]
+    
+    list.map((item,index)=>{
+        if(item.age!==21){
+            delete list[index]
+        }
+    })
+    console.log(list)
+
+    var a = 10.7456
+    console.log(~~a) //=>10
+
+    var b=11.8765
+    console.log(b>>0)//=>11
+
+    var f=12.8765
+    console.log(f<<0)//=>12
+
+    var c=13.8765
+    console.log(c|0)//=>13
+
+    var d=14.5543
+    console.log(d+.5|0)//=>15
+
+    var f=14.0543
+    console.log(d+.5|0)//=>15
+
+    //函数柯里化：是将多参函数转换成一系列的单参函数。
+    //示例：
+    var add1 = (a, b) => console.log(a + b);
+    add1(1, 2);  // => 3
+    //修改
+    var add2 = a => b => console.log(a + b);
+    add2(1)(2);  // => 3
+
+    // //js转换成bool值的六个false
+    // !0 = true,              !undefined = true
+    // !'' = true,             !NaN  = true
+    // ! null = true ,         !false  = true
+
+    // '>>>'是js的位移运算符(无符号);
+    // 10>>>1
+    // 10的二进制代码为 1010
+    // 向右移动一位后为 0101
+    // 即 5
+    console.log(10>>>1)
+
+    console.log('3'^1)
+
+
+    function fn(name) {
+    　　name = name || '我是默认值';
+    　　return name;
+    }
+    console.log(fn())
+
+    function fn2(name = '我是默认值66666') {
+        return name;
+    }
+
+    console.log(fn2('好的健身房看过很多'))
+
+    // 生成随机ID
+    const codeId = Math.random().toString(36).substring(2)
+    console.log(codeId)
+
+    // 获取URL的查询参数
+    // 模拟 url，如：`?foo=bar&baz=bing` 
+    const url = '?page=info&type=3&orderId=1&Id=363503'
+    let object = {}
+    // location.search.replace(/([^?&=]+)=([^&]+)/g, (_, k, v) => object[k] = v)
+    url.replace(/([^?&=]+)=([^&]+)/g, (_, k, v) => object[k] = v)
+    console.log(object)
+
+
+    // 本地时间
+    // const now = new Date().toLocaleString().slice(0)
+    // const now = new Date().toLocaleString().slice(9, 19)
+    console.log(now)
+
+    // 生成随机十六进制代码（生成随机颜色）
+    const color = '#' + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, '0')
+    console.log(color);
+
+
+</script>
+</html>

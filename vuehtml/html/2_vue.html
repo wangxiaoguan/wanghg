@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-html="message"></div>
+        <br>
+
+        <label for="r1">修改颜色</label>
+        <input type="checkbox" v-model="class1" id="r1">
+
+        <br>
+        <div v-bind:class="{'class1': class1}">directiva v-bind:class</div>
+    </div>    
+            <script>
+            new Vue({
+              el: '#app',
+              data: {
+                message: '<h1>菜鸟教程</h1>',
+                class1: false
+              }
+            })
+            </script>
+</body>
+</html>

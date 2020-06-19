@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        pre{
+            font-size: 1.4rem;
+            font-family: "楷体";
+        }
+        pre:nth-child(2n){
+            color:red
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+<pre>
+自己贡献积分页面
+http://10.110.200.62:443/services/app/static/html5/point/partyPoint.html?userId=10&token=kxd17kXtEfVLhkRkSzNKvX7Cu7HsjmVJ5x9paPqetEc%3D
+
+专项积分页面
+http://10.110.200.62:443/services/app/static/html5/point/specialPointDetail.html?userId=10&token=kxd17kXtEfVLhkRkSzNKvX7Cu7HsjmVJ5x9paPqetEc%3D
+
+功能介绍页面
+http://10.110.200.62:443/services/app/static/html5/updateLog.html?versionName=V2.2.6&token=kxd17kXtEfVLhkRkSzNKvX7Cu7HsjmVJ5x9paPqetEc%3D
+
+积分页面
+http://10.128.151.139:443/services/app/static/html5/point/point.html?userId=10&token=oy%2F%2FuHofx0r60l6gxOXQWbGnYgfcx18zB%2BUe5KkVQi28l097%2BehsqyRi2shiA6K%2B
+
+经验值页面
+http://10.128.151.139:443/services/app/static/html5/point/exp.html?userId=10&token=oy%2F%2FuHofx0r60l6gxOXQWbGnYgfcx18zB%2BUe5KkVQi28l097%2BehsqyRi2shiA6K%2B
+
+下载页面
+http://10.128.151.139:443/services/app/static/html5/download/download.html?tenantId=02000000
+
+使用帮助页面
+http://10.128.151.139:443/services/app/static/html5/help/help.html
+
+
+1.app端进入商品列表页面【未参加】 
+http://10.110.200.62:443/app/static/html5/order/index.html?userId=${登录人id}&activityId=${活动id}&YQToken=${YQ-TOKEN}#/pages/index/shopCar
+
+
+2.app端进入商品列表页面【已参加】
+http://10.110.200.62:443/app/static/html5/order/index.html?userId=${登录人id}&activityId=${活动id}&YQToken=${YQ-TOKEN}#/pages/index/shopList
+
+
+3.app端进入订单列表页面】
+http://10.110.200.62:443/app/static/html5/order/index.html?userId=${登录人id}&YQToken=${YQ-TOKEN}#/pages/index/orderList
+
+
+4.app端进入商家页面  
+http://10.110.200.62:443/app/static/html5/order/index.html#/pages/seller/SellerList?merchantId=${登录人id}&token=${YQ-TOKEN}
+
+
+
+APP登录参数
+{
+    "account":"17371301830",
+    "password":"e10adc3949ba59abbe56e057f20f883e",
+    "registrationId": "",
+    "version": "",
+    "device": "",
+    "system": "",
+    "systemType": 1
+}
+</pre>
+<pre>
+#For NC, no new entry above, between this and next comments
+61.183.207.102      sslvpn.fiberhome.com
+#end of NC entry
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+        10.110.200.80   gitfh.com
+</pre>
+<pre>
+省标院项目
+
+git地址      	http://58.49.132.133:30000/           wangjun104@fiberhome.com     wangjun104
+
+wto后台		    http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=wto
+缺陷后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=expert
+检测后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=cer
+党建后台		http://58.49.132.133:31019/officialWebBack?token=Emp201231212148&u=admin
+
+首页前台		http://58.49.132.133:31019/officialWebFront#/index
+wto前台		    http://58.49.132.133:31019/officialWebFront#/wto
+缺陷前台		http://58.49.132.133:31019/officialWebFront#/dpac
+检测前台		http://58.49.132.133:31019/officialWebFront#/Verify
+
+开发环境  		http://58.49.132.133:31019
+测试环境  		http://58.49.132.133:31091
+正式环境  		http://58.49.132.133:31081
+
+湖北通报		http://www.hubeiwto.org.cn
+湖北缺陷		http://www.hubeidpac.org.cn 
+
+后台管理
+培训管理列表接口    http://localhost:8000/services/wto/traininfo/list/1/10
+查看培训活动详情	http://localhost:8000/services/wto/traininfo/traininfo/参数ID
+查看培训人员接口	http://localhost:8000/services/wto/wtotrainenrolment/getTrainEnrollList/参数ID/1/10
+检测用户部门接口	http://localhost:8000/services/wto/wtotrainenrolment/checkEnroll/用户ID/培训ID
+培训附件上传	    SBY2\src\components\DefaultEditView.tsx   				
+左侧菜单栏	        SBY2\src\locales\zh-CN\menu.js					
+
+
+普通评议列表接口	http://58.49.132.133:31019/services/wto/wtobulletin/list/1/20?checkStatus_LK=0
+专家评议列表接口	http://58.49.132.133:31019/services/wto/wtocommentactivity/list/1/20
+官方评议列表接口	http://58.49.132.133:31019/services/wto/wtoofficialcomment/getOfficialEvaluateList/1/5
+
+普通评议详情接口	http://58.49.132.133:31019/services/wto/wtobulletin/get/参数ID
+专家评议详情接口	http://58.49.132.133:31019/services/wto/wtoofficialcomment/getCommentActivity/参数ID
+官方评议详情接口	http://58.49.132.133:31019/services/wto/wtoofficialcomment/getCommentActivity/参数ID
+
+
+普通评议列表
+1，审核		        http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/1                        请求方式：post
+2，取消审核         http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/2                        请求方式：post  
+3，删除		        http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/3                        请求方式：post  
+4，批量删除	        http://localhost:8000/services/wto/wtoofficialcomment/checkBulletinComment/3                        请求方式：post  
+post传参		    ["0261ea9723734dbabf5c517369d6e9e3"]
+
+
+专家评议列表
+1，审核 		    http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/1                        请求方式：post  
+2，取消审核	        http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/2                        请求方式：post  
+3，删除		        http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/3                        请求方式：post  
+4，批量删除	        http://localhost:8000/services/wto/wtoofficialcomment/checkOfficialComment/3                        请求方式：post  
+post传参		    ["0261ea9723734dbabf5c517369d6e9e3"]
+
+
+普通评议集合接口	  http://localhost:8000/services/wto/wtoofficialcomment/getOrdinaryCommentList/1/10
+                    ?Q=bulletinCode_LK=G/TBT/N/CRI/5
+                    &Q=checkStatus_EQ=0
+                    &Q=createDate_D_GE=2019-06-09 00:00:00
+                    &Q=createDate_D_LE=2019-07-18 23:59:59
+参数说明:	         bulletinCode	通报号
+                    checkStatus	审核状态
+                    createDate	评议时间
+
+
+专家评议集合接口	  http://localhost:8000/services/wto/wtoofficialcomment/getBulletinListCommentByOfficial/1/10
+                    ?Q=relatedBulletin_LK=1111
+                    &Q=checkStatus_EQ=0
+                    &Q=appriaseDate_D_GE=2019-07-09 00:00:00
+                    &Q=appriaseDate_D_LE=2019-07-15 23:59:59
+参数说明:	         relatedBulletin	通报号
+                    checkStatus	审核状态
+                    appriaseDate	评议时间
+
+
+专家评议查询         http://localhost:8000/services/wto/wtoofficialcomment/getOfficialCommentList/3/1/20
+                    checkStatus    	审核状态(0未审核,1审核通过,2审核拒绝)
+                    appriaseDate   	评议时间
+参数说明:            ?Q=checkStatus_EQ=0
+                    &&Q=appriaseDate_D_GE=2019-05-09 00:00:00
+                    &&Q=appriaseDate_D_LE=2019-07-15 23:59:59
+
+
+普通评议查询         http://localhost:8000/services/wto/wtoofficialcomment/getBulletinCommentList/33024/1/20
+                    ?Q=bulletinCode_LK=0
+                    &&Q=checkStatus_EQ=0
+                    &&Q=createDate_D_GE=2019-05-09 00:00:00
+                    &&Q=createDate_D_LE=2019-07-15 23:59:59
+参数说明:            bulletinCode  	通报号
+                    checkStatus  	审核状态(0未审核,1审核通过,2审核拒绝)
+                    createDate  	评议时间   
+</pre>
+<pre>
+    部署地址
+    url： 	10.110.200.62  	root 	skyinno@62 
+    url：	10.110.200.185 	root	skyinno@185
+    url： 	10.128.27.22	root	skyinno@22
+    
+    https://gitfh.com/cictV2/front.git          		Youqu/PC/Web
+    https://gitfh.com/PC/mac.git			            Mac
+    https://gitfh.com/fhskyinno/big_front_end.git    	Week
+    http://10.110.200.14:8080/secure/Dashboard.jspa   	JIRA   		hgwang109    		123456
+    https://www.seasame.com.cn/login  		            Week   		hgwang109    		123456
+    https://gitfh.com				                    Git		    wanghongguan  		111111
+    https://mail.fiberhome.com/coremail		            email       hgwang109@fiberhome.com
+    
+    灰度悠趣：http://msp.iyouqu.com.cn:18443/youquweb#/login
+    65悠趣：	http://119.36.213.65:30000/youquweb#/login
+    185悠趣： http://223.75.53.181:30000/youquweb/#/login
+    地铁云： 	http://10.128.151.136:443/youquweb#/login
+    
+    灰度圈聊：http://msp.iyouqu.com.cn:48081/youquChat
+    65圈聊：	https://test.cictsj.com:4488/youquChat
+    185圈聊：	http://10.110.200.185:8080/youquChat
+    
+    圈聊接口
+    
+    01，联系人      	本地
+    02，联系人信息   	本地
+    03，圈子信息    	本地
+    04，企业通讯录  	本地
+    05，搜索本地	本地
+    06，圈子信息          	环信
+    07，创建圈子  	环信
+    08，添加圈成员 	环信
+    09，修改群名 	环信
+    10，修改群简介 	环信
+    
+    youqu-ms-im/im/org/GetUserInfo/02000000/02A67600/1/10		获取企业下的好友
+    youqu-ms-im/im/org/GetLeader/02000000			获取烽火企业
+    youqu-ms-im/im/org/GetAllTenantId 				获取所有企业
+    youqu-ms-im/im/chatgroup/chatgroups/	123456			获取圈子信息
+    youqu-ms-im/im/UserInfo/LikeName/02000000/value/1/20		搜索人员
+    yq-common-prod.img-cn-hangzhou.aliyuncs.com/    		灰度图像地址 
+    yq-fiberhome-prod.oss-cn-hangzhou.aliyuncs.com/   		灰度文件地址
+    yq-fiberhome-prod.img-cn-hangzhou.aliyuncs.com/   		灰度图片地址
+    services/system/file/upload/AttachmentUpload/   			灰度文件上传地址
+    youqu-ms-im/im/Video/getVideo     				灰度环境视频转码接口地址
+    youqu-ms-im/im/feedback/addfeedback				意见反馈
+    
+    服务启动 
+    ps -ef|grep 'tomcat'   					找到tomcat目录
+    cd /home/tomcat8/bin					进入tomcat目录
+    ./shutdown.sh						关闭tomcat服务
+    ./startup.sh						启动tomcat服务   
+    
+    01，企业通讯录
+        包含：部门（同步），部门领导（异步），部门员工（异步）
+        展示：头像，名称
+    02，我的圈子
+        展示：头像，群名
+    03，联系人
+        根据姓名首字拼音字母A-Z分类
+        展示：头像，姓名
+    04，选中人员或圈子列表跳转步骤
+        1，企业通讯录	——>详情页——>会话聊天页面 
+        2，我的圈子	——>详情页——>会话聊天页面
+        3，联系人		——>详情页——>会话聊天页面
+    05，搜索联系人
+        1，企业通讯录	包含：头像，名称，部门
+        2，我的圈子	包含：头像，群名
+        3，联系人		包含：头像，名称，部门,
+    06，选中搜索列表跳转步骤
+        1，企业通讯录	——>详情页——>会话聊天页面 
+        2，我的圈子	——>会话聊天页面
+        3，联系人		——>会话聊天页面
+    
+    07，撤回消息功能
+        撤回消息类型：文本，图片，文件，视频，语音，位置
+        单聊/圈聊	
+        1：web同步撤回消息<————>app同步撤回消息
+        2：web同步撤回消息<————>web同步撤回消息
+    08，同步更新数据
+        添加好友与删除好友
+        App-A<——————>Web-A
+        App-A<——————>Web-B
+    09，群组增删改建
+        App<——————>Web
+        创建群，解散群组，修改群名，添加成员，删除成员
+    10，会话列表消息置顶
+        Web<———发消息———>App
+        Web<———发消息———>Web
+    11，会话时间节点提醒
+        消息间隔2分钟显示，否则隐藏
+    12，@功能
+        点击圈聊@成员光标置后
+        @成员列表坐标
+        截屏图片光标之后
+    13，圈子展示
+        圈名称，圈简介，退出并删除圈子，解散圈子，添加成员
+    14，图片查看
+        图片左右翻动，缩放，移动
+    15，创建圈子
+        选择成员，搜索成员，删除成员，编辑圈名，编辑圈简介
+    16，历史消息
+        消息储存本地，消息路径更改，消息删除
+    17，草稿消息
+        输入框消息在会话列表展示
+    18，意见反馈
+        意见类型，意见图片，意见消息
+        点击圈聊@成员光标置后
+        @成员列表坐标
+        截屏图片光标之后
+        搜索圈聊成员
+        图片查看
+    
+    悠趣管理平台
+    1，党建园地
+    2，文章管理
+    3，视频管理
+    4，杂志管理
+    5，专题管理
+    6，个人工作
+    7，咨询管理
+    
+</pre>
+<pre>
+npm install --save react@16.3.2 react-dom@16.3.2
+npm install --save-dev react-hot-loader@4.1.2
+
+a{
+    color: #000;
+    cursor: not-allowed;
+    pointer-events:none; //点击事件禁用
+}
+
+服务启动 
+ps -ef|grep 'tomcat'   	找到tomcat目录
+cd /home/tomcat8/bin	进入tomcat目录
+./shutdown.sh		关闭tomcat服务
+./startup.sh		启动tomcat服务 
+</pre>
+<pre>
+for(var i=0;i<10;i++){
+    console.log('---------->',i)        //==>0,1,2,3,4,5,6,7,8,9
+}
+console.log('--------->>>',i);          //==>10
+
+for(let k=0;k<10;k++){                  //(var k=0;k<10;k++) <===> (k=0;k<10;k++)
+    console.log('==========>',k)        //==>0,1,2,3,4,5,6,7,8,9
+}
+console.log('=========>>>',k);          //==>ReferenceError: k is not defined
+</pre>
+<pre>
+    let reg=/\>[\u4e00-\u9fa5_a-zA-Z0-9\,\;\.\?\。\；\，\、\(\)\/\（\）\‘\“\’\”\"\']+\</ig;
+    let txt= html.match(reg).join("").replace(/\<\>/ig,""); 
+    console.log(txt)    
+    
+    a{
+        color: rgba(0,0,0,.25);
+        cursor: not-allowed;
+        pointer-events:none; //点击事件禁用
+     }
+
+     Object.assign()
+     async/await
+
+     npm install -g dva-cli
+npm install gg-editor --save   可视化编辑器
+
+css修改滚动条默认样式
+/*滚动条样式*/
+.box::-webkit-scrollbar {/*滚动条整体样式*/
+width: 4px;     /*竖滚动条的宽度*/
+height: 4px;   /*横滚动条的高度*/
+}
+.box::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+border-radius: 5px;
+-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+background: rgba(0,0,0,0.2);
+}
+.box::-webkit-scrollbar-track {/*滚动条里面轨道*/
+-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+border-radius: 0;
+background: rgba(0,0,0,0.1);
+}
+
+devDependencies   --save-dev    开发环境
+dependencies    --save     生产环境
+
+
+
+new webpack.ProvidePlugin({})
+ProvidePlugin，是webpack的内置模块
+使用ProvidePlugin加载的模块在使用时将不再需要import和require进行引入
+以jquery为例，用ProvidePlugin进行实例初始化后，jquery就会被自动加载并导入对应的node模块中
+new webpack.ProvidePlugin({
+$: 'jquery',
+jQuery: 'jquery'
+})
+$('#item'); 
+jQuery('#item');
+
+PubSubJS发布/订阅库
+npm install pubsub-js --save
+import PubSub from 'pubsub-js'
+const PubSub = require('pubsub-js');
+PubSub.subscribe('PubSubmessage', function (message,data) {  console.log(data)   }）//订阅
+PubSub.publish('PubSubmessag',this.state.increase);//发布
+PubSub.unsubscribe('PubSubmessage')//退订
+
+
+将网页打包成桌面应用（web页面生成exe）
+npm install electron-packager -g
+npm install electron -g
+中文转拼音
+npm install pinyin --save  ES2017(慎用)
+npm install pinyin4js  --save  ES5
+
+react捕获
+e.nativeEvent.stopImmediatePropagation()
+</pre>
+<pre>
+关于this的指向，是一个令人很头疼的问题.
+归根结底，this指向就一句话：谁最终调用函数，this指向谁！！！
+关于这点，老夫有三言相赠：
+1.this指向的，永远只可能是对象！
+2.this指向谁，永远不取决于this写在哪！而是取决于函数在哪调用。
+3.this指向的对象，我们称之为函数的上下文context，也叫函数的调用者。
+　　下面请看具体情况。
+　　1.通过函数名()直接调用：this指向window
+
+function func(){
+    console.log(this);
+}
+通过函数名()直接调用：this指向window
+func(); // this--->window
+        
+2.通过对象.函数名()调用的：this指向这个对象
+
+function func(){
+    console.log(this);
+}
+通过对象.函数名()调用的：this指向这个对象
+
+a.狭义对象
+    var obj = {
+        name:"obj",
+        func1 :func
+    };
+    obj.func1(); // this--->obj
+            
+b.广义对象
+document.getElementById("div").onclick = function(){
+    this.style.backgroundColor = "red";
+}; // this--->div
+
+3.函数作为数组的一个元素，通过数组下标调用的：this指向这个数组
+
+function func(){
+    console.log(this);
+}
+        
+函数作为数组的一个元素，通过数组下标调用的：this指向这个数组
+var arr = [func,1,2,3];
+arr[0]();  // this--->arr
+    
+函数作为window内置函数的回调函数调用：this指向window（ setInterval setTimeout 等）
+
+function func(){
+    console.log(this);
+}
+函数作为window内置函数的回调函数调用：this指向window
+setTimeout(func,1000);  // this--->window
+setInterval(func,1000); // this--->window
+
+4.函数作为构造函数，用new关键字调用时：this指向新new出的对象
+
+function func(){
+    console.log(this);
+}
+函数作为构造函数，用new关键字调用时：this指向新new出的对象
+var obj = new func(); //this--->new出的新obj
+
+5.事件对象
+在 DOM 事件中使用 this，this 指向了触发事件的 DOM 元素本身
+
+
+
+6.构造函数环境
+构造函数中的this 会指向创建出来的实例对象，使用new 调用构造函数时，会先创建出一个空对象，
+然后用call函数把构造函数中的this指针修改为指向这个空对象。执行完环境后，空对象也就有了相关的属性，
+然后将对象返回出去，所以说就不用我们自己手动返回啦~
+function Person() {
+    this.name = 'zhar';
+}
+var p = new Person();
+console.log(p.name);
+
+综合以上，构造函数不需要返回值，如果我们指定一个返回值时，this的指向将发生变化
+function Person() {
+    this.name = 'zhar';
+    return {};
+}
+var p = new Person();
+console.log(p.name);//undefined
+--------------------------------------
+function Person() {
+    this.name = 'zhar';
+    return {name:'tom'};
+}
+var p = new Person();
+console.log(p.name);//tom      
+如果构造函数返回对象(Object,Array,Function)，那 this 将指向这个对象，其它基础类型则不受影响
+--------------------------------------
+function Person() {
+    this.name = 'zhar';
+    return 1;//number string boolean 等
+}
+var p = new Person();
+console.log(p.name);//zhar
+所以，如无必要我们通常不要设置构造函数的返回值
+</pre>
+<pre>
+web Storage    
+本地客户端网页存储数据的一种方式  以域名为单位存储数据
+操作简单  
+大小不受限制  
+不会跟随HTTP 发送给后台 
+
+localStorage  永久存储   只要不手动删除就永远存储在本地客户端
+sessionStorage 临时存储    只要浏览器关闭或者当页面关闭就会消失
+
+web storage 存储格式  key-value  {username;"zzz"} 
+取数据  
+localStorage.getItem(key)   localStorage.username 
+存数据
+localStorage.setItem(key,value)  localStorage.key = value;
+删除一条数据
+localStorage.removeItem(key)   delete localStorage[key]
+删除所有数据
+localStorage.clear()    
+遍历web storage 
+localStorage.key(index)   localStorage.length 长度 
+JSON.stringiyf 
+把一个对象转换成JSON格式的数据串
+JSON.parse 
+将数据解析成对象，返回解析后的对象
+</pre>
+<pre>
+apply:方法能劫持另外一个对象的方法，继承另外一个对象的属性.
+Function.apply(obj,args)方法能接收两个参数
+    obj：这个对象将代替Function类里this对象
+    args：这个是数组，它将作为参数传给Function（args-->arguments）
+call:和apply的意思一样,只不过是参数列表不一样.
+Function.call(obj,[param1[,param2[,…[,paramN]]]])
+obj：这个对象将代替Function类里this对象
+params：这个是一个参数列表
+1.apply示例:
+
+    /*定义一个人类*/  
+    function Person(name,age)  
+    {  
+        this.name=name;  
+        this.age=age;  
+    }  
+
+    /*定义一个学生类*/  
+    function Student(name,age,grade)  
+    {  
+        Person.apply(this,arguments);  
+        this.grade=grade;  
+    }  
+
+    //创建一个学生类  
+    var student=new Student("小明",21,"一年级");  
+
+    //测试  
+    console.log(student.name)       =>小明
+    console.log(student.age)        =>21
+    console.log(student.grade)      =>一年级
+    //学生类里面我没有给name和age属性赋值啊,为什么又存在这两个属性的值呢,这个就是apply的神奇之处.  
+
+
+    分析: Person.apply(this,arguments);
+        this:在创建对象在这个时候代表的是student
+        arguments:是一个数组,也就是[“zhangsan”,”21”,”一年级”];
+        也就是通俗一点讲就是:用student去执行Person这个类里面的内容,在Person这个类里面存在this.name等之类的语句,
+        这样就将属性创建到了student对象里面
+</pre>
+<pre>
+js去除字符串中的所有空格：
+var str = "  hello  world !  "
+var str2 = str.replace(/\s/g,"");
+</pre>
+<pre>
+js中生成对象的方法：
+1.通过对象字面量创建对象：
+var person={
+    name: 'tony',
+    age: 27,
+}
+2.通过构造函数来创建对象：
+function Person() {
+    //...
+}
+var person= new Person();
+
+
+3.由函数Object.create构造：
+var person={
+    name: 'tony',
+    age: 27,
+}
+var person1= Object.create(person);
+</pre>
+<pre>
+函数也是对象，只不过是具有特殊功能的对象而已。任何函数都可以看做是通过Function()构造函数的new操作实例化的结果
+
+如果把函数Foo当成实例对象的话，其构造函数是Function()，其原型对象是Function.prototype；类似地，函数Object的构造函数也是Function()，其原型对象是Function.prototype
+
+function Foo(){};
+var f1 = new Foo;
+
+console.log(Foo.__proto__ === Function.prototype);//true
+
+console.log(Object.__proto__ === Function.prototype);//true
+原型对象Function.prototype的constructor属性指向构造函数Function()；
+实例对象Object和Foo本身没有constructor属性，需要继承原型对象Function.prototype的constructor属性
+
+复制代码
+function Foo(){};
+var f1 = new Foo;
+console.log(Function.prototype.constructor === Function);//true
+console.log(Foo.constructor === Function);//true
+console.log(Foo.hasOwnProperty('constructor'));//false
+console.log(Object.constructor === Function);//true
+console.log(Object.hasOwnProperty('constructor'));//false
+复制代码
+　　所有的函数都可以看成是构造函数Function()的new操作的实例化对象。那么，Function可以看成是调用其自身的new操作的实例化的结果
+
+　　所以，如果Function作为实例对象，其构造函数是Function，其原型对象是Function.prototype
+
+console.log(Function.__proto__ === Function.prototype);//true
+console.log(Function.prototype.constructor === Function);//true
+console.log(Function.prototype === Function.prototype);//true
+　　如果Function.prototype作为实例对象的话，其原型对象是什么呢？和前面一样，所有的对象都可以看成是Object()构造函数的new操作的实例化结果。所以，Function.prototype的原型对象是Object.prototype，其原型函数是Object()
+
+console.log(Function.prototype.__proto__ === Object.prototype);//true
+　　第二部分介绍过，Object.prototype的原型对象是null
+
+console.log(Object.prototype.__proto__ === null);//true
+
+
+　　【1】函数(Function也是函数)是new Function的结果，所以函数可以作为实例对象，其构造函数是Function()，原型对象是Function.prototype
+
+　　    【2】对象(函数也是对象)是new Object的结果，所以对象可以作为实例对象，其构造函数是Object()，原型对象是Object.prototype
+
+　　    【3】Object.prototype的原型对象是null
+</pre>
+<pre>
+let reg = '2019'
+let str = '2018-2019-2020'
+let regStr = str.replace(new RegExp(reg,'ig'),'')
+console.log(regStr)
+</pre>
+<pre>
+var arr = ['a', 'b', 'c']; 
+for(var i of arr){
+    console.log(i); //数组每个元素值=>a,b,c
+}
+
+let str = "abc";
+for( var i of arr){
+    console.log(i);//字符串每个字符=>a,b,c
+}
+
+var obj={name:"china",year:"2020",fn:function(){console.log(1)}};
+for(var i in obj){
+    console.log(i)//对象的属性或方法=>name、year、fn
+    console.log(obj[i]);//对象的属性值或方法=>china、2020、function(){console.log(1)}
+}
+var arr = ['a', 'b', 'c']; 
+for(var i in arr){
+    console.log(i)  //数组下标=>0,1,2
+    console.log(arr[i]);//数组下标对应的值=>a,b,c
+}
+</pre>
+</div>
+</body>
+</html>

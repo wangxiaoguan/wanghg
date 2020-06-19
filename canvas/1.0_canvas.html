@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas </title>
+    <style>
+        canvas{
+            display: block;
+            margin:50px auto;
+            border:1px solid darkgoldenrod;
+        }
+    </style>
+</head>
+<body>
+    <canvas width=800 height=400 id="mycanvas" class="canvas" name="canvas" >浏览器 不支持 canvas 标签 </canvas>
+    <script>
+        
+        var mycanvas =  document.getElementById("mycanvas");
+        var mycanvas1 = document.getElementsByClassName("canvas")[0]
+        var mycanvas2 = document.getElementsByName('canvas')[0]
+        var mycanvas3 = document.getElementsByTagName("canvas")[0]
+        var mycanvas4 = document.querySelector("#mycanvas")
+        var mycanvas5 = document.querySelectorAll(".canvas")[0]
+        console.log(mycanvas5)
+
+        var ctx = mycanvas.getContext("2d");
+
+
+        ctx.beginPath();
+        ctx.moveTo(0,200);
+        ctx.lineTo(800,200);
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "yellow"
+        ctx.stroke();
+        ctx.closePath();
+
+
+        ctx.beginPath();
+        ctx.moveTo(100,100);
+        ctx.lineTo(100,300);
+        ctx.lineTo(300,300);
+        ctx.lineTo(100,100);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "blue";
+        ctx.fillStyle = "pink"
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+
+        // ctx.beginPath();
+        // ctx.moveTo(400,100)
+        // ctx.lineTo(400,300);
+        // ctx.lineTo(600,300);
+        // ctx.lineTo(600,100);
+        // ctx.lineTo(400,100);
+        // ctx.stroke();
+        // ctx.fill();
+        // ctx.closePath();
+
+        var P = Math.PI;      //  π  180deg 
+         
+
+        function fillAngle(x0,y0,n,r){
+            var angle = 360/n/180*P  ;
+            var startAngle = P/2-angle; 
+
+            ctx.beginPath();
+            // ctx.moveTo(x0,y0);
+            for(var i=0;i<=n;i++){
+                var deg = startAngle + angle*i;
+                ctx.lineTo(x0+r*Math.cos(deg),y0+(-r*Math.sin(deg)));
+            }
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 4;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // fillAngle(500,200,5,100);
+
+
+        function fillFive(x0,y0,n,r,r1){
+            var angle = 360/n/180*P  ;
+            var startAngle = P/2-angle; 
+
+            ctx.beginPath();
+            // ctx.moveTo(x0,y0);
+            for(var i=0;i<=n;i++){
+                var deg = startAngle + angle*i;
+                var deg1 = angle/2 + startAngle  + angle*i;
+                ctx.lineTo(x0+r*Math.cos(deg),y0+(-r*Math.sin(deg)));
+                ctx.lineTo(x0+r1*Math.cos(deg1),y0+(-r1*Math.sin(deg1)));
+            }
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 4;
+            ctx.fillStyle = "red";
+            ctx.fill()
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        fillFive(500,200,5,100,50);
+    
+    </script>
+</body>
+</html>

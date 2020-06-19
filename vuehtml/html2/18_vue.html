@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <my-a></my-a>
+        <my-b></my-b>
+        <my-c></my-c>
+
+
+
+    </div>
+    <template id="a">
+        <div>
+            <h2>AAAA</h2>
+            <h2>{{msg}}</h2>
+            <h2>==================</h2>
+        </div>
+    </template>
+    <template id="b">
+        <div>
+            <h2>BBBB</h2>
+            <h2>{{msg}}</h2>
+            <h2>==================</h2>
+        </div>
+    </template>
+    <template id="c">
+        <div>
+            <button @click="changeA">修改A</button>
+            <button @click="changeB">修改B</button>
+        </div>
+    </template>
+
+
+
+    <script>
+        var bus=new Vue();
+
+        Vue.component("my-a",{
+            template:"#a",
+            data(){ return {msg:"武汉"}},
+            mounted(){ bus.$on("sendA",msg=>{this.msg=msg;})}
+        })
+
+
+        Vue.component("my-b",{
+            template:"#b",
+            data(){return {msg:"天道酬勤"}},
+            mounted(){ bus.$on("sendB",msg=>{this.msg=msg;})}
+        })
+
+
+        let vm=new Vue({
+            data:{ title:"兄弟组件",message:"世界梦中国梦",count:1803},
+            methods:{},
+            components:{
+                "my-c":{
+                    template:"#c",
+                    methods:{
+                        changeA(){ bus.$emit("sendA","AAAAAAAAAAAAAAAA")},
+                        changeB(){ bus.$emit("sendB","BBBBBBBBBBBBBBBB")},
+                    },
+                }
+            },
+            mounted(){},
+
+
+
+        }).$mount("#app")
+    
+    </script>
+</body>
+</html>

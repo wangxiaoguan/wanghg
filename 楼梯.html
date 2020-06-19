@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>louti</title>
+    <!-- <link href="css/common.css" rel="stylesheet" type="text/css"> -->
+    <style>
+        #content {
+  position: absolute;
+  overflow: hidden;
+  height: 280px;
+  width: 520px;
+  left: 0;
+  top: 0; }
+  #content li {
+    position: absolute;
+    height: 280px;
+    width: 520px;
+    left: 520px;
+    top: 0; }
+    #content li img {
+      display: block;
+      height: 280px;
+      width: 520px; }
+  #content li.select {
+    left: 0; }
+
+header {
+  height: 600px;
+  width: 1000px;
+  margin: 0 auto; }
+
+.louti {
+  height: 600px;
+  width: 1000px;
+  margin: 0 auto; }
+
+nav {
+  position: fixed;
+  left: 50px;
+  top: 200px;
+  display: none; }
+  nav li {
+    list-style: none;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    line-height: 32px;
+    border: 1px dotted #cdcdcd;
+    position: relative;
+    overflow: hidden; }
+    nav li span {
+      position: absolute;
+      left: 0;
+      top: 32px;
+      height: 32px;
+      width: 32px;
+      display: inline-block; }
+
+nav li.select span {
+  top: 0;
+  background-color: red; }
+
+nav li:hover span {
+  top: 0;
+  background-color: #594d64;
+  cursor: pointer; }
+
+nav li.top {
+  background-color: red;
+  cursor: pointer;  }
+    </style>
+</head>
+<body>
+<nav>
+    <li>1L
+        <span>服装</span>
+    </li>
+    <li>2L
+        <span>美妆</span>
+    </li>
+    <li>3L
+        <span>手机</span>
+    </li>
+    <li>4L
+        <span>家电</span>
+    </li>
+    <li>5L
+        <span>数码</span>
+    </li>
+    <li>6L
+        <span>运动</span>
+    </li>
+    <li>7L
+        <span>居家</span>
+    </li>
+    <li>8L
+        <span>母婴</span>
+    </li>
+    <li>9L
+        <span>食品</span>
+    </li>
+    <li>10L
+        <span>图书</span>
+    </li>
+    <li>11L
+        <span>服务</span>
+    </li>
+    <li class="top">TOP</li>
+</nav>
+
+<header style="background: url(image/header.png)"></header>
+<div class="content">
+    <div class="louti" style="background: url(image/服饰.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/美妆.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/手机.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/家电.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/数码.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/运动.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/居家.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/母婴.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/食品.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/图书.png) no-repeat">
+    </div>
+    <div class="louti" style="background: url(image/服务.png) no-repeat">
+    </div>
+</div>
+</body>
+<script src="image/jquery.js"></script>
+<script>
+    var index = 0;
+    $("nav  li:not(li[class='top'])").click(function () { //左导航
+        index = $(this).index();
+        $("nav li").eq(index).addClass("select").siblings().removeClass("select");
+        let scrollTop = $(".louti").eq(index).position().top;//获取每一个louti距离顶部的高度
+        $("html,body").animate({"scrollTop": scrollTop});//设置页面需要滚动的距离
+    });
+
+    $(".top").eq(0).click(function () {
+
+        $("html,body").animate({"scrollTop": 0});
+    });
+    //右导航
+    $(window).scroll(function () {
+//       console.log($(this).scrollTop())
+        var top = $(this).scrollTop();  //滚动条滚动的距离
+        if (top > $("header").height() / 2) {
+            $("nav").show();
+        } else {
+            $("nav").hide();
+        }
+        $(".louti").each(function (index) {
+            //console.log(index); // index表示每一个索引
+            var scrollTop = $(this).position().top + $(this).height() / 2;
+//            console.log(scrollTop);
+            if (scrollTop > top) {  //找到满足的提交 立刻终止
+                $("nav li").eq(index).addClass("select").siblings().removeClass("select");
+                return false;
+            }
+        });
+    })
+</script>
+</html>

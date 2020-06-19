@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id="app">
+            <h2>{{title}}</h2>
+            <h2>{{msg}}</h2>
+            <h2>翻转:{{ msg.split("").reverse().join("")}}</h2>
+            <h3 v-on:click="reverse()">{{msg}}</h3>
+
+
+            <div>
+                <h3>计算属性</h3>
+                <h2>msg==={{mymsg}}</h2>
+                <input type="text" v-model="word">
+                <h2>{{word}}</h2>
+                <h2>word==={{myword}}</h2>
+                <h2>word==={{reverseWord()}}</h2>
+            </div>
+
+            <div>
+                <h2>侦听属性 watch </h2>
+                <input type="text" v-model="fisrtName">
+                <input type="text" v-model="lastName">
+                <h2>{{fullName}}</h2>
+                <h2>{{fuName}}</h2>
+                <h2>{{fName}}</h2>
+            </div>
+
+            <div>
+                <h2>big--{{bigNum}}</h2>
+                <h2>small--{{smallNum}}</h2>
+                <button @click="smallNum=400">修改smallNum的值</button>
+                <button @click="bigNum=600">修改bigNum的值</button>
+            </div>
+            
+            <div>
+                <h2>搜索水果</h2>
+                <input type="text" v-model="fruit" placeholder="搜索">
+                <div><p v-for="f in newFruits">{{f}}</p></div>
+            </div>
+
+
+    </div>
+
+
+    <script>
+        var  vm=new Vue({
+            // el:"#app",
+            data:{
+                title:"计算属性 computed & 侦听属性 watch",
+                msg:"hello world",
+                word:"2018",
+                fisrtName:"Stevens",
+                lastName:"DaLei ",
+                fullName:"",
+                smallNum:200,
+                fruit:"",
+                newFruits:["apple","bear","orange","Lemon","Banana","Grape","watermelon","pumelo","peach","Mango"],
+                fruits:["apple","bear","orange","Lemon","Banana","Grape","watermelon","pumelo","peach","Mango"]
+            },
+            computed:{
+                mymsg:function(){
+                    return this.msg.split("").reverse().join("")
+                },
+                myword:function(){
+                    return this.word.split("").reverse().join("") + "-" +new Date().getSeconds()
+                },
+                fuName:function(){
+                    return this.fisrtName + "-" + this.lastName;
+                },
+                fName:{
+                    get(){
+                        return this.fisrtName + "*" + this.lastName;
+                    },  
+                    set(val,oldVal){
+                        console.log(val);
+                        var names = val.split("*");
+                        this.fisrtName = names[0];
+                        this.lastName = names[1];
+                    }
+                },
+                bigNum:{
+                get(){
+                    return this.smallNum + 123;
+                    },
+                // 主动修改才会进入set 
+                set(val){
+                    this.smallNum = val + 123;
+                    }
+                },
+                myFruit:{
+                get(){
+                    var arr = [ ];
+                    // arr =  this.fruits.filter((fruit)=>fruit.indexOf(this.fruit)!=-1);
+                    this.fruits.forEach((fruit)=>{
+                        if(fruit.indexOf(this.fruit)!==-1){
+                            arr.push(fruit);
+                        }
+                    })
+                    return arr;
+                },
+                set(){     }
+            }
+            },
+            watch:{
+            fisrtName:function(val,oldVal){
+                this.fullName = val +" " + this.lastName;                
+            },
+            lastName:function(val,oldVal){
+                this.fullName = this.fisrtName +" " + val;  
+            },
+            fruit(val){
+                var arr = [];
+                this.newFruits = this.fruits.filter(fruit=>fruit.indexOf(val)!==-1);
+            }
+
+        },
+            methods:{
+                reverse(){
+                     this.msg.split("").reverse().join("")
+                    // this.msg.split("").reverse().join("");
+                },
+                reverseWord(){
+                    return this.word.split("").reverse().join("") + "~" +new Date().getSeconds()
+                }    
+            }
+        }).$mount("#app")
+
+         vm.$watch("fruit",(newVal,oldVal)=>{
+        console.log("fruit change ")
+        this.newFruits = newVal;
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var first = document.getElementById("first");
+    var checkList= document.getElementsByClassName("check");//利用class的属性值查找节点
+    var ulList = document.getElementsByTagName("ul");//同样标签节点名的集合
+    var sexList = document.getElementsByName("sex");//利用name的属性值查找节点
+    var li = document.createElement("li");//文本中新建一个li节点标签
+    var next = first.nextElementSibling;//同级的下一个节点
+    var prev = first.previousElementSibling;//同级上一个节点
+    ul.appendChild(li);//把li标签插入ul标签里面
+    secondUL.appendChild(firstULLi);//把第一个ul标签子节点li放到第二个ul标签里面
+</script>
+</html>

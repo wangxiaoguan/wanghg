@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{width: 900px;margin: 50px auto;}
+        canvas{border:1px solid #000}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <canvas id="mycanvas" width=800 height=400></canvas>
+    </div>
+   <script>
+       var mycanvas=document.getElementById("mycanvas");
+       var c=mycanvas.getContext("2d");
+   
+
+    // c.beginPath();
+    // c.moveTo(0,200);
+    // c.bezierCurveTo(200,-200,600,600,800,200)
+    // c.strokeStyle="red";
+    // c.lineWidth=6;
+    // c.stroke();
+    // c.closePath();
+
+    // c.beginPath();
+    // c.moveTo(400,200);
+    // c.arc(400,200,50,0,Math.PI*2,true);
+    // c.strokeStyle="yellow";
+    // c.fillStyle="yellow";
+    // c.fill();
+    // c.stroke();
+    // c.closePath();
+
+    // c.beginPath();
+    // c.moveTo(0,200);
+    // c.quadraticCurveTo(600,600,800,200)
+    // c.strokeStyle="red";
+    // c.lineWidth=6;
+    // c.stroke();
+    // c.closePath();
+
+    // c.beginPath();
+    // c.moveTo(0,200);
+    // c.quadraticCurveTo(600,400,800,200)
+    // c.strokeStyle="red";
+    // c.lineWidth=6;
+    // c.stroke();
+    // c.closePath();
+
+    // c.beginPath();
+    // c.font="50px 仿宋";
+    // c.textAlign="center";
+    // c.textBaseline="top";
+    // c.strokeStyle="blue"
+    // c.fillStyle="red"
+    // c.strokeText("武汉千锋",400,100);
+    // c.fillText("武汉千锋",400,200);
+
+    c.beginPath();
+    c.fillStyle="red";
+    // c.fillRect(0,0,300,200);
+    c.rect(0,0,300,200);
+    c.fill();
+    c.stroke();
+    c.closePath();
+
+
+
+
+
+   
+    
+
+
+   </script>
+
+</body>
+</html>

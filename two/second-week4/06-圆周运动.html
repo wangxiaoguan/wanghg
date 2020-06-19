@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;}
+		#cir{width: 400px;height:400px;margin:100px;border:1px solid red;
+            border-radius:50%;position: relative;}
+        #sun{width: 50px;height: 50px;position:absolute;left: 175px;top: 175px;}
+        #ball{width:50px;height:50px;background:green;border-radius:50%;position: absolute;}
+        #cir1{width:90px;height:90px;border:1px solid red;border-radius:50%;position:relative;left:-20px;top:-20px;}
+        #ball1{width:20px;height:20px;background:blueviolet;border-radius:50%;position:absolute;}
+        #cir2{width:200px;height:200px;margin:100px;border:1px solid red;
+            border-radius:50%;position:relative;}
+        #ball2{width:30px;height:30px;background:red;border-radius:50%;position:absolute;}
+        #cir2_1{width:50px;height:50px;border:1px solid red;border-radius:50%;                                  position:absolute;top:-10px;left:-10px;}
+        #ball2_1{width:10px;height:10px;background:orange;border-radius:50%;                                    position:absolute;}
+        #cir3{width:300px;height:300px;border:1px solid red;
+            border-radius:50%;position:absolute;top:50px;left:50px;}
+        #ball3{width:30px;height:30px;background:blue;border-radius:50%;position:absolute;}
+
+    </style>
+</head>
+<body>
+<div id="cir">
+    <div id="cir2">
+        <div id="ball2">
+            <div id="cir2_1">
+                <div id="ball2_1"></div>
+            </div>
+        </div>
+    </div>
+    <div id="cir3">
+        <div id="ball3"></div>
+    </div>
+    <div id="ball">
+        <div id="cir1">
+            <div id="ball1"></div>
+        </div>
+    </div>
+    <img id="sun" src="images/ty.png">
+</div>
+</body>
+<script>
+    var cir=document.getElementById("cir");
+    var ball=document.getElementById("ball");
+
+    var cir1=document.getElementById("cir1");
+    var ball1=document.getElementById("ball1");
+
+    var cir2=document.getElementById("cir2");
+    var ball2=document.getElementById("ball2");
+
+    var cir2_1=document.getElementById("cir2_1");
+    var ball2_1=document.getElementById("ball2_1");
+
+    var cir3=document.getElementById("cir3");
+    var ball3=document.getElementById("ball3");
+
+
+
+
+    var ballwidth=ball.offsetWidth;
+    var ballheight=ball.offsetHeight;
+
+    var ball1width=ball1.offsetWidth;
+    var ball1height=ball1.offsetHeight;
+
+    var ball2width=ball2.offsetWidth;
+    var ball2height=ball2.offsetHeight;
+
+    var ball2_1width=ball2_1.offsetWidth;
+    var ball2_1height=ball2_1.offsetHeight;
+
+    var ball3width=ball3.offsetWidth;
+    var ball3height=ball3.offsetHeight;
+
+
+    var cirwidth=cir.offsetWidth-2;
+    var cir1width=cir1.offsetWidth-2;
+    var cir2width=cir2.offsetHeight-2;
+    var cir2_1width=cir2_1.offsetHeight-2;
+    var cir3width=cir3.offsetHeight-2;
+
+    var R=cirwidth/2;//球的半径200
+    var R1=cir1width/2;//球的半径200
+    var R2=cir2width/2;//球2的半径200
+    var R2_1=cir2_1width/2;//球2_1的半径25
+    var R3=cir3width/2;//球2的半径200
+    
+    var PI=Math.PI;
+    var timer=null;
+    var timer1=null;
+    var timer2=null;
+    var timer2_2=null;
+    var timer3=null;
+    var i=0;
+    var i_1=0;
+    var j=0;
+    var j_2=0;
+    var k=0;
+
+    timer=setInterval(function () {
+        i++;
+        var sin=Math.sin(PI/180*i);
+        var cos=Math.cos(PI/180*i);
+        var x=R*sin;
+        var y=R*cos;
+        // var x2=R2*sin;
+        // var y2=R2*cos;
+        ball.style.left=x+R-ballwidth/2+"px";
+        ball.style.top=y+R-ballheight/2+"px";
+        // ball2.style.left=x2+R2-ball2width/2+"px";
+        // ball2.style.top=y2+R2-ball2height/2+"px";
+    },20)
+    timer1=setInterval(function () {
+        i_1++;
+        var sin=Math.sin(PI/180*i_1);
+        var cos=Math.cos(PI/180*i_1);
+        var x1=R1*sin;
+        var y1=R1*cos;
+        ball1.style.left=x1+R1-ball1width/2+"px";
+        ball1.style.top=y1+R1-ball1height/2+"px";
+    },1)
+    timer2=setInterval(function () {
+        j++;
+        var sin=Math.sin(PI/180*j);
+        var cos=Math.cos(PI/180*j);
+        var x2=R2*sin;
+        var y2=R2*cos;
+        // var x2_1=R2_1*sin;
+        // var y2_1=R2_1*cos;
+        ball2.style.left=x2+R2-ball2width/2+"px";
+        ball2.style.top=y2+R2-ball2height/2+"px";
+        // ball2_1.style.left=x2_1+R2_1-ball2_1width/2+"px";
+        // ball2_1.style.top=y2_1+R2_1-ball2_1height/2+"px";
+    },5)
+    timer2_2=setInterval(function () {
+        j_2++;
+        var sin=Math.sin(PI/180*j_2);
+        var cos=Math.cos(PI/180*j_2);
+
+        var x2_1=R2_1*sin;
+        var y2_1=R2_1*cos;
+
+        ball2_1.style.left=x2_1+R2_1-ball2_1width/2+"px";
+        ball2_1.style.top=y2_1+R2_1-ball2_1height/2+"px";
+    },1)
+    timer3=setInterval(function () {
+        k++;
+        var sin=Math.sin(PI/180*k);
+        var cos=Math.cos(PI/180*k);
+        var x3=R3*sin;
+        var y3=R3*cos;
+        ball3.style.left=x3+R3-ball3width/2+"px";
+        ball3.style.top=y3+R3-ball3height/2+"px";
+    },15)
+
+    // var timer=null;
+    // cir.onclick=function () {
+    //     clearInterval(timer);
+    //     timer=setInterval(function () {
+    //
+    //         ball.style.left=ball.offsetLeft+3.54*Math.sin(Math.PI/180*speedX)+"px";
+    //         ball.style.top=ball.offsetTop+3.54*Math.sin(Math.PI/180*speedY)+"px";
+    //         speedX--;
+    //         speedY++;
+    //         console.log(ball.style.left)
+    //      },10)
+    //
+    // }
+</script>
+</html>

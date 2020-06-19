@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;}
+        .timer{width: 300px;height: 150px;background:#aaa;font-size: 30px;
+            margin: 100px auto;text-align: center;}
+        #begain{font-size: 30px}
+    </style>
+</head>
+<body>
+<div class="timer">
+<p>计时器</p>
+<button id="begain">开始</button><br>
+<span id="date">0</span>
+</div>
+</body>
+<script>
+
+var begain=document.getElementById("begain");
+// var pause=document.getElementById("pause");
+var date=document.getElementById("date");
+var i=1;
+var timer=null;
+    function show() {
+    begain.onclick = function () {
+        if (begain.innerHTML == "暂停") {
+            begain.innerHTML = "开始";
+            clearInterval(timer);
+        } else {
+            begain.innerHTML = "暂停";
+            timer = setInterval(function () {
+                date.innerHTML = i++ + "秒";
+            }, 1000)
+        }
+    };
+};
+
+show();
+//第二种写法
+/*var flag=true;
+btn.onclick=function(){
+    if(flag){
+        flag=false;
+        btn.innerHTML="暂停";
+        timer=setInterval(function () {
+            i++;
+            result.innerHTML=i;
+        },1000)
+    }else{
+        flag=true;
+        btn.innerHTML="开始";
+        clearInterval(timer);
+    }
+}*/
+
+
+</script>
+</html>

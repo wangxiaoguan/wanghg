@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function add(num1,num2,fn){fn(num1+num2)}
+    add(1,2,function (result) {alert(result)})
+
+    function add(1,2,function (result){alert(result)}){
+        var num1=1;
+        var num2=2;
+        var fn=function (result){alert(result)};
+        fn(num1+num2)=function (1+2){alert(1+2)}
+    }
+
+
+</script>
+</html>

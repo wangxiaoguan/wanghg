@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.box p:nth-child(2n){color: red; }
+		::selection{background:pink;color:red;}
+		label::before{content:"你好";}
+		label::after{content:"大家好";}
+		/*before与after只能在双标签上使用，并且使用单冒号和双冒号都一样，IE8不支持*/
+		div:not(.div1){color:green;}
+		li:not(:first-child){background: blue;}
+
+	    p+h3{color:#ffd3d3;}/*p后面紧跟第一个h3*/
+	    p~h3{color:#f88787;}/*p后面所有的h3*/
+		p>h3{color:#ff0000;}
+		
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p>第一个p标签</p>
+		<p>第二个p标签　.box p:nth-child(2){color: red;}</p>
+		<p>同级p标签倒数第二个　.box p:nth-last-of-type(2){color:yellow;}</p>
+		<p>第一个p标签</p>
+		<p>第二个p标签　.box p:nth-child(2){color: red;}</p>
+		<p>同级p标签倒数第二个　.box p:nth-last-of-type(2){color:yellow;}</p><p>第一个p标签</p>
+		<p>第二个p标签　.box p:nth-child(2){color: red;}</p>
+		<p>同级p标签倒数第二个　.box p:nth-last-of-type(2){color:yellow;}</p><p>第一个p标签</p>
+		<p>第二个p标签　.box p:nth-child(2){color: red;}</p>
+		<p>同级p标签倒数第二个　.box p:nth-last-of-type(2){color:yellow;}</p>
+		<h1>第四标签h1</h1>
+		<h3>第五标签h3</h3>
+		<p>同级p标签的第四个　.box p:nth-of-type(4){color:blue;font-size:30px;}</p>
+	</div>
+	<a href="#a1">啊啊</a>
+	<p id="a1">跳转target</p>
+	<a href="#a2">事实上</a>
+	<p id="a2">123123</p>
+	
+	<div class="div1">12312312312312312312</div>
+	<input type="text"  disabled>
+	<label for="">千锋教育千锋教育</label>
+	<ul>
+		<li>123123</li>
+		<li>asdas</li>
+		<li>xcvxc</li>
+		<li>aasds</li>
+		<li>sssss</li>
+	</ul>
+	<div class="div2">
+		<p>12312</p>
+		<p>sdfs</p>
+		<h3>asdas</h3>
+		<h3>asdfas</h3>
+	</div>
+	<div class="div3">
+		<p>12312</p>
+		<p>sdfs</p>
+		<h3>asdas</h3>
+		<h3>asdfas</h3>
+		<p>sdfs</p>
+		<h3>asdas</h3>
+	</div>
+	<div class="div4">
+		<div>
+			<p>123123</p>
+			<h1><p>123123</p></h1>
+		</div>
+	</div>
+	<div class="div5">
+		<div>
+			<p>123123</p>
+			<p>123123</p>
+		</div>
+	</div>
+	<div class="div6">12312312312312啊撒旦撒</div>
+
+</body>
+</html>

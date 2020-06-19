@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+    function gettime() {
+	 var date=new Date();
+	 var week=["日","一","二","三","四","五","六"];
+	 var year=date.getFullYear();
+	 var month=date.getMonth()+1;
+	 var day=date.getDate();
+	 var hour=date.getHours();
+	 var minute=date.getMinutes();
+	 var second=date.getSeconds();
+	 var week=week[date.getDay()];
+	 var times=year+"年"+month+"月"+day+"日"+hour+":"+minute+":"+second+"星期"+week;
+    	document.write(times);}
+	 setInterval(gettime,1000);
+	 function toNumber(num) {return num > 10 ? String(num) : "0" + num;}
+</script>
+</html>

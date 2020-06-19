@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <!-- <link href="css/common.css" rel="stylesheet" type="text/css"> -->
+    <style>
+        li{list-style: none}
+        #wrap3 {
+            height: 300px;
+            width: 760px;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative; 
+        }
+
+        #content3 {
+            height: 300px;
+            width: 760px;
+            position: relative; 
+        }
+        #content3 li {
+            position: absolute;
+            height: 300px;
+            width: 760px;
+            display: none;
+        }
+        #content3 li img {
+            position: absolute;
+            height: 300px;
+            width: 760px;
+            left: -760px;
+            top: 0; 
+        }
+        #content3 .select {
+            display: block; 
+        }
+        #nav {
+            position: absolute;
+            height: 20px;
+            width: 200px;
+            left: 240px;
+            top: 240px;
+            background-color: rgba(22, 22, 22, 0.6);
+            border-radius: 10px; 
+        }
+        #nav li {
+            float: left;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #ffffff;
+            background-color: rgba(134, 33, 200, 0.6);
+            text-align: center;
+            line-height: 14px;
+            margin-left: 16px;
+            margin-top: 3px; 
+        }
+        #nav li.select {
+            background-color: rgba(156, 66, 100, 0.8); 
+        }
+    </style>
+</head>
+<body>
+<div id="wrap3">
+    <ul id="content3">
+        <li style="background: url('image/bg1.jpg')">
+            <img src="image/con1.png"/>
+            <img src="image/text1.png"/>
+        </li>
+        <li style="background: url('image/bg2.jpg')">
+            <img src="image/con2.png"/>
+            <img src="image/text2.png"/>
+        </li>
+        <li style="background: url('image/bg3.jpg')">
+            <img src="image/con3.png"/>
+            <img src="image/text3.png"/>
+        </li>
+        <li style="background: url('image/bg4.jpg')">
+            <img src="image/con4.png"/>
+            <img src="image/text4.png"/>
+        </li>
+        <li style="background: url('image/bg5.jpg')">
+            <img src="image/con5.png"/>
+            <img src="image/text5.png"/>
+        </li>
+    </ul>
+    <ul id="nav">
+        <li class="select">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+</body>
+<script src="image/jquery.js"></script>
+<script>
+    //    $("#content3 li").eq(0).fadeIn(500, function () {
+    //        $(this).find("img").eq(0).animate({"left": 0}, function () {
+    //            $(this).next().animate({"left": 0});
+    //        });
+    //    });
+
+
+    var index = 0;
+    var timer = null;
+    var length = $("#nav li").length;
+    show(index);
+
+    $("#nav li").mouseover(function () {
+        index = $(this).index();
+        show(index);
+        clearInterval(timer);
+
+    }).mouseout(function () {
+        start();
+    });
+
+
+    start();
+
+    function start() {
+        clearInterval(timer);
+        timer = setInterval(function () {
+            index++;
+            if (index == length) {
+                index = 0;
+            }
+            show(index)
+
+        }, 2000);
+    }
+    function show(index) {
+        $("#nav li").eq(index).addClass("select").siblings().removeClass("select");
+
+        $("#content3 li").eq(index).fadeIn(500, function () {
+            $(this).find("img").eq(0).animate({"left": 0}, function () {
+                $(this).next().animate({"left": 0});
+            });
+        }).siblings().fadeOut(function () {
+            $(this).find("img").css("left", -760);
+        });
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="color: red;" class="box" id="mybox">box</div>
+</body>
+<script>
+    var mybox=document.getElementById("mybox");//获取元素节点
+    var att= mybox.attributes;//获取元素节点的整个属性的集合
+    var attClass = mybox.getAttribute("class");//获取class的属性值
+    var attId = mybox.getAttribute("id");//获取id的属性值
+    var attStyle = mybox.getAttribute("style");//获取style的属性值
+    alert("class属性值为:"+attClass+"　id属性值为:"+attId+"　style属性值为:"+attStyle);
+</script>
+</html>

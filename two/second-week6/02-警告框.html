@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+		.dialog{width:300px;height:200px;background:#0b333f;position:absolute;left:0;right:0;top:0;bottom:0;margin: auto}
+		.dialog-header{width: 300px;height: 30px;padding:0 10px;
+            color: #fff;}
+		.dialog-content{width: 300px;height: 150px;color: #fff;
+            display: table-cell;text-align:center;vertical-align:middle;}
+		.dialog-footer{width: 300px;height: 20px;color:#fff;}
+		.dialog-footer span{float:right;width: 50px;height: 20px;}
+    </style>
+</head>
+<body>
+<button id="btn1">删除</button>
+<button id="btn2">新增</button>
+<!--<div id="dialog">-->
+    <!--<div id="dialog-header">警告框</div>-->
+    <!--<div id="dialog-content">提示的内容</div>-->
+    <!--<div id="dialog-footer">-->
+        <!--<span id="cancel">取消</span>-->
+        <!--<span id="btnOK">确定</span>-->
+    <!--</div>-->
+<!--</div>-->
+</body>
+<script>
+    var btn1=document.getElementById("btn1");
+    var btn2=document.getElementById("btn2");
+    //删除
+    btn1.onclick= function () {
+        dialog.init({
+            tip:'警告',
+            class:"red",
+            content:"你确定要删除吗",
+            btnOk:{html:"确定",fn: function(){alert("去删除吧")}},
+            btnCancel:{html:"取消",fn: function () {alert("很好")}}
+
+        })
+    };
+    //新增
+    btn2.onclick= function () {
+        dialog.init({
+            tip:'新增',
+            class:"yellow",
+            content:`用户名<input type="text"><br/>
+                      密　码<input type="text"><br/>`,
+            btnOk:{html:"新增",fn: function () {alert("去新增吧") }},
+            btnCancel:{html:"取消",fn: function () {alert("取消") }}
+        })
+    };
+
+
+
+
+
+
+    var dialog={
+        init: function (json) {
+//            this.tip="提示";
+//            this.content="提示的内容";
+//            this.btnOk={ html:"确定",fn: function () {alert("ok") }  };
+//            this.btnCancel={html:"取消",fn:function (){alert("NO")}};
+            this.extend(json);
+            this.create();
+            this.bindevent();
+
+        },
+        extend: function (json) {
+            for(var i in json){
+                this[i]=json[i]
+            }
+        },
+        bindevent: function () {
+            var that=this;
+            this.btnok.onclick= function () {
+                that.btnOk["fn"]();
+                that.hiddien();
+            };
+//            this.btnok.onclick= function () {
+//                this.btnOk["fn"]();
+//                this.hiddien();
+//            };
+            this.cancel.onclick= function () {
+                that.btnCancel["fn"]();
+                that.hidden();
+            }
+        },
+        show: function () {
+            this.dialog.style.display="block";
+        },
+        hiddien: function () {
+            this.dialog.style.display="none";
+        },
+        create: function () {
+
+            if(this.dialog){
+                this.dialog_header.innerHTML=this.tip;
+                this.dialog_content.innerHTML=this.content;
+                this.btnok.innerHTML=this.btnOk["html"];
+                this.cancel.innerHTML=this.btnCancel["html"];
+            }else {
+                this.dialog = document.createElement("div");
+                this.dialog.className = "dialog";
+                document.body.appendChild(this.dialog);
+
+                this.dialog_header = document.createElement("div");
+                this.dialog_header.className = "dialog-header";
+                this.dialog_header.innerHTML = this.tip;
+                this.dialog.appendChild(this.dialog_header);
+
+                this.dialog_content = document.createElement("div");
+                this.dialog_content.className = "dialog-content";
+                this.dialog_content.innerHTML = this.content;
+                this.dialog.appendChild(this.dialog_content);
+
+                this.dialog_footer = document.createElement('div');
+                this.dialog_footer.className = "dialog-footer";
+                this.dialog.appendChild(this.dialog_footer);
+
+                this.cancel = document.createElement("span");
+//                this.cancel.className = "cancel";
+                this.cancel.innerHTML = this.btnCancel["html"];
+                this.dialog_footer.appendChild(this.cancel);
+
+                this.btnok = document.createElement("span");
+//                this.btnok.className = "btnOK";
+//                this.btnok.innerHTML = this.btnOk["html"];
+                this.btnok.innerHTML = this.btnOk.html;
+
+                this.dialog_footer.appendChild(this.btnok);
+            }
+            this.show();
+        }
+    }
+</script>
+</html>

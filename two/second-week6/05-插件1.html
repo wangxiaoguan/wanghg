@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="load" style="display: none;"></div>
+<ul id="content"></ul>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    $.ajax({
+        type:"get",
+        url:"http://api.yytianqi.com/citylist/id/2",
+        data:{},
+        dataType:"json",
+        beforeSend: function () {
+            $("#load").show();
+        }
+    }).then(function (data) {
+        $("load").hide();
+        var html="";
+        data.list.forEach(function (item) {
+            html+=`<li>${item["name"]}</li>`;
+        })
+        $("#content").html(html)
+    })
+</script>
+</html>

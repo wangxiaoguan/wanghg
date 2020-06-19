@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var num =100+Math.round(Math.random()*899);
+    var num1 = Math.floor(num);
+    var num2 = Math.floor(num1/100);
+    var num3 = Math.floor((num1-num2*100)/10);
+
+    var num4 = Math.ceil(num1-num2*100-num3*10);
+    document.write(num1+"<br/>");
+    document.write("百位数为："+num2+"<br/>");
+    document.write("十位数为："+num3+"<br/>");
+    document.write("个位数为："+num4+"<br/>");
+    document.write("<br/>");
+    var num1= 1000+Math.floor(Math.random()*9000);
+    document.write(num1+"<br/>");
+    var qian = parseInt(num1/1000);
+    var bai = parseInt(num1%1000/100);
+    var shi = parseInt(num1%1000%100/10);
+    var ge = parseInt(num1%10);
+    document.write(qian+","+bai+","+shi+","+ge);
+    document.write("<br/>"+"<br/>");
+
+    var num = 1000+Math.round(Math.random()*8999);
+    var num1 = Math.floor(num);
+    var num2 = Math.floor(num1/1000);
+    var num3 = Math.floor((num1-num2*1000)/100);
+    var num4 = Math.floor((num1-num2*1000-num3*100)/10);
+    var num5 = Math.floor(num1-num2*1000-num3*100-num4*10);
+    document.write(num1+"<br/>");
+    document.write("千位数为："+num2+"<br/>");
+    document.write("百位数为："+num3+"<br/>");
+    document.write("十位数为："+num4+"<br/>");
+    document.write("个位数为："+num5+"<br/>");
+    document.write("<br/>");
+    var str ="123456s";
+    var time=parseInt(str);
+    var hour = Math.floor(time/3600);
+    var minute = Math.floor((time-hour*3600)/60);
+    var second = Math.floor(time-hour*3600-minute*60);
+    document.write(time+"秒等于"+hour+"小时"+minute+"分钟"+second+"秒"+"<br/>");
+    document.write("<br/>");
+    var num = 10;
+    var n = num++;
+    document.write("n值为："+n+",　num++值为："+num++);
+    document.write("<br/>"+"<br/>");
+
+
+    var num1 = 10;
+    var n1 = ++num1;
+    document.write("n1值为："+n1+",　++num值为："+(++num1));
+    document.write("<br/>"+"<br/>");
+    // var num = 0163;
+    // alert(num);
+    var num1 = 163;
+    var num2 = parseInt(163,8).toString(10);
+    // alert(num2);
+    document.write("八进制数163转换十进制数为："+num2);
+    document.write("<br/>"+"<br/>");
+
+    var num1=123.45754;
+    var num2=Math.round(num1*100);
+    var num3=parseFloat(num2/100);//var num=num1.toFixed(2)
+    document.write(num1+"保留两位小数为："+num3);
+    document.write("<br/>"+"<br/>");
+    var num = Math.round(-4.5);
+    document.write(num);//-4  负数五舍六入
+
+</script>
+</html>

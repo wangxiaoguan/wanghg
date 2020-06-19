@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{width: 260px;height:50px;background-color:darkseagreen;margin: 10px auto;padding-top:350px;border-radius:10px;}
+        #mod{float:left;width: 60px;height:30px;background-color: blue;line-height:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="mod">滑块</div>
+</div>
+</body>
+<script>
+    var mod=document.getElementById("mod");
+    var box=document.getElementById("box");
+    var modwidth=parseInt(getStyleAttr(mod,"width"));//60
+    var boxwidth=parseInt(getStyleAttr(box,"width"));//260
+    var boxmarginleft=parseInt(getStyleAttr(box,"margin-left"));
+    var Max= boxwidth-modwidth;
+
+
+    mod.onmousedown=function(e){
+        var evt=window.event||e;
+        var clientX=evt.clientX;
+        var clientY=evt.clientY;
+
+        var marginleft=parseInt(getStyleAttr(mod,"margin-left"));
+        var margintop=parseInt(getStyleAttr(mod,"margin-top"));
+
+        var divX=clientX-marginleft;
+        var divY=clientY-margintop;
+
+        document.onmousemove=function (e) {
+            let evt=window.event||e;
+            var clientX=evt.clientX;
+            var clientY=evt.clientY;
+
+            mod.style.marginLeft=clientX-divX+"px";
+            mod.style.marginTop=0;
+            if (parseInt(mod.style.marginLeft)<=0) {
+                mod.style.marginLeft=0;
+            }else if(parseInt(mod.style.marginLeft)>=200){
+                mod.style.marginLeft=200+"px";
+            }
+
+           if (parseInt(mod.style.marginLeft)>=200){
+               box.style.backgroundColor="red";
+               mod.style.display="none";
+           }
+
+        };
+        document.onmouseup=function () {
+            document.onmousemove = null;
+        }
+    };
+
+
+    function getStyleAttr(obj,attr) {
+        if (window.getComputedStyle){
+            return getComputedStyle(obj)[attr];
+        }else {
+            return obj.currentStyle[attr];
+        }
+    }
+</script>
+</html>

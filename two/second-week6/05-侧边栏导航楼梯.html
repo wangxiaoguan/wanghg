@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;list-style: none;}
+        aside{width:30px;overflow: hidden;position:fixed;left:20px;top:100px;}
+        aside ul li{display:inline-block;width:30px;height:30px;text-align: center;background:#aaa;margin-top: 10px;font-size:10px;}
+        #header,#footer{width:100%;overflow:hidden;text-align: center;}
+        #header img,#footer img{width:1000px;}
+        #content .image{width:1000px;height:600px;margin: auto;}
+    </style>
+</head>
+<body>
+<aside>
+    <ul>
+        <li>1  <span>服饰</span></li>
+        <li>2  <span>美妆</span></li>
+        <li>3  <span>手机</span></li>
+        <li>4  <span>家电</span></li>
+        <li>5  <span>数码</span></li>
+        <li>6  <span>运动</span></li>
+        <li>7  <span>居家</span></li>
+        <li>8  <span>母婴</span></li>
+        <li>9  <span>食品</span></li>
+        <li>10 <span>图书</span></li>
+        <li>11 <span>服务</span></li>
+    </ul>
+</aside>
+<div id="header"><img src="images/header.png" alt=""></div>
+<div id="content">
+    <div class="image" style="background: url(images/服饰.png) no-repeat"></div>
+    <div class="image" style="background: url(images/美妆.png) no-repeat"></div>
+    <div class="image" style="background: url(images/手机.png) no-repeat"></div>
+    <div class="image" style="background: url(images/家电.png) no-repeat"></div>
+    <div class="image" style="background: url(images/数码.png) no-repeat"></div>
+    <div class="image" style="background: url(images/运动.png) no-repeat"></div>
+    <div class="image" style="background: url(images/居家.png) no-repeat"></div>
+    <div class="image" style="background: url(images/母婴.png) no-repeat"></div>
+    <div class="image" style="background: url(images/食品.png) no-repeat"></div>
+    <div class="image" style="background: url(images/图书.png) no-repeat"></div>
+    <div class="image" style="background: url(images/服务.png) no-repeat"></div>
+
+</div>
+<div id="footer"><img src="images/footer.png" alt=""></div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    $("ul li").on("click", function () {
+        index=$(this).index();
+        $(this).css({"background":"red"}).siblings().css({"background":"#aaa"});
+        var height=(index+1)*600;
+        $("html,body").stop(true,true).animate({"scrollTop":height})
+//        window.scrollTo(0,height);
+    });
+    $(window).scroll(function () {
+        var top=$(this).scrollTop();
+        if(top>600){
+            index=Math.floor(top/600)-1;
+            $("ul li").eq(index).css({"background":"red"}).siblings().css({"background":"#aaa"});
+        }else {
+            $("ul li").css({"background":"#aaa"});
+        }
+
+    })
+</script>
+</html>

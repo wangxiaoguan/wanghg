@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;}
+		.box{
+			width:100px;
+			height: 100px;
+			background: red;
+			animation: move 6s infinite;
+			position: absolute;
+			overflow: hidden;
+		}
+		@keyframes move{
+			0%{left:0;top:0} 
+			20%{left:calc(100% - 100px);top:0;} 
+			50%{left:calc(100% - 100px);top:calc(100% - 100px);} 
+			75%{left:0;top:calc(100% - 100px);}
+			100%{left: 0;top: 0;/**/}
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

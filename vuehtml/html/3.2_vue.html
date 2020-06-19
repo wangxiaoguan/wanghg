@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        .static{
+            width:200px;
+            height:200px;
+            margin:10px;
+        }
+        .a {
+            background: orange;
+        }
+        .b {
+            border:4px solid purple;
+        }
+        p{
+            width:50px;
+            height:50px;
+            text-align: center;
+            line-height: 50px;
+            float:left;
+            border:2px solid darkblue;
+        }
+        .active{
+            color:purple;
+            background: red;
+        }
+        #content p{
+            width:200px;
+            height:200px;
+            text-align: center;
+            line-height: 200px;
+            font-size:40px;
+            color:red;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <div class="static a" ></div>
+        <div class="static" v-bind:class="isA"></div>
+        <div class="static" v-bind:class="{b:isB}"></div>
+        <div class="static" :class="[isA,b]"></div>
+        <div class="static" v-bind:class="{b:isB,a:flagA}"></div>
+        
+        <div class="static" 
+            v-bind:style = "{background:'orange','font-size':'100px ',borderRadius:'10%' }"
+        ></div>
+
+        <div class="static" 
+            v-bind:style = "{background:color,'font-size':ft,borderRadius:'10%' }"
+        ></div>
+
+        <div class="static" 
+        v-bind:style ="style"
+        ></div>
+
+        <div>
+            <div id="tab">
+                <p :class="tabIndex==0?'active':''" @click="tabIndex=0">tab01</p>
+                <p :class="tabIndex==1?'active':''" @click="tabIndex=1">tab02</p>
+                <p :class="tabIndex==2?'active':''" @click="tabIndex=2">tab03</p>
+            </div>
+            <div id="content">
+                <p :style="{display:tabIndex==0?'block':'none'}">conent001</p>
+                <p :style="{display:tabIndex==1?'block':'none'}">conent002</p>
+                <p :style="{display:tabIndex==2?'block':'none'}">conent003</p>
+            </div>
+        </div>
+    </div>
+    <!-- 
+        绑定样式 和style 
+        v-bind:class 
+        v-bind:class="isA"
+        v-bind:class="{b:isB}"
+        :class="[isA,b]"
+        v-bind:class="{b:isB,a:flagA}"
+
+
+        v-bind:style = style
+     -->
+
+    <script src="../js/vue.js"></script>
+    <script>
+    let vm = new Vue({
+        data:{
+            title:"class&style 绑定 ",
+            isA:'a',
+            isB:true,
+            b:'b',
+            flagA:true,
+            color:'red',
+            ft:'100px',
+            style:{
+                background:'yellow',
+                borderRadius:'10px'
+            },
+            tabIndex:0
+            
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+        }
+    }).$mount("#app")
+    </script>
+</body>
+</html>

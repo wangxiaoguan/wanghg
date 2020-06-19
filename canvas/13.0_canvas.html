@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+    <style>
+        *{padding: 0;margin:0;}
+        canvas{
+            display: block;
+            margin:0 auto;
+            border:1px solid darkgoldenrod;
+        }
+    
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width=1000 height=800 >浏览器不支持该浏览器</canvas>
+    <script>
+        var mycanvas = document.getElementById("mycanvas")
+        var c = mycanvas.getContext("2d");
+        var P = Math.PI;
+        setInterval(clock,1);
+        clock();
+        function clock(){
+
+            var date = new Date();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            var time = date.getMilliseconds();
+            // console.log(time);
+
+            
+            c.save();
+            c.clearRect(0,0,800,800);  // 清除画布
+            c.translate(400,400);
+            c.rotate(-P/2);
+
+            // 外表盘
+            c.beginPath();
+            c.arc(0,0,300,0,P*2,false);
+            c.strokeStyle = "orange";
+            c.lineWidth = 20;
+            c.stroke();
+            c.closePath();
+
+
+            // 时钟刻度线 
+            for(var i=0;i<12;i++){
+                c.beginPath();
+                c.save();
+                c.rotate(P/6*i);
+                c.moveTo(260,0);
+                c.lineTo(284,0);
+                c.lineWidth = 10;
+                c.strokeStyle = "#000";
+                c.stroke();
+                c.restore();
+                c.closePath();
+            }
+
+            // 分钟刻度线 
+            for(var i=0;i<60;i++){
+                c.beginPath();
+                c.save();
+                c.rotate(P/30*i);
+                c.moveTo(272,0);
+                c.lineTo(284,0);
+                c.lineWidth = 6;
+                c.strokeStyle = "#123456";
+                c.stroke();
+                c.restore();
+                c.closePath();
+            }
+
+            // 绘制数字
+            for(var i=1;i<=12;i++){
+                var deg = P/6*i;
+                c.beginPath();
+                c.save();
+                c.translate(220*Math.cos(deg),220*Math.sin(deg))
+                c.rotate(P/2);
+                c.font="40px 微软雅黑";
+                c.textAlign = "center";
+                c.textBaseline =  "middle";
+                c.fillStyle = "#000";
+                // c.fillText(i,220*Math.cos(deg-P/2),220*Math.sin(deg-P/2));
+                c.fillText(i,0,0);
+                c.restore();
+                c.closePath();
+            }
+            
+            // 时钟
+            hour = hour > 12 ? hour-12 :hour 
+            c.beginPath();
+            c.save();
+            c.rotate(P/6*(hour+(min+(sec+time/1000)/60)/60));
+            c.moveTo(-50,0);
+            c.lineTo(110,0);
+            c.strokeStyle = "red";
+            c.lineWidth = 12;
+            c.stroke();
+            c.restore();
+            c.closePath();
+
+            // 分钟
+            c.beginPath();
+            c.save();
+            c.rotate(P/30*(min+(sec+time/1000)/60));
+            c.moveTo(-80,0);
+            c.lineTo(140,0);
+            c.strokeStyle = "blue";
+            c.lineWidth = 9;
+            c.stroke();
+            c.restore();
+            c.closePath();
+
+            // 秒钟
+            c.beginPath();
+            c.save();
+            c.rotate(P/30*(sec+time/1000));
+            c.moveTo(-100,0);
+            c.lineTo(200,0);
+            c.strokeStyle = "yellow";
+            c.lineWidth = 6;
+            c.stroke();
+            c.restore();
+            c.closePath();
+
+
+
+            c.restore();
+
+
+
+           
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <my-parent :message="message"></my-parent>
+
+    </div>
+
+    <template id="parent">
+        <div>
+            <h2>{{title}}</h2>
+            <h2>{{message}}</h2>
+            <h2>{{msg}}</h2>
+            <p @click="changeMsg">================</p>
+            <my-child :msg="msg" v-on:my-event="getTitle($event)"></my-child>
+        </div>
+    </template>
+    
+    <template id="child">
+        <div>
+            <h2>{{title}}</h2>
+            <h2>{{msg}}</h2>
+            <button @click="changeParent">修改父组件的title</button>
+        </div>
+    </template>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm=new Vue({
+            data:{title:"父子组件",message:"好好学习,努力赚钱",count:"2018"},
+            methods:{},
+            components:{
+                myParent:{
+                    template:"#parent",
+                    data(){  return {  title:"父组件", msg:"这是 来自父组件的 问候"}    },
+                    methods:{
+                        changeMsg(){this.msg=this.msg+"1803班"},
+                        getTitle(arg){ this.title=arg}
+                    },
+                    props:["message"],
+                    components:{
+                        myChild:{
+                                template: "#child",
+                                data(){ return {title:"子组件"} },
+                                props:["msg"],
+                                methods:{
+                                    changeParent(){ this.$emit("my-event","世界梦中国梦")}
+                                },
+                        }
+                    },
+                }
+            },
+            mounted(){}
+
+
+        }).$mount("#app")
+    </script>
+</body>
+</html>

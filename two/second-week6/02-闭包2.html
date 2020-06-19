@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1{width: 200px;height:100px;background: #00ff00;margin:200px auto;}
+    </style>
+</head>
+<body>
+<button id="btn1">点击1</button>
+<button id="btn2">点击2</button>
+<!--<div class="box1"></div>-->
+
+</body>
+<script>
+    var btn1=document.getElementById("btn1");
+    var btn2=document.getElementById("btn2");
+//    var btn3=document.getElementById("btn3");
+//    var btn4=document.getElementById("btn4");
+    var node=createEle("div");
+
+    function createEle(ele){
+        var element=document.createElement(ele);
+
+        var show= function () {
+            element.innerHTML=`<p>你是否再继续深入学习?</p>
+                                <button onclick="btn3(this)">是</button>
+                                <button onclick="btn4(this)">否</button>`;
+            element.className="box1";
+            return element;
+        }
+        return show;
+    }
+    btn1.onclick= function () {
+        node().style.display="block";
+        document.body.appendChild(node());
+    }
+    btn3= function (obj) {
+        alert("不错的孩纸,加油吧!");
+
+        obj.parentNode.style.display="none";
+    }
+    btn4= function (obj) {
+        alert("学如逆水行舟,不进则退");
+
+        obj.parentNode.style.display="none";
+    }
+</script>
+</html>

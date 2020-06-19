@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #textarea{
+            background: #fff;
+            resize:none;
+            outline: none;
+            width: calc(100% - 16px);
+            height: 360px;
+            border-radius: 8px;
+            padding: 6px;
+        }
+        .footer{
+            border: 0px solid transparent;
+            text-align: center;
+        }
+        #btn{
+            display: inline-block;
+            width: 100px;
+            height: 36px;
+            margin: 20px;
+            border-radius: 6px;
+            background: #dd9c9c;
+            line-height: 36px;
+            color: #fff;
+            cursor: pointer;
+        }
+        #btn:hover{
+            background: #e74343;
+        }
+    </style>
+</head>
+<body>
+    <textarea name="text" id="textarea">负责内容负责内容负责内容负责内容负责内容负责内容负责内容</textarea>
+    <div class="footer">
+        <span id="btn" onclick="copytxt()">复制</span>
+    </div>
+    
+</body>
+<script>
+
+    function copytxt(){
+        let divTxt=document.getElementById("textarea");
+        divTxt.select(); 
+        document.execCommand("Copy"); 
+    }
+
+</script>
+</html>

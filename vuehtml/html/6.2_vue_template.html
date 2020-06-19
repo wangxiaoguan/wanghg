@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+  
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <my-head></my-head>
+        <my-menu></my-menu>
+        <my-foot></my-foot>
+    </div>
+
+    <!-- 
+        组件 vue 核心  
+        组合的html 代码块  
+        小型的vue 实例对象  
+
+        小巧  独立 可复用   component
+
+        注册组件
+
+        全局注册
+        局部注册 
+
+        一个组件的 data 选项必须是一个函数 必须返回对象 
+
+
+        template 模板 
+        x-template 
+        ejs
+        jade
+        artTemplate
+        handlerbars
+     -->
+    <script type="text/x-template" id="header" > 
+        <div>
+            <p>x-template</p>
+            <h2>head-head-head</h2>
+            <h2 @click="change">{{count}}</h2>
+        </div>
+    </script>
+    <template id="footer">
+        <div>
+            <h2>foot01</h2>
+            <h2>foot02</h2>
+            <h2>foot03</h2>
+            <h2>foot04</h2>
+        </div>
+    </template>
+    <template id="menu">
+        <div>
+            <p>menu</p>
+            <p>menu</p>
+            <p>menu</p>
+            <p>menu</p>
+            <p>menu</p>
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+    
+    Vue.component("my-head",{
+        template:"#header",
+        data(){
+            return {
+                count:2018
+            }
+        },
+        methods:{
+            change(){
+                this.count += 100;
+            }
+        }
+    })
+    Vue.component("my-foot",{
+        template:"#footer"
+    })
+
+    let vm = new Vue({
+        data:{
+            title:"创建组件",
+         
+            
+        },
+        // 局部组件注册
+        components:{
+            myMenu:{
+                template:"#menu"
+            }
+        },
+        mounted(){
+            document.querySelector("title").innerHTML = this.title;
+        }
+    }).$mount("#app")
+    </script>
+</body>
+</html>

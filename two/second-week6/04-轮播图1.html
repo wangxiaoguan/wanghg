@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{padding: 0; margin: 0;list-style: none;}
+        .box{width:600px;height:350px;margin:100px auto;position:relative;}
+        .nav{width:200px;height:30px;background:rgba(120,0,120,.5);border-radius:30px;
+            position: absolute;bottom:30px;left:200px;right:200px;z-index:10}
+        .nav li{width:20px;height:20px;float:left;text-align:center;border-radius:20px;                        margin-left: 24px;margin-top: 5px;}
+        .nav .selected{background:green;}
+        .image{width:600px;height: 350px;position: relative;overflow: hidden}
+        .image li{position:absolute;left:600px;top:0}
+        .image .selected{left:0}
+        .image img{width:600px;height:350px;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="nav">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul class="image">
+        <li class="selected"><img src="images/p1.jpg" alt=""></li>
+        <li><img src="images/p2.jpg" alt=""></li>
+        <li><img src="images/p3.jpg" alt=""></li>
+        <li><img src="images/p4.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    var lilist=$(".nav li");
+    var imglist=$(".image li");
+    var timer=null;
+    var index=0;
+    var $before =index;
+    start();
+    function start() {
+        clearInterval(timer);
+        timer = setInterval(function () {
+            index++;
+            if (index == 4) {
+                index = 0;
+            }
+            show(false);
+            $before = index;
+
+        },3000);
+    }
+    $(".nav li").mouseover(function () {
+        index=$(this).index();
+        clearInterval(timer);
+        show(true);
+        $before=index;
+    }).mouseout(function () {
+        start();
+    })
+
+$(".nav li").hover(function () {
+    index=$(this).index();
+    show(index);
+    clearInterval(timer);
+}, function () {
+    start();
+})
+
+
+    function show(flag) {
+
+        $(".nav li").eq(index).addClass("selected").siblings().removeClass("selected");
+        $(".image li").eq(index).addClass("selected").siblings().removeClass("selected");
+
+        if(flag){
+            if($before>index){
+                $(".image li").eq($before).stop().animate({"left": "-600px"},500);
+                $(".image li").eq(index).css({"left": "600px"}).stop().animate({"left": 0},500);
+            }else if($before<index){
+                $(".image li").eq($before).stop().animate({"left": "600px"},500);
+                $(".image li").eq(index).css({"left": "-600px"}).stop().animate({"left": 0},500);
+            }
+        }else{
+            $(".image li").eq($before).stop().animate({"left": "-600px"},500);
+            $(".image li").eq(index).css({"left": "600px"}).stop().animate({"left": 0},500);
+        }
+
+    }
+</script>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //延时器写成定时器
+    say();
+    function say() {alert("hello");setTimeout(say,100)}
+    //定时器写成延时器
+    var timer=setInterval(function () {
+        alert("hello");
+        clearInterval(timer)
+    },1000)
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var list=["a","b","c","d","e","f"];
+    function getcode(arr,n) {//判断元素n在数组是否存在
+        index=-1;
+        for (i=0;i<arr.length;i++){
+            if (n==arr[i]){
+               index=1;//元素n在数组已经存在,所以index=1;
+               break;
+            }
+        }
+        return index;//元素n在数组不存在,所以index=-1;
+    }
+   var new1=[];
+for (var i=0;i<4;i++){
+     j=Math.round(Math.random()*(list.length-1));
+       if (getcode(new1,list[j])==-1) {
+           new1[new1.length]=list[j];
+       }else {i--}
+}
+document.write(new1)
+</script>
+</html>
