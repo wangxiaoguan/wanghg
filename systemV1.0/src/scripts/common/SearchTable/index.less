@@ -1,0 +1,60 @@
+.main {
+    box-sizing: border-box;
+    position: relative;
+    button + button {
+      margin-bottom: 0;
+      margin-left: 8px;
+    }
+  
+    .tableTitle {
+      margin: 0;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 40px;
+      color: #2c4ac6;
+    }
+  
+    .formStyle {
+      :global {
+        .ant-select-selection {
+          min-width: 100px;
+        }
+        .ant-input,
+        .ant-select-selection {
+          height: 36px;
+          line-height: 36px;
+        }
+        .ant-calendar-picker-input.ant-input{
+          // padding: 0;
+          font-size: 16px;
+        }
+        .ant-select {
+          vertical-align: bottom;
+        }
+        
+        .ant-select-selection__rendered {
+            height: 36px;
+            line-height: 36px;
+            font-size: 16px;
+            color: #4D4D4D;
+        }
+  
+        .ant-input-search-button {
+          width: 40px;
+  
+          .anticon-search {
+            font-size: 22px;
+            position: relative;
+            right: 7px;
+          }
+  
+        }
+         
+      }
+    }
+  
+    .btnList {
+      padding: 20px 0;
+    }
+  }
+  

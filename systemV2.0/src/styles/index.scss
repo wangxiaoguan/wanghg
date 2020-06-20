@@ -1,0 +1,103 @@
+@import 'antd.css';
+@import 'animation.css';
+.ant-table-header-column>div{
+    text-align: left;
+}
+.ant-modal-header{
+    height: 40px !important;
+    background: #038EC4 !important;
+    padding: 0 24px !important;
+    
+    .ant-modal-title{
+        line-height: 40px !important;
+        font-size: 16px !important;
+        color: #fff !important;
+    }
+}
+.ant-modal-close-x{
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    color: #fff;
+}
+.ant-btn-primary{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 24px !important;
+    background: #038EC4 !important;
+    color: #fff;
+    font-size: 18px;
+    border: none !important;
+}
+.ant-btn{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 24px !important;
+    font-size: 18px;
+}
+.ant-empty-normal{
+    margin: 0 !important;
+}
+.ant-form-item-required{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+.ant-form-item-label>label{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+.ant-form-item-title{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+.ant-form-item-boldTitle{
+    font-weight: bolder !important;
+}
+.ant-table-column-title{
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+.ant-popover-inner-content{
+    width: 200px !important;
+    .ant-popover-buttons{
+        text-align: center;
+        .ant-btn{
+            height: 24px !important;
+            padding: 0 12px !important;
+            font-size: 12px !important;
+            line-height: 24px !important;
+        }
+    }
+    
+}
+.download{
+    width: 36px;
+}
+
+:global{
+    .ant-tooltip{
+      min-width: 100px !important;
+      max-width: 500px !important;
+      .ant-tooltip-inner{
+        background-color: #fff !important;
+        color: #000 !important;
+        border: 1px solid #00000033 !important;
+      }
+    }
+    .ant-tooltip-placement-right{
+      .ant-tooltip-arrow{
+        border-right-color: rgba(0, 0, 0, 0.2) !important;
+      }
+    }
+    .ant-tooltip-placement-top{
+      .ant-tooltip-arrow{
+        border-top-color: rgba(0, 0, 0, 0.2) !important;
+      }
+    }
+  
+    .ant-tooltip-placement-left{
+      .ant-tooltip-arrow{
+        border-left-color: rgba(0, 0, 0, 0.2) !important;
+      }
+    }
+  }
