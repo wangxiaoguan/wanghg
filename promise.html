@@ -12,13 +12,6 @@
 </body>
 <script>
 
-
-
-
-
-
-    
-
     function runAsync1(){
         var Promise1 = new Promise(function(resolve, reject){
             //做一些异步操作
@@ -81,17 +74,31 @@
         }
     )
 
+    // Promise.all、Promise.catch、Promise.allSettled
+
+
     //all方法 「谁跑的慢，以谁为准执行回调」
     Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+        // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
             console.log(results)
         }
-    )
+    ).catch(erro=>{
+        console.log(error)
+    })
     //race 「谁跑的快，以谁为准执行回调」
     Promise.race([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+        // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
             console.log('=>',results)
         }
-    )
-
+    ).catch(erro=>{
+        // 上面的请求中，只要有一个是reject (失败) 就会进入此回调
+        console.log(error)
+    })
+    //allSettled
+    Promise.allSettled([a,b,c]).then((data=>{
+        // 上面所有的请求 resolve (成功) 或 reject (失败)都会进入此回调中
+        console.log(data,"data")
+    }))
 
 </script>
 </html>

@@ -42,7 +42,6 @@
         left: 0;
         animation:move 10s infinite;
         background: url('../img/2.jpg') 0 0 no-repeat;
-        -webkit-animation:move 10s infinite; /* Safari and Chrome */
     }
 
     @keyframes move
@@ -60,7 +59,7 @@
         92.5%  {left: 500px;background: url('../img/2.jpg') 0 0 no-repeat;}
         100% {left: 0px;background: url('../img/2.jpg') 0 0 no-repeat;}
     }
-    @-webkit-keyframes myfirst /* Safari and Chrome */
+    @keyframes myfirst
     {
         0%   {left: 0px;background: url('../img/2.jpg') 0 0 no-repeat;}
         20%  {left: 0px;background: url('../img/2.jpg') 0 0 no-repeat;}
@@ -81,7 +80,6 @@
         background:url('../img/line.png') center center no-repeat;
         z-index: 2;
         animation:rote 10s infinite;
-        -webkit-animation:rote 10s infinite; /* Safari and Chrome */
     }
     @keyframes rote
     {
@@ -98,21 +96,7 @@
         92.5%  {transform: rotateX(90deg);}
         100% {transform: rotateX(0deg);}
     }
-    @-webkit-keyframes rote
-    {
-        0%   {transform: rotateX(0deg);}
-        20%  {transform: rotateX(0deg);}
 
-        27.5%  {transform: rotateX(90deg);}
-        42.5%  {transform: rotateX(90deg);}
-
-        50%  {transform: rotateX(0deg);}
-        70%  {transform: rotateX(0deg);}
-
-        77.5%  {transform: rotateX(90deg);}
-        92.5%  {transform: rotateX(90deg);}
-        100% {transform: rotateX(0deg);}
-    }
 </style>
 </head>
 <body>
