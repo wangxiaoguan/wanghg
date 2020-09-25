@@ -19,6 +19,28 @@
 		.box4{background-size:auto 50% }
 		.box5{background-size:cover }
 		.box6{background-size:contain }
+		/*背景固定：background-attachment: fixed;
+			背景位置是根据浏览器而定的
+			受到盒子本身的影响*/
+		.box7 {
+			width: 220px;
+			height: 220px;
+			background: yellow;
+			border: 20px solid red;
+			padding: 20px;
+			background-attachment: fixed;
+			background-attachment: scroll;
+			background-attachment: local;
+
+			background-origin:border-box;
+			background-origin:padding-box;
+			background-origin:contant-box;
+			
+			background-clip:border-box;
+			background-clip:padding-box;
+			background-clip:contant-box;
+
+		}
 
 
 /*		cover盒子会铺满，宽高比不变最大化的拉伸图片直到触到内容框的左边和下边为止并且超出图片会被裁切
@@ -33,6 +55,6 @@
 	<div class="box4">background-size:auto 50% </div>
 	<div class="box5">background-size:cover</div>
 	<div class="box6">background-size:contain </div>
-
+	<div class="box7"></div>
 </body>
 </html>

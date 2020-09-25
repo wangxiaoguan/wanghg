@@ -10,13 +10,14 @@
     
 </body>
 <script>
-    var numbers = [1, 1, 2, 3,4];
+    var numbers = [ 1, 2, 3, 4, 5, 6];
  
  function getSum(total, num) {
-     debugger
+    //  debugger
+    console.log(total, num)
      return total + num;
  }
- var result = numbers.reduce(getSum, 0);
+ var result = numbers.reduce(getSum,0);
  console.log(result)
  
 

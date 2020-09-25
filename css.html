@@ -14,8 +14,13 @@
 
 	    p+h3{color:#ffd3d3;}/*p后面紧跟第一个h3*/
 	    p~h3{color:#f88787;}/*p后面所有的h3*/
-		p>h3{color:#ff0000;}
-		
+		p>h3{color:#75ac68;}/*p后面所有的h3*/
+
+		a:link{color: red;}/*点击前的颜色*/ /*CSS中的伪类*/
+		a:visited{color: #7bff00} /*点击浏览后颜色*/
+		a:hover{color: green;text-decoration: none;}/*悬停颜色，文本修饰默认下划线*/
+		a:active{color: blue;font-weight:bold;}/*点击同时颜色，文字是否加粗*/
+		h1,h2,h3,h4{color:pink}/*群体选择器*/
 	</style>
 </head>
 <body>
@@ -76,6 +81,8 @@
 		</div>
 	</div>
 	<div class="div6">12312312312312啊撒旦撒</div>
-
+	<p>
+		<h3>11111</h3>
+	</p>
 </body>
 </html>

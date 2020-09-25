@@ -24,9 +24,34 @@
 var greet = function (name) { return 'hi:' + name }
 var exclaim = function (statement) { return statement.toUpperCase() + '!' }
 var transform = function (str) { return str.replace(/[dD]/, 'DDDDD') }
-var welcome1 = compose(greet, exclaim, transform)
+var welcome = compose(greet, exclaim, transform)
 var welcome2 = pipe(greet, exclaim, transform)
-console.log(welcome1('dot'))//hi:DDDDDOT!
+console.log(welcome('dot'))//hi:DDDDDOT!
 console.log(welcome2('dolb'))//HI:DDDDDOLB!
+// console.log(compose)
+function compose(){
+    console.log(arguments)
+    var args = [].slice.call(arguments);
+    console.log(args)
+	return function(initArg){
+        var result = initArg;
+        console.log(result)
+		for(var i = args.length -1; i >=0; i--){
+			result = args[i](result);
+        }
+        console.log(result)
+		return result;
+	}
+}
+
+function pipe(...parmas){
+    return function(s){
+        let r = s;
+        for(var j = 0;j<parmas.length;j++){
+            r = parmas[j](r)
+        }
+        return r
+    }
+}
 </script>
 </html>
