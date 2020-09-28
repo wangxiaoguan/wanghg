@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://wanghg.top/img/html5.svg" />
+    <title>html5</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .html-top{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .title,.top{
+            display:block;
+            padding: 6px 10px;
+            font-family: "宋体";
+            color:#7c7a7a;
+            font-size: 20px;
+            border-bottom: 1px solid #c5c2c2;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .title:hover{
+            background: #fff;
+            color: #666;
+        }
+        .html-list{
+            width: 100%;
+            display: none;
+            position: absolute;
+            background: #f2f2f2;
+        }
+        .up-down{
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            border: 1px solid;
+            border-color: #666 #666 transparent transparent;
+            transform: rotate(135deg);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            
+        }
+        #iframe{
+            width: calc(100% - 8px);
+            height: calc(100% - 44px);
+            border: none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="html-top">
+        <div class="top file">
+            <span class="top-name">字符串</span>
+            <i class="up-down"></i>
+        </div>
+        <div class="html-list">
+            <!-- <span class="title">字符串</span> -->
+        </div>
+        <iframe id="iframe" src="http://wanghg.top/html/string.html"></iframe>
+    </div>
+</body>
+<script src="http://wanghg.top/js/jquery.js"></script>
+<script>
+    var k = 0
+    $(document).ready(function(){
+        $.ajax({
+            type:"get",
+            url:"http://wanghg.top/js/html.json",
+            success(data){
+                data.html.map(x=>{
+                    $(".html-list").append(`<span class="title" data-name="${x.name}" data-address="${x.address}">${x.name}</span>`)
+                })
+                
+            }
+        })
+
+        $(".file").click(function(){ 
+            k++;
+            $(".html-list").slideToggle();
+            $(".up-down").css('transform',`rotate(${k*180+135}deg)`)
+        });
+    });
+    $(document).on('click','.title',function(){
+        k++;
+        $("#iframe").attr("src",$(this).attr('data-address'));
+        $(".html-list").slideToggle();
+        $(".up-down").css('transform',`rotate(${k*180+135}deg)`)
+        $(".top-name").text($(this).attr('data-name'))
+    })
+</script>
+</html>

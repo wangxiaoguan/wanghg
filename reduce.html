@@ -11,14 +11,22 @@
 </body>
 <script>
     var numbers = [ 1, 2, 3, 4, 5, 6];
+    var numbers2 = [{num:1},{num:2},{num:3},{num:4},{num:5},{num:6}];
  
  function getSum(total, num) {
-    //  debugger
-    console.log(total, num)
      return total + num;
  }
- var result = numbers.reduce(getSum,0);
- console.log(result)
+
+ function getSum2(total, k) {
+     return total + k.num;
+ }
+ var result = numbers.reduce(getSum);
+
+ var result2 = numbers.reduce(getSum,0);
+
+ var result3 = numbers2.reduce(getSum2,0);
+ 
+ console.log(result,result2,result3)
  
 
 </script>

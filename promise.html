@@ -4,101 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <title>Promise</title>
 </head>
 <body>
-    <div id="box">
-    </div>
+<div id="box">
+<pre>
+<code class="language-javascript">
+var Promise1 = new Promise(function(resolve, reject){
+    //做一些异步操作
+    setTimeout(function(){
+        resolve('数据1');
+    }, 300);
+});
+
+var Promise2 = new Promise(function(resolve, reject){
+    //做一些异步操作
+    setTimeout(function(){
+        resolve('数据2');
+    }, 600);
+});
+
+
+var Promise3 = new Promise(function(resolve, reject){
+    //做一些异步操作
+    setTimeout(function(){
+        resolve('数据3');
+    }, 900);
+});
+
+
+var getNumber = new Promise((resolve,reject)=>{
+    let num = Math.ceil(Math.random()*10)
+    if(num<5){
+        resolve(num)
+    }else{
+        reject("数字大于5")
+    }
+}
+
+//then方法
+getNumber.then(
+    data=>{
+        console.log(data)
+    },
+    reason=>{
+        console.log(reason)
+    }
+)
+//catch方法
+getNumber.then(
+    data=>{
+        console.log(data)
+    }
+).catch(
+    reason=>{
+        console.log(reason)
+    }
+)
+
+// Promise.all、Promise.catch、Promise.allSettled
+
+
+//all方法 「谁跑的慢，以谁为准执行回调」
+Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+    // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
+        console.log(results)
+    }
+).catch(erro=>{
+    console.log(error)
+})
+
+//race 「谁跑的快，以谁为准执行回调」
+Promise.race([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+    // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
+        console.log('=>',results)
+    }
+).catch(erro=>{
+    // 上面的请求中，只要有一个是reject (失败) 就会进入此回调
+    console.log(error)
+})
+
+//allSettled
+Promise.allSettled([a,b,c]).then((data=>{
+    // 上面所有的请求 resolve (成功) 或 reject (失败)都会进入此回调中
+    console.log(data,"data")
+}))
+</pre>
+</code>
+</div>
 </body>
 <script>
 
-    function runAsync1(){
-        var Promise1 = new Promise(function(resolve, reject){
-            //做一些异步操作
-            setTimeout(function(){
-                resolve('数据1');
-            }, 300);
-        });
-        return Promise1;            
-    }
-    function runAsync2(){
-        var Promise2 = new Promise(function(resolve, reject){
-            //做一些异步操作
-            setTimeout(function(){
-                resolve('数据2');
-            }, 600);
-        });
-        return Promise2;            
-    }
-    function runAsync3(){
-        var Promise3 = new Promise(function(resolve, reject){
-            //做一些异步操作
-            setTimeout(function(){
-                resolve('数据3');
-            }, 900);
-        });
-        return Promise3;            
-    }
-
- 
-
-
-
-    function getNumber(){
-        return new Promise((resolve,reject)=>{
-            let num = Math.ceil(Math.random()*10)
-            if(num<5){
-                resolve(num)
-            }else{
-                reject("数字大于5")
-            }
-        })
-    }
-    // then方法
-    getNumber().then(
-        data=>{
-            console.log(data)
-        },
-        reason=>{
-            console.log(reason)
-        }
-    )
-    //catch方法
-    getNumber().then(
-        data=>{
-            console.log(data)
-        }
-    ).catch(
-        reason=>{
-            console.log(reason)
-        }
-    )
-
-    // Promise.all、Promise.catch、Promise.allSettled
-
-
-    //all方法 「谁跑的慢，以谁为准执行回调」
-    Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
-        // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
-            console.log(results)
-        }
-    ).catch(erro=>{
-        console.log(error)
-    })
-    //race 「谁跑的快，以谁为准执行回调」
-    Promise.race([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
-        // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
-            console.log('=>',results)
-        }
-    ).catch(erro=>{
-        // 上面的请求中，只要有一个是reject (失败) 就会进入此回调
-        console.log(error)
-    })
-    //allSettled
-    Promise.allSettled([a,b,c]).then((data=>{
-        // 上面所有的请求 resolve (成功) 或 reject (失败)都会进入此回调中
-        console.log(data,"data")
-    }))
-
+    
 </script>
+<script src="http://wanghg.top/js/prism.js"></script>
 </html>
