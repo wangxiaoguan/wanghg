@@ -1,115 +1,104 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>常用标签</title>
-    </head>
-    
-    <body>
-        <b>abc</b><br><!--文字加粗-->
-        <i>abc</i><br><!--文字倾斜-->
-        <s>abc</s><br><!--文字删除线-->
-        <u>abc</u><br><!--文字下划线-->
-        常用小标签，一行可以放多个
-        <header id="header"></header>
-        <b>字体加粗标签</b>
-        <i>倾斜标签</i>
-        <em>强调标签</em>
-        <strong>字体强调加粗（对搜索引擎友好）</strong>
-        <br>
-        <hr size="20" width="80%" noshade="noshade">水平线
-        target="_blank"在新窗口打开
-        target="_self"在原窗口打开
-       	<a href="http://www.jd.com" target="_blank">去京东</a>
-        <a class="header" href="#header">返回顶部</a>
-        <a href="">什么都没有，就会刷新</a>
-        <a>什么都没有</a>
-        <a href=""javascript:;>javascript:;阻止跳转</a>
-        
-        路径：通过当前文件找到目标文件，上一级../ 下一级/
-        <a href="常用标签.html">常用标签</a>
-        <p style="height: 800px"></p>
-    	<h1>一号标签</h1>
-        <h2>二号标签</h2>
-        <h3>三号标签</h3>
-        <h4>四号标签</h4>
-        <h5>五号标签</h5>
-        <h6>六号标签</h6>
-        h1-h3对于搜索引擎比较友好的标签
-        <br>强制换行
-        h1在一个网页只能使用一次
-        h2正在网页使用一般不超过3次
-        h3可以使用多次
-        <p>段落文字（单独占一整行）</p>
-        空格&nbsp;&nbsp;(空格转义字符)空格空格
-        <hr>
-        <div>最常用的标签</div>
-        <br>
-        常用小标签，一行可以放多个
-        <b>字体加粗标签</b>
-        <strong>字体强调加粗（对搜索引擎友好）</strong>
-        <br>
-        <i>倾斜标签<i/>
-       	<em>强调标签<em/>
-        target="_blank"在新窗口打开
-        target="_self"在原窗口打开
-       	<a href="http://www.jd.com" target="_blank">去京东<a/>
-        <a href="http://www.baidu.com">百度</a>
-        <a href="#">返回顶部<a/>
-        <a href="">什么都没有，就会刷新<a/>
-        <a>什么都没有<a/>
-        <a href=""javascript:;>javascript:;阻止跳转<a/>
-        路径：通过当前文件找到目标文件，上一级../ 下一级/
-        <details>
-            <summary>A</summary>
-            <p>a</p>
-            <p>b</p>
-        </details>
-            
-        <em>强调文本</em><br>
-        <strong>加粗文本</strong><br>
-        <dfn>定义项目</dfn><br>
-        <code>一段电脑代码</code><br>
-        <samp>计算机样本</samp><br>
-        <kbd>键盘输入</kbd><br>
-        <var>变量</var>
-        <br/>
-        <ruby>
-          汉 <rp>(</rp><rt>Han</rt><rp>)</rp>
-          字 <rp>(</rp><rt>zi</rt><rp>)</rp>
-        </ruby>
-        <br/>
-        <progress value="12" max="100"></progress>
-        <form oninput="x.value=parseInt(a.value)">
-          <input type="range" id="a" value="50">
-          <output name="x" for="a"></output>
-        </form>
-    
-        <form oninput="x.value=parseInt(b.value)">
-          <input type="number" id="b" value="50">
-          <output name="x" for="b"></output>
-        </form>
-    
-        <select>
-          <optgroup label="A">
-            <option value="a1">a1</option>
-            <option value="a2">a2</option>
-          </optgroup>
-          <optgroup label="B">
-            <option value="b1">b1</option>
-            <option value="b2">b2</option>
-          </optgroup>
-        </select><br/>
-        <meter value="2" min="0" max="10"></meter><br>
-        <meter value="0.6">60%</meter>
-                
-    <center>这个文本居中对齐。</center>
-    <p>该段落文字从左到右显示。</p>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <title>Array</title>
+</head>
+<body>
+<div>
+    <b>字体加粗标签</b><br>
+    <i>倾斜标签</i><br>
+    <s>文字删除线</s><br>
+    <u>文字下划线</u><br>
+    <em>强调标签</em><br>
+    <strong>字体强调加粗</strong><br>
+    <dfn>定义项目</dfn><br>
+    <code>一段电脑代码</code><br>
+    <samp>计算机样本</samp><br>
+    <kbd>键盘输入</kbd><br>
+    <var>变量</var><br>
+    <div style="width: 200px;"><hr size="2" width="50%" noshade="noshade">水平线<br></div>
+    <a href="http://www.baidu.com" target="_blank">在新窗口打开百度</a><br>
+    <a href="http://www.baidu.com" target="_self">在原窗口打开百度</a><br>
+    <a href=""javascript:;>javascript:;阻止跳转</a><br>
+    <details>
+        <summary>A</summary>
+        <p>a</p>
+        <p>b</p>
+    </details><br>
+    <progress value="12" max="100"></progress><br>
+    <form oninput="x.value=parseInt(a.value)">
+      <input type="range" id="a" value="50">
+      <output name="x" for="a">50</output>
+    </form><br>
+    <form oninput="x.value=parseInt(b.value)">
+      <input type="number" id="b" value="50">
+      <output name="x" for="b">50</output>
+    </form><br>
+    <select>
+      <optgroup label="A">
+        <option value="a1">a1</option>
+        <option value="a2">a2</option>
+      </optgroup>
+      <optgroup label="B">
+        <option value="b1">b1</option>
+        <option value="b2">b2</option>
+      </optgroup>
+    </select><br/>
+    <meter value="2" min="0" max="10"></meter><br>
+    <meter value="0.6">60%</meter><br>
     <p><bdo dir="rtl">该段落文字从右到左显示。</bdo></p> 
     <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
-        <object width="100" height="100" data="../img/2.jpg" ><br/>
-        
-        
-        
-    </body>
+</div>
+<pre>
+<code class="language-html">    
+&lt;b&gt;字体加粗标签&lt;/b&gt;
+&lt;i&gt;倾斜标签&lt;/i&gt;
+&lt;s&gt;文字删除线&lt;/s&gt;
+&lt;u&gt;文字下划线&lt;/u&gt;
+&lt;em&gt;强调标签&lt;/em&gt;
+&lt;strong&gt;字体强调加粗&lt;/strong&gt;
+&lt;dfn&gt;定义项目&lt;/dfn&gt;
+&lt;code&gt;一段电脑代码&lt;/code&gt;
+&lt;samp&gt;计算机样本&lt;/samp&gt;
+&lt;kbd&gt;键盘输入&lt;/kbd&gt;
+&lt;var&gt;变量&lt;/var&gt;
+&lt;hr size="2" width="90%" noshade="noshade"&gt;水平线
+&lt;a href="http://www.baidu.com" target="_blank"&gt;在新窗口打开百度&lt;/a&gt;
+&lt;a href="http://www.baidu.com" target="_self"&gt;在原窗口打开百度&lt;/a&gt;
+&lt;a href=""javascript:;&gt;javascript:;阻止跳转&lt;/a&gt;
+&lt;details&gt;
+    &lt;summary&gt;A&lt;/summary&gt;
+    &lt;p&gt;a&lt;/p&gt;
+    &lt;p&gt;b&lt;/p&gt;
+&lt;/details&gt;
+&lt;progress value="12" max="100"&gt;&lt;/progress&gt;
+&lt;form oninput="x.value=parseInt(a.value)"&gt;
+    &lt;input type="range" id="a" value="50"&gt;
+    &lt;output name="x" for="a"&gt;50&lt;/output&gt;
+&lt;/form&gt;
+&lt;form oninput="x.value=parseInt(b.value)"&gt;
+    &lt;input type="number" id="b" value="50"&gt;
+    &lt;output name="x" for="b"&gt;50&lt;/output&gt;
+&lt;/form&gt;
+&lt;select&gt;
+    &lt;optgroup label="A"&gt;
+    &lt;option value="a1"&gt;a1&lt;/option&gt;
+    &lt;option value="a2"&gt;a2&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="B"&gt;
+    &lt;option value="b1"&gt;b1&lt;/option&gt;
+    &lt;option value="b2"&gt;b2&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;&lt;br/&gt;
+&lt;meter value="2" min="0" max="10"&gt;&lt;/meter&gt;
+&lt;meter value="0.6"&gt;60%&lt;/meter&gt;
+&lt;p&gt;&lt;bdo dir="rtl"&gt;该段落文字从右到左显示。&lt;/bdo&gt;&lt;/p&gt; 
+&lt;p&gt;The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt; was founded in 1948.&lt;/p&gt;
+</code>
+</pre>
+</body>
+<script src="http://wanghg.top/js/prism.js"></script>
 </html>

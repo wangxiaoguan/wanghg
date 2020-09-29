@@ -8,17 +8,31 @@
     <script src="../js/swiper-3.3.1.min.js"></script>
     <link rel="stylesheet" href="../css/swiper-3.3.1.min.css">
     <style>
-        *{padding: 0;margin: 0;}
-        .swiper-container{width:300px;height:300px; color:#fff;font-size:60px;margin-top:60px;}
-        .swiper-slide{width:300px;height:300px;text-align: center;line-height:300px}
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .swiper-container{
+            width:300px;
+            height:300px;
+            color:#fff;
+            font-size:60px;
+            margin-top:60px;
+        }
+        .swiper-slide{
+            width:300px;
+            height:300px;
+            text-align: center;
+            line-height:300px;
+        }
         .swiper-slide:nth-child(1){background: blue;}
         .swiper-slide:nth-child(2){background: red;}
         .swiper-slide:nth-child(3){background: yellow;}
         .swiper-slide:nth-child(4){background: green;}
-        .swiper-slide:nth-child(5){background: rgb(255, 72, 0);}
-        .swiper-slide:nth-child(6){background: rgb(195, 0, 255);}
-        .swiper-slide:nth-child(7){background: rgb(255, 1, 85);}
-        .swiper-slide:nth-child(8){background: rgb(149, 255, 51);}
+        .swiper-slide:nth-child(5){background: #ff4800;}
+        .swiper-slide:nth-child(6){background: #c300ff;}
+        .swiper-slide:nth-child(7){background: #ff0155;}
+        .swiper-slide:nth-child(8){background: #95ff33;}
 
     </style>
 </head>
@@ -44,13 +58,13 @@
             // loop:ture,//循环播放
             initialSlide:0,//初始化索引
             // direction:"vertical",//  horizonatal设置水平垂直
-            speed:1000,//切换速度
+            speed:2000,//切换速度
             autoplay:true,//自动播放
             //autoplayDisableOnIntercation:false...  自动滚动 默认不滚动
             // autoHeight:true,
-            // slidesPerView:3,// wrapper 显示多少个slide auto
+            slidesPerView:3,// wrapper 显示多少个slide auto
             // centerSlides:true,
-            // spaceBetween:20,//轮播图相隔多少距离
+            spaceBetween:20,//轮播图相隔多少距离
             keyboardControl : true,
 
             effect:"cube",//切换效果fade(淡化),cube(360立体度旋转),flip(360度旋转), coverflow
@@ -58,9 +72,6 @@
             //分页器
             pagination : '.swiper-pagination',
             paginationType : 'bullets',//fraction,progress,bullets
-
-
-
     })
 </script>
 </html>
