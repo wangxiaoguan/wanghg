@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <script src="http://wanghg.top/js/lodash.js"></script>
+    <title>CSS3</title>
+</head>
+<body>
+<pre>
+<code class="language-javascript">   
+var users = [
+    { user: 'barney', age: 36, city:{name:'china'} },
+    { user: 'fred',   age: 40, 'active': false }
+];
+//filter查找
+const t = _.filter(users, { 'age': 36});
+console.log(t) //[{ user: 'barney', age: 36, city:{name:'china'} }]
+
+//filter查找下标值
+const x = _.findIndex(users, { 'age': 36});
+console.log(x) //0
+
+//map  遍历数组
+_.map([1,2,3,4,5,6],(x,index)=>{
+    console.log(x)  //1,2,3,4,5,6
+})
+
+//eq比较值是否相等【字符串，数字，boolean】
+const f = _.eq(1,1)
+console.log(f) //true
+
+//cloneDeep,clone克隆数据【数组，对象】
+const k = _.cloneDeep(users)
+console.log(k)
+const h = _.clone(users)
+console.log(h)
+
+//includes  是否包含
+console.log(_.includes(['a','b','c'],'a'))  //true
+
+//isEmpty  判断是否为空
+const m = _.isEmpty({}) 
+console.log(m) //true  {},[],null,undefined,0 ->true
+
+//uniqueId  自增id
+const ids = [];
+[1,2,3,4,5].map(x=>{
+    ids.push(_.uniqueId('id_'))
+})
+console.log(ids) //["id_1", "id_2", "id_3", "id_4", "id_5"]
+</code>
+</pre>
+</body>
+<script src="http://wanghg.top/js/prism.js"></script>
+<script>
+    var users = [
+        { user: 'barney', age: 36, city:{name:'china'} },
+        { user: 'fred',   age: 40, 'active': false }
+    ];
+    //filter查找
+    const t = _.filter(users, { 'age': 36});
+    console.log(t) //[{ user: 'barney', age: 36, city:{name:'china'} }]
+
+    //filter查找下标值
+    const x = _.findIndex(users, { 'age': 36});
+    console.log(x) //0
+
+    //map  遍历数组
+    _.map([1,2,3,4,5,6],(x,index)=>{
+        console.log(x)  //1,2,3,4,5,6
+    })
+
+    //eq比较值是否相等【字符串，数字，boolean】
+    const f = _.eq(1,1)
+    console.log(f) //true
+
+    //cloneDeep,clone克隆数据【数组，对象】
+    const k = _.cloneDeep(users)
+    console.log(k)
+    const h = _.clone(users)
+    console.log(h)
+
+    //includes  是否包含
+    console.log(_.includes(['a','b','c'],'a'))  //true
+
+    //isEmpty  判断是否为空
+    const m = _.isEmpty({}) 
+    console.log(m) //true  {},[],null,undefined,0 ->true
+
+    //uniqueId  自增id
+    const ids = [];
+    [1,2,3,4,5].map(x=>{
+        ids.push(_.uniqueId('id_'))
+    })
+    console.log(ids) //["id_1", "id_2", "id_3", "id_4", "id_5"]
+
+</script>
+</html>

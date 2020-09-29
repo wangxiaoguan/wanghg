@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <title>Number</title>
+</head>
+<body>
+<pre>
+<code class="language-javascript">   
+//Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+const source2 = { c: 4, d: 7 };
+const obj = Object.assign(target,source,source2);
+console.log(target);                        //{ a: 1, b: 4, c: 5, d: 7 }
+console.log(source);                        //{ b: 4, c: 5 }
+console.log(source2);                       //{ c: 4, d: 7 }
+console.log(obj);                           //{ a: 1, b: 4, c: 5, d: 7 }
+
+//hasOwnProperty表示是否有自己的属性。这个方法会查找一个对象是否有某个属性，但是不会去查找它的原型链。
+var obj = {
+    a: 1,
+    fn: function(){},
+    c:{d: 5}
+};
+console.log(obj.hasOwnProperty('a'));       // true
+console.log(obj.hasOwnProperty('fn'));      // true
+console.log(obj.hasOwnProperty('c'));       // true
+console.log(obj.c.hasOwnProperty('d'));     // true
+console.log(obj.hasOwnProperty('d'));       // false, obj对象没有d属性
+
+
+function copy (obj) {
+    var newobj = obj.constructor === Array ? [] : {};
+    if(typeof obj !== 'object'){
+        return;
+    }
+    for(var i in obj){
+    newobj[i] = typeof obj[i] === 'object' ?
+    copy(obj[i]) : obj[i];
+    }
+    return newobj
+}
+
+function deepCopy(obj) {
+    var result = Array.isArray(obj) ? [] : {};
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+        if (typeof obj[key] === 'object') {
+            result[key] = deepCopy(obj[key]);   //递归复制
+        } else {
+            result[key] = obj[key];
+        }
+        }
+    }
+    return result;
+}
+
+var txt = '{ "sites" : [{ "name":"菜鸟教程" , "url":"www.runoob.com" },{ "name":"google" , "url":"www.google.com" },{ "name":"微博" , "url":"www.weibo.com" } ]}';
+var obj = eval ("(" + txt + ")");
+console.log(obj) //返回对象
+
+//compose内的函数执行顺序为从右向左(<——)，
+// 即最右边的函数（最后一个参数）最先执行，
+// 执行完的结果作为参数传递给前一个函数（包裹它的函数），一直到整个函数执行完毕，
+// return一个函数，所以compose内部实现的原理类似多米诺骨牌，层层递进的。
+
+//pipe内的函数执行顺序为从左向右(——>)，
+// 即第一个参数（函数）执行完毕，
+// 将结果吐出来作为参数传递给第二个函数，
+// 直到pipe所有参数作为函数都执行完毕，
+// return出一个函数，才算执行完成。
+
+var one = function (name) { return '1' + name }
+var two = function (statement) { return '2' + statement }
+var three = function (str) { return '3' + str }
+
+var welcome = compose(one, two, three)
+
+var welcome2 = pipe(one, two, three)
+
+console.log(welcome('0')) //1230
+console.log(welcome2('0')) //3210
+
+
+function compose(){
+    var args = [].slice.call(arguments);
+	return function(initArg){
+        var result = initArg;
+		for(var i = args.length -1; i >=0; i--){
+			result = args[i](result);
+        }
+		return result;
+	}
+}
+
+function pipe(...parmas){
+    return function(s){
+        let r = s;
+        for(var j = 0;j&lt;parmas.length;j++){
+            r = parmas[j](r)
+        }
+        return r
+    }
+}
+
+
+var Promise1 = new Promise(function(resolve, reject){
+    //做一些异步操作
+    setTimeout(function(){
+        resolve('数据1');
+    }, 300);
+});
+
+var Promise2 = new Promise(function(resolve, reject){
+    //做一些异步操作
+    setTimeout(function(){
+        resolve('数据2');
+    }, 600);
+});
+
+
+var Promise3 = new Promise(function(resolve, reject){
+    //做一些异步操作
+    setTimeout(function(){
+        resolve('数据3');
+    }, 900);
+});
+
+var getNumber = new Promise((resolve,reject)=>{
+    let num = Math.ceil(Math.random()*10)
+    if(num&lt;5){
+        resolve(num)
+    }else{
+        reject("数字大于5")
+    }
+})
+
+//then方法
+getNumber.then(
+    data=>{
+        console.log(data)
+    },
+    reason=>{
+        console.log(reason)
+    }
+)
+//catch方法
+getNumber.then(
+    data=>{
+        console.log(data)
+    }
+).catch(
+    reason=>{
+        console.log(reason)
+    }
+)
+
+// Promise.all、Promise.catch、Promise.allSettled
+//all方法 「谁跑的慢，以谁为准执行回调」
+Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+    // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
+        console.log(results)
+    }
+).catch(erro=>{
+    console.log(error)
+})
+
+//race 「谁跑的快，以谁为准执行回调」
+Promise.race([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+    // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
+        console.log('=>',results)
+    }
+).catch(erro=>{
+    // 上面的请求中，只要有一个是reject (失败) 就会进入此回调
+    console.log(error)
+})
+
+//allSettled
+Promise.allSettled([a,b,c]).then((data=>{
+    // 上面所有的请求 resolve (成功) 或 reject (失败)都会进入此回调中
+    console.log(data,"data")
+}))
+</code>
+</pre>
+</body>
+<script src="http://wanghg.top/js/prism.js"></script>
+<script>
+    //Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+    const target = { a: 1, b: 2 };
+    const source = { b: 4, c: 5 };
+    const source2 = { c: 4, d: 7 };
+    const obj = Object.assign(target,source,source2);
+    console.log(target);                        //{ a: 1, b: 4, c: 5, d: 7 }
+    console.log(source);                        //{ b: 4, c: 5 }
+    console.log(source2);                       //{ c: 4, d: 7 }
+    console.log(obj);                           //{ a: 1, b: 4, c: 5, d: 7 }
+
+    function deepCopy(obj) {
+        var result = Array.isArray(obj) ? [] : {};
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object') {
+                result[key] = deepCopy(obj[key]);   //递归复制
+            } else {
+                result[key] = obj[key];
+            }
+            }
+        }
+        return result;
+    }
+
+    //hasOwnProperty表示是否有自己的属性。这个方法会查找一个对象是否有某个属性，但是不会去查找它的原型链。
+    var obj = {
+        a: 1,
+        fn: function(){},
+        c:{d: 5}
+    };
+    console.log(obj.hasOwnProperty('a'));       // true
+    console.log(obj.hasOwnProperty('fn'));      // true
+    console.log(obj.hasOwnProperty('c'));       // true
+    console.log(obj.c.hasOwnProperty('d'));     // true
+    console.log(obj.hasOwnProperty('d'));       // false, obj对象没有d属性
+    
+
+    function copy (obj) {
+        var newobj = obj.constructor === Array ? [] : {};
+        if(typeof obj !== 'object'){
+            return;
+        }
+        for(var i in obj){
+        newobj[i] = typeof obj[i] === 'object' ?
+        copy(obj[i]) : obj[i];
+        }
+        return newobj
+    }
+
+
+    var txt = '{ "sites" : [{ "name":"菜鸟教程" , "url":"www.runoob.com" },{ "name":"google" , "url":"www.google.com" },{ "name":"微博" , "url":"www.weibo.com" } ]}';
+    var obj = eval ("(" + txt + ")");
+    console.log(obj) //返回对象
+
+
+    //compose内的函数执行顺序为从右向左(<——)，
+    // 即最右边的函数（最后一个参数）最先执行，
+    // 执行完的结果作为参数传递给前一个函数（包裹它的函数），一直到整个函数执行完毕，
+    // return一个函数，所以compose内部实现的原理类似多米诺骨牌，层层递进的。
+
+    //pipe内的函数执行顺序为从左向右(——>)，
+    // 即第一个参数（函数）执行完毕，
+    // 将结果吐出来作为参数传递给第二个函数，
+    // 直到pipe所有参数作为函数都执行完毕，
+    // return出一个函数，才算执行完成。
+
+    var one = function (name) { return '1' + name }
+    var two = function (statement) { return '2' + statement }
+    var three = function (str) { return '3' + str }
+
+    var welcome = compose(one, two, three)
+
+    var welcome2 = pipe(one, two, three)
+
+    console.log(welcome('0')) //1230
+    console.log(welcome2('0')) //3210
+
+
+    function compose(){
+        var args = [].slice.call(arguments);
+        return function(initArg){
+            var result = initArg;
+            for(var i = args.length -1; i >=0; i--){
+                result = args[i](result);
+            }
+            return result;
+        }
+    }
+
+    function pipe(...parmas){
+        return function(s){
+            let r = s;
+            for(var j = 0;j<parmas.length;j++){
+                r = parmas[j](r)
+            }
+            return r
+        }
+    }
+</script>
+<script>
+    var Promise1 = new Promise(function(resolve, reject){
+        //做一些异步操作
+        setTimeout(function(){
+            resolve('数据1');
+        }, 300);
+    });
+
+    var Promise2 = new Promise(function(resolve, reject){
+        //做一些异步操作
+        setTimeout(function(){
+            resolve('数据2');
+        }, 600);
+    });
+
+
+    var Promise3 = new Promise(function(resolve, reject){
+        //做一些异步操作
+        setTimeout(function(){
+            resolve('数据3');
+        }, 900);
+    });
+
+    var getNumber = new Promise((resolve,reject)=>{
+        let num = Math.ceil(Math.random()*10)
+        if(num<5){
+            resolve(num)
+        }else{
+            reject("数字大于5")
+        }
+    })
+
+    //then方法
+    getNumber.then(
+        data=>{
+            console.log(data)
+        },
+        reason=>{
+            console.log(reason)
+        }
+    )
+    //catch方法
+    getNumber.then(
+        data=>{
+            console.log(data)
+        }
+    ).catch(
+        reason=>{
+            console.log(reason)
+        }
+    )
+
+    // Promise.all、Promise.catch、Promise.allSettled
+    //all方法 「谁跑的慢，以谁为准执行回调」
+    Promise.all([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+        // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
+            console.log(results)
+        }
+    ).catch(erro=>{
+        console.log(error)
+    })
+
+    //race 「谁跑的快，以谁为准执行回调」
+    Promise.race([runAsync1(),runAsync2(),runAsync3()]).then(results=>{
+        // 只有上面所有的请求都是 resolve (成功) 的时候才会进入此回调中
+            console.log('=>',results)
+        }
+    ).catch(erro=>{
+        // 上面的请求中，只要有一个是reject (失败) 就会进入此回调
+        console.log(error)
+    })
+
+    //allSettled
+    Promise.allSettled([a,b,c]).then((data=>{
+        // 上面所有的请求 resolve (成功) 或 reject (失败)都会进入此回调中
+        console.log(data,"data")
+    }))
+</script>
+</html>

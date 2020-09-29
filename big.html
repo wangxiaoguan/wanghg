@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <script src="http://wanghg.top/js/big.js"></script>
+    <title>Big运算</title>
+</head>
+<body>
+<pre>
+<code class="language-javascript">
+big.js地址：http://wanghg.top/js/big.js
+
+// 减法
+0.3 - 0.1 // 0.19999999999999998
+var x = new Big(0.3)
+var r = x.minus(0.1)
+console.log(x.valueOf(),r.valueOf()) //0.3, 0.2
+
+// 乘法
+0.6 * 3 // 1.7999999999999998
+var x1 = new Big(0.6);
+var r1 = x1.times(3);
+console.log(x1.valueOf(),r1.valueOf()) //0.2, 0.3
+
+// 除法
+var x2 = new Big(2);
+var y2 = new Big(3);
+var r2 = x2.div(y2);
+console.log(x2.valueOf(),r2.valueOf()) //2, 0.6666666667
+
+// 绝对值
+var x3 = new Big(-0.8);
+var r3 = x3.abs();
+console.log(x3.valueOf(),r3.valueOf()) //-0.8, 0.8
+
+// 模运算
+1 % 0.9 // 0.09999999999999998
+var x4 = new Big(1)
+var r4 = x4.mod(0.9) // '0.1'
+console.log(x4.valueOf(),r4.valueOf()) //1, 0.1
+
+//保留几位小数
+var x5 = new Big(0.15345)
+var y5 = new Big(0.15545)
+console.log(x5.round(2).valueOf(),y5.round(2).valueOf()) //0.15 0.16
+</code>
+</pre>
+</body>
+<script src="http://wanghg.top/js/prism.js"></script>
+<script>
+
+    // 减法
+    0.3 - 0.1 // 0.19999999999999998
+    var x = new Big(0.3)
+    var r = x.minus(0.1)
+    console.log(x.valueOf(),r.valueOf()) //0.3, 0.2
+
+    // 乘法
+    0.6 * 3 // 1.7999999999999998
+    var x1 = new Big(0.6);
+    var r1 = x1.times(3);
+    console.log(x1.valueOf(),r1.valueOf()) //0.2, 0.3
+
+    // 除法
+    var x2 = new Big(2);
+    var y2 = new Big(3);
+    var r2 = x2.div(y2);
+    console.log(x2.valueOf(),r2.valueOf()) //2, 0.6666666667
+
+    // 绝对值
+    var x3 = new Big(-0.8);
+    var r3 = x3.abs();
+    console.log(x3.valueOf(),r3.valueOf()) //-0.8, 0.8
+
+    // 模运算
+    1 % 0.9 // 0.09999999999999998
+    var x4 = new Big(1)
+    var r4 = x4.mod(0.9) // '0.1'
+    console.log(x4.valueOf(),r4.valueOf()) //1, 0.1
+
+    //保留几位小数
+    var x5 = new Big(0.15345)
+    var y5 = new Big(0.15545)
+    console.log(x5.round(2).valueOf(),y5.round(2).valueOf()) //0.15 0.16
+
+</script>
+</html>

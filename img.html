@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+	<style type="text/css">
+		.box1{
+			display: inline-block;
+			overflow:hidden;
+			border-color:#aeddf3;
+		}
+		.box1>img{
+			width: 240px;
+		}
+		.box1:hover{
+			border:6px solid blue;
+			border-color: blue;
+			transition:border-color 3s;
+		} 
+		.box1:hover img{
+			margin:-6px;
+			vertical-align: top;
+		}
+		.box2{
+            width: 240px;
+            height: 240px;
+            text-align: center;
+            border: 1px solid #aaa;
+            position: relative;
+        }
+        .box2>img{
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+		.box3{
+			width:0;
+			height:0;
+			border:50px solid;
+			border-color: red blue orange green;
+		}
+	</style>
+</head>
+<body>
+	<div>图片标签:</div>
+	<div>
+		<input style="width:80px" type="image" src="http://wanghg.top/img/img3.jpg">
+		<object width="80px" data="http://wanghg.top/img/img3.jpg"></object>
+		<img width="80px" src='http://wanghg.top/img/img3.jpg'/>
+	</div>
+	<div>图片显隐边框:</div>
+	<div class="box1">
+		<img src="http://wanghg.top/img/img5.jpg">
+	</div>
+	<div>图片等比例缩放:</div>
+    <div class="box2">
+        <img src="http://wanghg.top/img/img2.jpg"/>
+	</div>
+	<div>三角形:</div>
+	<div class="box3"></div>
+</body>
+<pre>
+<code class="language-css">
+.box1{
+	display: inline-block;
+	overflow:hidden;
+	border-color:#aeddf3;
+}
+.box1>img{
+	width: 240px;
+}
+.box1:hover{
+	border:6px solid blue;
+	border-color: blue;
+	transition:border-color 3s;
+} 
+.box1:hover img{
+	margin:-6px;
+	vertical-align: top;
+}
+</code>
+</pre>
+<pre>
+<code class="language-css">
+.box2{
+	width: 240px;
+	height: 240px;
+	text-align: center;
+	border: 1px solid #aaa;
+	position: relative;
+}
+.box2>img{
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+</code>
+</pre>
+<pre>
+<code class="language-css">
+.box3{
+	width:0;
+	height:0;
+	border:50px solid;
+	border-color: red blue orange green;
+}
+</code>
+</pre>
+<pre>
+<code class="language-html">
+&lt;div&gt;图片标签:&lt;/div&gt;
+&lt;div&gt;
+	&lt;input style="width:80px" type="image" src="http://wanghg.top/img/img3.jpg"&gt;
+	&lt;object width="80px" data="http://wanghg.top/img/img3.jpg"&gt;&lt;/object&gt;
+	&lt;img width="80px" src='http://wanghg.top/img/img3.jpg'/&gt;
+&lt;/div&gt;
+&lt;div&gt;图片显隐边框:&lt;/div&gt;
+&lt;div class="box1"&gt;
+	&lt;img src="http://wanghg.top/img/img5.jpg"&gt;
+&lt;/div&gt;
+&lt;div&gt;图片等比例缩放:&lt;/div&gt;
+	&lt;div class="box2"&gt;
+		&lt;img src="http://wanghg.top/img/img2.jpg"/&gt;
+&lt;/div&gt;
+&lt;div&gt;三角形:&lt;/div&gt;
+&lt;div class="box3"&gt;&lt;/div&gt;
+</code>
+</pre>
+<script src="http://wanghg.top/js/prism.js"></script>
+</html>
