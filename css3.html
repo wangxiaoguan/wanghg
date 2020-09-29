@@ -36,6 +36,7 @@ list-style-type: none;          列表是否显示空心圆(circle)，实心圆(
 a:visited{};                    点击浏览后样式
 a:hover{};                      悬停时样式
 a:active{};                     点击同时样式
+a:link{color: red;}             点击前的颜色
 
 pointer-events:none;            a标签不可点击
 
@@ -66,6 +67,23 @@ overflow-y:scroll               纵向滚动条
 column-count:3                  将 div 元素中的文本分为三列
 
 column-gap: 40px                规定列间的间隔为 40 像素
+
+cursor:default                  鼠标样式
+cursor:auto
+cursor:crosshair
+cursor:pointer
+cursor:move
+cursor:e-resize
+cursor:ne-resize
+cursor:nw-resize
+cursor:n-resize
+cursor:se-resize
+cursor:sw-resize
+cursor:s-resize
+cursor:w-resize
+cursor:text
+cursor:wait
+cursor:help
 
 display:inline / inline-block / block                 元素应该生成的框的类型inline-block,block
 opacity:0.4;                    元素透明度(0.0-1.0)
@@ -142,6 +160,9 @@ h1::after{content:"大家好";}
 div:not(.div1){color:green;}
 li:not(:first-child){background: blue;}
 li:nth-child(2n){color:#ffd3d3;}
+li:nth-child(2n+1){color:#ffd3d3;}
+li:nth-child(n+2){color:#ffd3d3;}
+li:last-child{color:#ffd3d3;}
 p+h3{color:#ffd3d3;}/*p后面紧跟第一个h3*/
 p~h3{color:#f88787;}/*p后面所有的h3*/
 p>h3{color:#ff0000;}

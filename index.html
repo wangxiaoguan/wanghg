@@ -70,7 +70,6 @@
             <i class="up-down"></i>
         </div>
         <div class="html-list">
-            <!-- <span class="title">字符串</span> -->
         </div>
         <iframe id="iframe" src="http://wanghg.top/html/string.html"></iframe>
     </div>
@@ -81,7 +80,7 @@
     $(document).ready(function(){
         $.ajax({
             type:"get",
-            url:"http://wanghg.top/js/html.json",
+            url:"http://wanghg.top/json/html.json",
             success(data){
                 data.html.map(x=>{
                     $(".html-list").append(`<span class="title" data-name="${x.name}" data-address="${x.address}">${x.name}</span>`)

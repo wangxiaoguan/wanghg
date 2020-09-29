@@ -3,7 +3,12 @@
         {"name":"字符串","address":"http://wanghg.top/html/string.html"},
         {"name":"数字","address":"http://wanghg.top/html/number.html"},
         {"name":"数组","address":"http://wanghg.top/html/array.html"},
+        {"name":"JavaScript","address":"http://wanghg.top/html/javaScript.html"},
         {"name":"CSS3","address":"http://wanghg.top/html/css3.html"},
+        {"name":"HTML5标签","address":"http://wanghg.top/html/element.html"},
+        {"name":"String方法","address":"http://wanghg.top/html/string1.html"},
+        {"name":"表单form","address":"http://wanghg.top/html/form.html"},
+        {"name":"服务器状态码","address":"http://wanghg.top/html/http.html"},
         {"name":"瀑布流","address":"http://wanghg.top/html/columnCount.html"},
         {"name":"粘贴复制","address":"http://wanghg.top/html/copytxt.html"},
         {"name":"Echarts","address":"http://wanghg.top/html/echarts.html"},
@@ -16,6 +21,9 @@
         {"name":"弹性布局","address":"http://wanghg.top/html/flex.html"},
         {"name":"时间","address":"http://wanghg.top/html/date.html"},
         {"name":"this指向","address":"http://wanghg.top/html/this.html"},
-        {"name":"鼠标样式","address":"http://wanghg.top/html/cursor.html"}
+        {"name":"WeUI插件","address":"http://wanghg.top/html/weui/index.html"},
+        {"name":"标签img","address":"http://wanghg.top/html/img.html"},
+        {"name":"Big.js运算","address":"http://wanghg.top/html/big.html"},
+        {"name":"lodash.js","address":"http://wanghg.top/html/lodash.html"}
     ]
 }

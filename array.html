@@ -134,7 +134,13 @@ arr.some(item=>{                            //判断是否有一个满足条件
 
 arr.reduce(f(a, b)=>{                       //数组的迭代操作
     return a - b
-}); 	
+});
+let arr = [1,2,3,4,5,6,7,8]
+let arr1 = [{num:'10'},{}]
+计算和值
+let arr2 = arr.reduce((a,b)=>{return a+b}) //元素为纯数字
+let arr3 = arr1.reduce((a,b)=>{return a+(b.num||0)*1},0) //元素为对象
+ 	
 
 arr.map(item=>{                             //循环数组的值
     console.log(item);

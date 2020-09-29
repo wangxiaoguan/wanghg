@@ -3,73 +3,131 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="http://wanghg.top/css/prism.css">
 	<style type="text/css">
-		fieldset{width:500px;overflow: hidden;}
-		legend{padding:0 10px; border: 1px solid black;}
-		label{display: inline-block;width:20px;height:20px;border:1px solid black;background:#aaa;font-size:12px;transition:3s;}
-		input:checked+label{background:red;border-color:blue;}
-		.file{background: red;}
-		input:focus{outline: none}
-		audio{background:url(../images/logo.jpg);}
+		fieldset{
+			width:200px;
+			overflow: hidden;
+			margin-top: 10px;
+		}
+		legend{
+			padding:0 10px; 
+			text-align: center;
+			border: 1px solid black;
+		}
+		input{
+			width: 200px;
+		}
+		input[type='radio']{
+			width: 10px;
+		}
+		input[type='checkbox']{
+			width: 10px;
+		}
+		
 	</style>
 </head>
 <body>
 	<form>
 		<fieldset>
-			<legend align="center">登录</legend>
-			<input type="text" list="a"><br>
-			<datalist id="a">
-				<option value="111"> 
-				<option value="222"> 
-				<option value="333"> 
-				<option value="444"> 
-				<option value="555"> 
-			</datalist><br>
+			<legend>登录</legend>
 
-			<input type="number" min="1" max="15" step="15" placeholder><br>
+			<input type="text" placeholder="请输入姓名"><br>
+
+			<input type="password" placeholder="请输入密码" ><br>
+
+			<input type="number" min="1" max="15" step="15" placeholder="请输入数字"><br>
+
+			<input type="email"  require placeholder="请输入email邮件"><br>
+
+			<input type="url" require placeholder="请输入url地址"><br>
 
 			<input type="range"  autofocus><br>
 
 			<input type="color" autofocus><br>
 
-			<input type="url" require><br>
-
 			<input type="date" require><br>
 
-			<input type="email"  require><br>
-
-			<input type="submit"><br>
+			<input type="datetime-local" require><br>
 
 			<input type="file"><br>
-
-			<input style="width: 200px" type="image" src="http://wanghg.top/img/img3.jpg"><br>
-			<object width="200px" data="http://wanghg.top/img/img3.jpg"></object><br/>
-			<img width="200px" src='http://wanghg.top/img/img3.jpg'/>
-
-			<input type="text" placeholder="请输入姓名"><br>
-	
-			<input type="password" placeholder="请输入密码" ><br>
 		
-			<input type="radio" name="sex">男<br>
+			<input type="radio" name="sex">男
 			
 			<input type="radio" name="sex">女<br>
 		
-			<input type="checkbox">水果<br>
+			<input type="checkbox">水果
 			
 			<input type="checkbox">蔬菜<br>
 
-			<select>
-				<option>水果</option>
-				<option>蔬菜</option>
-				<option>海鲜</option>
-				<option>肉类</option>
-			</select><br>
+			<input type="text" list="city" placeholder="请选择城市"><br>
+			<datalist id="city">
+			  <option value="北京"> 
+			  <option value="上海"> 
+			  <option value="广东"> 
+			  <option value="杭州"> 
+			  <option value="武汉"> 
+			</datalist><br>
 
 			<input type="submit" value="注册"><br>
+
 			<input type="button" value="确定"><br>
+
 			<input type="reset" value="重置"><br>
-			<textarea cols="20" rows="3"></textarea>
         </fieldset>
 	</form>
+<pre>
+<code class="language-html">
+&lt;form&gt;
+	&lt;fieldset&gt;
+		&lt;legend&gt;登录&lt;/legend&gt;
+
+		&lt;input type="text" placeholder="请输入姓名"&gt;
+
+		&lt;input type="password" placeholder="请输入密码" &gt;
+
+		&lt;input type="number" min="1" max="15" step="15" placeholder="请输入数字"&gt;
+
+		&lt;input type="email"  require placeholder="请输入email邮件"&gt;
+
+		&lt;input type="url" require placeholder="请输入url地址"&gt;
+
+		&lt;input type="range"  autofocus&gt;
+
+		&lt;input type="color" autofocus&gt;
+
+		&lt;input type="date" require&gt;
+
+		&lt;input type="datetime-local" require&gt;
+
+		&lt;input type="file"&gt;
+
+		&lt;input type="radio" name="sex"&gt;男
+		
+		&lt;input type="radio" name="sex"&gt;女
+
+		&lt;input type="checkbox"&gt;水果
+		
+		&lt;input type="checkbox"&gt;蔬菜
+
+		&lt;input type="text" list="city" placeholder="请选择城市"&gt;
+		&lt;datalist id="city"&gt;
+			&lt;option value="北京"&gt; 
+			&lt;option value="上海"&gt; 
+			&lt;option value="广东"&gt; 
+			&lt;option value="杭州"&gt; 
+			&lt;option value="武汉"&gt; 
+		&lt;/datalist&gt;
+
+		&lt;input type="submit" value="注册"&gt;
+
+		&lt;input type="button" value="确定"&gt;
+
+		&lt;input type="reset" value="重置"&gt;
+	&lt;/fieldset&gt;
+&lt;/form&gt;
+</code>
+</pre>
 </body>
+<script src="http://wanghg.top/js/prism.js"></script>
 </html>
