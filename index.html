@@ -61,7 +61,11 @@
         }
     </style>
 </head>
-
+<script>
+    if(location.href !== 'http://wanghg.top/html/index.html'){
+        window.location = "http://wanghg.top/html/index.html";
+    }
+</script>
 
 <body>
     <div class="html-top">
@@ -81,6 +85,9 @@
         $.ajax({
             type:"get",
             url:"http://wanghg.top/json/html.json",
+            cache:false, 
+            ifModified :true ,
+            async:false,
             success(data){
                 data.html.map(x=>{
                     $(".html-list").append(`<span class="title" data-name="${x.name}" data-address="${x.address}">${x.name}</span>`)

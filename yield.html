@@ -23,7 +23,7 @@ next()方法会执行generator的代码，然后，每次遇到yield x;就返回
 // timeout().then(data=>{
 //     console.log(data)
 // });
-// // console.log(timeout())
+// console.log(timeout())
 // console.log('虽然在后面，但是我先执行');
 // async function timeout(flag) {
 //     if (flag) {
@@ -38,37 +38,40 @@ next()方法会执行generator的代码，然后，每次遇到yield x;就返回
 //     console.log(data)
 // })
 
-// function doubleAfter2seconds(num) {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             resolve(2 * num)
-//         }, 1000);
-//     } )
-// }
+function doubleAfter2seconds(num) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(2 * num)
+        }, 1000);
+    } )
+}
 
 // async function testResult() {
-//     let result = await doubleAfter2seconds(30);
-//     // let result = doubleAfter2seconds(30);
+//     // let result = await doubleAfter2seconds(30);
+//     let result = doubleAfter2seconds(30);
 //     console.log(result);
 // }
-// testResult();
-// async function testResult() {
-//     let first = await doubleAfter2seconds(30);
-//     let second = await doubleAfter2seconds(50);
-//     let third = await doubleAfter2seconds(30);
-//     console.log(first + second + third);
-// }
 
-function* foo(x) {
-    yield x + 1;
-    yield x + 2;
-    return x + 3;
+async function testResult() {
+    let first = await doubleAfter2seconds(30);
+    console.log('11111')
+    let second = await doubleAfter2seconds(50);
+    console.log('22222')
+    let third = await doubleAfter2seconds(30);
+    console.log('33333')
+    console.log(first + second + third);
 }
+testResult();
+// function* foo(x) {
+//     yield x + 1;
+//     yield x + 2;
+//     return x + 3;
+// }
 // foo(1)
-var foo = foo(1)
-console.log(foo.next())
-console.log(foo.next())
-console.log(foo.next())
+// var foo = foo(1)
+// console.log(foo.next())
+// console.log(foo.next())
+// console.log(foo.next())
 // console.log(foo(2).next())
 // console.log(foo(3).next())
 // console.log(foo(4).next())

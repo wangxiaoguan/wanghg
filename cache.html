@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    async function fn(){
+        const CACHE_NAME = 'cache_test';
+        // 这个caches.open方法返回一个Promise，其中的cache对象新创建出来，如果是以前创建过，就不重新创建。
+        let cache = await caches.open(CACHE_NAME);
+        console.log(cache,typeof cache,Object.keys(cache))
+        return cache
+    }
+    fn().then(v=>{
+        console.log(v)
+    })
+    let k = caches.open('CHINA')
+    console.log(k)
+</script>
+</html>

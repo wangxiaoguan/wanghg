@@ -9,7 +9,7 @@
         {"name":"String方法","address":"http://wanghg.top/html/string1.html"},
         {"name":"表单form","address":"http://wanghg.top/html/form.html"},
         {"name":"服务器状态码","address":"http://wanghg.top/html/http.html"},
-        {"name":"瀑布流","address":"http://wanghg.top/html/columnCount.html"},
+        {"name":"瀑布流","address":"http://wanghg.top/html/column.html"},
         {"name":"粘贴复制","address":"http://wanghg.top/html/copytxt.html"},
         {"name":"Echarts","address":"http://wanghg.top/html/echarts.html"},
         {"name":"HighCharts","address":"http://wanghg.top/html/highcharts.html"},
@@ -24,6 +24,9 @@
         {"name":"WeUI插件","address":"http://wanghg.top/html/weui/index.html"},
         {"name":"标签img","address":"http://wanghg.top/html/img.html"},
         {"name":"Big.js运算","address":"http://wanghg.top/html/big.html"},
-        {"name":"lodash.js","address":"http://wanghg.top/html/lodash.html"}
+        {"name":"lodash.js","address":"http://wanghg.top/html/lodash.html"},
+        {"name":"moment.js","address":"http://wanghg.top/html/moment.html"},
+        {"name":"3D","address":"http://wanghg.top/html/3d/index.html"},
+        {"name":"切水果","address":"http://wanghg.top/html/fruit/index.html"}
     ]
 }

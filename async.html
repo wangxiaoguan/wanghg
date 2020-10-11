@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+<pre>
+<code class="language-javascript">
+async的基本用法
+1. async函数的基本形式
+
+复制代码
+//函数声明
+async function foo() {}
+
+//函数表达式
+const foo = async function () {};
+
+//对象的方法
+let obj = { async foo() {} };
+obj.foo().then(...)
+
+//Class 的方法
+class Storage {
+    constructor() {
+        this.cachePromise = caches.open('avatars');
+    }
+    async getAvatar(name) {
+        const cache = await this.cachePromise;
+        return cache.match(`/avatars/${name}.jpg`);
+    }
+}
+
+const storage = new Storage();
+storage.getAvatar('jake').then(…);
+
+//箭头函数
+const foo = async () => {};
+复制代码
+2. async函数的返回值总是一个Promise
+
+无论async函数有无await操作，其总是返回一个Promise。
+
+1. 没有显式return，相当于return Promise.resolve(undefined);
+2. return非Promise的数据data，相当于return Promise.resolve(data);
+3. return Promise, 会得到Promise对象本身
+
+async总是返回Promise，因此，其后面可以直接调用then方法，
+函数内部return返回的值，会成为then回调函数的参数
+函数内部抛出的错误，会被then的第二个函数或catch方法捕获到
+
+复制代码
+//正常返回值
+async function f(){
+    retrun 'hello world';
+}
+
+f().then(v => console.log(v));//hello world
+
+//抛出错误
+async function f(){
+    throw new Error('出错了');
+}
+
+f().then(
+    v => console.log(v),
+    e => console.log(e) //Error: 出错了
+)
+复制代码
+3. await操作符的值
+
+[rv] = await expression（expression可以是任何值，通常是一个promise）
+expression是Promise，rv等于Promise兑现的值，若Promise被拒绝，则抛出异常，由catch捕获
+expression是非Promise，会被转换为立即resolve的Promise，rv等于expression
+
+await操作只能用在async函数中，否则会报错。
+
+4. async就是generator和promise的语法糖
+
+复制代码
+//generator写法
+var gen = function* () {
+    var f1 = yield readFile('/etc/fstab');
+    var f2 = yield readFile('/etc/shells');
+    console.log(f1.toString());
+    console.log(f2.toString());
+};
+
+//async写法
+var asyncReadFile = async function () {
+    var f1 = await readFile('/etc/fstab');
+    var f2 = await readFile('/etc/shells');
+    console.log(f1.toString());
+    console.log(f2.toString());
+};
+复制代码
+async就是将 generator的 * 换成 async，将 yield 换成 await。
+
+5. async对generator的改进
+
+1. 内置执行器
+
+Generator必须依靠执行器调用next方法来自动执行，例如co模块。而async函数自带执行器，可以自动执行。
+
+2. 更好的语义
+
+async和await分别表示异步和等待，语义更加明确
+
+3. 适用性更强
+
+co模块后面只能是Thunk函数或Promise对象，而await后面可以是Promise或基本数据类型(如：数字，字符串，布尔等)
+
+4. 返回Promise，可以继续操作
+
+async函数总是返回一个Promise对象，可以对其进行then调用，继续操作后面的数据，因此，
+async函数完全可以看作是多个Promise合成一个Promise对象，而await命令就是内部的then调用。
+
+6. async内部的并行调用
+
+async配合await都是串行调用，但是若有并行调用，则应按照以下方式来写：
+
+1. 变量分别接收Promise
+
+let fooPromise = getFoo();
+let barPromise = getBar();
+let foo = await fooPromise();
+let bar = await barPromise();
+2. 使用Promise.all
+
+let [foo,bar] = await Promise.all([getFoo(),getBar()]);
+Promise.all这种写法有缺陷，一个调用报错，会终止，这个不太符合并行调用的初衷。
+
+3. 使用多个async函数
+
+实际上，一个async函数内部包含的调用应该是强相关的，没有依赖关系的函数调用不应该放在一个async函数中，分开来逻辑更清晰。
+
+4. 并行执行的一些写法
+
+1. 不能再内部非async function中使用await
+
+复制代码
+async function dbFuc(db) {
+    let docs = [{}, {}, {}];
+    // 报错，forEach的function是非async，不能使用await
+    docs.forEach(function (doc) {
+    await db.post(doc);
+    });
+}
+
+//这里不需要 async
+function dbFuc(db) { 
+    let docs = [{}, {}, {}];
+    // 可能得到错误结果，这样调用也不能得到正确的结果
+    docs.forEach(async function (doc) {
+    await db.post(doc);
+    });
+}
+复制代码
+2. 循环调用await可以使用for循环或for of循环
+
+复制代码
+//for of
+async function dbFuc(db) {
+    let docs = [{}, {}, {}];
+
+    for (let doc of docs) {
+    await db.post(doc);
+    }
+}
+
+//map + Promise.all
+async function dbFuc(db) {
+    let docs = [{}, {}, {}];
+    let promises = docs.map((doc) => db.post(doc));
+
+    let results = await Promise.all(promises);
+    console.log(results);
+}
+
+//map + for of
+async function dbFuc(db) {
+    let docs = [{}, {}, {}];
+    let promises = docs.map((doc) => db.post(doc));
+
+    let results = [];
+    for (let promise of promises) {
+    results.push(await promise);
+    }
+    console.log(results);
+}
+
+//for循环中去请求网页，若await操作成功，会break退出；若失败，会catch捕获，进入下一轮循环
+const superagent = require('superagent');
+const NUM_RETRIES = 3;
+
+async function test() {
+    let i;
+    for (i = 0; i < NUM_RETRIES; ++i) {
+    try {
+        await superagent.get('http://google.com/this-throws-an-error');
+        break;
+    } catch(err) {}
+    }
+    console.log(i); // 3
+}
+
+test();
+复制代码
+7. async的错误处理
+
+使用try...catch进行包裹，例如：
+
+复制代码
+async function myFunction() {
+    try {
+        await somethingThatReturnsAPromise();
+    } catch (err) {
+        console.log(err);
+    }
+}
+复制代码
+如果仅仅对一部分错误进行处理或者忽略，可以局部的进行包裹，或者对单独的promise进行catch，例如：
+
+复制代码
+async function myFunction() {
+    await somethingThatReturnsAPromise().catch((err)=> {
+            console.log(err);
+    })
+}
+
+async function myFunction() {
+    try{
+        await somethingThatReturnsAPromise();
+    }
+    catch(e){}
+    await somethingElse();
+}
+复制代码
+Promise的错误处理，推荐用async + await来写:
+
+复制代码
+// 存值
+createData(title, successBack, errorBack) {
+    // 使用key保存数据
+    storage.save({
+        key: title,   
+        data: 'true',
+    }).then(successBack(), errorBack());
+}
+复制代码
+改写为
+
+复制代码
+//存值
+async createData1(title, successBack, errorBack) {
+    try {
+        // 使用key保存数据
+        await storage.save({
+            key: title,  
+            data: 'true',
+        });
+        successBack()
+    } catch (e) {
+        errorBack()
+    }
+}
+复制代码
+形式上更加清晰一些。
+
+8. async函数的实现原理
+
+async函数就是将执行器和Generator做为一个整体返回。
+
+复制代码
+async function fn(){}
+//等同于
+function fn(){
+    return spawn(function* (){
+
+    })
+}
+复制代码
+spawn的实现
+
+复制代码
+function spawn(genF) {
+    /****
+    * 返回的是一个promise
+    */
+    return new Promise(function(resolve, reject) {
+        var gen=genF(); //运行Generator这个方法；
+        /***
+        * 执行下一步的方法
+        * @param fn 一个调用Generator方法的next方法
+        */
+        function step(fn) {
+            //如果有错误，则直接返回，不执行下面的await
+            try {
+            var next=fn();
+            }catch (e){
+            return reject(e)
+            }
+            //如果下面没有yield语句，即Generator的done是true
+            if(next.done){
+            return resolve(next.value);
+            }
+            Promise.resolve(next.value).then((val)=>{
+                step(function(){ return gen.next(val) } )
+            }).catch((e)=>{
+                step(function(){ return gen.throw(e) } )
+            })
+        }
+        step(function () {
+            return gen.next();
+        })
+    });
+}
+</code>
+</pre>
+    </div>
+</body>
+<script src="http://wanghg.top/js/prism.js"></script>
+</html>
