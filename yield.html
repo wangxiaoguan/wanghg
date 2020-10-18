@@ -17,51 +17,7 @@ next()方法会执行generator的代码，然后，每次遇到yield x;就返回
 第二个方法是直接用for ... of循环迭代generator对象，这种方式不需要我们自己判断done：
 </body>
 <script>
-// async function timeout() {
-//     return 'hello world'
-// }
-// timeout().then(data=>{
-//     console.log(data)
-// });
-// console.log(timeout())
-// console.log('虽然在后面，但是我先执行');
-// async function timeout(flag) {
-//     if (flag) {
-//         return 'hello world'
-//     } else {
-//         throw 'my god, failure'
-//     }
-// }
-// console.log(timeout(true))  // 调用Promise.resolve() 返回promise 对象。
-// console.log(timeout(false)); // 调用Promise.reject() 返回promise 对象。
-// timeout(false).catch(data=>{
-//     console.log(data)
-// })
 
-function doubleAfter2seconds(num) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(2 * num)
-        }, 1000);
-    } )
-}
-
-// async function testResult() {
-//     // let result = await doubleAfter2seconds(30);
-//     let result = doubleAfter2seconds(30);
-//     console.log(result);
-// }
-
-async function testResult() {
-    let first = await doubleAfter2seconds(30);
-    console.log('11111')
-    let second = await doubleAfter2seconds(50);
-    console.log('22222')
-    let third = await doubleAfter2seconds(30);
-    console.log('33333')
-    console.log(first + second + third);
-}
-testResult();
 // function* foo(x) {
 //     yield x + 1;
 //     yield x + 2;
@@ -89,50 +45,6 @@ testResult();
 // var c = foo.next(5);
 // console.log(a,b,c)//2,4,5
 
-    // var p1 = new Promise((pass,fail)=>{
-    //     setTimeout(()=>{
-    //         pass(12)
-    //     },1000)
-    // })
-    // console.log('1111111')
-    // var p2 = new Promise((pass,fail)=>{
-    //     setTimeout(()=>{
-    //         pass(12)
-    //     },2000)
-    // })
-    // console.log('2222222')
-    // var p3 = new Promise((pass,fail)=>{
-    //     setTimeout(()=>{
-    //         pass(12)
-    //     },3000)
-    // })
-    // console.log('33333333')
-    // async function get(){
-    //     let num = await p1
-    //     let num1 = await p2
-    //     let num2 = await p3
-    //     console.log(num)
-    //     console.log(num1)
-    //     console.log(num2)
-    // }
-    // get()
-
-//     async function asyncAwaitFn(str) {
-//     return await new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             resolve(str)
-//         }, 1000);
-//     })
-// }
-
-// const serialFn = async () => { //串行执行
-
-//     console.time('serialFn')
-//     console.log(await asyncAwaitFn('string 1'));
-//     console.log(await asyncAwaitFn('string 2'));
-//     console.timeEnd('serialFn')
-// }
-
-// serialFn();
+   
 </script>
 </html>
