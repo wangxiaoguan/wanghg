@@ -82,7 +82,7 @@ class Demo extends Component{
     render(){
         const {detailData,typeList} = this.state
         const { getFieldDecorator } = this.props.form;
-        const formItemLayout = { labelCol: { span: 2 }, wrapperCol: { span: 22 } };
+        const formItemLayout = { labelCol: { span: 2 }, wrapperCol: { span: 20 } };
         return(
             <div id='Add'>
                 <Form onSubmit={this.handleSubmit}  >
@@ -138,11 +138,10 @@ class Demo extends Component{
                         }
                     </FormItem>
                 </Form>
-                <Row>
-                    <Col offset={10} span={2}><Button onClick={()=>location.hash = `/common/list/0`}>取消</Button></Col>
-                    <Col offset={2} span={2}><Button type='queryBtn' onClick={this.handleSubmit}>保存</Button></Col>
-                </Row>
-                
+                <div className='footer-btn'>
+                    <Button onClick={()=>location.hash = '/common/list'}>取消</Button>　
+                    <Button type='primary' onClick={this.handleSubmit}>保存</Button>
+                </div>
             </div>
         )
     }

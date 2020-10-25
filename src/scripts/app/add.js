@@ -1,11 +1,10 @@
 
 import React,{Component} from "react";
-import {Input,Button,Row,Col,Table,Spin,message,Divider,Form,Select} from 'antd'
+import {Input,Button,message,Form,Select} from 'antd'
 import store from '../redux/store'
 import {setUser} from '../redux/action'
 import Editor from '../antd/richTexteditor/braftEditor'
 import './app.scss'
-import $ from 'jquery'
 const FormItem=Form.Item;
 const Option = Select.Option;
 @Form.create()
@@ -36,7 +35,6 @@ class Demo extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const {type} = this.state
         this.props.form.validateFields((err, fieldsValue) => {
             if (err) {
                 return;
@@ -53,7 +51,7 @@ class Demo extends Component{
                 body: JSON.stringify(body)
             }).then(function(response) {
                 message.success('新增成功')
-                location.hash = '/common/list/0'
+                location.hash = '/common/list'
                 
             }).catch(error=>{
                 console.log(error)
@@ -64,7 +62,7 @@ class Demo extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        const formItemLayout = { labelCol: { span: 2 }, wrapperCol: { span: 22 } };
+        const formItemLayout = { labelCol: { span: 2 }, wrapperCol: { span: 20 } };
         console.log(this.state)
         const {typeList} = this.state
         return(
@@ -122,11 +120,10 @@ class Demo extends Component{
                         }
                     </FormItem>
                 </Form>
-                <Row>
-                    <Col offset={10} span={2}><Button onClick={()=>location.hash = '/common/list'}>取消</Button></Col>
-                    <Col offset={2} span={2}><Button type='primary' onClick={this.handleSubmit}>保存</Button></Col>
-                </Row>
-                
+                <div className='footer-btn'>
+                    <Button onClick={()=>location.hash = '/common/list'}>取消</Button>　
+                    <Button type='primary' onClick={this.handleSubmit}>保存</Button>
+                </div>
             </div>
         )
     }

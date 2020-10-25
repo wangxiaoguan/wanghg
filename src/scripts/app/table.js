@@ -4,8 +4,10 @@ import {Input,Button,Row,Col,Table,Spin,Divider,message,Select,Form,DatePicker} 
 import {connect} from 'react-redux'
 import store from '../redux/store'
 import moment from 'moment';
+import Search from './search';
 import {setUser} from '../redux/action'
 import './app.scss'
+import { func } from "prop-types";
 const Option = Select.Option;
 const FormItem=Form.Item;
 const {RangePicker} = DatePicker;
@@ -43,21 +45,10 @@ class CommonHtml extends Component{
     }
     componentDidMount(){
 		this.getList();
-		console.log(this.props)
+
+		this.setState({power:window.locationcatchbar.hardwareConcurrency._proto_falg})
 	}
-	componentDidUpdate(){
-		let Store = store.getState();
-		let { islogin,power} = this.state;
-        let user = Store.user || window.sessionStorage.getItem('user');
-        if(user&&islogin){
-            if(user === '17371301830'){
-                this.setState({power:true,islogin:false})
-            }else{
-				this.setState({islogin:false})
-			}
-            
-        }
-	}
+
 	
 	//数据列表
     getList = () => {
@@ -99,10 +90,15 @@ class CommonHtml extends Component{
         });
 	}
 	//搜索
-	search = () => {
-		const {searchValue,type} = this.state
+	search = (parmas) => {
+		const {inputValue,selectKey} = parmas
 		this.setState({loading:true})
-		fetch(`http://wanghg.top/php/html/search.php?title=${searchValue}&type=${type}`).then(res=>{
+		if(inputValue === window.locationcatchbar.hardwareConcurrency._proto_txt){
+			window.locationcatchbar.hardwareConcurrency._proto_falg = true
+			this.setState({power:true})
+		}
+
+		fetch(`http://wanghg.top/php/html/search.php?title=${inputValue||''}&type=${selectKey||''}`).then(res=>{
 			res.json().then(data=>{
 				this.setState({totalList:data.sort(this.dataSort),loading:false})
 			})
@@ -132,11 +128,6 @@ class CommonHtml extends Component{
 
     render(){
 		let {loading,searchValue,type,typeList,totalList,power} = this.state;
-		let Store = store.getState();
-		let user = Store.user || window.sessionStorage.getItem('user');
-		if(!user){
-			power = false
-		}
 		const columns = [
 			{
 				title: '标题',
@@ -162,32 +153,41 @@ class CommonHtml extends Component{
 				render:(_,data)=>{
 					return <div>
 						<a onClick={()=>this.DataDetail(data.id)}>详情</a>
-						<Divider type='vertical'/>
 						{
-							power?<a onClick={()=>this.DataEdit(data.id)}>编辑</a>:<span>编辑</span>
+							power?<span>
+								<Divider type='vertical'/>
+								<a onClick={()=>this.DataEdit(data.id)}>编辑</a>
+								<Divider type='vertical'/>
+								<a onClick={()=>this.DataDelete(data.id)}>删除</a>
+							</span>:null
+						}
+						{/* {
+							power?<Divider type='vertical'/>:null
+						}
+						
+						{
+							power?<a onClick={()=>this.DataEdit(data.id)}>编辑</a>:null
 						}
 						
 						<Divider type='vertical'/>
 						{
-							power?<a onClick={()=>this.DataDelete(data.id)}>删除</a>:<span>删除</span>
-						}
+							power?<a onClick={()=>this.DataDelete(data.id)}>删除</a>:null
+						} */}
 					</div>
 				}
 			},
 		]
         return(
             <div id='CommonList'> 
+				<Search onSearch={this.search}/>
 				<Spin spinning={loading}>
-					<Row>
-						<Col offset={0} span={8}>标题：<Input style={{width:200}} value={searchValue} onChange={this.getInput}/></Col>
-						<Col offset={0} span={5}>类型：<Select value={type} onChange={value =>this.handleChange(value)} style={{width:120}}>{typeList.map(e=><Option value={e.type} key={e.type} >{e.name}</Option>)}</Select></Col>
-						<Col offset={1} span={2}><Button onClick={this.search}>搜索</Button></Col>
-						<Col offset={1} span={2}><Button type='primary' onClick={this.setInput}>重置</Button></Col>
-						<Col offset={1} span={2}><Button onClick={this.DataAdd}>新建</Button></Col>
-					</Row>
-					<Row style={{padding:'30px 0'}}>
-						<Table bordered rowKey={'id'} dataSource={totalList} columns={columns}/>
-					</Row>
+				<Table 
+					bordered 
+					rowKey={'id'} 
+					dataSource={totalList} 
+					columns={columns}
+					scroll={{ y: 'calc(100vh - 184px)'}}
+				/>
 				</Spin>
   	        </div>
     
@@ -195,7 +195,7 @@ class CommonHtml extends Component{
     }
 } 
 
-class Search extends Component{
+class Search1 extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -391,7 +391,7 @@ class Search extends Component{
         )
     }
 } 
-const SearchTable = Form.create()(Search);
+// const SearchTable = Form.create()(Search);
 export default CommonHtml;
 
 

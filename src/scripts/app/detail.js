@@ -11,10 +11,11 @@ export default class Detail extends Component{
         }
     }
     componentDidMount(){
-        let params = this.props.match.params
-        this.getDetail(params.id)
-        this.setState({id:params.id})
+        const {match:{params:{id}}} = this.props;
+        this.getDetail(id)
+        this.setState({id})
     }
+
     componentDidUpdate() {
         let params = this.props.match.params
         if(params.id!==this.state.id){

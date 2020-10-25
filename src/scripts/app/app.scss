@@ -6,12 +6,32 @@
     img{
         max-width: 100%;
     }
+    .footer-btn{
+        text-align: center;
+    }
 }
 #Add{
-    padding: 30px;
+    padding: 30px 0;
+    .footer-btn{
+        text-align: center;
+    }
 
 }
 #CommonList{
-    padding: 30px;
+    // padding: 30px;
+    .ant-table-wrapper{
+        background: #ffffff;
+    }
+}
+
+.header-search{
+    height: 64px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #ffffff;
+    .header-search-item{
+        margin-right: 50px;
+    }
 }
 
