@@ -29,19 +29,20 @@ export default class List extends Component{
             total: 0,//查询的总数量
             params:{},//搜索参数
             search:'',
-            spin:true,
+            spin:false,
             NofinishedItem:[],
             searchData:[]
         }
     }
 
     componentDidMount(){
+        console.log('0000000000000')
         document.addEventListener('keydown',this.onkeydown);
-        this.getList(1,10)
-        this.getTree()
-        if(!sessionStorage.getItem('isFinishedItem')){
-            this.getNofinishedItem()
-        }
+        // this.getList(1,10)
+        // this.getTree()
+        // if(!sessionStorage.getItem('isFinishedItem')){
+        //     this.getNofinishedItem()
+        // }
     }
     getList = (page, pageSize,params='') => {
         this.setState({spin:true})

@@ -39,7 +39,7 @@ export default class Routes extends Component{
     render(){
         return(
             <BaseLayout>
-                <Route exact path="/" component={ConnectPage}/>
+                <Route exact path="/" component={InformationSubmit}/>
                 <Route exact path="/InformationSubmit" component={InformationSubmit}/>
                 <Route exact path="/InformationSubmit/Add" component={AddInformationSubmit}/>
                 <Route exact path="/InformationSubmit/Edit/:id" component={EditInformationSubmit}/>

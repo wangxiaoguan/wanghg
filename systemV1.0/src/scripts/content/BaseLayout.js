@@ -8,7 +8,7 @@ export default class Title extends Component {
     this.state = {
       isLoad:true,
       titleList: [
-       
+        {key:1,value:'信息报送',isActive:true,isShow:true,Path:'/InformationSubmit'},
         {
           key: 2,
           value: "信息审核",
@@ -23,8 +23,10 @@ export default class Title extends Component {
           isShow:true,
           Path: "/InformationCollect",
         },
+        {key:4,value:'投资报送',isActive:false,isShow:true,Path:'/InvestSubmit'},
         { key: 5, value: "投资审核", isActive: false,isShow:true, Path: "/InvestExamine" },
         { key: 6, value: "投资汇总", isActive: false,isShow:true, Path: "/InvestCollect" },
+        {key:7,value:'年度计划',isActive:false,isShow:true,Path:'/YearPlanSubmit'},
         {
           key: 8,
           value: "年度计划审核",
@@ -41,7 +43,7 @@ export default class Title extends Component {
     };
   }
   componentDidMount(){
-    this.setState({isLoad:true})
+    this.setState({isLoad:false})
   }
 
   componentDidUpdate(){
@@ -73,13 +75,13 @@ export default class Title extends Component {
     const { titleList,isLoad } = this.state;
 
 
-    if(!getToken()){
-      location.hash = '/'
-    }
+    // if(!getToken()){
+    //   location.hash = '/'
+    // }
 
     return (
       <div id="web" className={!isLoad?'showWen':'hideWeb'}>
-        <div className="top">安可替代工程进度信息报送系统</div>
+        <div className="top">项目系统</div>
         {/* <div className="top-title">项目工程</div> */}
         <div className="top-content">
           <div>
