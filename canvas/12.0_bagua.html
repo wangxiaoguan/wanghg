@@ -10,14 +10,6 @@
             padding: 0;
             margin:0;
         }
-    h1{
-        height:50px;
-        line-height: 50px;
-        width:100%;
-        color:#fff;
-        text-align: center;
-        background: -webkit-linear-gradient(left,red 0% ,yellow 30% ,blue 60% ,pink 100% );
-    }
 
               canvas{
                 display: block;
@@ -28,8 +20,7 @@
     </style>
 </head>
 <body>
-    <h1>太极八卦阵</h1>
-    <canvas id="mycanvas" width=800 height=800 >浏览器不支持该浏览器</canvas>
+    <canvas id="mycanvas" width=600 height=600 >浏览器不支持该浏览器</canvas>
     <script>
 
         var mycanvas = document.getElementById("mycanvas")
@@ -56,7 +47,7 @@
         var P = Math.PI;
         c.beginPath();
         c.save();
-        c.translate(400,400);
+        c.translate(300,300);
         
 
 

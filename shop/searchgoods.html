@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon"/>
+    <title>快乐购商城搜索</title>
+    <style>
+        /**********************初始化样式*************************/
+        body,html{width: 100%;}
+        body,html,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,table,tr,td,th,li{margin: 0;padding: 0;}
+        body{font-family: "微软雅黑";font-size: 14px;color: #555;}
+        li{list-style: none;}
+        img{border:0;vertical-align: middle;}
+        a{text-decoration:none;color:#666;}
+        .w1200{width:1200px;overflow: hidden;margin:0 auto;}
+        .onclick:hover{cursor: pointer}
+
+        /**********************头部-顶部*************************/
+        #header{width:100%;overflow: hidden;}
+        #header_top{width:100%;overflow: hidden;background: #f9f9f9;border-bottom:1px solid #ccc;}
+
+        .header_top_left{float:left;font-size:12px}
+        .header_top_left span{float: left;padding-right:10px;height:36px;line-height:36px}
+        .header_top_right{float: right;font-size:12px}
+        .header_top_right li{float:left;padding:0 3px;height:36px;line-height:36px;}
+        /**********************头部-中间*************************/
+        #header_mid{width:1200px;;margin:0 auto;height:50px;padding:35px 0}
+        #header_mid div{float:left;}
+        #header_mid #brand{width: 56px;height: 56px;margin-right:60px;}
+        .header_search {margin-left:20px;height:120px;width:400px;}
+        .header_search input{width: 300px;height: 34px;border:3px solid #9A0000;outline:none; vertical-align: top;}
+        #btnsearch{display:inline-block;width:50px;height:42px;background:#9A0000;font-size:16px;line-height:40px;vertical-align: middle;text-align: center;color:#fff;}
+        .header_search .min_list{width: 400px;height: 20px;font-size:13px;margin-top:8px;}
+        #goodscar{width:110px;height:40px;background: #f9f9f9;border:1px solid #ccc;line-height: 40px;text-align: center;}
+        .min_list span:hover{color:#990033;cursor: pointer;}
+
+        /**********************侧边栏右边**********************/
+        .aside_right{position:fixed;width:40px;height:100%;background:#666;right:0;top:0;;z-index:999;text-align: center;color:#fff;}
+        .aside_right div:hover{background:#990033;}
+        .aside_right div img{width: 30px;height: 30px;}
+        .aside_right .a_righ1{margin:20px 0;border-bottom:1px solid #333;position:relative;padding:10px 0;}
+        .a_righ1 p{position:absolute;width: 159px;height:180px;background:#a21f25;top:0;right:40px;
+            background:#a21f25;display:none;}
+        .a_righ1:hover p{display:block}
+        .a_righ1 p img{width: 159px;height: 159px;}
+
+        .aside_right .a_righ2{margin:36px 0;overflow:hidden;padding:10px 0;}
+        .aside_right .a_righ2 p{width:20px;padding:0 10px;}
+        .aside_right .a_righ2 h4{width:20px;height:20px;border-radius:50%;margin:0 10px;background:#9A0000}
+        .aside_right .a_righ2~div{margin:20px 0;padding:20px 0;}
+        .aside_right .a_righ4 p{position:absolute;right:40px;bottom:150px;display:none;}
+        .aside_right .a_righ4 p img{width: 185px;height: 271px;}
+        .aside_right .a_righ4:hover p{display: block;}
+        /**********************中间-导航*************************/
+        #middle_nav{width:100%;height:40px;border-bottom:2px solid #9A0000;}
+        #middle_nav .nav li{ float: left;padding: 0 40px;font-size:20px;line-height:40px;position:relative;color:#000;}
+        /*********************三级菜单*************************/
+        nav{width:100%;background:#fff;}
+        nav ul{width:1200px;height:40px;margin:auto;background:#fff;}
+        nav ul li{padding:0 40px; text-align:center;float:left;line-height:40px;position:relative;font-size:18px}
+        nav ul .a1{display:none;position:absolute;left: 0;top:42px;z-index: 9999;}
+        nav ul h3{width:152px;height:40px;background:#eee ;overflow: hidden;padding:5px 0;opacity:0.9;}
+        nav ul p{width:200px;line-height:26px;text-align:center;height:26px;font-size:14px;padding:5px 0;}
+        nav ul li:first-child{background:#990033;color:#fff;}
+        nav ul li:hover a{color:#fff;}
+        nav ul li:hover .a1{display:block;cursor:pointer;color:#000}
+        nav ul li .a2{display:none;width:200px;text-align: left;}
+        nav ul p:hover{background:#fff;cursor: pointer;color:#9A0000;}
+        nav ul h3 .a2 span{display:inline-block;padding:2px 10px;font-size:14px;background:#aaa;color:#fff;margin:10px}
+        nav ul h3 .a2 span b{display:inline-block ;text-align: center;}
+        nav ul h3:hover .a2{position:absolute;left:152px;top:0px;background:#fff;display:block;
+            width:400px;height:340px;font-size: 12px;line-height: 20px;cursor: pointer;}
+        nav ul h3 .a2 span:hover{background:#9A0000;}
+        /**********************搜索商品结果*************************/
+        .search_result{width:100%;overflow: hidden}
+        .search_result li{float: left;width:290px;height:375px;border:1px solid #e4e4e4;margin:5px 4px 18px;}
+        .search_result img{width:290px;height:290px;margin-bottom:10px;}
+        .search_result .newprice{font-family:arial;font-size: 20px;font-weight:bold;color:#94193f;
+                    padding:0 15px;}
+        .search_result .oldprice{font-size:12px;text-decoration:line-through;color:#969696;}
+        .search_result .goodsname{font-family: 宋体;line-height:1.4em;overflow: hidden;display:block;
+                    color: #434343;padding:0 15px;}
+        .search_result .goodsnum{font-family: 宋体;float:right;margin-right:30px;}
+        .search_result .goodsnum b{color:#a21f25;}
+        .search_result li:hover .textline{text-decoration:underline}
+        #optgoods .show{height:57px;line-height: 57px;overflow: hidden;border-bottom: 1px solid #ccc;
+                        margin-bottom: 20px;font-size:14px;}
+        #optgoods .optdata{background-color:#fbfbfb;border:1px solid #e4e4e4;height:40px;line-height:40px;
+                            margin-bottom:20px;} 
+        .optdata .cr{color: #94193f;border-right: 1px solid #e4e4e4;}                      
+        .optdata .dl{float:left;padding-right:20px;text-align:center;width:86px;margin-right: 10px;}
+        .salenum,.salepri{color:#999;}
+        #optgoods p{float:right;width:300px;height: 48px;text-align:center;line-height:48px;}
+
+        /**********************分页*************************/
+        #page{width:400px;height:30px;text-align:center;margin:0 auto;line-height:30px;}
+        #page span{float:left; padding:0 3px;margin:0 3px;background:#fff;font-size:20px;line-height:30px;color:#666;border:1px solid #ccc;}
+        #page .nextpage,#page .prevpage{background:#fff;color:#666;border:1px solid #ccc;}
+        #page .content span{width:30px;}
+        #page .content span:hover{cursor:pointer}
+        #page .content span:first-child{background:#9A0000;color:#fff;}
+
+        /**********************底部*************************/
+        .footer {width: 100%;;background-color: #fff; margin-top: 25px; overflow: hidden; }
+        .footer_top { border-bottom: 1px solid #d7d7d7; }
+        .footer_left { float: left; width:800px; }
+        .footer_help { padding-top: 40px; }
+        .usehelp {float: left; padding:0 40px;}
+        .usehelp h5 {color:#000;font-size:14px; font-weight:bold; height: 31px;}
+        .footer_right { float: left; }
+        .footer_right ul li { float: left; width: 100px; margin-right:20px;text-align: center; }
+        .footer_right ul li h2 { color: #333333; font-size: 14px; font-weight: 600; height: 31px; }
+        .footer_right ul li p { font-size: 14px; color: #666666; }
+        .footer_rel{ width: 720px; margin: 0 auto; text-align:center;}
+        .footer_nav { border-bottom: 4px solid #a90202; overflow: hidden; margin-top: 45px; }
+        .footer_nav ul li {display:inline-block;height:35px;line-height: 35px; padding-right:12px; *display:inline;*zoom:1;}
+        .footer_nav .line { padding-left: 14px; background-color: #fff; border-right: 1px solid #a9a9a9; }
+        .footer_bottom { background-color: #f3f3f3; }
+        .font_arial { font-family: Arial; color: #666666; }
+        .footer_bottom p{ padding-top: 10px; text-align: center; font-family: "宋体"; color: #7e7e7e; line-height:25px;}
+        .footer_bottom .footer_picture { padding: 30px 0 40px 0; }
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="header_top">
+        <div class="w1200">
+            <div class="header_top_left">
+                <span>欢迎来到快乐购！</span>
+                <span><a href="login.html">[登录]</a></span>
+                <span><a href="register.html">[注册]</a></span>
+
+            </div>
+            <ul class="header_top_right">
+                <li><a href="">合作招商 |</a></li>
+                <li><a href="">订单查询 |</a></li>
+                <li><a href="">我的快乐购 |</a></li>
+                <li>☎400-705-1111 |</li>
+                <li><a href="">下载快乐购app |</a></li>
+                <li><a href="">客服中心∨</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="header_mid">
+        <div class="header_mid_brand">
+            <a href="index.html"><img id="brand" src="images/header1.jpg"></a>
+            <img src="images/header2.jpg">
+        </div>
+        <div class="header_search">
+            <input placeholder="雪梨" id="inputname"><span id="btnsearch" class="onclick">搜索</span>
+            <div class="min_list">
+                <span>真丝</span>
+                <span>面膜</span>
+                <span>京城之霜</span>
+                <span>牛奶</span>
+                <span>手表</span>
+                <span>严选</span>
+                <span>韩束</span>
+                <span>康宁</span>
+                <span>鞋</span>
+                <span>方太</span>
+                <span>洗发水</span>
+            </div>
+        </div>
+        <div id="goodscar"><a href="goodscar.html">购物车＞</a></div>
+    </div>
+    <aside class="aside_right"><!--s用户侧边栏-->
+        <div class="a_righ1">
+            <img src="images/user_aside_a1.png">
+            <span>账号</span>
+            <p>
+                <img src="images/user_login.jpg"><br/>
+                <span><b id="username"><a href="javascript:;">请登录</a></b>　您好！</span><br>
+                <span></span><span></span>
+            </p>
+
+        </div>
+        <div class="a_righ2"><a href="javascript:;"><img src="images/user_aside_a4.png"><p class="shopcar_p" style="color:#fff">购物车</p><h4 id="count_h4">0</h4></a></div>
+        <div class="a_righ3"><img src="images/user_aside_a2.png"><span>收藏</span></div>
+        <div class="a_righ4">
+            <img src="images/user_aside_a5.png">
+            <p><img src="images/login_a2.png"></p>
+        </div>
+        <div class="a_righ5"><img src="images/user_aside_a3.png"></div>
+        <div class="a_righ6"><a href="#"><img src="images/user_aside_a6.png"><span></span></a></div>
+    </aside>
+</div>
+<!--导航-->
+<nav id="middle_nav">
+    <ul>
+        <li>
+            <div>全部分类</div>
+            <div class="a1">
+                <h3>
+                    <p>个护美妆</p>
+                    <div class="a2">
+                        <span>面部护理</span>
+                        <span>香水彩妆</span>
+                        <span>美发护发</span>
+                        <span>身体护理</span>
+                        <span>美容工具</span>
+                        <span>口腔护理</span>
+                    </div>
+                </h3>
+                <h3>
+                    <p>食品健康</p>
+                    <div class="a2">
+                        <span>饮料冲调</span>
+                        <span>粮油调味</span>
+                        <span>酒水茗茶</span>
+                        <span>休闲食品</span>
+                        <span>营养保健</span>
+                        <span>生鲜食品</span>
+                    </div>
+                </h3>
+                <h3>
+                    <p>餐厨日用</p>
+                    <div class="a2">
+                        <span>烹饪锅具</span>
+                        <span>厨房电器</span>
+                        <span>厨房用具</span>
+                        <span>餐饮用具</span>
+                        <span>厨房配件</span>
+                        <span>生活用品</span>
+
+                        <span>健康保健</span>
+                        <span>清洁收纳</span>
+                        <span>家装建材</span>
+                        <span>家居家饰</span>
+                        <span>户外休闲</span>
+                        <span>家具</span>
+                    </div>
+                </h3>
+                <h3>
+                    <p>服装配饰</p>
+                    <div class="a2">
+                        <span>女士服装</span>
+                        <span>男士服装</span>
+                        <span>内衣</span>
+                        <span>鞋靴</span>
+                        <span>箱包</span>
+                        <span>眼镜配饰</span>
+                        <span>运动/户外</span>
+                        <span>钟表</span>
+                        <span>珠宝藏品</span>
+                        <span>素金类</span>
+                        <span>镶嵌类</span>
+                    </div>
+                </h3>
+                <h3>
+                    <p>布艺家纺</p>
+                    <div class="a2">
+                        <span>床品套件</span>
+                        <span>布艺软饰</span>
+                        <span>抱枕靠垫</span>
+                        <span>毛巾浴巾</span>
+                    </div>
+                </h3>
+                <h3>
+                    <p>家电数码</p>
+                    <div class="a2">
+                        <span>大家电</span>
+                        <span>生活家电</span>
+                        <span>手机通讯</span>
+                        <span>电脑影音</span>
+                    </div>
+                </h3>
+                <h3>
+                    <p>母婴呵护</p>
+                    <div class="a2">
+                        <span>婴幼护理<b>＞</b></span>
+                        <span>婴幼食品<b>＞</b></span>
+                        <span>孕童服饰<b>＞</b></span>
+                        <span>早教玩具<b>＞</b></span>
+                    </div>
+                </h3>
+
+
+            </div>
+        </li>
+        <li><a href="index.html">首页</a></li>
+        <li>TV直播</li>
+        <li>网易严选</li>
+        <li>一县一品</li>
+    </ul>
+</nav>
+
+<div id="optgoods">
+    <div class="w1200">
+        <div class="show">
+            <span>首页</span>　＞　
+            <span>搜索结果"<b class="word">苹果</b>"</span>
+        </div>
+        <div class="optdata">
+            <span class="dl cr">排序:</span><span class="dl">默认　↓</span>
+            <a class="dl salenum" href="javascript:;">销量<b id="numasc">▲</b><b id="numdesc">▼</b></a>
+            <a class="dl salepri" href="javascript:;">价格<b id="priasc">▲</b><b id="pridesc">▼</b></a>
+
+            <p>
+                <span>共<b id="allcount">0</b>个商品</span>
+                <span>第<b id="pagenum">0</b>页</span>
+                <a href="javascript:;" id="prev">上一页</a>
+                <a href="javascript:;" id="next">下一页</a>
+            </p>
+        </div>
+    </div>
+</div>
+<!--搜索结果显示-->
+<div id="searchgoods">
+    <div class="w1200">
+        <ul class="search_result">
+            <!--<li><a href="">-->
+                <!--<img src="image/a_a_1.jpg"><br/>-->
+                <!--<span class="newprice">￥899</span>-->
+                <!--<span class="oldprice">￥1280</span><br/>-->
+                <!--<span class="goodsname">FIFA2018世界杯限量纪念版T恤套组 套组 170</span></a>-->
+            <!--</li>-->
+
+        </ul>
+        <div id="page" class="page">
+                <span class="prevpage onclick">上一页</span>
+                <div class="content"></div>
+                <span class="nextpage onclick">下一页</span>
+        </div>
+    </div>
+</div>
+
+<!--底部-->
+<div class="footer">
+    <div class="footer_top w1200">
+        <img src="images/footer_a1.jpg" />
+    </div>
+    <div class="footer_help w1200">
+        <div class="footer_left">
+            <dl class="usehelp">
+                <dt><h5>使用帮助</h5></dt>
+                <dd> 税费收取规则</dd>
+                <dd>新手指南</dd>
+                <dd>用户协议</dd>
+                <dd>常见问题</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt><h5>会员服务</h5></dt>
+                <dd>快乐币政策</dd>
+                <dd>会员等级</dd>
+                <dd>会员权益</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt><h5>支付方式</h5></dt>
+                <dd>快乐币支付</dd>
+                <dd>在线支付</dd>
+                <dd>货到付款</dd>
+                <dd>优惠券支付</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt>
+                <h5>配送方式</h5>
+                </dt>
+                <dd>包邮政策</dd>
+                <dd>配送说明</dd>
+                <dd>费用说明</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt><h5>售后服务</h5></dt>
+                <dd>电子发票</dd>
+                <dd>售后咨询</dd>
+                <dd>退货政策</dd>
+                <dd>退货办理</dd>
+            </dl>
+
+        </div>
+        <div class="footer_right">
+            <ul>
+                <li>
+                    <h2>手机快乐购</h2>
+                    <img src="images/footer_a2.png" />
+                    <p>下载移动客户端</p>
+                </li>
+                <li>
+                    <h2>快乐购微信</h2>
+                    <img src="images/footer_a3.png" />
+                    <p>快乐购官方微信</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer_nav">
+        <div class="footer_rel">
+            <ul>
+                <p>
+                <li>关于快乐购<span class="line"></span></li>
+                <li>投资者关系<span class="line"></span></li>
+                <li>平台招商<span class="line"></span></li>
+                <li>自营品牌招商<span class="line"></span></li>
+                <li>联系我们<span class="line"></span></li>
+                <li>营业证照</li>
+                </p>
+            </ul>
+        </div>
+    </div>
+    <div class="footer_bottom">
+        <div class="w1200">
+            <p class="footer_hint">
+                <span class="font_arial">Copyright© 2006-2018 happigo. All Rights Reserved </span>
+                免费服务热线: 400-705-1111 | 固话也可拨打: 400-705-8800
+                <span class="font_arial">E-Mail: service@happigo.com</span><br />
+                湘ICP备17009657号信息网络传播视听节目许可证号：1810530 <img src="images/footer_a4.png" style="color: #434343" target="_blank">湘公网安备 43010502000556号
+            </p>
+            <p class="footer_picture">
+                <img src="images/footer_a5.png" style="height:40px;"></a>
+                <img src="images/footer_a6.jpg"/>
+                <img src="images/footer_a7.png" />
+                <img src="images/footer_a8.png" />
+            </p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/picture.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/config.js"></script>
+<script>
+    if(getCookie("loginUserName")){
+        $(".header_top_left span").eq(1).html(getCookie("loginUserName")).css({"color":"#9A0000"});
+        $(".header_top_left span").eq(2).html("[退出]").css({"color":"#9A0000"});
+        $("#username").html(getCookie("loginUserName"));
+    }else {
+        $("#username").find("a").attr("href","login.html").css({"color":"#fff"})
+    }
+    $(".header_top_left span").eq(2).on("click", function () {
+        setCookie("loginUserName","", -7);
+        setCookie("loginUserId","", -7);
+        window.location.href="index.html";
+    });
+    var shopname3=window.location.search.substring(1).split("=")[1];
+    var userId=getCookie("loginUserId");
+    if(userId){
+        $.ajax({
+                    type:"get",
+                    url:"php/total.php",
+                    data:{userid:userId},
+                    dataType:"json"})
+                .then(function (result) {
+                    $("#count_h4").html(result.count);
+                    $("#count_h4").css({"color":"#fff"})
+                });
+    }
+    $("#goodscar").click(function () {
+        if(getCookie("loginUserName")){
+            window.location.href="goodscar.html";
+        }else {
+            window.location.href="login.html";
+        }
+    });
+    $("nav ul li").hover(function () {
+        $(this).css({"background":"#990033","color":"#fff"}).siblings().css({"background":"#fff","color":"#000"})
+    });
+    $(".aside_right div").eq(1).click(function () {
+        if(getCookie("loginUserName")){
+            $(this).find("a").attr("href","goodscar.html")
+        }else {window.location.href="login.html"}
+    });
+    $(".aside_right .a_righ6").click(function () {
+        $("html,body").animate({"scrollTop":0},1000);
+    });
+    var key=decodeURIComponent(shopname3);
+
+    var order="goodsid";
+    var desc="asc";
+    var pagenum=0;
+    var datanum=20;
+    getData(key,order,desc,pagenum,datanum);
+    getCount(key,datanum);
+    $("#btnsearch").click(function(){
+        var key=$("#inputname").val();
+        getData(key,order,desc,pagenum,datanum);
+        getCount(key,datanum);
+        $(".word").html(key).css({"color":"red"});
+    });
+    //销量升序
+    $("#numasc").click(function(){
+        var key=$("#inputname").val();
+        pagenum=0;
+        $(".word").html(key).css({"color":"red"});
+        $(this).css({"color":"#94193f"});
+        $(this).next().css({"color":"#999"});
+        $(".salepri").children().css({"color":"#999"});
+        desc="asc";
+        order="goodsnum";
+        getData(key,order,desc,pagenum,datanum);
+
+        $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+        $("#pagenum").html(pagenum+1);
+    });
+    //销量降序
+    $("#numdesc").click(function(){
+        var key=$("#inputname").val();
+        pagenum=0;
+        $(".word").html(key).css({"color":"red"});
+        $(this).css({"color":"#94193f"});
+        $(this).prev().css({"color":"#999"});
+        $(".salepri").children().css({"color":"#999"});
+        desc="desc";
+        order="goodsnum";
+        getData(key,order,desc,pagenum,datanum);
+
+        $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+        $("#pagenum").html(pagenum+1);
+    });
+
+
+    $("#priasc").click(function () {
+        var key=$("#inputname").val();
+        pagenum=0;
+        $(".word").html(key).css({"color":"red"});
+        $(this).css({"color":"#94193f"});
+        $(this).next().css({"color":"#999"});
+        $(".salenum").children().css({"color":"#999"});
+        desc="asc";
+        order="newprice";
+        getData(key,order,desc,pagenum,datanum);
+
+        $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+        $("#pagenum").html(pagenum+1);
+    });
+    //价格降序
+    $("#pridesc").click(function () {
+        var key=$("#inputname").val();
+        pagenum=0;
+        $(this).css({"color":"#94193f"});
+        $(this).prev().css({"color":"#999"});
+        $(".salenum").children().css({"color":"#999"});
+        desc="desc";
+        order="newprice";
+        getData(key,order,desc,pagenum,datanum);
+
+        $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+        $("#pagenum").html(pagenum+1);
+    });
+
+    //搜索商品
+    function getData(key,order,desc,pagenum,datanum) {
+        $.ajax({
+                type: "get",
+                url: "php/indexsearch.php",
+                data:{key: key,
+                      order: order,
+                      desc: desc,
+                      pagenum: pagenum,
+                      datanum: datanum},
+                dataType: "json"})
+        .then(function (result) {
+                var html = "";
+                for (var i = 0; i < result.length; i++) {
+                    var item = result[i];
+                    var goodsid=item["goodsid"];
+                    var goodsname=item["goodsname"];
+                    var newprice=item["newprice"];
+                    var oldprice=item["oldprice"];
+                    var goodsnum=item["goodsnum"];
+                    var goodsimg=item["goodsimg"];
+                    var goodsmsg=item["goodsmsg"];
+                    html += `<li><a href="goodsone.html?id$${goodsid}%src$${goodsimg}">
+                                <img src="image/${goodsimg}1.jpg"><br/>
+                                <span class="newprice">￥${newprice}</span>
+                                <span class="oldprice">￥${oldprice}</span>
+                                <span class="goodsnum">销量:<b>${goodsnum}</b></span><br>
+                                <span class="goodsname textline">${goodsmsg}</span></a>
+                            </li>`;
+                    }
+                $(".search_result").html(html);
+            })
+    }
+
+    function getCount(key,datanum){
+        $.ajax({
+            type: "get",
+            url: "php/goodscount.php",
+            data:{key:key},
+            dataType: "json"})//搜索商品数量
+        .then(function (result) {
+            $("#allcount").html(result.count);
+            var num=Math.ceil((result.count)/datanum);
+            if(num>0) {
+                $("#pagenum").html("1");
+                var html = "";
+                for (var i = 1; i <= num; i++) {
+                    html += `<span class="pageone">${i}</span>`;
+                }
+                $("#page .content").html(html);
+            }else {
+                $("#pagenum").html("0");
+                $("#page .content").html("<span class='pageone'>无</span>").css({"color":"#aaa"})
+            }
+        })
+    }
+    $("#prev").click(function () {
+        pagenum--;
+        if(pagenum>=0){
+            getData(key,order,desc,pagenum,datanum);
+            $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+            $("#pagenum").html(pagenum+1);
+        }else {
+            pagenum=0;
+        }
+
+    });
+    $("#next").click(function () {
+        pagenum++;
+        if(pagenum<num){
+            getData(key,order,desc,pagenum,datanum);
+            $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+            $("#pagenum").html(pagenum+1);
+        }else {
+            pagenum=num-1;
+        }
+    });
+        $(".prevpage").click(function(){
+            pagenum--;
+            if(pagenum>=0){
+            getData(key,order,desc,pagenum,datanum);
+            $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+            $("#pagenum").html(pagenum+1);
+        }else {
+            pagenum=0;
+        }
+        });
+    $(".nextpage").click(function(){
+        pagenum++;
+        if(pagenum<num){
+            getData(key,order,desc,pagenum,datanum);
+            $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+            $("#pagenum").html(pagenum+1);
+        }else {
+            pagenum=num-1;
+        }
+    });
+
+    //分页点击事件
+    $(document).on("click",".content span", function () {
+        var index=$(this).index();
+        pagenum=index;
+        getData(key,order,desc,pagenum,datanum);
+        $("#page .content span").eq(pagenum).css({"background":"#9A0000","color":"#fff"}).siblings().css({"background":"#fff","color":"#666"});
+        $("#pagenum").html(pagenum+1);
+    })
+</script>
+
+</html>

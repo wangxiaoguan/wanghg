@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon"/>
+    <title>快乐购商城购物车</title>
+    <style>
+        body,html{width: 100%;}
+        body,html,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,table,tr,td,th,li{margin: 0;padding: 0;}
+        body{font-family: "微软雅黑";font-size: 14px;color: #555;}
+        li{list-style: none;}
+        img{border:0;vertical-align: middle;}
+        a{text-decoration:none;color:#666;}
+        .w1200{width:1200px;overflow: hidden;margin:0 auto;}
+        /**********************头部-顶部*************************/
+        #header{width:100%;overflow: hidden;}
+        #header_top{width:100%;overflow: hidden;background: #f9f9f9;border-bottom:1px solid #ddd;}
+
+        .header_top_left{float:left;font-size:12px}
+        .header_top_left span{float: left;padding-right:10px;height:36px;line-height:36px}
+        .header_top_right{float: right;font-size:12px}
+        .header_top_right li{float:left;padding:0 3px;height:36px;line-height:36px;}
+
+        .head_center{width:100%;overflow:hidden;height:100px;border-bottom:2px solid #ddd;padding:30px 0 20px;}
+        .head_center .order{float:right;height: 40px;padding:20px 0 40px;width: 400px;}
+        .head_center .order span{position:relative;font-size:30px;top:8px;}
+        .head_center .order span b{position: absolute;width: 100px;left:-20px;top:30px;font-size:12px;}
+
+        /**********************购物车*************************/
+        .table{border-collapse:collapse;width: 1198px;}
+        .goods_head{background:#efefef;border:1px solid #dadada;font-size:12px;margin:40px 0 19px;}
+        .table_mid{width: 100%;overflow: hidden;border-bottom:2px solid #aaa;padding-bottom:10px;}
+        .table_mid .a1{display:inline-block;padding:1px 3px;border-radius:5px;background:red;color:#fff;}
+        .table_mid .a3{float:right;margin-right:20px;}
+        
+        #tbody tr{width:100%;overflow:hidden;border: 1px solid #eee; }
+        #tbody .price~td,.price{text-align: center;}
+        #tbody tr td,th{padding:10px}
+        #tbody tr td:nth-child(4){padding: 0 50px}
+        #tbody tr td img{width:80px;height:80px;vertical-align:middle;}
+        #tbody tr .num span{display:inline-block;width:21px;height:23px;border:1px solid #ccc;font-size:20px;}
+        #tbody tr .num span{vertical-align:middle;line-height:23px;}
+        #tbody tr .num .count{width:40px;height:19px;padding:2px 4px;border:1px solid #ccc;font-size:12px;}
+        #tbody tr .countall{width: 100px;}
+        #tfoot tr td{border:1px solid black;text-align:center;padding:10px 0 ;}
+        .table_footer{width:1198px;height:60px;border:1px solid #ccc;line-height:58px;margin:20px 0 40px;}
+        .table_footer p{float: right;}
+        .table_footer p b{font-family: Arial;font-size: 18px;color: #94193f;}
+        .table_footer p .f1{font-size: 18px;color: #93193e;font-weight: bold}
+         #goodstotal{} 
+         #goodstotal{padding:0 10px;margin-right:20px;}  
+         .table_footer p a{background-color: #c41f3a;color: #fff; display:inline-block; font-size: 20px;
+            height:60px;line-height: 60px;text-align: center;width:110px;}
+
+        /**********************商品推荐*************************/
+        .shopcar{width: 100%;overflow: hidden;}
+        .shopcar .recom{height:180px;}
+        .shopcar .recom b{display:inline-block;width:120px;height:26px;color:#9A0000;text-align: center;position: relative;}
+        .shopcar .recom b .line{position:absolute;width:120px;border-top:2px solid #9A0000;top:26px;left:0}
+        .shopcar .recom p{border-top:2px solid #aaa;}
+        .shopcar .recom div{width: 1198px;height: 118px;border:1px solid #ccc;margin-top:20px;font-size:14px;color: #ccc;line-height: 118px;text-align: center;}
+        .emptycar{width: 100%;height:220px;padding:30px 0;margin:20px 0;text-align:center;}
+        .emptycar p{display:inline-block;width:400px;height:120px;font-size:18px;}
+        .emptycar p{display:inline-block;vertical-align:middle;}
+        .emptycar p a{display:inline-block;height:49px;width: 190px;background-color: #94193f; color: #fff;
+                    font-size: 18px;text-align: center;line-height:49px;margin-top:36px;}
+        /**********************底部*************************/
+        .footer { background-color: #fff; margin-top: 25px; overflow: hidden; }
+        .footer0 { border-bottom: 1px solid #d7d7d7; }
+        .footer_left { float: left; width:900px;}
+        .footer_help { padding-top: 40px; }
+        .usehelp {float: left; padding:0 50px;}
+        .usehelp h5 {color:#000;font-size:14px; font-weight:bold; height: 31px;}
+        .footer_right { float: left; }
+        .footer_right ul li { float: left; width: 100px; margin-right:40px;text-align: center; }
+        .footer_right ul li h2 { color: #333333; font-size: 14px; font-weight: 600; height: 31px; }
+        .footer_right ul li p { font-size: 14px; color: #666666; }
+        .footer_rel{ width:1200px; margin: 0 auto; text-align:center;}
+        .footer_nav { border-bottom: 4px solid #a90202; overflow: hidden; margin-top: 45px; }
+        .footer_nav ul li {display:inline-block;height:35px;line-height: 35px; padding-right:12px; *display:inline;*zoom:1;}
+        .footer_nav .line { padding-left: 14px; background-color: #fff; border-right: 1px solid #a9a9a9; }
+        .footer_bottom { background-color: #f3f3f3; }
+        .font_arial { font-family: Arial; color: #666666; }
+        .footer_bottom p{ padding-top: 10px; text-align: center; font-family: "宋体"; color: #7e7e7e; line-height:25px;}
+        .footer_bottom .footer_picture { padding: 30px 0 40px 0; }
+        .promptbox{position:fixed;width:200px;height:80px;opacity:0.9;background:#a21f25;border-radius:10px;color:#fff;text-align:center;z-index:9999;top:200px;left:0;right:0;margin:auto;display:none;}
+        .promptbox .tilte{width: 100%;height: 20px;font-size:16px;padding:10px 0}
+        .promptbox ul li{float:right;width:20%;text-align:center;background:#0b333f;margin:10px 30px;
+                    border-radius:4px;}
+        .promptbox ul li:hover{cursor:pointer}
+        .reduce,.add,.deleteone:hover{cursor:pointer}
+        .word{position:fixed;width:200px;height:30px;background:#94193f;left: 0;right: 0;top:100px;margin:auto;text-align: center;padding:10px;color:#fff;display:none;border-radius:10px;}
+    </style>
+</head>
+<body>
+<div id="header">
+
+    <div id="header_top">
+        <div class="w1200">
+            <div class="header_top_left">
+                <span>欢迎来到快乐购！</span>
+                <span><a href="login.html">[登录]</a></span>
+                <span><a href="register.html">[注册]</a></span>
+            </div>
+            <ul class="header_top_right">
+                <li><a href="">合作招商 |</a></li>
+                <li><a href="">订单查询 |</a></li>
+                <li><a href="">我的快乐购 |</a></li>
+                <li>☎400-705-1111 |</li>
+                <li><a href="">下载快乐购app |</a></li>
+                <li><a href="">客服中心∨</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="head_center">
+    <div class="w1200">
+        
+            <a href="index.html"><img id="brand" src="images/header1.jpg" alt=""></a>
+       
+        <div class="order">
+            <span style="color:red">◎<b>我的购物车</b></span>—————————<span>◎<b>确定订单信息</b></span>—————————<span>◎<b>成功提交订单</b></span>
+        </div>
+    </div>
+</div>
+<div class="shopcar">
+    <div class="w1200">
+        <div id="goodscar">
+            <table class="table goods_head">
+                <tr>
+                    <th style="width:155px;text-align:center">图片</th>
+                    <th style="width:400px;text-align:start" >商品</th>
+                    <th style="width:165px">单价(元)</th>
+                    <th style="width:200px">数量</th>
+                    <th style="width:150px">小计</th>
+                    <th style="width:130px">操作</th>
+                </tr>
+            </table>
+            <div class="table_mid">　
+                <input type="checkbox" checked>
+                <span class="a1">自营</span>
+                <span class="a2"><b>快乐购商城</b></span>
+                <span class="a3">在线支付满129.00包邮</span>
+            </div>
+            <table class="table">
+                <thead id="tdead">
+                <tr>
+                    <th style="width:155px"></th>
+                    <th style="width:400px" ></th>
+                    <th style="width:165px" ></th>
+                    <th style="width:200px" ></th>
+                    <th style="width:150px" ></th>
+                    <th style="width:130px" ></th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                    <div class="emptycar">
+                        <img src="images/emptycar.jpg">
+                        <p>
+                            <span>亲，您的购物车空空如也，快去抢购心仪商品吧~</span><br/>
+                            <a href="index.html">立即购买</a>
+                        </p>
+                    </div>
+                </tbody>
+            </table>
+            <div class="table_footer">　
+                <input type="checkbox" class="checkall_2">全选
+                <p>
+                    <span>已选商品 <b id="goodsnum">0</b> 件</span>　
+                    <span>商品总价（不含运费）</span>　
+                    <span class="f1">￥<b id="goodstotal">0.00</b></span>
+                    <a href="javascript:;"  id="settle">去结算</a>
+                </p>
+            </div>
+
+        </div>
+        <div class="recom">
+            <b>猜你喜欢 <i class="line"></i></b>
+            <p></p>
+            <div>暂无商品向您推荐</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer0 w1200">
+        <img src="images/footer_a1.jpg" />
+    </div>
+    <div class="footer_help w1200 ">
+        <div class="footer_left">
+            <dl class="usehelp">
+                <dt><h5>使用帮助</h5></dt>
+                <dd> 税费收取规则</dd>
+                <dd>新手指南</dd>
+                <dd>用户协议</dd>
+                <dd>常见问题</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt><h5>会员服务</h5></dt>
+                <dd>快乐币政策</dd>
+                <dd>会员等级</dd>
+                <dd>会员权益</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt><h5>支付方式</h5></dt>
+                <dd>快乐币支付</dd>
+                <dd>在线支付</dd>
+                <dd>货到付款</dd>
+                <dd>优惠券支付</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt>
+                <h5>配送方式</h5>
+                </dt>
+                <dd>包邮政策</dd>
+                <dd>配送说明</dd>
+                <dd>费用说明</dd>
+            </dl>
+            <dl class="usehelp">
+                <dt><h5>售后服务</h5></dt>
+                <dd>电子发票</dd>
+                <dd>售后咨询</dd>
+                <dd>退货政策</dd>
+                <dd>退货办理</dd>
+            </dl>
+
+        </div>
+        <div class="footer_right">
+            <ul>
+                <li>
+                    <h2>手机快乐购</h2>
+                    <img src="images/footer_a2.png" />
+                    <p>下载移动客户端</p>
+                </li>
+                <li>
+                    <h2>快乐购微信</h2>
+                    <img src="images/footer_a3.png" />
+                    <p>快乐购官方微信</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer_nav">
+        <div class="footer_rel">
+            <ul>
+                <p>
+                <li>关于快乐购<span class="line"></span></li>
+                <li>投资者关系<span class="line"></span></li>
+                <li>平台招商<span class="line"></span></li>
+                <li>自营品牌招商<span class="line"></span></li>
+                <li>联系我们<span class="line"></span></li>
+                <li>营业证照</li>
+                </p>
+            </ul>
+        </div>
+    </div>
+    <div class="footer_bottom">
+        <div class="w1200">
+            <p class="footer_hint">
+                <span class="font_arial">Copyright© 2006-2018 happigo. All Rights Reserved </span>
+                免费服务热线: 400-705-1111 | 固话也可拨打: 400-705-8800
+                <span class="font_arial">E-Mail: service@happigo.com</span><br />
+                湘ICP备17009657号信息网络传播视听节目许可证号：1810530 <img src="images/footer_a4.png" style="color: #434343" target="_blank">湘公网安备 43010502000556号
+            </p>
+            <p class="footer_picture">
+                <img src="images/footer_a5.png" style="height:40px;"></a>
+                <img src="images/footer_a6.jpg"/>
+                <img src="images/footer_a7.png" />
+                <img src="images/footer_a8.png" />
+            </p>
+        </div>
+    </div>
+</div>
+<div class="promptbox">
+    <div class="tilte">您确定要删除吗?</div>
+    <ul>
+        <li class="cancel">取消</li>
+        <li class="sure">确定</li>
+    </ul>
+</div>
+<div class="word"></div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/cookie.js"></script>
+<script>
+if(getCookie("loginUserName")){
+$(".header_top_left span").eq(1).html(getCookie("loginUserName")).css({"color":"#9A0000"});
+$(".header_top_left span").eq(2).html("[退出]").css({"color":"#9A0000"});
+}else {
+    window.location.href="login.html";
+}
+$(".header_top_left span").eq(2).on("click", function () {
+    setCookie("loginUserName","", -7);
+    setCookie("loginUserId","", -7);
+    window.location.href="login.html";
+    });
+//表格设计
+$("#settle").click(function () {
+    if($("#goodsnum").html()>0){
+       var  num=$("#goodsnum").html();
+        var total=$("#goodstotal").html();
+        $(this).attr("href","address.html?num="+num+"&total="+total)
+    }else {
+        $(".word").html("您还没选择商品").css({"display":"block"}).delay(1000).hide(0);
+    }
+});
+//获取商品数据
+var key="";
+var order="newprice";
+var desc="asc";
+var pagenum=0;
+var datanum=8;
+var userid=getCookie("loginUserId");
+
+function add(id,obj){//增加数量
+    var that=$(obj).parent().prevAll().eq(2).children(0);
+    addupdata(that);
+    let num=$(obj).prev().html()*1+1;
+    $(obj).prev().html(num);
+    let price=$(obj).parent().prev().html();
+    $(obj).parent().next().html((num*price).toFixed(2));
+    $.ajax({
+        type:"get",
+        url:"php/countupdate.php",
+        data:{id:id,num:num},
+        dataType:"json"})
+}
+function reduce(id,obj){//减少数量
+    var that=$(obj).parent().prevAll().eq(2).children(0);
+
+    let num=$(obj).next().html()*1-1;
+    if(num>=1){redupdata(that)}
+    if(num<2){ num=1; }
+    $(obj).next().html(num);
+    let price=$(obj).parent().prev().html();
+    $(obj).parent().next().html((num*price).toFixed(2));
+    $.ajax({
+        type:"get",
+        url:"php/countupdate.php",
+        data:{id:id,num:num},
+        dataType:"json"})
+}
+
+function deleteone(id,obj){//删除商品
+    $(".promptbox").css({"display":"block"});
+    $(".tilte").html("您确定要删除吗?");
+    $(".sure").click(function () {
+        $(obj).parent().remove();
+        $.ajax({
+            type:"get",
+            url:"php/goodscardelete.php",
+            data:{id:id},
+            dataType:"json"})
+                .then(function (result) {
+                    if(result.code==1){
+                        $(".promptbox").css({"display":"none"});
+                    }
+                })
+    });
+    $(".cancel").click(function () {
+        $(".promptbox").css({"display":"none"});
+    })
+}
+getData(key,userid,order,desc,pagenum,datanum);
+function getData(key,userid,order,desc,pagenum,datanum){
+     $.ajax({
+         type:"get",
+         url:"php/goodscarsearch.php",
+         data:{ userid:userid,
+                order:order,
+                desc:desc,
+                pagenum:pagenum,
+                datanum:datanum},
+         dataType:"json"}).then(function(list){
+
+         var html="";
+         if(list.length>0) {
+             for (var i = 0; i < list.length; i++) {
+                 var item = list[i];
+                 if (item["goodsname"].indexOf(key) != -1) {
+                     var id = item["id"];
+                     var goodsid = item["goodsid"];
+                     var goodsname = item["goodsname"];
+                     var newprice = item["newprice"];
+                     var goodsnum = item["goodsnum"];
+                     var goodsimg = item["goodsimg"];
+                     html += `<tr>
+                            <td class="checkbox">
+                                <input type="checkbox" class="checkone" onclick="checkone(${id},this)">
+                                <img src="image/${goodsimg}1.jpg">
+                            </td>
+                            <td><span class="imgname"><a href="goodsone.html?id$${goodsid}%src$${goodsimg}">${goodsname}</a></span></td>
+                            <td class="price">${(newprice * 1).toFixed(2)}</td>
+                            <td class="num"><span class="reduce" onclick="reduce(${id},this)">-</span><span class="count">${goodsnum}</span><span class="add" onclick="add(${id},this)">+</span></td>
+                            <td class="total">${(goodsnum * newprice).toFixed(2)}</td>
+                            <td class="deleteone" onclick="deleteone(${id},this)">删除</td>
+                        </tr>`;
+                 }
+             }
+             $(".emptycar").remove();
+             $("#tbody").html(html);
+         }
+//         else {
+//             html=` <div class="emptycar">
+//                        <img src="images/emptycar.jpg">
+//                        <p>
+//                            <span>亲，您的购物车空空如也，快去抢购心仪商品吧~</span><br/>
+//                            <a href="index.html">立即购买</a>
+//                        </p>
+//                    </div>`;
+//             $("#tbody").html(html);
+//         }
+     })
+}//函数结尾
+var object;
+
+function checkone(id,obj){
+    var count=0;
+    for (var i=0;i<$(".checkbox input").length;i++ ) {
+        var check = $(".checkbox input")[i];
+
+        if (check.checked) {
+            count++;
+        } else {
+            count--;
+        }
+
+        if (count ==$(".checkbox input").length) {
+            $(".checkall_2")[0].checked = true;
+        } else {
+            $(".checkall_2")[0].checked = false;
+        }
+
+    }
+
+    if (count ==$(".checkbox input").length) {
+        $(".checkall_2")[0].checked = true;
+    } else {
+        $(".checkall_2")[0].checked = false;
+    }
+    var flag=$(obj).is(':checked');
+    object=$(obj);
+    if(flag){
+        let num=$(obj).parent().nextAll().eq(2).children().eq(1).html();
+        let total=$(obj).parent().nextAll().eq(3).html();
+        $("#goodsnum").html($("#goodsnum").html()*1+num*1);
+        $("#goodstotal").html(($("#goodstotal").html()*1+total*1).toFixed(2))
+    }else {
+        let num=$(obj).parent().nextAll().eq(2).children().eq(1).html();
+        let total=$(obj).parent().nextAll().eq(3).html();
+        $("#goodsnum").html($("#goodsnum").html()*1-num*1);
+        $("#goodstotal").html(($("#goodstotal").html()*1-total*1).toFixed(2))
+    }
+}
+    function addupdata(obj){
+        var flag=$(obj).is(':checked');
+        if(flag){
+            let total=$(obj).parent().nextAll().eq(1).html();
+            $("#goodsnum").html($("#goodsnum").html()*1+1);
+            $("#goodstotal").html(($("#goodstotal").html()*1+total*1).toFixed(2))
+        }
+    }
+function redupdata(obj){
+    var flag=$(obj).is(':checked');
+    if(flag){
+        let total=$(obj).parent().nextAll().eq(1).html();
+        $("#goodsnum").html($("#goodsnum").html()*1-1);
+        $("#goodstotal").html(($("#goodstotal").html()*1-total*1).toFixed(2))
+    }
+}
+//全选事件
+
+
+
+$(".checkall_2").click(function(){
+    var length=$(".checkbox input").length;
+    var status=$(".checkall_2")[0].checked;
+    for(var i=0;i<length;i++){
+        if(!$(".checkbox input")[i].checked){
+            let num=$(".checkbox input").eq(i).parent().nextAll().eq(2).children().eq(1).html();
+            let total=$(".checkbox input").eq(i).parent().nextAll().eq(3).html();
+            $("#goodsnum").html($("#goodsnum").html()*1+num*1);
+            $("#goodstotal").html(($("#goodstotal").html()*1+total*1).toFixed(2))
+        }
+    }
+
+    for (var i=0;i<length;i++) {
+        var check = $(".checkbox input")[i];
+        check.checked = status;
+    }
+    if (!status){
+        $("#goodsnum").html(0);
+        $("#goodstotal").html("0.00")
+    }
+});
+
+for (var i=0;i<$(".checkbox input").length;i++ ) {
+    var check = $(".checkbox input")[i];
+
+        if (check.checked) {
+            count++;
+        } else {
+            count--;
+        }
+
+        if (count ==$(".checkbox input").length) {
+            $(".checkall_2")[0].checked = true;
+        } else {
+            $(".checkall_2")[0].checked = false;
+        }
+
+}
+</script>
+</html>

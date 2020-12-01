@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon"/>
+    <title>快乐购商城 - 用户注册</title>
+    <style>
+        /**********************初始化样式*************************/
+        body,html{width: 100%;}
+        body,html,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,p,table,tr,td,th,li{margin: 0;padding: 0;}
+        body{font-family: "微软雅黑";font-size: 14px;color: #555;}
+        li{list-style: none;}
+        img{border:0;vertical-align: middle;}
+        a{text-decoration:none;color:#666;}
+
+        .header_top{width:1000px;height:70px;padding:25px 0;overflow: hidden;margin:0 auto;line-height:70px;}
+        .header_top img{vertical-align:middle;}
+        #header{width: 100%;overflow: hidden;}
+        #content{width: 100%;overflow: hidden;}
+        .content_tip{width:960px;overflow: hidden;margin: 0 auto;padding-left:30px;}
+        .content_left{float:left;margin-top:30px;}
+        .content_right{width: 300px;height:500px;float:right;padding:0 40px}
+        .input_div{font-size:12px;margin:0 0 15px;color:#ccc;height:16px;}
+        #usertel,#userpwd,#userpwd2{width: 300px;height:34px;}
+        #telecode,#identcode{width: 160px;height: 34px;}
+        #setCode{width: 120px;height: 38px;border:1px solid #aaa;background: #fafafa;vertical-align: top;margin-left:14px;line-height:38px;text-align:center;}
+        .reglogin{width: 300px;height:30px;line-height:30px;margin-bottom:20px;}
+
+        #regbtn{width: 300px;height:40px;background:#990033;text-align: center;line-height: 40px;color:#fff;font-size:16px}
+        /********************************底部*************************************/
+        .footer_bottom {width: 100%;overflow: hidden; background-color: #fff;margin-top:60px; }
+        .w1200{ width:1000px; margin: 0 auto; text-align:center;}
+        .footer_hint { font-family: Arial; color: #666666; }
+        .footer_bottom p{ padding-top: 10px; text-align: center; font-family: "宋体"; color: #7e7e7e; line-height:25px;font-size:10px;}
+        .footer_bottom .footer_picture { padding: 30px 0 40px 0; }
+        .promptbox{position:fixed;width:300px;height:100px;opacity:0.9;background:#a21f25;
+            border-radius:10px;color:#fff;text-align: center;line-height:100px;display:none;
+            z-index:9999;font-size:30px;left: 0;right: 0;bottom: 0;top: 0;margin: auto}
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header_top">
+        <span><a href="index.html"><img  src="images/header1.jpg" alt=""></a></span>
+        <span><img src="images/header2.jpg" alt=""></span>
+    </div>
+</div>
+<div id="content">
+    <div class="content_tip">
+        <div class="content_left">
+            <img src="images/register_a1.jpg" alt="">
+        </div>
+        <div class="content_right">
+            <div class="reglogin"><span>用户注册</span><span>已有帐号<a href="login.html">在此登录</a></span></div>
+            <input id="usertel" placeholder="请输入11位手机号码">
+            <div class="input_div hint1">请输入11位手机号码</div>
+            <input id="telecode" placeholder="验证码"><button id="setCode">获取手机验证码</button>
+            <div class="input_div hint2">请输入短信验证码</div>
+            <input id="userpwd" placeholder="请输入密码">
+            <div class="input_div hint3">请输入密码,您的密码可能为字母.数字或符号的组合</div>
+            <input id="userpwd2" placeholder="请再次输入密码">
+            <div class="input_div hint4">请输入密码,您的密码可能为字母.数字或符号的组合</div>
+            <input id="identcode" placeholder="验证码">
+            <span id="randomcode" style="color:blue"></span>
+            <span id="changecode" style="color:red">换一张</span>
+            <div class="input_div hint5">请输入右侧验证码</div>
+            <a href="javascript:;"><div id="regbtn">立即注册</div></a>
+            <input checked type="checkbox" style="vertical-align: middle"/><span>注册即表示同意快乐购《用户服务协议》条款</span>
+        </div>
+    </div>
+</div>
+<div class="footer_bottom">
+    <div class="w1200">
+        <p>
+            <span class="footer_hint">Copyright© 2006-2016 happigo. All Rights Reserved </span>
+            免费服务热线: 400-705-1111 | 固话也可拨打: 400-705-8800
+            <span class="footer_hint">E-Mail: service@happigo.com</span><br />
+            湘ICP备17009657号 信息网络传播视听节目许可证号：1810530
+        </p>
+        <p class="footer_picture">
+                <img src="images/register_a2.png" />
+                <img src="images/register_a3.png" />
+        </p>
+    </div>
+</div>
+<div class="promptbox"></div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/cookie.js"></script>
+
+<script>
+   $("#header span").eq(0).css({"float":"left"});
+   $("#header span").eq(1).css({"float":"right"});
+   $(".content_right span").eq(0).css({"float":"left"});
+   $(".content_right span").eq(1).css({"float":"right"});
+   $(".reglogin span").eq(0).css({"font-size":"24px","color":"#9A0000"});
+   $(".reglogin span a").css({"color":"#9A0000"});
+   var telReg=/^1(3|5|6|7|8)[0-9]{9}$/;
+   var pwdReg=/^[0-9a-zA-Z_$]{6,16}$/;
+
+
+//发送手机验证码
+   var receiveCode;
+   $("#setCode").click(function () {
+       var phone = $("#usertel").val();
+       if (telReg.test(phone)) {
+       $.ajax({
+           type: "get",
+           url: "sendcode/sendcode.php",
+           data: {phone: phone},
+           dataType: "json"})
+           .then(function (result) {
+               if(result["code"]==1){
+                   downtime();
+               receiveCode = result["node"];
+
+               $(".hint1").html("");
+               $(".promptbox").html("发送成功").css({"display":"block"}).delay(1000).hide(0);
+               }else {
+                   $(".hint1").html("用户已存在").css({"color":"red"});
+                   $(".promptbox").html("用户已存在").css({"display":"block"}).delay(1000).hide(0);
+               }
+           });
+
+        }else {$(".hint1").html("手机号不合法").css({"color":"red"})}
+   });
+
+   $("#usertel").change(function () {
+           receiveCode="aaa";
+   });
+
+   //验证码
+   $("#randomcode").html(getCode());
+   //点击换验证码
+   $("#changecode").click(function () {$("#randomcode").html(getCode()); });
+
+   //点击注册事件
+    var flag1=false,flag2=false,flag3=false,flag4=false;
+
+  $("#regbtn").click(function () {
+
+      var phone=$("#usertel").val();//手机号
+      var userpwd=$("#userpwd").val();//密码
+
+      //判断手机号是否合法
+       if(telReg.test($("#usertel").val())){
+           flag1=true;$(".hint1").html("");}
+       else {flag1=false;
+           $(".hint1").html("手机号不合法").css({"color":"red"});}
+
+      //判断短信验证码是否校对
+       if($("#telecode").val()==receiveCode){
+           flag2=true;$(".hint2").html("");}
+       else {
+           flag2=false;
+           $(".hint2").html("短信验证码错误").css({"color":"red"});
+
+       }
+
+      //判断密码是否合法并且是否一样
+       if(pwdReg.test($("#userpwd").val())){
+
+           if($("#userpwd").val()==$("#userpwd2").val()){
+               flag3=true;$(".hint3").html("");$(".hint4").html("");
+           }else {flag3=false;
+               $(".hint4").html("两次密码不一样").css({"color":"red"});
+           }
+
+       }else {flag3=false;
+           $(".hint3").html("密码不合法").css({"color":"red"});}
+
+
+      //判断随机码是否校对
+       if($("#identcode").val().toLowerCase()==$("#randomcode").html().toLowerCase()){
+           flag4=true;$(".hint5").html("")}
+       else {flag4=false;
+           $(".hint5").html("验证码错误").css({"color":"red"});
+       }
+
+
+      //判断所有条件是否满足
+      if(flag1&&flag2&&flag3&&flag4){
+          $.ajax({
+              type:"get",
+              url:"sendcode/sendcode_3.php",
+              data:{phone:phone,userpwd:userpwd},
+              dataType:"json"})
+          .then(function (result) {
+              if(result["code"]==1){
+
+                  //设置cookie减少用户登录输入操作
+                  var userid=result["userid"];
+                  var phone=$("#usertel").val();
+                  setCookie("loginUserId", userid, 7);
+                  setCookie("loginUserName", phone, 7);
+
+                  //判断注册之前是否有跳转页面
+                  var url=getCookie("loginurl");
+                  if(url){
+                      window.location.href=url;
+                  }else{
+                      window.location.href="index.html";
+                  }
+
+              }else{
+                  $("#randomcode").html(getCode());
+                  $(".hint1").html("该手机号已注册").css({"color":"red"});
+                  $(".promptbox").html("该手机号已注册").css({"display":"block"}).delay(1000).hide(0);
+              }
+          });
+
+      }else {
+
+          $(".promptbox").html("注册失败!").css({"display":"block"}).delay(1000).hide(0);
+
+      }
+   });//点击注册按钮的结束
+
+
+
+
+   function getCode(){
+       var codelist=[];
+       for(var i=0;i<26;i++){
+           var  code=String.fromCharCode(65+i);
+           codelist.push(code);
+       }
+       for(var i=0;i<26;i++){
+           var code1=String.fromCharCode(97+i);
+
+           codelist.push(code1);
+       }
+       for(var i=0;i<10;i++){
+           code2=String.fromCharCode(48+i);
+           codelist.push(code2);
+       }
+       var codes="";
+       for(var i=0;i<4;i++){
+           var index=Math.round(Math.random()*(codelist.length-1));
+           var  code3=codelist[index];
+           codes+=code3;
+       }
+       return codes;
+   }
+
+   function downtime() {
+        $("#setCode").disabled = true;   //当点击后倒计时时候不能点击此按钮
+        var time = 60;   //倒计时5秒
+        var timer = setInterval(fn, 1000);    //设置定时器
+        function fn() {
+            time--;
+            if (time >= 0) {
+                $("#setCode").html(time + "s后重新发送");
+            } else {
+                $("#setCode").html("重新发送验证码");
+                $("#setCode").disabled = false;
+                clearTimeout(timer); //清除定时器
+                time = 60;   //设置循环重新开始条件
+            }
+        }
+    }
+</script>
+
+
+</html>
