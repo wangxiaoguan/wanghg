@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>无缝滚动</title>
@@ -51,46 +52,51 @@
             position: absolute;
             height: 50px;
             width: 50px;
-            background-color: #0b333f;
+            background-color: #000066;
             left: -50px;
             top: 75px;
             color: #FFFFFF;
             text-align: center;
             line-height: 50px;
+            cursor: pointer;
         }
 
         #warp #right {
             position: absolute;
             height: 50px;
             width: 50px;
-            background-color: #0b333f;
+            background-color: #000066;
             left: 800px;
             top: 75px;
             color: #FFFFFF;
             text-align: center;
             line-height: 50px;
+            cursor: pointer;
 
         }
     </style>
 </head>
+
 <body>
 
-<div id="warp">
-    <span id="left">左</span>
-    <span id="right">右</span>
-    <div id="inner">
-        <ul>
-            <li>浩</li>
-            <li>然</li>
-            <li>正</li>
-            <li>气</li>
-            <li>浩</li>
-            <li>然</li>
-            <li>正</li>
-            <li>气</li>
-        </ul>
+    <div id="warp">
+        <span id="left">左</span>
+        <span id="right">右</span>
+        <div id="inner">
+            <ul>
+                <li>
+                    <img src="http://wanghg.top/img/img1.jpg" />
+                </li>
+                <li><img src="http://wanghg.top/img/img2.jpg" /></li>
+                <li><img src="http://wanghg.top/img/img3.jpg" /></li>
+                <li><img src="http://wanghg.top/img/img4.jpg" /></li>
+                <li><img src="http://wanghg.top/img/img1.jpg" /></li>
+                <li><img src="http://wanghg.top/img/img2.jpg" /></li>
+                <li><img src="http://wanghg.top/img/img3.jpg" /></li>
+                <li><img src="http://wanghg.top/img/img4.jpg" /></li>
+            </ul>
+        </div>
     </div>
-</div>
 </body>
 <script>
     var inner = document.getElementById("inner");
@@ -117,4 +123,5 @@
     }
 
 </script>
+
 </html>
