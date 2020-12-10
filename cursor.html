@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #css4 {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 10px auto;
+            font-family: '楷体';
+        }
+
+        ul {
+            width: 900px;
+            height: 500px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            justify-content: space-around;
+        }
+
+        li {
+            width: 200px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid #999;
+            border-radius: 8px;
+            list-style: none;
+            font-size: 18px;
+        }
+
+        li:hover {
+            background: #f0f0f0;
+            opacity: 0.6;
+        }
+
+        li:nth-child(1):hover {
+            cursor: default
+        }
+
+        li:nth-child(2):hover {
+            cursor: auto
+        }
+
+        li:nth-child(3):hover {
+            cursor: crosshair
+        }
+
+        li:nth-child(4):hover {
+            cursor: pointer
+        }
+
+        li:nth-child(5):hover {
+            cursor: move
+        }
+
+        li:nth-child(6):hover {
+            cursor: e-resize
+        }
+
+        li:nth-child(7):hover {
+            cursor: ne-resize
+        }
+
+        li:nth-child(8):hover {
+            cursor: nw-resize
+        }
+
+        li:nth-child(9):hover {
+            cursor: n-resize
+        }
+
+        li:nth-child(10):hover {
+            cursor: se-resize
+        }
+
+        li:nth-child(11):hover {
+            cursor: sw-resize
+        }
+
+        li:nth-child(12):hover {
+            cursor: s-resize
+        }
+
+        li:nth-child(13):hover {
+            cursor: w-resize
+        }
+
+        li:nth-child(14):hover {
+            cursor: text
+        }
+
+        li:nth-child(15):hover {
+            cursor: wait
+        }
+
+        li:nth-child(16):hover {
+            cursor: help
+        }
+    </style>
+</head>
+
+<body>
+    <div class='app'>
+        <h1>鼠标样式</h1>
+        <ul>
+            <li>cursor : default</li>
+            <li>cursor : auto</li>
+            <li>cursor : crosshair</li>
+            <li>cursor : pointer</li>
+            <li>cursor : move</li>
+            <li>cursor : e-resize</li>
+            <li>cursor : ne-resize</li>
+            <li>cursor : nw-resize</li>
+            <li>cursor : n-resize</li>
+            <li>cursor : se-resize</li>
+            <li>cursor : sw-resize</li>
+            <li>cursor : s-resize</li>
+            <li>cursor : w-resize</li>
+            <li>cursor : text</li>
+            <li>cursor : wait</li>
+            <li>cursor : help</li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,79 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style type="text/css">
-		.box{
-			width: 100%;
-			height:100%;
-			padding:10px;
-			display:flex;
-			flex-wrap:wrap;
-			justify-content:flex-start;
-			align-items:center;
-		}
-		.b{
-			width:90px;
-			height:90px;
-			padding:10px;
-			margin: 10px;
-			background:#eee; 
-			border-radius:10px;
-		}
-		i{width: 20px;height: 20px;border-radius:10px;background:#797676;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            font-size: 14px;
+            list-style: none;
+            width: 36px;
+            height: 36px;
+            background: #f0f0f0;
+            border: 1px solid #333;
+            line-height: 36px;
+            text-align: center;
+        }
 
-		.a1{display: flex;justify-content:center;align-items:center;}
+        .app1 {
+            width: 100%;
+            height: 270px;
+            border: 1px solid #aaa;
+            margin-bottom: 10px;
+        }
 
-		.c{width:90px;height:45px;display:flex;}
-		
-		.a2-1{justify-content:flex-start;align-items:flex-start;}
-		.a2-2{justify-content:flex-end;align-items:flex-end;}
-		.d{width:90px;height:30px;display:flex;}
-		.a3-1{justify-content:flex-start;align-items:flex-start;}
-		.a3-2{justify-content:center;align-items:center;}
-		.a3-3{justify-content:flex-end;align-items:flex-end;}
-		.a4-1{justify-content:space-between;align-items:flex-start;}
-		.a4-2{justify-content:space-between;align-items:flex-end;}
-		.a5-1{justify-content:space-between;align-items:flex-start;}
-		.a5-2{justify-content:center;align-items:center;}
-		.a5-3{justify-content:space-between;align-items:flex-end;}
-		.a6-1{justify-content:space-between;align-items:flex-start;}
-		.a6-2{justify-content:space-between;align-items:center;}
-		.a6-3{justify-content:space-between;align-items:flex-end;}
-	</style>
+        .app2 {
+            width: 100%;
+            height: 380px;
+            border: 1px solid #aaa;
+            margin-bottom: 10px;
+        }
+
+        .app3 {
+            width: 100%;
+            height: 270px;
+            border: 1px solid #aaa;
+            margin-bottom: 10px;
+        }
+
+        .app4 {
+            width: 100%;
+            height: 270px;
+            border: 1px solid #aaa;
+            margin-bottom: 10px;
+        }
+
+
+        .left1 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .right1 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .right1>div {
+            width: 260px;
+            text-align: center;
+        }
+
+        ul {
+            border: 1px solid #a7a7a7;
+            padding: 0;
+            width: 180px;
+            height: 180px;
+        }
+
+        .left1>ul {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .left1-ul1 {
+            flex-direction: row;
+        }
+
+        .left1-ul2 {
+            flex-direction: row-reverse;
+        }
+
+        .left1-ul3 {
+            flex-direction: column;
+        }
+
+        .left1-ul4 {
+            flex-direction: column-reverse;
+        }
+
+        .left2 {
+            float: left;
+            width: 70%;
+        }
+
+        .left2>ul {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            border: 1px solid #b9b8b8;
+            margin: 10px;
+        }
+
+        .left2>ul>li {
+            width: 15%;
+            height: 58px;
+        }
+
+        .left2-ul1 {
+            justify-content: flex-start;
+        }
+
+        .left2-ul2 {
+            justify-content: flex-end;
+        }
+
+        .left2-ul3 {
+            justify-content: center;
+        }
+
+        .left2-ul4 {
+            justify-content: space-between;
+        }
+
+        .left2-ul5 {
+            justify-content: space-around;
+        }
+
+        .right2 {
+            width: 28%;
+            float: right;
+            line-height: 72px;
+        }
+
+        .left3 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .left3>ul {
+            display: flex;
+        }
+
+        .left3-ul1 {
+            align-items: flex-start;
+        }
+
+        .left3-ul2 {
+            align-items: center;
+        }
+
+        .left3-ul3 {
+            align-items: flex-end;
+        }
+
+        .right3 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .left4 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .left4>ul>li {
+            width: 46%;
+        }
+
+        .left4>ul {
+            display: flex;
+        }
+
+        .left4-ul1 {
+            flex-wrap: nowrap;
+        }
+
+        .left4-ul2 {
+            flex-wrap: wrap;
+        }
+
+        .left4-ul3 {
+            flex-wrap: wrap-reverse;
+        }
+
+        .right4 {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
 </head>
+
 <body>
-	<div class="box">
-		<div class="a1 b"><i></i></div>
-
-		<div class="a2 b">
-			<div class="a2-1 c"><i></i></div>
-			<div class="a2-2 c"><i></i></div>
-		</div>
-
-		<div class="a3 b">
-			<div class="a3-1 d"><i></i></div>
-			<div class="a3-2 d"><i></i></div>
-			<div class="a3-3 d"><i></i></div>
-		</div>
-
-		<div class="a4 b">
-			<div class="a4-1 c"><i></i><i></i></div>
-			<div class="a4-2 c"><i></i><i></i></div>
-		</div>
-
-		<div class="a5 b">
-			<div class="a5-1 d"><i></i><i></i></div>
-			<div class="a5-2 d"><i></i></div>
-			<div class="a5-3 d"><i></i><i></i></div>
-		</div>
-
-		<div class="a6 b">
-			<div class="a6-1 d"><i></i><i></i></div>
-			<div class="a6-2 d"><i></i><i></i></div>
-			<div class="a6-3 d"><i></i><i></i></div>
-		</div>
-	</div>
+    <div class='box'>
+        <div class='app1'>
+            <div class='left1'>
+                <ul class='left1-ul1'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left1-ul2'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left1-ul3'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left1-ul4'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+            <div class='right right1'>
+                <div>flex-direction:row</div>
+                <div>flex-direction:row-reverse</div>
+                <div>flex-direction:column</div>
+                <div>flex-direction:column-reverse</div>
+            </div>
+        </div>
+        <div class='app2'>
+            <div class='left2'>
+                <ul class='left2-ul1'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left2-ul2'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left2-ul3'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left2-ul4'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left2-ul5'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+            <div class='right right2'>
+                <div>justify-content:flex-start</div>
+                <div>justify-content:flex-end</div>
+                <div>justify-content:center</div>
+                <div>justify-content:space-between</div>
+                <div>justify-content: space-around</div>
+            </div>
+        </div>
+        <div class='app3'>
+            <div class='left3'>
+                <ul class='left3-ul1'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left3-ul2'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left3-ul3'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+            <div class='right right3'>
+                <div>align-items:flex-start</div>
+                <div>align-items:center</div>
+                <div>align-items:flex-end</div>
+            </div>
+        </div>
+        <div class='app4'>
+            <div class='left4'>
+                <ul class='left4-ul1'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left4-ul2'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <ul class='left4-ul3'>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+            <div class='right right4'>
+                <div>flex-wrap:nowrap(默认)</div>
+                <div>flex-wrap:wrap</div>
+                <div>flex-wrap:wrap-reverse</div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

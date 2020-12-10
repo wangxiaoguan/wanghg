@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <script src="http://wanghg.top/js/prism.js"></script>
+    <title>transform</title>
+    <style>
+        .app {
+            width: calc(100% - 30px);
+            height: 300px;
+            border: 1px solid #555555;
+            padding: 10px;
+            margin: 0;
+            margin-top: 15px;
+        }
+
+        .box {
+            float: left;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .left0,
+        .left1 {
+            float: left;
+            width: 150px;
+            height: 150px;
+            margin: 75px;
+
+            background: #000066;
+            transition: 1s;
+            transform: perspective(500px) translateZ(0px)
+        }
+
+        .left0:hover {
+            /* width: 260px */
+            transform: perspective(500px) translateZ(200px)
+        }
+
+        .left1:hover {
+            /* width: 260px */
+            transform: perspective(500px) translateZ(-600px)
+        }
+
+        .left2 {
+            /* float: left; */
+            width: 150px;
+            height: 150px;
+            margin: 75px;
+            background: #000066;
+            transition: 2s;
+
+        }
+
+        .left2_left:hover {
+            transform: scaleX(-2);
+        }
+
+        .left2_right:hover {
+            transform: scaleY(2);
+        }
+
+        /*缩放*/
+        .left3 {
+            float: left;
+            width: 150px;
+            height: 150px;
+            background: #000066;
+            transition: 2s;
+            margin: 75px 0;
+
+        }
+
+        .left3_right {
+            float: right;
+        }
+
+        .left3_left:hover {
+            transform: translateX(150px)
+        }
+
+        .left3_right:hover {
+            transform: translateX(-150px)
+        }
+
+        /*向右平移*/
+        .left4 {
+            float: left;
+            width: 150px;
+            height: 150px;
+            background: #000066;
+            transition: 2s;
+            margin: 0 75px;
+
+        }
+
+        .left4_right {
+            margin-top: 150px;
+        }
+
+        .left4_left:hover {
+            transform: translateY(150px)
+        }
+
+        .left4_right:hover {
+            transform: translateY(-150px)
+        }
+
+        /*向下平移*/
+        .left5 {
+            float: left;
+            width: 150px;
+            height: 150px;
+            margin: 75px;
+            background: #000066;
+            transition: 1s;
+
+        }
+
+        .left5_left:hover {
+            transform: rotate(45deg);
+        }
+
+        .left5_right:hover {
+            transform: rotate(-45deg);
+        }
+
+        .left6 {
+            float: left;
+            width: 150px;
+            height: 150px;
+            margin: 75px;
+            background: #000066;
+            transition: 1s;
+
+        }
+
+        .left6_left:hover {
+            transform: skew(45deg);
+        }
+
+        .left6_right:hover {
+            transform: skew(-45deg);
+        }
+
+
+
+        .right {
+            float: right;
+            width: calc(100% - 610px);
+            height: 260px;
+
+        }
+
+        pre {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="box">
+            <div class='left0'></div>
+        </div>
+        <div class="box">
+            <div class='left1'></div>
+        </div>
+
+        <div class='right'>
+            <pre>
+<code class="language-css">
+该translateZ() CSS函数沿着z轴在三维空间中重新定位元素，即从观察者的角度而言更近或者更远。
+它指定元素向内或向外移动的距离。正值将元素移向观察者，负值则远离。
+
+transform: perspective(500px) translateZ(200px); /*移向观察者*/
+transform: perspective(500px) translateZ(-200px);/*远离观察者*/
+</code></pre>
+        </div>
+    </div>
+    <div class="app">
+        <div class="box">
+            <div class='left2 left2_left'></div>
+        </div>
+        <div class="box">
+            <div class='left2 left2_right'></div>
+        </div>
+        <div class='right'>
+            <pre>
+<code class="language-css">
+指的是“缩小”和“放大”。将元素根据中心原点进行缩放。
+（1）scaleX(x)：元素仅水平方向缩放（X轴缩放）；
+（2）scaleY(y)：元素仅垂直方向缩放（Y轴缩放）；
+（3）scale(x,y)：元素水平方向和垂直方向同时缩放（X轴和Y轴同时缩放）；
+transform:scaleX(-2); /*缩小*/
+transform:scaleY(2);  /*放大*/
+</code></pre>
+        </div>
+    </div>
+    <div class="app">
+        <div class="box">
+            <div class='left3 left3_left'></div>
+        </div>
+        <div class="box">
+            <div class='left3 left3_right'></div>
+        </div>
+        <div class='right'>
+            <pre>
+<code class="language-css">
+表示在二维平面上水平方向移动元素
+transform:translateX(150px); /*向右平移*/
+transform:translateX(-150px);/*向左平移*/
+</code></pre>
+        </div>
+    </div>
+    <div class="app">
+        <div class="box">
+            <div class='left4 left4_left'></div>
+        </div>
+        <div class="box">
+            <div class='left4 left4_right'></div>
+        </div>
+        <div class='right'>
+            <pre>
+<code class="language-css">
+在二维平面上垂直方向移动元素
+transform:translateY(150px);  /*向小平移*/
+transform:translateY(-150px); /*向上平移*/
+</code></pre>
+        </div>
+    </div>
+    <div class="app">
+        <div class="box">
+            <div class='left5 left5_left'></div>
+        </div>
+        <div class="box">
+            <div class='left5 left5_right'></div>
+        </div>
+        <div class='right'>
+            <pre>
+<code class="language-css">
+旋转该元素，配合着transform-origin属性，transform-origin 是设置旋转点的。
+(没有设置transform-origin 属性也可以，只不过是根据该元素的中心点旋转，也就是center center)
+rotate,rotateX,rotateY,rotateZ,
+rotate3d(0px 0px 0px 45deg)
+transform-origin:0px 0px
+
+transform:rotate(45deg);  /*顺时针旋转*/
+transform:rotate(-45deg); /*逆时针旋转*/
+</code></pre>
+        </div>
+    </div>
+    <div class="app">
+        <div class="box">
+            <div class='left6 left6_left'></div>
+        </div>
+        <div class="box">
+            <div class='left6 left6_right'></div>
+        </div>
+        <div class='right'>
+            <pre>
+<code class="language-css">
+元素在二维平面上的倾斜转换剪切映射(横切)，它在水平和垂直方向上将单元内的每个点扭曲一定的角度。
+每个点的坐标根据指定的角度以及到原点的距离，进行成比例的值调整；
+因此，一个点离原点越远，其增加的值就越大。
+skew(0);skew(15deg, 15deg);skew(-0.06turn, 18deg);skew(.312rad);
+skew(ax, ay)
+ax 表示用于沿横坐标扭曲元素的角度。
+ay表示用于沿纵坐标扭曲元素的角度。如果未定义，则其默认值为0，导致纯水平倾斜。
+transform:skew(45deg); /*向左倾斜*/
+transform:skew(-45deg);/*向右倾斜*/
+</code></pre>
+        </div>
+    </div>
+</body>
+
+</html>

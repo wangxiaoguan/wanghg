@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style type="text/css">
+		p {
+			padding: 0;
+			margin: 0;
+		}
 
-		p{padding: 0;margin: 0;}
-		li{list-style: none;}
-		label{
-			display:block;
+		li {
+			list-style: none;
+		}
+
+		label {
+			display: block;
 			cursor: pointer;
 		}
-		.app{
-			transition:0.5s;
-			height:80px;
+
+		.app {
+			transition: 0.5s;
+			height: 80px;
 			background: #f6f6f6;
-			overflow:hidden;
+			overflow: hidden;
 		}
-		input:checked+label+div{height: 0;}
+
+		input:checked~.app {
+			height: 0;
+		}
 	</style>
 </head>
+
 <body>
 	<ul>
 		<li>
-			<input type="checkbox"  id="a1" hidden>
+			<input type="checkbox" id="a1" hidden>
 			<label for="a1">OAsystem</label>
 			<div class="app">
 				<p>system</p>
@@ -31,7 +43,9 @@
 				<p>system</p>
 				<p>system</p>
 			</div>
+
 		</li>
 	</ul>
 </body>
+
 </html>

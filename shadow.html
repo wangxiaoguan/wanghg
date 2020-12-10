@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app {
+            width: calc(100% - 20px);
+            height: 230px;
+            border: 1px solid #aaa;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: #e0e0e0;
+        }
+
+        .title {
+            display: flex;
+        }
+
+        .title>h2 {
+            width: 560px;
+        }
+
+        .title>h3 {
+            color: #ff0909;
+        }
+
+        input {
+            width: 200px;
+        }
+
+        output {
+            width: 36px;
+            display: inline-block;
+        }
+
+        .leftbox {
+            display: flex;
+            height: 33px;
+            line-height: 33px;
+        }
+
+
+
+        .left {
+            float: left;
+            width: 340px;
+            height: 100px;
+            margin-right: 220px;
+
+        }
+
+        .leftbox {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .right {
+            float: left;
+            width: 300px;
+            height: 100px;
+
+        }
+
+        .rightbox {
+            width: 300px;
+            height: 100px;
+            background: #fff;
+        }
+
+        .box3 {
+            font-size: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='css29'>
+        <div class="app">
+            <div class="title">
+                <h2>外部阴影:box-shadow:Xpx Ypx Rpx #000</h2>
+                <h3>box-shadow:<span class="x1">0</span>px <span class="x2">0</span>px <span class="x3">0</span>px #000
+                </h3>
+            </div>
+
+            <div class='left'>
+                <div class='leftbox'>
+                    <span>水平位移X:</span>
+                    <span>
+                        <form oninput="x1.value=parseInt(a1.value)">
+                            <input type="range" oninput="change(this,'1')" max="20" min="-20" id="a1" value="0">
+                            <output name="x1" for="a1">0</output>
+                        </form>
+                    </span>
+                </div>
+                <div class='leftbox'>
+                    <span>垂直位移Y:</span>
+                    <span>
+                        <form oninput="x2.value=parseInt(a2.value)">
+                            <input type="range" oninput="change(this,'2')" max="20" min="-20" id="a2" value="0">
+                            <output name="x2" for="a2">0</output>
+                        </form>
+                    </span>
+                </div>
+                <div class='leftbox'>
+                    <span>模糊半径R:</span>
+                    <span>
+                        <form oninput="x3.value=parseInt(a3.value)">
+                            <input type="range" oninput="change(this,'3')" max="40" min="0" id="a3" value="0">
+                            <output name="x3" for="a3">0</output>
+                        </form>
+                    </span>
+                </div>
+            </div>
+            <div class='right'>
+                <div class='rightbox box1'></div>
+            </div>
+
+        </div>
+        <div class="app">
+            <div class="title">
+                <h2>内部阴影:box-shadow:inset Xpx Ypx Rpx #000</h2>
+                <h3>box-shadow:inset <span class="x4">0</span>px <span class="x5">0</span>px <span class="x6">0</span>px
+                    #000</h3>
+            </div>
+            <div class='left'>
+                <div class='leftbox'>
+                    <span>水平位移X:</span>
+                    <span>
+                        <form oninput="x4.value=parseInt(a4.value)">
+                            <input type="range" oninput="change(this,'4')" max="20" min="-20" id="a4" value="0">
+                            <output name="x4" for="a4">0</output>
+                        </form>
+                    </span>
+                </div>
+                <div class='leftbox'>
+                    <span>垂直位移Y:</span>
+                    <span>
+                        <form oninput="x5.value=parseInt(a5.value)">
+                            <input type="range" oninput="change(this,'5')" max="20" min="-20" id="a5" value="0">
+                            <output name="x5" for="a5">0</output>
+                        </form>
+                    </span>
+                </div>
+                <div class='leftbox'>
+                    <span>模糊半径R:</span>
+                    <span>
+                        <form oninput="x6.value=parseInt(a6.value)">
+                            <input type="range" oninput="change(this,'6')" max="40" min="0" id="a6" value="0">
+                            <output name="x6" for="a6">0</output>
+                        </form>
+                    </span>
+                </div>
+            </div>
+            <div class='right'>
+                <div class='rightbox box2'></div>
+            </div>
+        </div>
+        <div class="app">
+            <div class="title">
+                <h2>文字阴影:text-shadow:Xpx Ypx Rpx #000</h2>
+                <h3>text-shadow:<span class="x7">0</span>px <span class="x8">0</span>px <span class="x9">0</span>px #000
+                </h3>
+            </div>
+
+            <div class='left'>
+                <div class='leftbox'>
+                    <span>水平位移X:</span>
+                    <span>
+                        <form oninput="x7.value=parseInt(a7.value)">
+                            <input type="range" oninput="change(this,'7')" max="20" min="-20" id="a7" value="0">
+                            <output name="x7" for="a7">0</output>
+                        </form>
+                    </span>
+                </div>
+                <div class='leftbox'>
+                    <span>垂直位移Y:</span>
+                    <span>
+                        <form oninput="x8.value=parseInt(a8.value)">
+                            <input type="range" oninput="change(this,'8')" max="20" min="-20" id="a8" value="0">
+                            <output name="x8" for="a8">0</output>
+                        </form>
+                    </span>
+                </div>
+                <div class='leftbox'>
+                    <span>模糊半径R:</span>
+                    <span>
+                        <form oninput="x9.value=parseInt(a9.value)">
+                            <input type="range" oninput="change(this,'9')" max="40" min="0" id="a9" value="0">
+                            <output name="x9" for="a9">0</output>
+                        </form>
+                    </span>
+                </div>
+            </div>
+            <div class='right'>
+                <div class='box3'>天道酬勤</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://wanghg.top/js/jquery.js"></script>
+<script>
+    var x1 = 0,
+        x2 = 0,
+        x3 = 0,
+        x4 = 0,
+        x5 = 0,
+        x6 = 0,
+        x7 = 0,
+        x8 = 0,
+        x9 = 0;
+    function change(e, i) {
+        const num = Number(e.value)
+        switch (i) {
+            case '1':
+                console.log('111111')
+                x1 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box1').css({ 'box-shadow': `${x1}px ${x2}px ${x3}px #000` })
+                break;
+            case '2':
+                console.log('222222')
+                x2 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box1').css({ 'box-shadow': `${x1}px ${x2}px ${x3}px #000` })
+                break;
+            case '3':
+                console.log('333333')
+                x3 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box1').css({ 'box-shadow': `${x1}px ${x2}px ${x3}px #000` })
+                break;
+            case '4':
+                x4 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box2').css({ 'box-shadow': `inset ${x4}px ${x5}px ${x6}px #000` })
+                break;
+            case '5':
+                x5 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box2').css({ 'box-shadow': `inset ${x4}px ${x5}px ${x6}px #000` })
+                break;
+            case '6':
+                x6 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box2').css({ 'box-shadow': `inset ${x4}px ${x5}px ${x6}px #000` })
+                break;
+            case '7':
+                x7 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box3').css({ 'text-shadow': `${x7}px ${x8}px ${x9}px #000` })
+                break;
+            case '8':
+                x8 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box3').css({ 'text-shadow': `${x7}px ${x8}px ${x9}px #000` })
+                break;
+            case '9':
+                x9 = e.value
+                $(`.x${i}`).text(e.value)
+                $('.box3').css({ 'text-shadow': `${x7}px ${x8}px ${x9}px #000` })
+                break;
+            default:
+                break;
+        }
+
+    }
+</script>
+
+</html>
