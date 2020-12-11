@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <script src="http://wanghg.top/js/prism.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+<code class="language-javascript">
+写defaultProps有两种方法
+1 在组件内部的使用static ,ES6写法(内部优先级大于外部优先级)
+    static defaultProps = {
+        name:　...
+    };
+2 在组件外部ES5,ES6都适用
+    App.defaultProps =  {
+        name: ...
+    };
+</code>
+</pre>
+    <pre>
+<code class="language-javascript">
+写state两种方法,都在组件内部
+1 constructor(props){//第一种优先级大于第二种
+    super(props);
+    this.state={
+        name: ...
+    }
+}
+2 state = { name: ... }
+</code>
+</pre>
+</body>
+
+</html>

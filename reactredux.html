@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <script src="http://wanghg.top/js/prism.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>React-Redux的使用步骤</h3>
+    <pre>
+<code class="language-javascript"> 
+type.js
+
+export const ArticleData = 'ArticleData';
+export const FileData = 'FileData';
+export const FormData ='FormData';
+</code>
+</pre>
+    <pre>
+<code class="language-javascript"> 
+action.js
+
+import {ArticleData,FileData,FormData} from './type.js';
+export function setArticleData(n) {return { type: ArticleData, payload: n }}
+export function setFileData(n) {return { type: FileData, payload: n }}
+export function setFormData(n) {return { type: FormData, payload: n }}
+</code>
+</pre>
+    <pre>
+<code class="language-javascript"> 
+reducer.js
+
+import { combineReducers } from 'redux';
+import {ArticleData,ActivityData,FormData} from './type.js';
+const articleData = (state = {}, action = {}) => {
+    switch (action.type) {
+        case ArticleData:
+            return action.payload;
+        default:
+            return state;
+    }
+};
+const activityData = (state = {}, action = {}) => {
+    switch (action.type) {
+        case ActivityData:
+            return action.payload;
+        default:
+            return state;
+    }
+};
+const formData = (state = {}, action = {}) => {
+    switch (action.type) {
+        case FormData:
+            return action.payload;
+        default:
+            return state;
+    }
+};
+export default combineReducers({
+    articleData,
+    activityData,
+    formData,
+});
+</code>
+</pre>
+    <pre>
+<code class="language-javascript"> 
+store.js
+
+import {createStore} 'redux';
+import reducer from './reducer.js';
+export default createStore(
+    reducer
+);
+</code>
+</pre>
+    <pre>
+<code class="language-javascript"> 
+使用store
+
+import store from './store.js'
+import {setArticleData,setFileData,setFormData} from './action.js';
+
+获取store状态数据
+store.getState()
+
+修改store状态数据
+store.dispatch(setArticleData(data1))
+store.dispatch(setFileData(data2))
+store.dispatch(setFormData(data3))
+
+监听函数
+store.subscribe(Func) 
+</code>
+</pre>
+</body>
+
+</html>

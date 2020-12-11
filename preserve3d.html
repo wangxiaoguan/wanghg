@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style type="text/css">
-		body{perspective:18000px;}
-		.show{
-			transform-style:preserve-3d;
-			perspective:10000px;
-			transform:rotateX(0deg);
+		body {
+			perspective: 1000px;
+			padding: 0;
 		}
-		.box{
-			width:160px;
-			height:300px;
-			transform-style:preserve-3d;
-			position:relative;
-			margin:80px auto;
-			animation:rotate 50s linear infinite;
+
+		.show {
+			transform-style: preserve-3d;
+			perspective: 1000px;
+			transform: rotateX(-6deg);
 		}
-		.box div{
-			width:300px;
-			height:500px;
-			position:absolute;
+
+		.box {
+			width: 30px;
+			height: 50px;
+			transform-style: preserve-3d;
+			position: relative;
+			margin: 80px auto;
+			animation: rotate 10s linear infinite;
+		}
+
+		.box div {
+			width: 30px;
+			height: 50px;
+			position: absolute;
 			left: 0;
 			top: 0;
-			background:#ccc;
+			background: #ccc;
 
 		}
 
 
-		.box:hover{transform:rotateY(360deg);}
-		@keyframes rotate{
-	      	0%{transform:rotateY(0deg);}
-	      	100%{transform:rotateY(360deg);}
-	  	}
+		.box:hover {
+			transform: rotateY(360deg);
+		}
 
+		@keyframes rotate {
+			0% {
+				transform: rotateY(0deg);
+			}
+
+			100% {
+				transform: rotateY(360deg);
+			}
+		}
 	</style>
 
 </head>
+
 <body>
 	<div class="show">
 		<div class="box">
@@ -46,17 +61,18 @@
 </body>
 <script src="js/jquery.js"></script>
 <script>
-	for(let i=0;i<50;i++){
+	for (let i = 0; i < 50; i++) {
 		let el = `<div class="common">${i}</div>`;
 		$('.box').append(el)
-		
+
 	}
-	$('.common').each(e=>{
-		
-			let style = `rotateY(${7.2*e}deg) translateZ(3000px)`
-			
-			
-			$('.common').eq(e).css({'transform':style})
+	$('.common').each(e => {
+
+		let style = `rotateY(${7.2 * e}deg) translateZ(300px)`
+
+
+		$('.common').eq(e).css({ 'transform': style })
 	})
 </script>
+
 </html>

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
     <title>Document</title>
 </head>
+
 <body>
     <div>
-<pre>
+        <pre>
 <code class="language-javascript">
 async的基本用法
 1. async函数的基本形式
 
-复制代码
 //函数声明
 async function foo() {}
 
@@ -40,7 +41,7 @@ storage.getAvatar('jake').then(…);
 
 //箭头函数
 const foo = async () => {};
-复制代码
+
 2. async函数的返回值总是一个Promise
 
 无论async函数有无await操作，其总是返回一个Promise。
@@ -53,7 +54,7 @@ async总是返回Promise，因此，其后面可以直接调用then方法，
 函数内部return返回的值，会成为then回调函数的参数
 函数内部抛出的错误，会被then的第二个函数或catch方法捕获到
 
-复制代码
+
 //正常返回值
 async function f(){
     retrun 'hello world';
@@ -70,7 +71,7 @@ f().then(
     v => console.log(v),
     e => console.log(e) //Error: 出错了
 )
-复制代码
+
 3. await操作符的值
 
 [rv] = await expression（expression可以是任何值，通常是一个promise）
@@ -81,7 +82,7 @@ await操作只能用在async函数中，否则会报错。
 
 4. async就是generator和promise的语法糖
 
-复制代码
+
 //generator写法
 var gen = function* () {
     var f1 = yield readFile('/etc/fstab');
@@ -97,7 +98,7 @@ var asyncReadFile = async function () {
     console.log(f1.toString());
     console.log(f2.toString());
 };
-复制代码
+
 async就是将 generator的 * 换成 async，将 yield 换成 await。
 
 5. async对generator的改进
@@ -142,7 +143,7 @@ Promise.all这种写法有缺陷，一个调用报错，会终止，这个不太
 
 1. 不能再内部非async function中使用await
 
-复制代码
+
 async function dbFuc(db) {
     let docs = [{}, {}, {}];
     // 报错，forEach的function是非async，不能使用await
@@ -159,10 +160,10 @@ function dbFuc(db) {
     await db.post(doc);
     });
 }
-复制代码
+
 2. 循环调用await可以使用for循环或for of循环
 
-复制代码
+
 //for of
 async function dbFuc(db) {
     let docs = [{}, {}, {}];
@@ -209,12 +210,12 @@ async function test() {
 }
 
 test();
-复制代码
+
 7. async的错误处理
 
 使用try...catch进行包裹，例如：
 
-复制代码
+
 async function myFunction() {
     try {
         await somethingThatReturnsAPromise();
@@ -222,10 +223,10 @@ async function myFunction() {
         console.log(err);
     }
 }
-复制代码
+
 如果仅仅对一部分错误进行处理或者忽略，可以局部的进行包裹，或者对单独的promise进行catch，例如：
 
-复制代码
+
 async function myFunction() {
     await somethingThatReturnsAPromise().catch((err)=> {
             console.log(err);
@@ -239,10 +240,10 @@ async function myFunction() {
     catch(e){}
     await somethingElse();
 }
-复制代码
+
 Promise的错误处理，推荐用async + await来写:
 
-复制代码
+
 // 存值
 createData(title, successBack, errorBack) {
     // 使用key保存数据
@@ -251,10 +252,10 @@ createData(title, successBack, errorBack) {
         data: 'true',
     }).then(successBack(), errorBack());
 }
-复制代码
+
 改写为
 
-复制代码
+
 //存值
 async createData1(title, successBack, errorBack) {
     try {
@@ -268,14 +269,14 @@ async createData1(title, successBack, errorBack) {
         errorBack()
     }
 }
-复制代码
+
 形式上更加清晰一些。
 
 8. async函数的实现原理
 
 async函数就是将执行器和Generator做为一个整体返回。
 
-复制代码
+
 async function fn(){}
 //等同于
 function fn(){
@@ -283,10 +284,10 @@ function fn(){
 
     })
 }
-复制代码
+
 spawn的实现
 
-复制代码
+
 function spawn(genF) {
     /****
     * 返回的是一个promise
@@ -326,51 +327,52 @@ function spawn(genF) {
 <script src="http://wanghg.top/js/prism.js"></script>
 <script>
     // async function timeout() {
-//     return 'hello world'
-// }
-// timeout().then(data=>{
-//     console.log(data)
-// });
-// console.log(timeout())
-// console.log('虽然在后面，但是我先执行');
-// async function timeout(flag) {
-//     if (flag) {
-//         return 'hello world'
-//     } else {
-//         throw 'my god, failure'
-//     }
-// }
-// console.log(timeout(true))  // 调用Promise.resolve() 返回promise 对象。
-// console.log(timeout(false)); // 调用Promise.reject() 返回promise 对象。
-// timeout(false).catch(data=>{
-//     console.log(data)
-// })
+    //     return 'hello world'
+    // }
+    // timeout().then(data=>{
+    //     console.log(data)
+    // });
+    // console.log(timeout())
+    // console.log('虽然在后面，但是我先执行');
+    // async function timeout(flag) {
+    //     if (flag) {
+    //         return 'hello world'
+    //     } else {
+    //         throw 'my god, failure'
+    //     }
+    // }
+    // console.log(timeout(true))  // 调用Promise.resolve() 返回promise 对象。
+    // console.log(timeout(false)); // 调用Promise.reject() 返回promise 对象。
+    // timeout(false).catch(data=>{
+    //     console.log(data)
+    // })
 
-function doubleAfter2seconds(num) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(2 * num)
-        }, 500);
-    } )
-}
+    function doubleAfter2seconds(num) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(2 * num)
+            }, 500);
+        })
+    }
 
-async function testResult() {
-    let result = await doubleAfter2seconds(30);
-    let result2 = doubleAfter2seconds(30);
-    console.log(result);
-    console.log(result2);
-}
+    async function testResult() {
+        let result = await doubleAfter2seconds(30);
+        let result2 = doubleAfter2seconds(30);
+        console.log(result);
+        console.log(result2);
+    }
 
-async function testResult2() {
-    let first = await doubleAfter2seconds(30);
-    console.log('11111')
-    let second = await doubleAfter2seconds(50);
-    console.log('22222')
-    let third = await doubleAfter2seconds(30);
-    console.log('33333')
-    console.log(first , second , third);
-}
-testResult();
-testResult2()
+    async function testResult2() {
+        let first = await doubleAfter2seconds(30);
+        console.log('11111')
+        let second = await doubleAfter2seconds(50);
+        console.log('22222')
+        let third = await doubleAfter2seconds(30);
+        console.log('33333')
+        console.log(first, second, third);
+    }
+    testResult();
+    testResult2()
 </script>
+
 </html>

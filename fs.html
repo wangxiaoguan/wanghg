@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <script src="http://wanghg.top/js/prism.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+<code class="language-javascript">
+var fs=require("fs");
+
+fs.readFile("app.txt","utf-8",(err,data)=>{         // readFile 读取文件内容
+    if(err)throw err;
+    console.log(data);
+})
+
+fs.writeFile("app.txt","天道酬勤","utf-8",err=>{    // writeFile 写入数据（覆盖）
+    if(err)throw err;
+    console.log("写入数据成功");
+})
+
+fs.appendFile("app.txt","天道酬勤","utf-8",err=>{   // appendFile 写入数据（追加）
+    if(err) throw err;
+    console.log("写入数据成功");
+})
+
+fs.mkdir("app",err=>{                               // mkdir 创建文件夹
+    if(err) throw err;
+    console.log("文件夹创建成功");
+})
+
+fs.stat("app",(err,msg)=>{                          // stat 查看文件信息
+    if(err) throw err;
+    console.log(msg);
+})
+
+fs.readdir("app",(err,data)=>{                      // readdir 列出目录的东西
+    if(err) throw err;
+    console.log(data); 
+})
+
+fs.rename("app.txt","home.txt",err=>{               // rename  重命名目录或文件
+    if(err) throw err;
+    console.log("文件改名成功");
+})
+
+fs.unlink('app.txt',err=>{                          // unlink  删除文件
+    if(err) throw err;
+    console.log("删除文件成功");
+})
+
+fs.rmdir("app",err=>{                               // rmdir 删除文件夹
+    if(err) throw err;
+    console.log("删除文件夹成功");
+})
+</code>
+</pre>
+</body>
+
+</html>
