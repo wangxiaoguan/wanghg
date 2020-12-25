@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>antd</title>
+  <script language=javascript>
+    var t1 = new Date().getTime();
+  </script>
+  <link rel="stylesheet" type="text/css" href="http://wanghg.top/modules/antd/dist/antd.css">
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="http://wanghg.top/modules/moment/moment.js"></script>
+  <script src="http://wanghg.top/modules/antd/dist/antd.js"></script>
+  <!-- <script src="../modules/moment/moment.js"></script> -->
+  <!-- <script src="../modules/antd/dist/antd.js"></script> -->
+  <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+  <script src="http://wanghg.top/js/prism.js"></script>
+
+</head>
+
+<body>
+  <div id="app"></div>
+  <h3>React + Antd ~ html版本</h3>
+  <pre>
+<code class="language-html">
+&lt;link rel="stylesheet" type="text/css" href="http://wanghg.top/modules/antd/dist/antd.css"&gt;
+&lt;script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/babel-standalone@6/babel.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://wanghg.top/modules/moment/moment.js"&gt;&lt;/script&gt;
+&lt;script src="http://wanghg.top/modules/antd/dist/antd.js"&gt;&lt;/script&gt;
+</code>
+</pre>
+  <pre>
+<code class="language-javascript">
+&lt;script type="text/babel"&gt;
+  const { Component } = React;
+  const { Button, Modal, Input, } = antd;
+  class App extends React.Component {
+    state = {
+      visible: false
+    }
+    showModal = () =&gt; {
+      this.setState({visible: true});
+    };
+    handleOk = e =&gt; {
+      this.setState({visible: true});
+    };
+    handleCancel = e =&gt; {
+      this.setState({visible: true});
+    };
+    render() {
+      return (
+        &lt;div&gt;
+          &lt;Button type='primary' onClick={this.showModal}&gt;按钮&lt;/Button&gt;
+          &lt;Modal
+            title="标题"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          &gt;
+            &lt;p&gt;内容&lt;/p&gt;
+          &lt;/Modal&gt;
+        &lt;/div &gt;
+      )
+    }
+  }
+
+  ReactDOM.render(
+    &lt;App /&gt;,
+    document.getElementById("app")
+  )
+
+&lt;/script&gt;
+</code>
+</pre>
+</body>
+
+<script type="text/babel">
+  const { Component } = React;
+  const { Button, Modal, Input, } = antd;
+
+
+  class App extends React.Component {
+    state = {
+      visible: false
+    }
+
+
+    onClose = () => {
+      this.setState({
+        visible: false,
+      });
+    };
+
+    showModal = () => {
+      this.setState({
+        visible: true,
+      });
+    };
+
+    handleOk = e => {
+      this.setState({
+        visible: false,
+      });
+    };
+
+    handleCancel = e => {
+      this.setState({
+        visible: false,
+      });
+    };
+    render() {
+      return (
+        <div>
+          <Button type='primary' onClick={this.showModal}>按钮</Button>
+          <Button type='detault' onClick={this.showModal}>按钮</Button>
+          <Button type='danger' onClick={this.showModal}>按钮</Button>
+          <Button type='link' onClick={this.showModal}>按钮</Button>
+          <Input />
+          <Modal
+            title="标题"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <p>内容</p>
+          </Modal>
+        </div >
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <App />,
+    document.getElementById("app")
+  )
+  window.onload = function () {
+    var t2 = new Date().getTime() - t1
+    console.log(t2)
+  }
+</script>
+
+</html>

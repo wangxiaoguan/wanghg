@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        body {
+            background-color: #292929
+        }
+
+        .grab {
+            /* 抓抓抓 */
+            cursor: -webkit-grab;
+            cursor: -moz-grab;
+            cursor: grab;
+        }
+
+        .view-big {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .view-big .vb-btns .close {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 20;
+            cursor: pointer;
+        }
+
+        .view-big .vb-btns .close .iconshanchu {
+            font-size: 25px;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            color: #fff;
+        }
+
+        .view-big .vb-btn {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 20;
+            background-color: rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+        }
+
+        .view-big .vb-btn.left {
+            left: 20px;
+        }
+
+        .view-big .vb-btn.left::before {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E") no-repeat center;
+            z-index: 2;
+        }
+
+        .view-big .vb-btn.right {
+            right: 20px;
+        }
+
+        .view-big .vb-btn.right::before {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E") no-repeat center;
+        }
+
+        .view-big .vb-btn.vb-btn-disabled {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .view-big .vb-operate {
+            width: 316px;
+            height: 60px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 90%;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 4px;
+            display: flex;
+        }
+
+        .view-big .vb-operate .vb-ope {
+            width: 25%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .view-big .vb-operate .down {
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAB4CAMAAAD7aI8VAAABAlBMVEUAAAA5vYs5vYs5vYs5vYv///85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///////////////////////85vYs5vYs5vYv///85vYs5vYs5vYs5vYv///////////////85vYs5vYv///85vYv///85vYv///85vYv///////85vYv///85vYs5vYv///85vYv///////////////////85vYv///85vYv///////////85vYv///85vYv///85vYv///85vYs5vYv///////////85vYv///////85vYv4jloGAAAAVHRSTlMA6BAVCvf3QPr6w7+UQBHCJ+7t54CACUsuBscn6hcUBr7MxpmZOdXQlXYdh4dMLx0N8dVr0cvIra133t3yzjw3A+TjGaCSblgsoGdKUlJ1Vlkkp4/wCp74AAAF10lEQVR42uyZQWurQBRG70YQRUEUBTVxkY0aCPJICYQ0LdKEEApt6ff/f8vL85FMTabc0XSgizmreuG0nBim5oYMBoPBYDAYDAaDwWCQ8bHaQMJm9UGqFMkuDa3N2tklBQ0jq9zQtkO3ysRMr5sF+IZA8ff4US6kPPJJHc8RpuOJuU53BXvvA/0h4O9trEiF9xD4M/cmRfzhRUsgfyNF4hkQlEldNFlSBsAsJtLvbrAnug0mqrAhnucScLfieusC5TOdqDjVT2HN/cvV3EJ6uVJxo+Z81UQDXMCXB/uAQu8K1rE/qiysTsXvnB2nWB++Dg5rpOI+se7i62Ch7gLUC07d3pBhh+DpevYUYEeezdkztHV/UreYEU/nrhlXPRgYEPwGS/SKYgtRwNneSZWIHnWw7oJx9QT7OY6y+REAZzuYn398eDj/NIdDAsYVCFdzcARXOp9YbPACQdP7kx1NgAV1MK4vefWFqyu4yLGVzZuUv8MRSroNphIRsUR4kY1fEGkOTrCUjQsXfLCLRBacwCUWF6+y8Stczaf0DpH8lVYIDlHLgmuEJGBcgbIrbVMOdqTn4hwqwTaK7rzChe7kKmATi42YzrJQKYatOTjHhMZio7kjuJEFN0OC+6fPVgRzd2ksITLuLc27fbIBb+kQV4Q/EPybD63kqrhNfuAt/Zv/LUkYe2gJND545HFvIFy9wTvmJdX4aFnd9WgpQ/XBYzQerMP17GDBG+suGJfPGv9oqfwRb9Kf1GvMxrqTVrgagpkPD+Q4JFBeAFh4VF8AtP0FgC1cDcHcx8M92oZYpjcrHvwR9413q/jSX/1zp5qC+QXA1sLboEVcUXeLuJelKFZx81kypZM7yzt3OdUfTCXym+JtgM9xq9bpoyge7C4V7zHgy8bjl3jHbok3apnOFDPuUrjcmlbC2DWt53Rr2jEwxSyimF/E344HLOLz8yJ+8n8R/0pEv7hY21ct44sfaXSxipt992VaNujLtNy2WuczeaZ7mabOXa7BYDAYDAaDwWAwGAyGv+3ZQWurQBQF4DtGFEEwCILujGi7SRARQkJWIYtQQrMonP//V15eH719mil3NB3axXyrpHBqTpSJc3Ucx3Ecx3Ecx3EMLXcdNLrdkkwVm7hSQXdI4ksx9ej7UkWRKvd8NNvZZYovpIb/x8sUmMo8MhcmYElIzGZ2h6j3ABoAvD7CjkycFfC0Dk+FvwyzZ0CdyZBfA2m8aW/JTZwCtU9kP9uhJ7ovTLRHZ5KPh99vkwAx/XWVkl6FYO3xu3WAit+ZZDOf22cTsoCnL+wBRhdI0NPANcAbEZ2ltL/FIaf/5AdsuYO9LECDwlUy+KMgRtrQSJMipjCS0jWOLQ20R9RCiLMHIWteGJhQ+IygoTtNgKyT0iFHB0Fh9eFsLmTtFPYUetLoAUjpBOuPl6vVx6s1EmJSlnHWeuHsi2MsArFwjtQbHPKdlyInUY6Os5+8DrnlwoVCo19S5DOcIab7whQjI1GGF9J4QWa58AbPpFGUkAuX2OgKb1CSqMQrabyitLNKS6fjDQaFFVpd4RaKmJRl5lltN+PClXZdXMOkcISCblZgK7opEJEogk8c5ij5iCwXVjjRXBH8Hy08XH0aLiyepbkUlsIlLWbHlhMuaYUR9Q2Ff/OidRk1Pl6+4ZL+zT9LGrMXLWbxxiP1iQ2yFgvLp8PmreX+oVtLnck3HjJ5A5Cbbx6WQtZK4SJFQ7PVOJxo4HRAbZxdjLKTtod68zcPlCRzNvEBVuYDgOMwG3HWRmF5e3j0SLTYjkc8ePo8b3L26nP/K2ctFJYHAGGA86RBXNG+D+JenvlTG2VVfVlQ0V5qdcs+cdZCYWHE0yEmM2EFVoW04MYWs4BHGvOHeH2A3dxhunljISuMaTUmjWmb4Xg8Lmgm88ZCVhrE0505g/jTv0H8KxH94sbf8aglHT1qebDx6vGs/YdpWxUFx0p+mCZbbKuHso7jOI7jOI7jOI5z7w9/6hQ8Yaht4AAAAABJRU5ErkJggg==') no-repeat 10px 0;
+        }
+
+        .view-big .vb-operate .down:hover {
+            background-position: 10px -60px;
+        }
+
+        .view-big .vb-operate .rotate {
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAB4CAMAAAD7aI8VAAABAlBMVEUAAAA5vYs5vYs5vYs5vYv///85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///////////////////////85vYs5vYs5vYv///85vYs5vYs5vYs5vYv///////////////85vYs5vYv///85vYv///85vYv///85vYv///////85vYv///85vYs5vYv///85vYv///////////////////85vYv///85vYv///////////85vYv///85vYv///85vYv///85vYs5vYv///////////85vYv///////85vYv4jloGAAAAVHRSTlMA6BAVCvf3QPr6w7+UQBHCJ+7t54CACUsuBscn6hcUBr7MxpmZOdXQlXYdh4dMLx0N8dVr0cvIra133t3yzjw3A+TjGaCSblgsoGdKUlJ1Vlkkp4/wCp74AAAF10lEQVR42uyZQWurQBRG70YQRUEUBTVxkY0aCPJICYQ0LdKEEApt6ff/f8vL85FMTabc0XSgizmreuG0nBim5oYMBoPBYDAYDAaDwWCQ8bHaQMJm9UGqFMkuDa3N2tklBQ0jq9zQtkO3ysRMr5sF+IZA8ff4US6kPPJJHc8RpuOJuU53BXvvA/0h4O9trEiF9xD4M/cmRfzhRUsgfyNF4hkQlEldNFlSBsAsJtLvbrAnug0mqrAhnucScLfieusC5TOdqDjVT2HN/cvV3EJ6uVJxo+Z81UQDXMCXB/uAQu8K1rE/qiysTsXvnB2nWB++Dg5rpOI+se7i62Ch7gLUC07d3pBhh+DpevYUYEeezdkztHV/UreYEU/nrhlXPRgYEPwGS/SKYgtRwNneSZWIHnWw7oJx9QT7OY6y+REAZzuYn398eDj/NIdDAsYVCFdzcARXOp9YbPACQdP7kx1NgAV1MK4vefWFqyu4yLGVzZuUv8MRSroNphIRsUR4kY1fEGkOTrCUjQsXfLCLRBacwCUWF6+y8Stczaf0DpH8lVYIDlHLgmuEJGBcgbIrbVMOdqTn4hwqwTaK7rzChe7kKmATi42YzrJQKYatOTjHhMZio7kjuJEFN0OC+6fPVgRzd2ksITLuLc27fbIBb+kQV4Q/EPybD63kqrhNfuAt/Zv/LUkYe2gJND545HFvIFy9wTvmJdX4aFnd9WgpQ/XBYzQerMP17GDBG+suGJfPGv9oqfwRb9Kf1GvMxrqTVrgagpkPD+Q4JFBeAFh4VF8AtP0FgC1cDcHcx8M92oZYpjcrHvwR9413q/jSX/1zp5qC+QXA1sLboEVcUXeLuJelKFZx81kypZM7yzt3OdUfTCXym+JtgM9xq9bpoyge7C4V7zHgy8bjl3jHbok3apnOFDPuUrjcmlbC2DWt53Rr2jEwxSyimF/E344HLOLz8yJ+8n8R/0pEv7hY21ct44sfaXSxipt992VaNujLtNy2WuczeaZ7mabOXa7BYDAYDAaDwWAwGAyGv+3ZQWurQBQF4DtGFEEwCILujGi7SRARQkJWIYtQQrMonP//V15eH719mil3NB3axXyrpHBqTpSJc3Ucx3Ecx3Ecx3EMLXcdNLrdkkwVm7hSQXdI4ksx9ej7UkWRKvd8NNvZZYovpIb/x8sUmMo8MhcmYElIzGZ2h6j3ABoAvD7CjkycFfC0Dk+FvwyzZ0CdyZBfA2m8aW/JTZwCtU9kP9uhJ7ovTLRHZ5KPh99vkwAx/XWVkl6FYO3xu3WAit+ZZDOf22cTsoCnL+wBRhdI0NPANcAbEZ2ltL/FIaf/5AdsuYO9LECDwlUy+KMgRtrQSJMipjCS0jWOLQ20R9RCiLMHIWteGJhQ+IygoTtNgKyT0iFHB0Fh9eFsLmTtFPYUetLoAUjpBOuPl6vVx6s1EmJSlnHWeuHsi2MsArFwjtQbHPKdlyInUY6Os5+8DrnlwoVCo19S5DOcIab7whQjI1GGF9J4QWa58AbPpFGUkAuX2OgKb1CSqMQrabyitLNKS6fjDQaFFVpd4RaKmJRl5lltN+PClXZdXMOkcISCblZgK7opEJEogk8c5ij5iCwXVjjRXBH8Hy08XH0aLiyepbkUlsIlLWbHlhMuaYUR9Q2Ff/OidRk1Pl6+4ZL+zT9LGrMXLWbxxiP1iQ2yFgvLp8PmreX+oVtLnck3HjJ5A5Cbbx6WQtZK4SJFQ7PVOJxo4HRAbZxdjLKTtod68zcPlCRzNvEBVuYDgOMwG3HWRmF5e3j0SLTYjkc8ePo8b3L26nP/K2ctFJYHAGGA86RBXNG+D+JenvlTG2VVfVlQ0V5qdcs+cdZCYWHE0yEmM2EFVoW04MYWs4BHGvOHeH2A3dxhunljISuMaTUmjWmb4Xg8Lmgm88ZCVhrE0505g/jTv0H8KxH94sbf8aglHT1qebDx6vGs/YdpWxUFx0p+mCZbbKuHso7jOI7jOI7jOI5z7w9/6hQ8Yaht4AAAAABJRU5ErkJggg==') no-repeat -50px 0;
+        }
+
+        .view-big .vb-operate .rotate:hover {
+            background-position: -50px -60px;
+        }
+
+        .view-big .vb-operate .amplify {
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAB4CAMAAAD7aI8VAAABAlBMVEUAAAA5vYs5vYs5vYs5vYv///85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///////////////////////85vYs5vYs5vYv///85vYs5vYs5vYs5vYv///////////////85vYs5vYv///85vYv///85vYv///85vYv///////85vYv///85vYs5vYv///85vYv///////////////////85vYv///85vYv///////////85vYv///85vYv///85vYv///85vYs5vYv///////////85vYv///////85vYv4jloGAAAAVHRSTlMA6BAVCvf3QPr6w7+UQBHCJ+7t54CACUsuBscn6hcUBr7MxpmZOdXQlXYdh4dMLx0N8dVr0cvIra133t3yzjw3A+TjGaCSblgsoGdKUlJ1Vlkkp4/wCp74AAAF10lEQVR42uyZQWurQBRG70YQRUEUBTVxkY0aCPJICYQ0LdKEEApt6ff/f8vL85FMTabc0XSgizmreuG0nBim5oYMBoPBYDAYDAaDwWCQ8bHaQMJm9UGqFMkuDa3N2tklBQ0jq9zQtkO3ysRMr5sF+IZA8ff4US6kPPJJHc8RpuOJuU53BXvvA/0h4O9trEiF9xD4M/cmRfzhRUsgfyNF4hkQlEldNFlSBsAsJtLvbrAnug0mqrAhnucScLfieusC5TOdqDjVT2HN/cvV3EJ6uVJxo+Z81UQDXMCXB/uAQu8K1rE/qiysTsXvnB2nWB++Dg5rpOI+se7i62Ch7gLUC07d3pBhh+DpevYUYEeezdkztHV/UreYEU/nrhlXPRgYEPwGS/SKYgtRwNneSZWIHnWw7oJx9QT7OY6y+REAZzuYn398eDj/NIdDAsYVCFdzcARXOp9YbPACQdP7kx1NgAV1MK4vefWFqyu4yLGVzZuUv8MRSroNphIRsUR4kY1fEGkOTrCUjQsXfLCLRBacwCUWF6+y8Stczaf0DpH8lVYIDlHLgmuEJGBcgbIrbVMOdqTn4hwqwTaK7rzChe7kKmATi42YzrJQKYatOTjHhMZio7kjuJEFN0OC+6fPVgRzd2ksITLuLc27fbIBb+kQV4Q/EPybD63kqrhNfuAt/Zv/LUkYe2gJND545HFvIFy9wTvmJdX4aFnd9WgpQ/XBYzQerMP17GDBG+suGJfPGv9oqfwRb9Kf1GvMxrqTVrgagpkPD+Q4JFBeAFh4VF8AtP0FgC1cDcHcx8M92oZYpjcrHvwR9413q/jSX/1zp5qC+QXA1sLboEVcUXeLuJelKFZx81kypZM7yzt3OdUfTCXym+JtgM9xq9bpoyge7C4V7zHgy8bjl3jHbok3apnOFDPuUrjcmlbC2DWt53Rr2jEwxSyimF/E344HLOLz8yJ+8n8R/0pEv7hY21ct44sfaXSxipt992VaNujLtNy2WuczeaZ7mabOXa7BYDAYDAaDwWAwGAyGv+3ZQWurQBQF4DtGFEEwCILujGi7SRARQkJWIYtQQrMonP//V15eH719mil3NB3axXyrpHBqTpSJc3Ucx3Ecx3Ecx3EMLXcdNLrdkkwVm7hSQXdI4ksx9ej7UkWRKvd8NNvZZYovpIb/x8sUmMo8MhcmYElIzGZ2h6j3ABoAvD7CjkycFfC0Dk+FvwyzZ0CdyZBfA2m8aW/JTZwCtU9kP9uhJ7ovTLRHZ5KPh99vkwAx/XWVkl6FYO3xu3WAit+ZZDOf22cTsoCnL+wBRhdI0NPANcAbEZ2ltL/FIaf/5AdsuYO9LECDwlUy+KMgRtrQSJMipjCS0jWOLQ20R9RCiLMHIWteGJhQ+IygoTtNgKyT0iFHB0Fh9eFsLmTtFPYUetLoAUjpBOuPl6vVx6s1EmJSlnHWeuHsi2MsArFwjtQbHPKdlyInUY6Os5+8DrnlwoVCo19S5DOcIab7whQjI1GGF9J4QWa58AbPpFGUkAuX2OgKb1CSqMQrabyitLNKS6fjDQaFFVpd4RaKmJRl5lltN+PClXZdXMOkcISCblZgK7opEJEogk8c5ij5iCwXVjjRXBH8Hy08XH0aLiyepbkUlsIlLWbHlhMuaYUR9Q2Ff/OidRk1Pl6+4ZL+zT9LGrMXLWbxxiP1iQ2yFgvLp8PmreX+oVtLnck3HjJ5A5Cbbx6WQtZK4SJFQ7PVOJxo4HRAbZxdjLKTtod68zcPlCRzNvEBVuYDgOMwG3HWRmF5e3j0SLTYjkc8ePo8b3L26nP/K2ctFJYHAGGA86RBXNG+D+JenvlTG2VVfVlQ0V5qdcs+cdZCYWHE0yEmM2EFVoW04MYWs4BHGvOHeH2A3dxhunljISuMaTUmjWmb4Xg8Lmgm88ZCVhrE0505g/jTv0H8KxH94sbf8aglHT1qebDx6vGs/YdpWxUFx0p+mCZbbKuHso7jOI7jOI7jOI5z7w9/6hQ8Yaht4AAAAABJRU5ErkJggg==') no-repeat -110px 0;
+        }
+
+        .view-big .vb-operate .amplify:hover {
+            background-position: -110px -60px;
+        }
+
+        .view-big .vb-operate .reduce {
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAB4CAMAAAD7aI8VAAABAlBMVEUAAAA5vYs5vYs5vYs5vYv///85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///85vYv///////85vYv///////85vYs5vYv///////////////////////85vYs5vYs5vYv///85vYs5vYs5vYs5vYv///////////////85vYs5vYv///85vYv///85vYv///85vYv///////85vYv///85vYs5vYv///85vYv///////////////////85vYv///85vYv///////////85vYv///85vYv///85vYv///85vYs5vYv///////////85vYv///////85vYv4jloGAAAAVHRSTlMA6BAVCvf3QPr6w7+UQBHCJ+7t54CACUsuBscn6hcUBr7MxpmZOdXQlXYdh4dMLx0N8dVr0cvIra133t3yzjw3A+TjGaCSblgsoGdKUlJ1Vlkkp4/wCp74AAAF10lEQVR42uyZQWurQBRG70YQRUEUBTVxkY0aCPJICYQ0LdKEEApt6ff/f8vL85FMTabc0XSgizmreuG0nBim5oYMBoPBYDAYDAaDwWCQ8bHaQMJm9UGqFMkuDa3N2tklBQ0jq9zQtkO3ysRMr5sF+IZA8ff4US6kPPJJHc8RpuOJuU53BXvvA/0h4O9trEiF9xD4M/cmRfzhRUsgfyNF4hkQlEldNFlSBsAsJtLvbrAnug0mqrAhnucScLfieusC5TOdqDjVT2HN/cvV3EJ6uVJxo+Z81UQDXMCXB/uAQu8K1rE/qiysTsXvnB2nWB++Dg5rpOI+se7i62Ch7gLUC07d3pBhh+DpevYUYEeezdkztHV/UreYEU/nrhlXPRgYEPwGS/SKYgtRwNneSZWIHnWw7oJx9QT7OY6y+REAZzuYn398eDj/NIdDAsYVCFdzcARXOp9YbPACQdP7kx1NgAV1MK4vefWFqyu4yLGVzZuUv8MRSroNphIRsUR4kY1fEGkOTrCUjQsXfLCLRBacwCUWF6+y8Stczaf0DpH8lVYIDlHLgmuEJGBcgbIrbVMOdqTn4hwqwTaK7rzChe7kKmATi42YzrJQKYatOTjHhMZio7kjuJEFN0OC+6fPVgRzd2ksITLuLc27fbIBb+kQV4Q/EPybD63kqrhNfuAt/Zv/LUkYe2gJND545HFvIFy9wTvmJdX4aFnd9WgpQ/XBYzQerMP17GDBG+suGJfPGv9oqfwRb9Kf1GvMxrqTVrgagpkPD+Q4JFBeAFh4VF8AtP0FgC1cDcHcx8M92oZYpjcrHvwR9413q/jSX/1zp5qC+QXA1sLboEVcUXeLuJelKFZx81kypZM7yzt3OdUfTCXym+JtgM9xq9bpoyge7C4V7zHgy8bjl3jHbok3apnOFDPuUrjcmlbC2DWt53Rr2jEwxSyimF/E344HLOLz8yJ+8n8R/0pEv7hY21ct44sfaXSxipt992VaNujLtNy2WuczeaZ7mabOXa7BYDAYDAaDwWAwGAyGv+3ZQWurQBQF4DtGFEEwCILujGi7SRARQkJWIYtQQrMonP//V15eH719mil3NB3axXyrpHBqTpSJc3Ucx3Ecx3Ecx3EMLXcdNLrdkkwVm7hSQXdI4ksx9ej7UkWRKvd8NNvZZYovpIb/x8sUmMo8MhcmYElIzGZ2h6j3ABoAvD7CjkycFfC0Dk+FvwyzZ0CdyZBfA2m8aW/JTZwCtU9kP9uhJ7ovTLRHZ5KPh99vkwAx/XWVkl6FYO3xu3WAit+ZZDOf22cTsoCnL+wBRhdI0NPANcAbEZ2ltL/FIaf/5AdsuYO9LECDwlUy+KMgRtrQSJMipjCS0jWOLQ20R9RCiLMHIWteGJhQ+IygoTtNgKyT0iFHB0Fh9eFsLmTtFPYUetLoAUjpBOuPl6vVx6s1EmJSlnHWeuHsi2MsArFwjtQbHPKdlyInUY6Os5+8DrnlwoVCo19S5DOcIab7whQjI1GGF9J4QWa58AbPpFGUkAuX2OgKb1CSqMQrabyitLNKS6fjDQaFFVpd4RaKmJRl5lltN+PClXZdXMOkcISCblZgK7opEJEogk8c5ij5iCwXVjjRXBH8Hy08XH0aLiyepbkUlsIlLWbHlhMuaYUR9Q2Ff/OidRk1Pl6+4ZL+zT9LGrMXLWbxxiP1iQ2yFgvLp8PmreX+oVtLnck3HjJ5A5Cbbx6WQtZK4SJFQ7PVOJxo4HRAbZxdjLKTtod68zcPlCRzNvEBVuYDgOMwG3HWRmF5e3j0SLTYjkc8ePo8b3L26nP/K2ctFJYHAGGA86RBXNG+D+JenvlTG2VVfVlQ0V5qdcs+cdZCYWHE0yEmM2EFVoW04MYWs4BHGvOHeH2A3dxhunljISuMaTUmjWmb4Xg8Lmgm88ZCVhrE0505g/jTv0H8KxH94sbf8aglHT1qebDx6vGs/YdpWxUFx0p+mCZbbKuHso7jOI7jOI7jOI5z7w9/6hQ8Yaht4AAAAABJRU5ErkJggg==') no-repeat -170px 0;
+        }
+
+        .view-big .vb-operate .reduce:hover {
+            background-position: -170px -60px;
+        }
+
+        .view-big .vb-box {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .view-big .vb-box-list {
+            height: 80%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            display: flex;
+        }
+
+        .view-big .vb-box-list .vb-li {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .view-big .vb-box-list .vb-max-box {
+            width: 80%;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .view-big .vb-box-list .vb-img {
+            max-width: 100%;
+            max-height: 100%;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: transform 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script>
+    /**
+     * ViewBig 查看大图
+     * @param {object} - 对象
+     * @example
+     * ViewBig({data:[src:'图片地址,name:'图片名称],active:1,success:()=>{console.log('成功的回调')},class:'class-one'})
+     */
+    function ViewBig(paramObj) {
+        const baseObj = {
+            index: $('.view-big').length + 1,// 当前元素有几个
+            zindex: paramObj.zindex || 20000,
+
+            data: paramObj.data,// 图片集合
+            active: paramObj.index,// 默认哪张
+            min: 1,// 最小
+            max: paramObj.data.length,// 最大
+            imgStyle: [],// 图片样式 x y zoom缩放 rotate旋转度数
+            blank: paramObj.blank || false// 是否开启按下空格启用拖动
+        }
+        //选中的
+        baseObj.place = -(baseObj.active - 1) * 100
+        //图片总长度
+        baseObj.allLength = -(baseObj.max - 1) * 100
+        //当前选中的
+        function returnImgHtml(imgList) {
+            // 图片集合
+            const imgText = []
+            baseObj.imgStyle = []
+            imgList.forEach((item, index) => {
+                // x x轴 y y轴 zoom 缩放 rotate 旋转度数
+                baseObj.imgStyle.push({ x: 0, y: 0, zoom: 1, rotate: 0 })
+                const thisIndex = index + 1
+                imgText.push(`<div class="vb-li${baseObj.active === thisIndex ? ' active' : ''}" data-index="${index + 1}">
+                                <div class="vb-max-box">
+                                    <img class="vb-img" src="${item.src}" data-name="${item.name || ''}" draggable="false"/>
+                                </div>
+                            </div>`)
+            })
+            const html = `<div class="view-big${baseObj.class ? ` ${baseObj.class}` : ''}" style="z-index:${baseObj.zindex};" id="view-big${baseObj.index}">
+                            <div class="vb-btns">
+                                <div class="vb-btn left"></div>
+                                <div class="vb-btn right"></div>
+                                <div class="close"><i class="iconfont iconshanchu"></i></div>
+                            </div>
+                            <div class="vb-box">
+                                <div class="vb-box-list" style="transform:translateX(${baseObj.place}%);transition:transform .3s;">${imgText.join('')}</div>
+                                <div class="vb-operate">
+                                    <div class="vb-ope down"></div>
+                                    <div class="vb-ope rotate"></div>
+                                    <div class="vb-ope amplify"></div>
+                                    <div class="vb-ope reduce"></div>
+                                </div>
+                            </div>
+                        </div>`
+            return html
+        }
+        //加入
+        $('body').append(returnImgHtml(baseObj.data))
+        $('html').css('overflow', 'hidden')
+        //父级盒子
+        const vbDom = $(`#view-big${baseObj.index}`)
+        // 弹出的回调
+        if (paramObj.success) paramObj.success(vbDom)
+        const vbBox = vbDom.find('.vb-box')
+        const boxList = vbDom.find('.vb-box-list')
+        //左右按钮 关闭按钮
+        const leftBtn = vbDom.find('.vb-btns .left')
+        const rightBtn = vbDom.find('.vb-btns .right')
+        const closeBtn = vbDom.find('.vb-btns .close')
+        //下侧功能按钮
+        const downBtn = vbDom.find('.vb-operate .down')
+        const rotateBtn = vbDom.find('.vb-operate .rotate')
+        const amplifyBtn = vbDom.find('.vb-operate .amplify')
+        const reduceBtn = vbDom.find('.vb-operate .reduce')
+        // 盒子最大宽度
+        baseObj.maxWidth = vbBox.outerWidth()
+        //左右按钮不可选
+        if (baseObj.active === baseObj.min) leftBtn.addClass('vb-btn-disabled')
+        if (baseObj.active === baseObj.max) rightBtn.addClass('vb-btn-disabled')
+        //左边
+        leftBtn.click(function (e) {
+            baseObj.active = boxList.find('.active').data('index') - 1
+            if (baseObj.active < baseObj.min) return
+            baseObj.place = -(baseObj.active - 1) * 100
+            boxList.css({ 'transform': `translateX(${baseObj.place}%)`, 'transition': 'transform .3s' })
+            boxList.find('.vb-li').removeClass('active')
+            boxList.find(`.vb-li[data-index="${baseObj.active}"]`).addClass('active')
+            //第一个时 增加不可用样式 否则可用
+            if (baseObj.active === baseObj.min) $(this).addClass('vb-btn-disabled')
+            rightBtn.removeClass('vb-btn-disabled')
+        })
+        //右边
+        rightBtn.click(function (e) {
+            baseObj.active = boxList.find('.active').data('index') + 1
+            if (baseObj.active > baseObj.max) return
+            baseObj.place = -(baseObj.active - 1) * 100
+            boxList.css({ 'transform': `translateX(${baseObj.place}%)`, 'transition': 'transform .3s' })
+            boxList.find('.vb-li').removeClass('active')
+            boxList.find(`.vb-li[data-index="${baseObj.active}"]`).addClass('active')
+            //最后一个时 增加不可用样式 否则可用
+            if (baseObj.active === baseObj.max) $(this).addClass('vb-btn-disabled')
+            leftBtn.removeClass('vb-btn-disabled')
+        })
+        //img图片移动
+        const imgMoveObj = {
+            //按下位置
+            imgX: '',
+            imgY: '',
+            imgDom: '',
+            imgData: '',
+            newX: 0,
+            newY: 0,
+            //触发按下
+            imgMovedownFun: function (e) {
+                console.log('已按下')
+                imgMoveObj.imgX = e.pageX
+                imgMoveObj.imgY = e.pageY
+                console.log(imgMoveObj.imgX)
+                console.log(imgMoveObj.imgY)
+                const activeDiv = boxList.find('.active')
+                imgMoveObj.imgDom = activeDiv.find('img')
+                const index = activeDiv.data('index') - 1
+                imgMoveObj.imgData = baseObj.imgStyle[index]
+                $(document).on('mousemove', imgMoveObj.imgMoveFun)
+                $(document).on('mouseup', imgMoveObj.imgMoveupFun)
+            },
+            //移动事件
+            imgMoveFun: function (e) {
+                if (!imgMoveObj.imgData.x && imgMoveObj.imgData.x !== 0) imgMoveObj.imgData.x = Number(imgMoveObj.imgDom.css('margin-left').replace('px', ''))
+                if (!imgMoveObj.imgData.y && imgMoveObj.imgData.y !== 0) imgMoveObj.imgData.y = Number(imgMoveObj.imgDom.css('margin-top').replace('px', ''))
+                // 计算最新位置
+                imgMoveObj.newX = imgMoveObj.imgData.x + ((e.pageX - imgMoveObj.imgX) * 2)
+                imgMoveObj.newY = imgMoveObj.imgData.y + ((e.pageY - imgMoveObj.imgY) * 2)
+                imgMoveObj.imgDom.css({ 'margin-left': imgMoveObj.newX, "margin-top": imgMoveObj.newY })
+            },
+            //弹起事件
+            imgMoveupFun: function (e) {
+                console.log('弹起')
+                //移除移动 弹起事件
+                $(document).off('mousemove', imgMoveObj.imgMoveFun)
+                $(document).off('mouseup', imgMoveObj.imgMoveupFun)
+                imgMoveObj.imgDom.css('transition', '')
+                // 赋值
+                imgMoveObj.imgData.x = Number(imgMoveObj.imgDom.css('margin-left').replace('px', ''))
+                imgMoveObj.imgData.y = Number(imgMoveObj.imgDom.css('margin-top').replace('px', ''))
+            },
+            //滚轮事件
+            mousewhellFun: function (e) {
+                //当前选中
+                const activeDiv = boxList.find('.active')
+                const thisActive = activeDiv.find('img')
+                const index = activeDiv.data('index') - 1
+                const thisData = baseObj.imgStyle[index]
+                //放大
+                if (e.originalEvent.wheelDelta > 0) {
+                    thisData.zoom = thisData.zoom + 0.2
+                    thisActive.css('transform', `rotate(${thisData.rotate}deg) scale(${thisData.zoom})`)
+                } else {
+                    //缩小
+                    thisData.zoom = thisData.zoom - 0.2
+                    if (thisData.zoom < 0.2) thisData.zoom = 0.2
+                    thisActive.css('transform', `rotate(${thisData.rotate}deg) scale(${thisData.zoom})`)
+                }
+            },
+            //键盘按下
+            keydownFun: function (e) {
+                if (e.keyCode === 32) {
+                    if (moveObj.spaceYn) return
+                    console.log('按下空格')
+                    moveObj.spaceYn = true
+                    // moveObj.moveUpFun()
+                    $(document).on('mousedown', imgMoveObj.imgMovedownFun)
+                    $(document).on('keyup', imgMoveObj.keyupFun)
+                    $(document).on('mousewheel', imgMoveObj.mousewhellFun)
+                    $('body').addClass('grab')
+                }
+            },
+            //空格取消
+            keyupFun: function (e) {
+                if (moveObj.spaceYn) {
+                    moveObj.spaceYn = false
+                    //移除按下事件
+                    $(document).off('mousedown', imgMoveObj.imgMovedownFun)
+                    $(document).off('keyup', imgMoveObj.keyupFun)
+                    $(document).off('mousewheel', imgMoveObj.mousewhellFun)
+                    $('body').removeClass('grab')
+                }
+            }
+        }
+        //移动参数
+        const moveObj = {
+            spaceYn: false,
+            moveStartX: 0,//移动距离
+            moveStartTime: null,//移动时间
+            movePercent: null, //移动
+            num: 0,
+            emptyFun: () => { },//空函数
+            clickFun: () => { },//点击非图片触发事件(后面会赋值)
+            moveFun: function (e) {
+                if (moveObj.spaceYn) return
+                //移动距离 (移动位置-鼠标按下位置)*100/盒子的宽度
+                moveObj.movePercent = (e.pageX - moveObj.moveStartX) * 100 / baseObj.maxWidth
+                //当前移动以后的距离 当前位置 + 移动距离
+                moveObj.num = baseObj.place + moveObj.movePercent
+                //小于0代表 为第一张 速度减慢3倍
+                if (moveObj.num > 0) moveObj.num = baseObj.place + (moveObj.movePercent / 3)
+                //大于图片总长度 为最后一张速度放慢三倍
+                if (moveObj.num < baseObj.allLength) moveObj.num = baseObj.place + (moveObj.movePercent / 3)
+                boxList.css({ 'transform': `translateX(${moveObj.num}%)`, 'transition': '' })
+            },
+            moveUpFun: function (e) {
+                // 关闭移动
+                $('html,body').off('mousemove', moveObj.moveFun)
+                // 关闭鼠标弹起
+                $('html,body').off('mouseup', moveObj.moveUpFun)
+                boxList.css('transition', '.3s')
+                // 总共时间 新时间-开始时间
+                const moveEndTime = new Date().getTime() - moveObj.moveStartTime
+                // 移动距离 绝对值
+                const absMovePercent = Math.abs(moveObj.movePercent)
+                // 花费时间小于500时 
+                if (moveEndTime < 500 && absMovePercent > 5) {
+                    // 移动距离 为正左 为负右
+                    moveObj.movePercent > 0 ? leftBtn.click() : rightBtn.click()
+                } else {
+                    if (absMovePercent < 50) {
+                        //移动距离小于50
+                        boxList.css({ 'transform': `translateX(${baseObj.place}%)` })
+                    } else if (moveObj.movePercent > 0) {
+                        //为正左
+                        leftBtn.click()
+                    } else {
+                        //为负右
+                        rightBtn.click()
+                    }
+                }
+                //最左边
+                if (moveObj.num > 0) boxList.css({ 'transform': `translateX(0%)` })
+                //最右边
+                if (moveObj.num < baseObj.place) boxList.css({ 'transform': `translateX(${baseObj.place}%)` })
+            },
+            // clickYn:false,
+            init() {
+                const that = this
+                // 禁止元素拖动
+                vbBox[0].ondragstart = function () { return false; }
+                //按下左键
+                vbBox.on('mousedown', function (e) {
+                    if (moveObj.spaceYn) return
+                    //重置为0
+                    moveObj.movePercent = 0
+                    //重置移动的距离
+                    moveObj.num = 0
+                    //下方按钮时不可点击
+                    if ($(e.target).hasClass('vb-ope')) return
+                    //开始时间
+                    moveObj.moveStartTime = new Date().getTime()
+                    //记录按下的位置
+                    moveObj.moveStartX = e.pageX
+                    activeImg = boxList.find('.vb-li.active')
+                    //移动
+                    $('html,body').on('mousemove', moveObj.moveFun)
+                    //弹起左键
+                    $('html,body').on('mouseup', moveObj.moveUpFun)
+                })
+                // 是否需要空格移动
+                if (baseObj.blank) {
+                    // 按下空格
+                    $(document).on('keydown', imgMoveObj.keydownFun)
+                } else {
+                    this.spaceYn = true
+                    $(document).on('mousedown', imgMoveObj.imgMovedownFun)
+                    $(document).on('mousewheel', imgMoveObj.mousewhellFun)
+                }
+                //关闭事件
+                vbBox.click(function (e) {
+                    const thisDom = $(e.target)
+                    //非图片和非按钮则关闭
+                    if (thisDom.hasClass('vb-box') || thisDom.hasClass('vb-li')) moveObj.clickFun(thisDom)
+                })
+            }
+        }
+        //初始化移动事件
+        moveObj.init()
+        //关闭事件
+        closeBtn.click(function (e) {
+            $(this).parents('.view-big').remove()
+            $('html').css('overflow', '')
+            // 关闭按钮事件
+            $(document).off('keydown', imgMoveObj.keydownFun)
+        })
+        //下载
+        downBtn.click(function (e) {
+            //当前选中
+            const thisActive = boxList.find('.active img')
+            alert('下载功能需要自己完善')
+        })
+        //旋转
+        rotateBtn.click(function (e) {
+            //当前选中
+            const activeDiv = boxList.find('.active')
+            const thisActive = activeDiv.find('img')
+            const index = activeDiv.data('index') - 1
+            const thisData = baseObj.imgStyle[index]
+            console.log(thisData)
+            thisData.rotate = thisData.rotate + 90
+            thisActive.css('transform', `rotate(${thisData.rotate}deg) scale(${thisData.zoom})`)
+        })
+        //放大
+        amplifyBtn.click(function (e) {
+            //当前选中
+            const activeDiv = boxList.find('.active')
+            const thisActive = activeDiv.find('img')
+            const index = activeDiv.data('index') - 1
+            const thisData = baseObj.imgStyle[index]
+            thisData.zoom = thisData.zoom + 0.2
+            thisActive.css('transform', `rotate(${thisData.rotate}deg) scale(${thisData.zoom})`)
+        })
+        //缩小
+        reduceBtn.click(function (e) {
+            //当前选中
+            const activeDiv = boxList.find('.active')
+            const thisActive = activeDiv.find('img')
+            const index = activeDiv.data('index') - 1
+            const thisData = baseObj.imgStyle[index]
+            thisData.zoom = thisData.zoom - 0.2
+            if (thisData.zoom < 0.2) thisData.zoom = 0.2
+            thisActive.css('transform', `rotate(${thisData.rotate}deg) scale(${thisData.zoom})`)
+        })
+    }
+    const arr = [
+        { src: 'https://picsum.photos/id/1051/1080/700', name: 'xx.jpg' },
+        { src: 'https://picsum.photos/id/1072/1080/700', name: '' },
+        { src: 'https://picsum.photos/id/139/1080/700', name: 'xx2.jpg' },
+        { src: 'https://picsum.photos/id/153/1080/700', name: 'xx3.jpg' },
+        { src: 'https://picsum.photos/id/161/1080/700', name: '呵呵哒.jpg' },
+    ]
+    ViewBig({
+        data: arr,
+        index: 3,
+        // 按钮是否 按下空格拖拽
+        blank: true
+    })
+</script>
+
+</html>
