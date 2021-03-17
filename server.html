@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="http://wanghg.top/css/prism.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+<code class="language-javascript">
+    const http = require('http');
+    const hostname = '127.0.0.1';
+    const port = 3000;
+    const server = http.createServer((req, res) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Hello World\n');
+    });
+    server.listen(port, hostname, () => {
+        console.log(`Server running at http://${hostname}:${port}/`);
+    });
+</code>
+</pre>
+</body>
+<script src="http://wanghg.top/js/prism.js"></script>
+
+</html>
